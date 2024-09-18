@@ -9,19 +9,20 @@ class RecipeController extends Controller
 {
     public function index()
     {
-        $recipes = Recipe::latest()->simplePaginate(3);
-        // return $recipes;
-        // $data = [
-        //     'status' => 200,
-        //     'recipes' => $recipes
-        // ];
+        
+        $recipes = Recipe::all();
+        $data = [
+            'status' => 200,
+            'recipes' => $recipes
+        ];
 
-        // return response()->json($data, 200);
+        return response()->json($data, 200);
         // dd($recipes);
 
-        return view('recipes.index', [
-            'recipes' => $recipes
-        ]);
+        // $recipes = Recipe::latest()->simplePaginate(3);
+        // return view('recipes.index', [
+        //     'recipes' => $recipes
+        // ]);
     }
 
     public function create()
