@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,9 +16,11 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('serving');
             $table->text('description');
             $table->string('image');
+            $table->string('serving');
+            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Subcategory::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
