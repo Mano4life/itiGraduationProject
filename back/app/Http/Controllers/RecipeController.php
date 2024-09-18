@@ -18,7 +18,8 @@ class RecipeController extends Controller
 
         return response()->json($data, 200);
         // dd($recipes);
-
+        
+        // $recipes = Recipe::with('category', 'subCategory')->get();
         // $recipes = Recipe::latest()->simplePaginate(3);
         // return view('recipes.index', [
         //     'recipes' => $recipes
