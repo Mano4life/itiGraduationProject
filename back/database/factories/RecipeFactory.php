@@ -19,6 +19,7 @@ class RecipeFactory extends Factory
         return [
             'name' => fake()->name(),
             'description' => fake()->text(),
+            'serving' => fake()->numberBetween(1, 10),
             'image' => fake()->imageUrl()
         ];
     }
