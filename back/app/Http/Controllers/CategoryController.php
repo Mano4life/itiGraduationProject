@@ -12,23 +12,23 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $categories = Category::latest()->paginate(8);
+        return response()->json($categories, 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $data = request()->validate([
+            'name' => ['required', 'string', 'min:3']
+        ]);
+
+        $result = Category::create($data);
+
+        return response()->json($result, 200);
+        //test redirection if needed.
     }
 
     /**
@@ -36,23 +36,25 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
-    }
+        if(is_null($category)){
+            return response()->json(['message' => 'category not found'], 404);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
-        //
+        return response()->json($category, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Category $category)
     {
-        //
+        $data = request()->validate([
+            'name' => ['required', 'min:3']
+        ]);
+
+        $result = $category->update($data);
+
+        return response()->json($result);
     }
 
     /**
@@ -60,6 +62,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response()->json(['message'=>'deleted succesfully'], 200);
     }
 }

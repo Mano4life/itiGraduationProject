@@ -12,23 +12,24 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $subcat = Subcategory::latest()->paginate(8);
+        return response()->json($subcat, 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $data = request()->validate([
+            'name' => ['required', 'string', 'min:3'],
+            'category_id' => ['required', 'exists:categories,id']
+        ]);
+
+        $result = Subcategory::create($data);
+
+        return response()->json($result, 200);
+        //test redirection if needed.
     }
 
     /**
@@ -36,23 +37,26 @@ class SubcategoryController extends Controller
      */
     public function show(Subcategory $subcategory)
     {
-        //
-    }
+        if(is_null($subcategory)){
+            return response()->json(['message' => 'subcategory not found'], 404);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Subcategory $subcategory)
-    {
-        //
+        return response()->json($subcategory, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subcategory $subcategory)
+    public function update(Subcategory $subcategory)
     {
-        //
+        $data = request()->validate([
+            'name' => ['required', 'min:3'],
+            'category_id' => ['required', 'exists:categories,id']
+        ]);
+
+        $result = $subcategory->update($data);
+
+        return response()->json($result);
     }
 
     /**
@@ -60,6 +64,7 @@ class SubcategoryController extends Controller
      */
     public function destroy(Subcategory $subcategory)
     {
-        //
+        $subcategory->delete();
+        return response()->json(['message'=>'deleted succesfully'], 200);
     }
 }
