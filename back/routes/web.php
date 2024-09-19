@@ -8,5 +8,5 @@ Route::get('/', function () {
 });
 // Route::get('/recipes', [RecipeController::class, 'index']);
 
-Route::resource('recipes', RecipeController::class);
+// Route::resource('recipes', RecipeController::class);
 

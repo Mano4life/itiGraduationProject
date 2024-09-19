@@ -10,13 +10,9 @@ class RecipeController extends Controller
     public function index()
     {
         
-        $recipes = Recipe::all();
-        $data = [
-            'status' => 200,
-            'recipes' => $recipes
-        ];
+        $recipes = Recipe::latest()->paginate(8);
 
-        return response()->json($data, 200);
+        return response()->json($recipes, 200);
         // dd($recipes);
         
         // $recipes = Recipe::with('category', 'subCategory')->get();
@@ -26,60 +22,46 @@ class RecipeController extends Controller
         // ]);
     }
 
-    public function create()
+    public function store()
     {
-        return view('recipes.create');
+        $data = request()->validate([
+            'name' => ['required', 'min:3'],
+            'description' => ['required', 'min:3'],
+            // 'image' => ['required', 'active_url']
+        ]);
+
+        $result = Recipe::create($data);
+
+        return response()->json($result, 200); 
     }
 
     public function show(Recipe $recipe)
     {
-        // return $recipe;
-        return view('recipes.show', ['recipe' => $recipe]);
+        if(is_null($recipe)){
+            return response()->json(['message' => 'recipe not found'], 404);
+        }
+
+        return response()->json($recipe, 200);
     }
 
-    public function store()
-    {
-        request()->validate([
-            'name' => ['required', 'min:3'],
-            'description' => ['required', 'min:10'],
-            'image' => ['required', 'active_url']
-        ]);
-
-        Recipe::create([
-            'name' => request('name'),
-            'description' => request('description'),
-            'image' => request('image')
-        ]);
-
-        return redirect('/recipes');
-    }
-
-    public function edit(Recipe $recipe)
-    {
-        return view('recipes.edit', ['recipe' => $recipe]);
-    }
 
     public function update(Recipe $recipe)
     {
         //authorize (on hold....)
-        request()->validate([
+        $data = request()->validate([
             'name' => ['required', 'min:3'],
-            'description' => ['required', 'min:10'],
-            'image' => ['required', 'active_url']
+            'description' => ['required', 'min:3'],
+            // 'image' => ['required', 'active_url']
         ]);
 
-        $recipe->update([
-            'name' => request('name'),
-            'description' => request('description'),
-            'image' => request('image')
-        ]);
+        $result = $recipe->update($data);
 
-        return redirect('/recipes/' . $recipe->id);
+        return response()->json($result);
     }
 
     public function destroy(Recipe $recipe)
     {
         $recipe->delete();
-        return redirect('/recipes');
+        return response()->json(['message'=>'deleted succesfully'], 200);
     }
 }
