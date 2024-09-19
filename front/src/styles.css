@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root{
+    --main-background: #f9f9ff;
+    --main-color: #222;
+    --second-color: #777;
+    --btn-color: #f42f2c;   
+    --boxShadow-color: rgba(244, 47, 44, 0.32);
+    --main-font: "Playfair Display", serif;
+    --second-font: "Nanum Gothic", sans-serif;
+  }
+  
+  h1{
+    font-family: var(--main-font);;
+  }
+  
+  p{
+    font-family: var(--second-font);
+  }

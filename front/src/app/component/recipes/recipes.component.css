@@ -1,0 +1,35 @@
+.background{
+    background-color: var(--main-background);
+}
+.border-bottom{
+    border-color: var(--main-color) !important;
+}
+.color{
+    color: var(--main-color);
+    font-family: var(--second-font);
+    font-weight: 600;
+    /* font-family: "Oswald", sans-serif; */
+}
+a:hover{
+    color: var(--btn-color);
+    
+}
+.inline{
+    display: inline !important;
+}
+.red{
+    color: var(--btn-color);
+    font-family: var(--second-font);
+    font-weight: 600;
+}
+.white{
+    background-color: white;
+}
+h6{
+    display: inline-block !important;
+}
+@media screen and (max-width: 450px) {
+    .media{
+        flex-direction: column;
+    }
+}
