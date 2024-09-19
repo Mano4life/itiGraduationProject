@@ -27,7 +27,9 @@ class RecipeController extends Controller
         $data = request()->validate([
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
-            // 'image' => ['required', 'active_url']
+            'image' => ['required', 'active_url'],
+            'category_id' => ['required', 'exists:categories,id'],
+            'subcategory_id' => ['required', 'exists:subcategories,id']
         ]);
 
         $result = Recipe::create($data);
@@ -51,7 +53,9 @@ class RecipeController extends Controller
         $data = request()->validate([
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
-            // 'image' => ['required', 'active_url']
+            'image' => ['required', 'active_url'],
+            'category_id' => ['required', 'exists:categories,id'],
+            'subcategory_id' => ['required', 'exists:subcategories,id']
         ]);
 
         $result = $recipe->update($data);
