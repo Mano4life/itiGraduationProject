@@ -3,6 +3,6 @@ import { SingleRecipeComponent } from './component/single-recipe/single-recipe.c
 
 export const routes: Routes = [
   {
-    path: 'recipe', component: SingleRecipeComponent
+    path: 'recipes/recipe', component: SingleRecipeComponent
   }
 ];

@@ -10,11 +10,11 @@ export class RecipesService {
   constructor(private http: HttpClient) { }
 
   getRecipes(){
-    return this.http.get('http://127.0.0.1:8000/recipes');
+    return this.http.get('http://127.0.0.1:8000/api/recipes');
     // return {'name': 'hello'};
   }
 
   getSingleRecipe(){
-    return this.http.get('http://127.0.0.1:8000/recipes/1')
+    return this.http.get('http://127.0.0.1:8000/api/recipes/1')
   }
 }

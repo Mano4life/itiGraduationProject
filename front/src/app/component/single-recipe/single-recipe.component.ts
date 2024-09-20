@@ -13,7 +13,7 @@ export class SingleRecipeComponent {
   recipe: any;
 
   constructor(private recipesService: RecipesService, private router: Router){
-    this.recipesService.getRecipes().subscribe((res)=>{
+    this.recipesService.getSingleRecipe().subscribe((res)=>{
       console.log(res);
     })
   }
