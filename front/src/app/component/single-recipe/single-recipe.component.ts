@@ -14,7 +14,8 @@ export class SingleRecipeComponent {
 
   constructor(private recipesService: RecipesService, private router: Router){
     this.recipesService.getSingleRecipe().subscribe((res)=>{
-      console.log(res);
+      this.recipe = res;
+      console.log(this.recipe);
     })
   }
 }
