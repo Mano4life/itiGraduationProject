@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Visitor extends Model
 {
     use HasFactory;
-    protected $table ='visitors';
-    protected $fillable=[
+    protected $table = 'visitors';
+    protected $fillable = [
         'name',
         'email',
         'password',
@@ -17,7 +17,20 @@ class Visitor extends Model
         'date_of_birth',
         'gender'
     ];
-   // function user_saved_posts(){
-   //    return $this->hasMany(Post::class,'user_id','id');
-   // }
+    // function recipes(){
+    //    return $this->belongsToMany(Recipe::class,'recipe_user_saved', foreignPivotKey:'visitor_id');
+    // }
+
+    function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function recipes_saves(){
+        return $this->belongsToMany(Recipe::class,'recipe_user_saved', foreignPivotKey:'recipes_id');
+    }
+
+    public function recipes_ratings(){
+        return $this->belongsToMany(Recipe::class,'recipe_user_saved', foreignPivotKey:'recipes_id')->withPivot('rating');
+    }
 }

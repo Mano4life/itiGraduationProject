@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Recipe;
 use App\Models\Visitor;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,11 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_rating', function (Blueprint $table) {
+        Schema::create('recipe_user_saved', function (Blueprint $table) {
             $table->id();
-            //$table->foreignId('post_id')->constrained()->onDelete('cascade');
             $table->foreignIdFor(Visitor::class)->constrained()->onDelete('cascade');
-            $table->tinyInteger('rating');
+            $table->foreignIdFor(Recipe::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_rating');
+        Schema::dropIfExists('user_saved_posts');
     }
 };
