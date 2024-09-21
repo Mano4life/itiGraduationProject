@@ -17,4 +17,7 @@ class Visitor extends Model
         'date_of_birth',
         'gender'
     ];
+   // function user_saved_posts(){
+   //    return $this->hasMany(Post::class,'user_id','id');
+   // }
 }
