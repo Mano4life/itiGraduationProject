@@ -1,0 +1,43 @@
+*{
+  box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,p{
+  margin: 0;
+  padding: 0;
+}
+
+
+/* recipe hero */
+.recipe-title{
+  font: var(--main-font);
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--main-color);
+  text-transform: capitalize;
+}
+
+.recipe-description {
+  font: var(--second-font);
+  color: var(--main-color);
+  font-size: 16px;
+}
+
+/* recipe how to */
+.how-to {
+  border: 1px solid #999;
+  border-top: 14px solid gold;
+  border-radius: 5px;
+  padding: 14px 1rem;
+}
+
+.how-to-title {
+  font: var(--main-font);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.how-to-body{
+  font: var(--second-font);
+  font-size: 14px;
+}

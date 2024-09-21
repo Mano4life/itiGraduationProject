@@ -1,5 +1,38 @@
-<p>single-recipe works!</p>
+<!-- <p>single-recipe works!</p>
 <p>image: {{ recipe.image }}</p>
 <p>name: {{ recipe.name }}</p>
-<p>description: {{ recipe.description }}</p>
+<p>description: {{ recipe.description }}</p> -->
 
+<div class="container mt-5">
+  <div class="w-75">
+    <h1 class="recipe-title">{{ recipe.name }}</h1>
+    <p class="recipe-description">{{ recipe.description }}</p>
+    <div class="w-75 mt-5">
+      <img
+        src="{{ recipe.image }}"
+        class="img-fluid"
+        alt="recipe-image"
+      />
+    </div>
+    <div class="how-to row gy-4 mt-5">
+
+      <div class="col-4">
+        <h1 class="how-to-title text-capitalize">Prep Time:</h1>
+        <p class="how-to-body">15 mins</p>
+      </div>
+      <div class="col-4">
+        <h1 class="how-to-title text-capitalize">cook time:</h1>
+        <p class="how-to-body">15 mins</p>
+      </div>
+      <div class="col-4">
+        <h1 class="how-to-title text-capitalize">total time:</h1>
+        <p class="how-to-body">15 mins</p>
+      </div>
+      <div class="col-4">
+        <h1 class="how-to-title text-capitalize">servings:</h1>
+        <p class="how-to-body">15 mins</p>
+      </div>
+
+    </div>
+  </div>
+</div>
