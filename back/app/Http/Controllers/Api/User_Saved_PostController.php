@@ -67,4 +67,18 @@ class User_Saved_PostController extends Controller
         $User_Saved_Post->delete();
         return response()->json(['message'=>' record  is deleted from database'],200);
     }
+/*     class SavedPostController extends Controller
+{
+    public function store(User $user, Post $post)
+    {
+        $user->savedPosts()->attach($post->id);
+        return response()->json(['message' => 'Post saved successfully.'], 201);
+    }
+
+    public function destroy(User $user, Post $post)
+    {
+        $user->savedPosts()->detach($post->id);
+        return response()->json(['message' => 'Post unsaved successfully.']);
+    }
+} */
 }

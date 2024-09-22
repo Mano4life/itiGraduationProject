@@ -67,4 +67,29 @@ class Post_RatingController extends Controller
         $Post_Rating->delete();
         return response()->json(['message'=>' record  is deleted from database'],200);
     }
+/*     class PostRatingController extends Controller
+{
+    public function store(User $user, Post $post, Request $request)
+    {
+        $request->validate(['rating' => 'required|integer|min:1|max:5']);
+        
+        $user->ratedPosts()->attach($post->id, ['rating' => $request->rating]);
+        return response()->json(['message' => 'Post rated successfully.'], 201);
+    }
+
+    public function update(User $user, Post $post, Request $request)
+    {
+        $request->validate(['rating' => 'required|integer|min:1|max:5']);
+        
+        $user->ratedPosts()->updateExistingPivot($post->id, ['rating' => $request->rating]);
+        return response()->json(['message' => 'Post rating updated successfully.']);
+    }
+
+    public function destroy(User $user, Post $post)
+    {
+        $user->ratedPosts()->detach($post->id);
+        return response()->json(['message' => 'Post rating removed successfully.']);
+    }
+}
+} */
 }
