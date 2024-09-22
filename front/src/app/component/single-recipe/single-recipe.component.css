@@ -8,9 +8,9 @@ h1,h2,h3,h4,h5,p{
 }
 
 
-/* recipe hero */
+/* recipe hero ========================= */
 .recipe-title{
-  font: var(--main-font);
+  font-family: var(--main-font);
   font-size: 60px;
   font-weight: bold;
   color: var(--main-color);
@@ -18,26 +18,35 @@ h1,h2,h3,h4,h5,p{
 }
 
 .recipe-description {
-  font: var(--second-font);
+  font-family: var(--second-font);
   color: var(--main-color);
-  font-size: 16px;
-}
-
-/* recipe how to */
-.how-to {
-  border: 1px solid #999;
-  border-top: 14px solid gold;
-  border-radius: 5px;
-  padding: 14px 1rem;
-}
-
-.how-to-title {
-  font: var(--main-font);
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.how-to-body{
-  font: var(--second-font);
   font-size: 14px;
+}
+
+/* recipe how to ========================= */
+.how-to .title {
+  font-family: var(--main-font);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.how-to .body{
+  font-family: var(--second-font);
+  font-size: 16px;
+}
+
+/* related recipes ========================= */
+.related-recipes .title{
+  font-family: var(--main-font);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+/* .related-recipes .body .card-wrapper {
+  width: 10px;
+} */
+
+.related-recipes .card-title{
+  font-size: 16px;
+  font-family: var(--main-font);
 }
