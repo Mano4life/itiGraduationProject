@@ -18,7 +18,7 @@ a:hover{
     display: inline !important;
 }
 .red{
-    color: var(--btn-color);
+    color: #d25c4c;
     font-family: var(--second-font);
     font-weight: 600;
 }
@@ -28,8 +28,78 @@ a:hover{
 h6{
     display: inline-block !important;
 }
+.img-fluid{
+    width: 50px;
+    
+}
+.pink-div{
+    background-color: #F5DADF; 
+    padding: 20px;  
+    border-radius: 10px;
+}
+.pink-btn{
+    background-color: #F5DADF; 
+}
+.filter{
+    width: 10%;
+    display: inline-block;
+}
+.filter2{
+    width: 15%;
+    display: inline-block;
+}
+.rounded-side{
+    border-radius: 10px  0 5px 0;
+}
+.rounded-image{
+    border-radius: 5%;
+}
 @media screen and (max-width: 450px) {
     .media{
         flex-direction: column;
     }
+}
+@media screen and (max-width: 1050px) {
+    .img-fluid{
+        width: 50px;
+    }
+    
+}
+@media screen and (max-width: 760px) {
+    .img-fluid{
+        width: 25%;
+    }
+    .color{
+        font-size: 80% !important;
+    }
+    .pink-div{
+        width: 100% !important;
+    }
+    .smaller-div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 1%;
+       
+ 
+     }
+}
+@media screen and (max-width: 670px) {
+    .smaller-div{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       margin: 1%;
+      
+
+    }
+    .img-fluid{
+        width: 50px;
+    }
+    .color{
+        font-size: 100% !important;
+    }
+
 }
