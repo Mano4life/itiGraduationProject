@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { RecipesService } from '../../core/services/recipes.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-single-recipe',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './single-recipe.component.html',
   styleUrl: './single-recipe.component.css'
 })
 export class SingleRecipeComponent {
   recipe: any;
+  ingredient:any;
   scrollPosition: number = 0;
   routerSubscription!: Subscription;
 
@@ -19,6 +21,10 @@ export class SingleRecipeComponent {
     this.recipesService.getSingleRecipe().subscribe((res)=>{
       this.recipe = res;
       console.log(this.recipe);
+    })
+    this.recipesService.getIngredient().subscribe((res)=>{
+      this.ingredient = res;
+      console.log(this.ingredient);
     })
   }
 

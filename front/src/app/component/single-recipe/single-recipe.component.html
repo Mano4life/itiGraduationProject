@@ -15,36 +15,27 @@
     <div class="how-to row mt-4 p-2">
       <div class="col-4">
         <h3 class="title text-uppercase">ingredients</h3>
-        <ul class="body">
-          <li>hello</li>
-          <li>hello</li>
-          <li>hello</li>
-          <li>hello</li>
-          <li>hello</li>
+        <ul class="body mt-2">
+          <li  *ngFor="let ingredient of recipe.ingredients ">{{ ingredient.name }}</li>
         </ul>
       </div>
       <div class="col-6">
         <h3 class="title text-uppercase">directions</h3>
-        <ul class="body">
-          <li>this is a direction</li>
-          <li>this is a direction</li>
-          <li>this is a direction</li>
-          <li>this is a direction</li>
-          <li>this is a direction</li>
-        </ul>
+        <div class="body mt-2">
+          <p>{{ recipe.directions }}</p>
+        </div>
       </div>
     </div>
 
     <div class="related-recipes mt-5">
       <h3 class="title text-uppercase">related recipes</h3>
-      <div class="body mt-3">
-        <div class="card w-25">
+      <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
+        <div *ngFor="let recipe of ingredient.recipes" class="card-wrapper">
           <img class="card-img-top w-100 rounded" src="{{ recipe.image }}" alt="Title" />
           <div class="card-body">
             <h4 class="card-title">{{ recipe.name }}</h4>
           </div>
         </div>
-        
       </div>
     </div>
     
