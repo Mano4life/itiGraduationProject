@@ -27,6 +27,7 @@ class RecipeController extends Controller
         $data = request()->validate([
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
+            'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
             'category_id' => ['required', 'exists:categories,id'],
             'subcategory_id' => ['required', 'exists:subcategories,id']
@@ -53,6 +54,7 @@ class RecipeController extends Controller
         $data = request()->validate([
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
+            'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
             'category_id' => ['required', 'exists:categories,id'],
             'subcategory_id' => ['required', 'exists:subcategories,id']
