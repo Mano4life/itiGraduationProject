@@ -12,6 +12,6 @@ class Ingredient extends Model
     protected $guarded = [];
 
     public function recipes(){
-        return $this->belongsToMany(Recipe::class)->withPivot('quantity', 'measurement_unit')->withTimestamps();
+        return $this->belongsToMany(Recipe::class);
     }
 }
