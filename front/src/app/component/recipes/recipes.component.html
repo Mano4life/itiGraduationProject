@@ -1,1 +1,123 @@
-<p>recipes works!</p>
+<section>
+    <div class="w-50 m-auto green-div p-4" >
+       <div class="border border-light p-4">
+         <div>
+             <h1 class="text-center">All Recipes</h1>
+         </div>
+         <div>
+             <p class="text-center">Food brings us together, We make it easy to create delicious moments. Every great meal begins with a single recipe, let’s find yours!</p>
+         </div>
+       </div>
+    </div>
+</section>
+<section class="mt-3 mb-3 ">
+    <div class=" row d-flex justify-content-center align-items-center smaller-div">
+        <div class=" col-lg-3 col-md-3 col-sm-12 background py-2 px-5 mx-2 smaller-div d-flex flex-column  justify-content-center align-items-center">
+
+            <img src="assets/img/croissant.png" alt="BreakFast"  class="img-fluid">
+            <a href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">BreakFast</a>
+        </div>
+        <div class=" col-lg-3 col-md-3 col-sm-12 background py-2 px-5 mx-2 smaller-div d-flex flex-column  justify-content-center align-items-center">
+            <img src="assets/img/salad.png" alt="Lunch"  class="img-fluid">
+            <a href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Lunch</a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 background py-2 px-5 mx-2  smaller-div d-flex flex-column  justify-content-center align-items-center">
+            <img src="assets/img/dinner.png" alt="Dinner"  class="img-fluid">
+            <a href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Dinner</a>
+        </div>
+        
+    </div>
+</section>
+<section >
+    <div class="d-flex justify-content-center smaller-div w-25 m-auto">
+        <div class="d-flex flex-column justify-content-center align-items-center smaller-div m-2">
+            <div class="dropdown d-flex flex-column" >
+                <button (click)="toggleDropdown()" class="btn pink-btn">Sub-Category 
+                    <img src="assets/img/filter-svgrepo-com.svg" alt="" class="filter">
+                    
+                </button>
+                <div class="dropdown-content" *ngIf="dropdownOpen" >
+                  <div *ngFor="let option of options" class="background m-2">
+                    <label>
+                      <input type="checkbox" [checked]="option.selected" (change)="toggleOption(option)" />
+                      {{ option.name }}
+                    </label>
+                  </div>
+                </div>
+            </div>
+              
+              <div>
+                <ul>
+                  <li *ngFor="let option of getSelectedOptions()">{{ option.name }}</li>
+                </ul>
+             </div>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center smaller-div  m-2">
+            <div class="dropdown d-flex flex-column">
+                <button (click)="toggleDropdown2()" class="btn pink-btn">Ingredients
+                    <img src="assets/img/filter-svgrepo-com.svg" alt="" class="filter">
+                </button>
+                <div class="dropdown-content" *ngIf="dropdown2Open" >
+                  <div *ngFor="let option of options2" class="background m-2">
+                    <label >
+                      <input type="checkbox" [checked]="option.selected" (change)="toggleOption2(option)"  />
+                      {{ option.name }}
+                    </label>
+                  </div>
+                </div>
+            </div>
+              
+              <div>
+                <ul>
+                  <li *ngFor="let option of getSelectedOptions2()">{{ option.name }}</li>
+                </ul>
+             </div>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center smaller-div m-2">
+            <div class="dropdown d-flex flex-column">
+                <button (click)="toggleDropdown3()" class="btn pink-btn">Time
+                    <img src="assets/img/clock-two-svgrepo-com.svg" alt="" class="filter2">
+                    
+                </button>
+                <div class="dropdown-content" *ngIf="dropdown3Open">
+                  <div *ngFor="let option of options3" class="background m-2">
+                    <label>
+                      <input type="radio" [checked]="option.selected" (change)="toggleOption3(option)" />
+                      {{ option.name }}
+                    </label>
+                  </div>
+                </div>
+            </div>
+              
+              <div>
+                <ul>
+                  <li *ngFor="let option of getSelectedOptions3()">{{ option.name }}</li>
+                </ul>
+             </div>
+        </div>
+    </div>
+</section>
+<section >
+    <div class="container d-flex flex-column w-80">
+        <div class="row gx-3 mt-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 white " *ngFor="let item of items; let i = index">
+                <div class=" inline-block  ">
+                    <img class="w-100  rounded-image" src="https://www.simplyrecipes.com/thmb/AgGSd6GxVsW9D8fmNSWyRjLApQU=/300x225/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-DIY-Macaroni-Cheese-LEAD-02-0fc3a4f066b84febb5dcf6a697eb2a0b.jpg" alt="food">
+                </div>
+                <div>
+                    <p class="red m-0">Dinner</p>
+                </div>
+                <div >
+                   <h5>Homemade Macaroni and Cheese Mix</h5>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex">
+                        <i class="fa fa-clock-o" style="font-size:24px"></i>
+                        <p class="inline-block px-2" style="color: #666;">20 mins</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>

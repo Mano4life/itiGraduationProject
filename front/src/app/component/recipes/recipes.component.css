@@ -1,0 +1,136 @@
+.background{
+    background-color: #e9e9e8;
+}
+.border-bottom{
+    border-color: var(--main-color) !important;
+}
+.color{
+    color: #d25c4c;
+    font-family: var(--second-font);
+    font-weight: 600;
+    /* font-family: "Oswald", sans-serif; */
+}
+a:hover{
+    color: var(--btn-color);
+    
+}
+.inline{
+    display: inline !important;
+}
+.red{
+    color: #d25c4c;
+    font-family: var(--second-font);
+    font-weight: 600;
+}
+.white{
+    background-color: white;
+}
+h6{
+    display: inline-block !important;
+}
+.img-fluid{
+    width: 50px;
+    
+}
+
+.green-div{
+    background-color: #39535b;
+     
+    color: white;
+}
+.pink-btn{
+    background-color: var(--btn-color); 
+}
+.filter{
+    width: 10%;
+    display: inline-block;
+}
+.filter2{
+    width: 15%;
+    display: inline-block;
+}
+.rounded-side{
+    border-radius: 10px  0 5px 0;
+}
+.rounded-image{
+    border-radius: 5%;
+}
+
+.latest{
+    background-color: var(--main-background);
+}
+.allLatest p{
+    transition: all 0.3s;
+}
+.allLatest i{
+    position: relative;
+    bottom: 20px;
+    transition: all 0.3s;
+}
+.allLatest:hover i{
+    transform: translateX(5px);
+}
+.allLatest:hover p{
+    transform: translateX(-5px);
+}
+h5{
+    font-family: var(--titleReciepe-font);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--main-color);
+}
+.latestContent p{
+    font-family: var(--third-font);
+    font-size: 18px;
+    color: var(--second-color);
+}
+
+@media screen and (max-width: 450px) {
+    .media{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 1050px) {
+    .img-fluid{
+        width: 50px;
+    }
+    
+}
+@media screen and (max-width: 760px) {
+    .img-fluid{
+        width: 25%;
+    }
+    .color{
+        font-size: 80% !important;
+    }
+    .green-div{
+        width: 100% !important;
+    }
+    .smaller-div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 1%;
+       
+ 
+     }
+}
+@media screen and (max-width: 670px) {
+    .smaller-div{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       margin: 1%;
+      
+
+    }
+    .img-fluid{
+        width: 50px;
+    }
+    .color{
+        font-size: 100% !important;
+    }
+
+}
