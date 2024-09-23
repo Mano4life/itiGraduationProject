@@ -1,11 +1,11 @@
 .background{
-    background-color: var(--main-background);
+    background-color: #e9e9e8;
 }
 .border-bottom{
     border-color: var(--main-color) !important;
 }
 .color{
-    color: var(--main-color);
+    color: #d25c4c;
     font-family: var(--second-font);
     font-weight: 600;
     /* font-family: "Oswald", sans-serif; */
@@ -33,12 +33,17 @@ h6{
     
 }
 .pink-div{
-    background-color: #F5DADF; 
+    background-color: #ef755e; 
     padding: 20px;  
     border-radius: 10px;
 }
+.green-div{
+    background-color: #39535b;
+    padding: 20px;  
+    color: white;
+}
 .pink-btn{
-    background-color: #F5DADF; 
+    background-color: #ef755e; 
 }
 .filter{
     width: 10%;
