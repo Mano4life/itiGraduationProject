@@ -30,10 +30,19 @@
     <div class="related-recipes mt-5">
       <h3 class="title text-uppercase">related recipes</h3>
       <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
-        <div *ngFor="let recipe of ingredient.recipes" class="card-wrapper">
-          <img class="card-img-top w-100 rounded" src="{{ recipe.image }}" alt="Title" />
+        <!-- <div class="card-wrapper w-25">
+          <img class="card-img-top w-100 rounded" src="https://placehold.co/600x400" alt="Title" />
           <div class="card-body">
-            <h4 class="card-title">{{ recipe.name }}</h4>
+            <h4 class="card-title">a7eeh recipe</h4>
+          </div>
+        </div> -->
+        
+        <div *ngFor="let recipe of ingredient.recipes" >
+          <div class="card border-0" style="width: 300px;" >
+            <img class="rounded card-img-top w-100" src="{{ recipe.image }}" alt="Title"/>
+            <div class="card-body">
+              <h4 class="card-title">{{ recipe.name }}</h4>
+            </div>
           </div>
         </div>
       </div>
