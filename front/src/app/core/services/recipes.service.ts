@@ -14,8 +14,8 @@ export class RecipesService {
     // return {'name': 'hello'};
   }
 
-  getSingleRecipe(){
-    return this.http.get('http://127.0.0.1:8000/api/recipes/1')
+  getSingleRecipe(id:any): Observable<any>{
+    return this.http.get<any>(`http://127.0.0.1:8000/api/recipes/${id}`)
   }
 
   getIngredients(){
