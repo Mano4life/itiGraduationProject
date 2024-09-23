@@ -32,18 +32,14 @@ h6{
     width: 50px;
     
 }
-.pink-div{
-    background-color: #ef755e; 
-    padding: 20px;  
-    border-radius: 10px;
-}
+
 .green-div{
     background-color: #39535b;
-    padding: 20px;  
+     
     color: white;
 }
 .pink-btn{
-    background-color: #ef755e; 
+    background-color: var(--btn-color); 
 }
 .filter{
     width: 10%;
@@ -59,6 +55,7 @@ h6{
 .rounded-image{
     border-radius: 5%;
 }
+
 @media screen and (max-width: 450px) {
     .media{
         flex-direction: column;
@@ -77,7 +74,7 @@ h6{
     .color{
         font-size: 80% !important;
     }
-    .pink-div{
+    .green-div{
         width: 100% !important;
     }
     .smaller-div{
