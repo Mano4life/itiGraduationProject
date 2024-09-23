@@ -1,0 +1,92 @@
+
+.banner{
+    display: flex;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2));
+    height: 100vh;  
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    padding: 55px;
+}
+
+.main{
+    width: 500px;
+    height: 670px;
+    overflow: hidden;
+    background-image: url(/assets/imgs/login2.jpg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+    box-shadow: 7px 25px 50px #000;
+}
+
+.main h1{
+    text-align: center;
+    color: white;
+    padding-top: 18px;
+    font-size: 55px;
+}
+
+#check{
+    display: none;
+}
+
+.form-group{
+    display: flex;
+    align-items: center;
+}
+
+label{
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+input{
+    width: 50%;
+    height: 30px;
+    background: #fff6f6;
+    margin: 15px auto;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.form-group {
+    justify-content: center;
+    gap: 20px;
+}
+
+.form-check {
+    flex-direction: column;
+    display: flex;
+    align-items: center; 
+}
+
+.form-check-input {
+    margin-left: 10px;
+}
+
+button{
+    width: 45%;
+    height: 56px;
+    margin: auto;
+    justify-content: center;
+    background: #573b8a;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    transition: .2s ease-in;
+}
+
+button:hover{
+    background: #6d44b8;
+}
+
+
