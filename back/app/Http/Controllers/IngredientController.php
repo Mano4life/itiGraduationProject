@@ -12,9 +12,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        // $result = Ingredient::latest()->paginate(8);
         $result = Ingredient::with('recipes')->get();
-
         return response()->json($result, 200);
     }
 
