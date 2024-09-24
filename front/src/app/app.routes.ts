@@ -8,12 +8,12 @@ import { AddRecipeComponent } from './component/add-recipe/add-recipe.component'
 import { AboutComponent } from './component/about/about.component';
 
 export const routes: Routes = [
-    {
-        path:'about',component: AboutComponent
-    }
 
   {
     path: '', component: HomeComponent
+  },
+  {
+    path:'about',component: AboutComponent
   },
   {
     path: 'profile', component: ProfileComponent
