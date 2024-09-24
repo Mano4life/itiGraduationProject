@@ -2,7 +2,7 @@
     background-color: var(--main-background);
 }
 
-.row1 p{
+.logoContent p{
     font-size: 17px;
     color: var(--second-color);
 }
@@ -56,3 +56,38 @@
     transition: all 300ms linear 0s;
     padding: 6px;
 }
+
+.menus {
+    display: flex;
+    justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+    .footer-bottom .footer-social {
+        text-align: left;
+    }
+}
+@media (max-width: 768px) {
+    .menus{
+        display: flex;
+        justify-content: start;
+        gap: 80px;
+        margin-top: 20px;
+    }
+    .footer .heading {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 991px) {
+    .menus{
+        display: flex;
+        justify-content: start;
+        gap: 80px;
+        margin-top: 20px;
+    }
+    .footer .heading {
+        font-size: 36px;
+    }
+}
+

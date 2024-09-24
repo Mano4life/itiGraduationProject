@@ -1,6 +1,7 @@
 body{
     background-color: #eee;
 }
+
 /* Hero Section */
 .toggle-icon i{
     position: absolute;
@@ -316,7 +317,15 @@ body{
     margin-top: 18px;
     font-size: 18px;    
 }
-
+@media (max-width: 480px) {
+    .categories .box{
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    img {
+        width: 300px;
+    }
+}
 /* Latest Section */
 .latest{
     background-color: var(--main-background);
