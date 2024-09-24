@@ -38,14 +38,12 @@
         </div> -->
         
         <div *ngFor="let recipe of ingredient?.recipes" >
-          <!-- <a routerLink="/recipes/{{ recipe?.id }}"> -->
             <div class="card border-0" style="width: 300px;cursor: pointer;" (click)="onRecipeClick(recipe.id)" >
               <img class="rounded card-img-top w-100" src="{{ recipe?.image }}" alt="Title"/>
               <div class="card-body">
                 <h4 class="card-title">{{ recipe?.name }}</h4>
               </div>
             </div>
-          <!-- </a> -->
         </div>
       </div>
     </div>
