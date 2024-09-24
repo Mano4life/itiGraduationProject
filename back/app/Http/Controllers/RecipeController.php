@@ -12,7 +12,7 @@ class RecipeController extends Controller
     {
 
         // $recipes = Recipe::latest()->paginate(8);
-        $recipes = Recipe::with('category', 'subCategory', 'ingredients')->get();
+        $recipes = Recipe::with('category', 'subCategory', 'ingredients')->latest()->get();
 
         return response()->json($recipes, 200);
         // dd($recipes);
