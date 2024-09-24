@@ -24,17 +24,17 @@ class CommentController extends Controller
         $validator=Validator::make( $request->all(),[
                 'content'=>'required|string|min:5',
                  'user_id'=>'required',
-                 //'post_id'=>'required',
+                 'recipe_id'=>'required',
         ]);
         if( $validator->fails())
          {
-            return response()->json(['error'=>$validator->message()],422);
+            return response()->json(['error'=>$validator->errors()],422);
          }
        
         $Comment=Comment::create([
             'content'=>$request->content,
             'user_id'=>$request->user_id,
-           // 'post_id'=>$request->post_id,
+            'recipe_id'=>$request->recipe_id,
         ]);
         return response()->json(['message'=>' record  added in database','data'=>new CommentResource($Comment)],200);
     }
@@ -48,17 +48,17 @@ class CommentController extends Controller
         $validator=Validator::make( $request->all(),[
             'content'=>'required|string|min:5',
                  'user_id'=>'required',
-                 //'post_id'=>'required',
+                 'recipe_id'=>'required',
        ]);
        if( $validator->fails())
         {
-          return response()->json(['error'=>$validator->message()],422);
+          return response()->json(['error'=>$validator->errors()],422);
         }
    
         $Comment->update([
           'content'=>$request->content,
             'user_id'=>$request->user_id,
-           // 'post_id'=>$request->post_id,
+            'recipe_id'=>$request->recipe_id,
         ]);
         return response()->json(['message'=>' record  updated in database','data'=>new CommentResource($Comment)],200);
         

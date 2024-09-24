@@ -68,4 +68,5 @@ class RecipeController extends Controller
         $recipe->delete();
         return response()->json(['message'=>'deleted succesfully'], 200);
     }
+    
 }

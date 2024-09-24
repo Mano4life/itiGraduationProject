@@ -31,11 +31,15 @@ class Recipe extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function visitors_saves(){
-        return $this->belongsToMany(Visitor::class,'recipe_user_saved', relatedPivotKey:'visitor_id');
+    public function users_saves(){
+        return $this->belongsToMany(User::class,'recipe_user_saved', relatedPivotKey:'user_id');
     }
 
-    public function visitores_ratings(){
-        return $this->belongsToMany(Visitor::class,'recipe_user_rating', relatedPivotKey:'visitor_id')->withPivot('rating');
+    public function users_ratings(){
+        return $this->belongsToMany(User::class,'recipe_user_rating', relatedPivotKey:'user_id')->withPivot('rating');
+    }
+    public function averageRating()
+    {
+        return $this->users_ratings()->avg('rating');
     }
 }

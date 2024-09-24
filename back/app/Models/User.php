@@ -12,37 +12,27 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable,HasApiTokens;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'users';
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
+        'date_of_birth',
+        'gender'
     ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    
+    function comments()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(Comment::class);
     }
+
+    public function recipes_saves(){
+        return $this->belongsToMany(Recipe::class,'recipe_user_saved', foreignPivotKey:'recipes_id');
+    }
+
+    public function recipes_ratings(){
+        return $this->belongsToMany(Recipe::class,'recipe_user_rating', foreignPivotKey:'recipes_id')->withPivot('rating');
+    }
+    
 }

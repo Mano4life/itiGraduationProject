@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\VisitorResource;
-use App\Models\Visitor;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class VisitorController extends Controller
+class UserController extends Controller
 {
     public function index(){
-        $visitors=Visitor::get();
-        if($visitors->count() > 0)
+        $Users=User::get();
+        if($Users->count() > 0)
         {
-            return VisitorResource::collection($visitors);
+            return UserResource::collection($Users);
         }
         else{
             return response()->json(['message'=>'no record in database'],200);
@@ -31,10 +31,10 @@ class VisitorController extends Controller
         ]);
         if( $validator->fails())
          {
-            return response()->json(['error'=>$validator->message()],422);
+            return response()->json(['error'=>$validator->errors()],422);
          }
        
-        $visitor=Visitor::create([
+        $User=User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>$request->password,
@@ -42,15 +42,15 @@ class VisitorController extends Controller
             'date_of_birth'=>$request->date_of_birth,
             'gender'=>$request->gender,
         ]);
-        return response()->json(['message'=>' record  added in database','data'=>new VisitorResource($visitor)],200);
+        return response()->json(['message'=>' record  added in database','data'=>new UserResource($User)],200);
     }
 
-    public function show(Visitor $visitor){
-        return new VisitorResource($visitor);
+    public function show(User $User){
+        return new UserResource($User);
         
     }
 
-    public function update(Request $request,Visitor $visitor){
+    public function update(Request $request,User $User){
         $validator=Validator::make( $request->all(),[
             'name'=>'required|string|min:3|max:10',
              'email'=>'required|email|min:8',
@@ -61,10 +61,10 @@ class VisitorController extends Controller
        ]);
        if( $validator->fails())
         {
-          return response()->json(['error'=>$validator->message()],422);
+          return response()->json(['error'=>$validator->errors()],422);
         }
    
-        $visitor->update([
+        $User->update([
           'name'=>$request->name,
           'email'=>$request->email,
           'password'=>$request->password,
@@ -72,11 +72,11 @@ class VisitorController extends Controller
           'date_of_birth'=>$request->date_of_birth,
           'gender'=>$request->gender,
         ]);
-        return response()->json(['message'=>' record  updated in database','data'=>new VisitorResource($visitor)],200);
+        return response()->json(['message'=>' record  updated in database','data'=>new UserResource($User)],200);
         
     }
-    public function destroy(Visitor $visitor){
-        $visitor->delete();
+    public function destroy(User $User){
+        $User->delete();
         return response()->json(['message'=>' record  is deleted from database'],200);
     }
 }
