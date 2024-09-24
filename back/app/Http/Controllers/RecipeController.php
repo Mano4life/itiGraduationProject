@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
+use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -21,28 +24,39 @@ class RecipeController extends Controller
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'subcategory_id' => ['required', 'exists:subcategories,id'],
-            'ingredients' => ['required', 'array'],
-            'ingredients.*.ingredient_id' => ['required', 'exists:ingredients,id'],
-            'ingredients.*.quantity' => ['required', 'numeric'],
-            'ingredients.*.measurement_unit' => ['required', 'string'],
+            'category' => ['required', 'string'],
+            'subcategory' => ['required', 'string'],
+            'ingredients' => ['required', 'array'] // Array of ingredient names, quantity, and measurement
         ]);
 
-        $recipeData = Arr::except($data, ['ingredients']);
+        // Fetch or create category by name
+        $category = Category::firstOrCreate(['name' => $data['category']]);
 
-        $recipe = Recipe::create($recipeData);
+        // Fetch or create subcategory by name
+        $subcategory = Subcategory::firstOrCreate(['name' => $data['subcategory'], 'category_id' => $category->id]);
 
-        if (isset($data['ingredients'])) {
-            foreach ($data['ingredients'] as $ingredient) {
-                $recipe->ingredients()->attach($ingredient['ingredient_id'], [
-                    'quantity' => $ingredient['quantity'],
-                    'measurement_unit' => $ingredient['measurement_unit']
-                ]);
-            }
+        // Create the recipe with the fetched category and subcategory IDs
+        $recipe = Recipe::create([
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'directions' => $data['directions'],
+            'image' => $data['image'],
+            'category_id' => $category->id,
+            'subcategory_id' => $subcategory->id
+        ]);
+
+        // Attach ingredients with quantity and measurement
+        foreach ($data['ingredients'] as $ingredientData) {
+            $ingredient = Ingredient::firstOrCreate(['name' => $ingredientData['name']]);
+
+            // Attach with additional pivot data (quantity, measurement unit)
+            $recipe->ingredients()->attach($ingredient->id, [
+                'quantity' => $ingredientData['quantity'],
+                'measurement_unit' => $ingredientData['measurement_unit']
+            ]);
         }
 
-        return response()->json($recipe->load('ingredients'), 201);
+        return response()->json($recipe->load('ingredients'), 201); // Return the recipe with ingredients
     }
 
 
