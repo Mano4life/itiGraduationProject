@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+    --main-background: #f9f9ff;
+  
+    --main-color: #395963;
+    --second-color: #777;
+    --third-color: #eee;
+  
+    --boxCategory-color: #F6E1D3;
+    --btn-color: #fe735c; 
+  
+    --boxShadow-color: rgba(244, 47, 44, 0.32);
+  
+    --main-font: 'Playfair Display', serif;
+    --second-font: 'Nanum Gothic', sans-serif;
+    --titleReciepe-font: "EB Garamond", serif;
+    
+    --footer-color: #395963;
+  }
+  
+  h1{
+    font-family: var(--main-font);;
+  }
+  
+  p{
+    font-family: var(--second-font);
+  }
