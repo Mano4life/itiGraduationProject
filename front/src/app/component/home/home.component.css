@@ -45,7 +45,7 @@ body{
     transition: all 300ms linear 0s;
     text-transform: capitalize;
     box-shadow: -10px 10px 40px var(--boxShadow-color);
-    margin: 30px auto 0;
+    margin: 20px auto 0;
     max-width: 200px;
     text-decoration: none;
 }
@@ -53,6 +53,10 @@ body{
 .main-btn:hover{
     background-color: white;
     color: var(--btn-color);
+}
+
+.main-btn.hero{
+    margin: 30px 0;
 }
 
 .home-banner .banner-right .round-planet {
@@ -175,7 +179,18 @@ body{
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .home-banner .banner-right .round-planet {
+        display: none;
+    }
+    .home-banner .face-img {
+        display: none;
+    }
+}
 @media (max-width: 991px) {
+    .home-banner .banner-left{
+        height: 60vh;
+    }
     .home-banner .banner-left h1 {
         font-size: 40px;
     }
@@ -184,6 +199,9 @@ body{
     }
     .home-banner .face-img {
         display: none;
+    }
+    .home-banner .main-btn{
+        margin: 20px 0;
     }
 }
 @media (max-width: 480px) {
@@ -275,8 +293,12 @@ body{
 }
 
 /* Categories Section */
-.categories .row .col-lg-3:nth-child(3) img {
-    height: 438px;
+.categories .row .col-lg-3 img {
+    height: 430px;
+    width: 100%;
+}
+.categories .row .col-lg-3:nth-child(3) img, .categories .row .col-lg-3:nth-child(4) img {
+    height: 430px;
     width: 100%;
 }
 
@@ -308,6 +330,7 @@ body{
     border-radius: 50%;
     width: 6rem;
     height: 6rem;
+    object-fit: cover;
 }
 
 .smallBox .categoryName h5{
@@ -321,7 +344,7 @@ body{
 
 @media (max-width: 1024px) {
     .categories .row .col-lg-3:nth-child(3) img{
-        height: 310px;
+        height: 430px;
     }
 
     .box .categoryName {
@@ -339,6 +362,9 @@ body{
 
 @media (max-width: 768px) {
     .categories .row .col-lg-3:nth-child(3) img{
+        height: 480px;
+    }
+    .categories .row .col-lg-3:nth-child(4) img {
         height: 480px;
     }
     .box{
@@ -386,8 +412,8 @@ body{
         margin-bottom: 40px;
     }
     .box .categoryName {
-        left: 37%;
-        bottom: -3%;
+        left: 40%;
+        bottom: -4%;
     }
 }
 /* Latest Section */
@@ -423,6 +449,17 @@ body{
     font-family: var(--third-font);
     font-size: 18px;
     color: var(--second-color);
+}
+
+.main-btn.recipe{
+    display: flex;
+    justify-content: center;
+}
+@media (max-width: 1024px) {
+    .main-btn.recipe{
+        display: flex;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 767px) {
