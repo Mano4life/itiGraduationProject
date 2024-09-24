@@ -1,0 +1,48 @@
+.team-section {
+  text-align: center;
+  color: black;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: white;
+  padding: 20px;
+  border: none; /* Remove borders */
+  box-shadow: none; /* Remove shadows */
+  margin: 0; /* Remove any margins between rectangles */
+  border-radius: 0; /* Ensure no border radius */
+}
+
+.member-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
+  border: 2px solid var(--main-color); /* Keeps the border for the photo */
+}
+
+.member-info h3 {
+  text-align:left;
+  margin: 0;
+  font-size: 20px;
+  color: var(--main-color);
+}
+
+.member-info h4 {
+  text-align:left;
+  margin: 0;
+  color: var(--second-color);
+  font-size: 16px;
+}
+
+.member-info p {
+  text-align: left;
+  font-size: 14px;
+  color: black;
+}
