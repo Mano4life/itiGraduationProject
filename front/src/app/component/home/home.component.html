@@ -100,19 +100,21 @@
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </div>
-            @for (category of categories; track $index) {
+            @for (latestRecipe of recipesArr.slice(0, 4); track $index ) {
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="latestContent">
-                        <img class="img-fluid rounded-3" [src]="category.img" alt="">
-                        <div class="mt-3">
-                            <h5>retzel Chicken Fingers with Spicy Honey Mustard Sauce.</h5>
-                            <p>CategoryName</p>
-                        </div>
+                        <a href="">
+                            <img class="img-fluid rounded-3" [src]="latestRecipe.image" alt="">
+                            <div class="mt-3">
+                                <h5>{{latestRecipe.name}}</h5>
+                                <p>{{latestRecipe.category.name}}</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             }
-            <a class="main-btn viewAll" href="#">View All Latest</a>
         </div>
+        <a class="main-btn viewAll" href="#">View All Latest</a>
     </div>
 </section>
 
@@ -155,14 +157,16 @@
 <section class="recipes p-5">
     <div class="container">
         <div class="row">
-            @for (category of categories; track $index) {
+            @for (recipe of getRandomRecipes(4); track $index ) {
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="latestContent">
-                        <img class="img-fluid rounded-3" [src]="category.img" alt="">
-                        <div class="mt-3">
-                            <h5>retzel Chicken Fingers with Spicy Honey Mustard Sauce.</h5>
-                            <p>CategoryName</p>
-                        </div>
+                        <a href="">
+                            <img class="img-fluid rounded-3" [src]="recipe.image" alt="">
+                            <div class="mt-3">
+                                <h5>{{recipe.name}}</h5>
+                                <p>{{recipe.category.name}}</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             }

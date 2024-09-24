@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from "../footer/footer.component";
+import { RecipesService } from '../../core/services/recipes.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FooterComponent],
+  imports: [FooterComponent,CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -78,5 +80,23 @@ export class HomeComponent {
       img:'https://pinchofyum.com/wp-content/uploads/butter-chicken-3-840x1200.jpg',
     }, 
   ];
+
+  constructor(private recipes:RecipesService) {
+
+  }
   
+  recipesArr!:any;
+
+  ngOnInit() {
+    this.recipes.getRecipes().subscribe((res)=>{
+      this.recipesArr = res;
+      console.log(this.recipesArr);
+    });
+  }
+
+  // Display Random Recipes 
+  getRandomRecipes(count:number){
+    const shuffle = this.recipesArr.sort(() => 0.5 - Math.random());    
+    return shuffle.slice(0, count);
+  }
 }
