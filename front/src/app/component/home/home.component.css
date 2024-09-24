@@ -361,6 +361,11 @@ body{
     color: var(--second-color);
 }
 
+@media (max-width: 768px) {
+    .main-btn{
+        margin: 10px 0;
+    }
+}
 
 /* Video Section */
 video {
@@ -385,6 +390,59 @@ video {
     margin-top: -20px;
     font-weight: 300;
     margin-left: -25px;
+}
+
+@media (max-width: 1200px) {
+    .slide-layers {
+        top: 25%;
+        left: 15%;
+    }
+    .slide-layers .layer1 {
+        font-size: 50px;
+    }
+    .slide-layers .layer2 {
+        font-size: 100px;
+        margin-left: -20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .slide-layers {
+        top: 20%;
+        left: 10%;
+    }
+    .slide-layers .layer1 {
+        font-size: 40px;
+    }
+    .slide-layers .layer2 {
+        font-size: 80px;
+        margin-left: -15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slide-layers {
+        left: 12%;
+    }
+    .slide-layers .layer1 {
+        font-size: 30px;
+    }
+    .slide-layers .layer2 {
+        font-size: 60px;
+        margin-left: -10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .slide-layers {
+        left: 14%;
+    }
+    .slide-layers .layer1 {
+        font-size: 25px;
+    }
+    .slide-layers .layer2 {
+        font-size: 45px;
+    }
 }
 
 /* users */
@@ -414,54 +472,63 @@ video {
 }
 .user p{
     font-size: 21px;
-    color: #eee;
+    color: #eee;    
 }
 
-@media (max-width: 480px) {
-    .user{
-        margin-bottom: 0px;
+@media (max-width: 1024px) {
+    .user h1 {
+        font-size: 35px;
     }
-    .user h1{
-        font-size: 40px;
-    }
-    .user p{
-        font-size: 17px;
-    }
-}
 
-@media (max-width: 768px) {
-    
-    .borderSection{
-        border: none;
-        display: block;
-    }
-    .userImg{
-        margin-left: 0;
-    }
-    .userContent{
-        margin-bottom: 20px;
-        margin-left: 0;
-    }
-    .user h1{
-        font-size: 40px;
-    }
-    .user p{
+    .user p {
         font-size: 16px;
     }
 }
 
 @media (max-width: 991px) {
-    .menus{
-        display: flex;
-        justify-content: start;
-        gap: 80px;
-        margin-top: 20px;
+    .user h1 {
+        font-size: 35px;
     }
-    .footer .heading {
-        font-size: 36px;
+    .user p {
+        font-size: 18px;
     }
-    .user p{
-        font-size: 16px;
+    .borderSection {
+        padding: 20px;
     }
 }
 
+@media (max-width: 768px) {
+    .borderSection {
+        border: none;
+        display: block;
+        padding: 15px;
+    }
+    .userImg {
+        margin-left: 0;
+    }
+    .userContent {
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+    .user h1 {
+        font-size: 35px;
+    }
+    .user p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user {
+        margin-bottom: 20px;
+    }
+    .user h1 {
+        font-size: 30px;
+    }
+    .user p {
+        font-size: 16px;
+    }
+    .borderSection {
+        padding: 15px;
+    }
+}
