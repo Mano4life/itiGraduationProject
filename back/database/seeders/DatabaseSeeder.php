@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         Recipe::factory(10)->create();
         Ingredient::factory(10)->create();
-        Tag::factory(10)->create();
+        
         
         // User::factory(10)->create();
 

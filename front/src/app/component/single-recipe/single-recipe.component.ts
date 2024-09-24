@@ -1,57 +1,54 @@
 import { Component } from '@angular/core';
 import { RecipesService } from '../../core/services/recipes.service';
-import { Router, NavigationEnd } from '@angular/router';
+import {
+  Router,
+  NavigationEnd,
+  RouterLink,
+  ActivatedRoute,
+} from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-single-recipe',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, RouterLink],
   templateUrl: './single-recipe.component.html',
-  styleUrl: './single-recipe.component.css'
+  styleUrl: './single-recipe.component.css',
 })
 export class SingleRecipeComponent {
   recipe: any;
-  ingredient:any;
+  ingredient: any;
   scrollPosition: number = 0;
   routerSubscription!: Subscription;
 
-  constructor(private recipesService: RecipesService, private router: Router){
-    this.recipesService.getSingleRecipe().subscribe((res)=>{
-      this.recipe = res;
-      console.log(this.recipe);
-    })
-    this.recipesService.getIngredient().subscribe((res)=>{
-      this.ingredient = res;
-      console.log(this.ingredient);
-    })
+  constructor(
+    private recipesService: RecipesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(params => {
+      const recipeId = params.get('id');
+      
+      // Fetch the recipe based on recipe ID
+      if (recipeId) {
+        this.recipesService.getSingleRecipe(recipeId).subscribe((res) => {
+          this.recipe = res;
+          console.log(this.recipe);
+        });
+      }
+  
+      // Fetch ingredients related to the recipe
+      this.recipesService.getIngredient().subscribe((res) => {
+        this.ingredient = res;
+        console.log(this.ingredient);
+      });
+    });
   }
 
-
-
-ngOnInit(): void {
-    // Subscribe to router events
-    this.routerSubscription = this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // Delay scroll restoration to ensure all content is loaded
-        setTimeout(() => {
-          window.scrollTo(0, this.scrollPosition);
-        }, 50); // You can adjust the delay if needed
-      }
-  });
-
-  // Capture scroll position before refreshing
-  window.addEventListener('beforeunload', this.saveScrollPosition.bind(this));
-}
-
-ngOnDestroy(): void {
-  // Unsubscribe from router events
-  this.routerSubscription.unsubscribe();
-  window.removeEventListener('beforeunload', this.saveScrollPosition.bind(this));
-}
-
-private saveScrollPosition(): void {
-  this.scrollPosition = window.scrollY;
-}
+  onRecipeClick(id: number) {
+    this.router.navigate(['/recipes', id]);
+  }
 }
