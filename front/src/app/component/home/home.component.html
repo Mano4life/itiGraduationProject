@@ -176,25 +176,26 @@
 </section>
 
 <!-- users -->
-<section class="mb-5">
+<section class="user">
     <div class="container" style="background-color: #395963;">
-        <div class="row">
-            <div class="columns p-4">
-                <div class="borderSection">
-                    <div class="col-3">
-                        <img [src]="userImg" class="w-100">    
-                    </div>
-                    <div class="col-9 breakerContent w-50">
-                        <h1>My Daily Recieps</h1>    
-                        <p class="mb-5 mt-3">
-                            Hi! We are the MDR Team, and this is my cozy space on the internet, supercharged with butter, flour, 
-                            and copious amounts of pasta. Stay awhile, won't you?
-                        </p>
-                        <a class="main-btn shadow-none" href="#">About US</a>
-                    </div>
+        <div class="row p-4 align-items-center">
+            <div class="borderSection">
+                <!-- Image Section -->
+                <div class="col-lg-3 col-md-4 col-12 mb-3 mb-md-0 userImg">
+                    <img [src]="userImg" class="w-100 rounded">
+                </div>
+                <!-- Content Section -->
+                <div class="col-lg-9 col-md-8 col-12 userContent">
+                    <h1 class="text-white">My Daily Recipes</h1>
+                    <p class="mb-5 mt-3 text-white w-75">
+                        Hi! We are the MDR Team, and this is my cozy space on the internet, supercharged with butter, flour, 
+                        and copious amounts of pasta. Stay awhile, won't you?
+                    </p>
+                    <a class="main-btn shadow-none" href="#">About Us</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <app-footer></app-footer>

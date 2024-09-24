@@ -62,11 +62,12 @@
     justify-content: space-around;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .footer-bottom .footer-social {
         text-align: left;
     }
 }
+
 @media (max-width: 768px) {
     .menus{
         display: flex;
