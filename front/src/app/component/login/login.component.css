@@ -1,0 +1,36 @@
+
+.main.signin{
+    height: 450px;
+}
+
+input{
+    width: 50%;
+    height: 30px;
+    background: #fff6f6;
+    margin: 15px auto;
+    padding: 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+button{
+    width: 45%;
+    height: 56px;
+    margin: 35px auto;
+    justify-content: center;
+    background: #573b8a;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    transition: .2s ease-in;
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+button:hover{
+    background: #6d44b8;
+}
+

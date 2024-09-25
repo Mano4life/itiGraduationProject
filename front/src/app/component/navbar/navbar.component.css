@@ -71,3 +71,23 @@
 .search-menu a img {
   height: 24px;
 }
+
+/*  */
+/* Navbar Style */
+.main-title.round-plane .shape.shape1 {
+  left: 37px;
+}
+/* Navbar Style */
+.main-title .round-planet.planet2 {
+  width: 70px;
+  height: 70px;
+}
+/* Navbar Style */
+.main-title .round-planet {
+  width: 140px;
+  height: 150px;
+}
+/* Navbar Style */
+.top-dish-area {
+  padding: 70px 0 75px;
+}

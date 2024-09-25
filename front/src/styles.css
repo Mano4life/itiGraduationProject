@@ -27,3 +27,43 @@ p{
   font-family: var(--second-font);
 }
 
+/* Login & Register */
+
+.banner{
+  display: flex;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2));
+  height: 100vh;  
+}
+
+.banner .container{
+  display: flex;
+  justify-content: center;
+  padding: 55px;
+}
+
+.banner .main{
+  width: 500px;
+  height: 670px;
+  overflow: hidden;
+  background-image: url(/assets/imgs/login1.jpg);
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+  box-shadow: 7px 25px 50px #000;
+}
+
+.banner .main h1{
+  text-align: center;
+  color: white;
+  padding-top: 18px;
+  font-size: 55px;
+}
+
+.banner .form-group{
+  display: flex;
+  align-items: center;
+}
+
+
+
+

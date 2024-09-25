@@ -1,0 +1,59 @@
+
+#check{
+    display: none;
+}
+
+label{
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+input{
+    width: 50%;
+    height: 30px;
+    background: #fff6f6;
+    margin: 15px auto;
+    padding: 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.form-group {
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Checkbox */
+.form-check {
+    flex-direction: column;
+    display: flex;
+    align-items: center; 
+}
+
+.form-check-input {
+    margin-left: 10px;
+    padding: 15px;
+    width: 5px;
+}
+
+/*  */
+button{
+    width: 45%;
+    height: 56px;
+    margin: auto;
+    justify-content: center;
+    background: #573b8a;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    transition: .2s ease-in;
+}
+
+button:hover{
+    background: #6d44b8;
+}
