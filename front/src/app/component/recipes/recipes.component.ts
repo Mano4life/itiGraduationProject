@@ -40,7 +40,7 @@ export class RecipesComponent {
       "ingredients":[{name:["milk", "eggs", "flour", "butter"],measure:[200,2,400,25]}] ,
       "category":"breakfast",
       "description":"butter chicken is a popular dish in india",
-      "sub-category":"salad",
+      "sub-category":"dessert",
       "time":25,
       "image":"https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F43%2F2022%2F10%2F06%2FCheater-Pancake-Syrup-2000.jpg&q=60&c=sc&poi=auto&orient=true&h=512"
     },
@@ -61,20 +61,39 @@ export class RecipesComponent {
       "image":"https://www.allrecipes.com/thmb/1Y_JC73634h2cH7xBJVZA5suSEs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/195868-adf4006ed4964c6a9df8cbf10f65c29f.jpg"
     }
   ]
-  options = [
-    { id: 1, name: 'Option 1', selected: false },
-    { id: 2, name: 'Option 2', selected: false },
-    { id: 3, name: 'Option 3', selected: false },
+  sub_category = [
+    { id: 1, name: 'dessert', selected: false },
+    { id: 2, name: 'Casserole', selected: false },
+    { id: 3, name: 'sandwitch', selected: false },
+    { id: 4, name: 'salad', selected: false },
+    { id: 5, name: 'soup', selected: false },
+    { id: 6, name: 'indian', selected: false },
   ];
-  options2 = [
-    { id: 1, name: 'Option 1', selected: false },
-    { id: 2, name: 'Option 2', selected: false },
-    { id: 3, name: 'Option 3', selected: false },
+  ingredents = [
+    { id: 1, name: 'bagel', selected: false },
+    { id: 2, name: 'turkey', selected: false },
+    { id: 3, name: 'cheese', selected: false },
+    { id: 4, name: 'sausage', selected: false },
+    { id: 5, name: 'milk', selected: false },
+    { id: 6, name: 'eggs', selected: false },
+    { id: 7, name: 'butter', selected: false },
+    { id: 8, name: 'lettuce', selected: false },
+    { id: 9, name: 'flour', selected: false },
+    { id: 10, name: 'broth', selected: false },
+    { id: 11, name: 'macroni', selected: false },
+    { id: 12, name: 'carrots', selected: false },
+    { id: 13, name: 'dressing', selected: false },
+    { id: 14, name: 'bread', selected: false },
+    { id: 15, name: 'meat', selected: false },
+    { id: 13, name: 'parsly', selected: false },
+    { id: 14, name: 'chicken', selected: false },
+    
+  
   ];
-  options3 = [
-    { id: 1, name: 'Time 1', selected: false },
-    { id: 2, name: 'Time 2', selected: false },
-    { id: 3, name: 'Time 3', selected: false },
+  time = [
+    { id: 1, name: '10 t0 20 mins', selected: false },
+    { id: 2, name: '20 to 40 mins', selected: false },
+    { id: 3, name: 'more than 40 mins', selected: false },
   ];
 
   dropdownOpen = false;
@@ -82,35 +101,85 @@ export class RecipesComponent {
   dropdown3Open = false;
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
+    this.dropdown2Open = false;
+    this.dropdown3Open = false;
   }
  toggleDropdown2() {
-    this.dropdown2Open = !this.dropdown2Open;
+  this.dropdownOpen = false;
+  this.dropdown2Open = !this.dropdown2Open;
+  this.dropdown3Open = false;
   }
   toggleDropdown3() {
+    this.dropdownOpen = false;
+    this.dropdown2Open =false;
     this.dropdown3Open = !this.dropdown3Open;
   }
   toggleOption(option: any) {
-    option.selected = !option.selected;
+    this.sub_category.forEach(opt => {
+      opt.selected = opt === option ? !opt.selected : false; 
+    });
   }
 
-  getSelectedOptions() {
-    return this.options.filter(option => option.selected);
+  getSelectedSub_category() {
+    return this.sub_category.filter(option => option.selected).map(opt => opt.name);
   }
   toggleOption2(option: any) {
     option.selected = !option.selected;
   }
 
-  getSelectedOptions2() {
-    return this.options2.filter(option => option.selected);
+  getSelectedIngridents() {
+    return this.ingredents.filter(option => option.selected);
   }
-  toggleOption3(selectedOption: any) {
-    this.options3.forEach(option => {
-      option.selected = option === selectedOption; 
+  toggleOption3(option: any) {
+    this.time.forEach(opt => {
+      opt.selected = opt === option ? !opt.selected : false; 
     });
   }
 
-  getSelectedOptions3() {
-    return this.options3.filter(option => option.selected);
+  getSelectedIngredients() {
+    return this.ingredents.filter(option => option.selected).map(opt => opt.name);
+  }
+
+  getSelectedtime() {
+    return this.time.filter(option => option.selected).map(opt => opt.name);
+  }
+  
+ 
+  selectedCategories: string[] = []; 
+
+  toggleCategory(category: string) {
+      
+      this.selectedCategories = [];
+  
+      
+      this.selectedCategories.push(category);
+  }
+  
+  isCategorySelected(category: string): boolean {
+      return this.selectedCategories.includes(category);
+  }
+  
+  getFilteredRecipes() {
+      const selectedSubCategories = this.getSelectedSub_category();
+      const selectedIngredients = this.getSelectedIngredients();
+      const selectedTimes = this.getSelectedtime();
+  
+      return this.recipeList.filter(recipe => {
+          const matchesCategory = this.selectedCategories.length === 0 || this.selectedCategories.includes(recipe.category);
+          const matchesSubCategory = selectedSubCategories.length === 0 || selectedSubCategories.includes(recipe['sub-category']);
+          const matchesIngredients = selectedIngredients.length === 0 || recipe.ingredients[0].name.some(ingredient => selectedIngredients.includes(ingredient));
+          const matchesTime = selectedTimes.length === 0 || this.timeMatches(recipe.time, selectedTimes);
+  
+          return matchesCategory && matchesSubCategory && matchesIngredients && matchesTime;
+      });
+  }
+  timeMatches(recipeTime: number, selectedTimes: string[]): boolean {
+    return selectedTimes.some(selected => {
+      if (selected === '10 to 20 mins') return recipeTime >= 10 && recipeTime <= 20;
+      if (selected === '20 to 40 mins') return recipeTime > 20 && recipeTime <= 40;
+      if (selected === 'more than 40 mins') return recipeTime > 40;
+      return false;
+    });
   }
 
 }
