@@ -1,14 +1,14 @@
 <div class="container mt-5">
   <section class="user-details d-flex justify-content-between align-items-center">
-    <h1><span class="fw-bold text-capitalize">hello</span> Momen</h1>
-    <a routerLink="/profile/edit-profile" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">edit your info</a>
+    <h1><span class="fw-bold text-capitalize">hello</span> {{ user?.name }}</h1>
+    <a routerLink="/edit-profile/{{ user.id }}" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">edit your info</a>
   </section>
   <section class="recipes-wrapper mt-5">
     <div class="title">
-      <h1 class="fw-bold text-capitalize">favorite recipes</h1>
+      <h1 class="fw-bold text-capitalize">your favorite recipes</h1>
     </div>
     <div class="body mt-4 d-flex gap-3 overflow-x-scroll">
-      <div *ngFor="let recipe of recipes">
+      <div *ngFor="let recipe of user?.recipes_saves">
         <div
           class="card border-0"
           style="width: 300px; cursor: pointer"
@@ -28,11 +28,11 @@
   </section>
   <section class="recipes-wrapper mt-5">
     <div class="title d-flex justify-content-between align-items-center">
-      <h1 class="fw-bold text-capitalize">your recipes</h1>
-      <a routerLink="/profile/add-recipe" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">add recipe</a>
+      <h1 class="fw-bold text-capitalize">your magic</h1>
+      <a routerLink="/add-recipe/{{ user.id }}" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">add recipe</a>
     </div>
     <div class="body mt-4 d-flex gap-3 overflow-x-scroll">
-      <div *ngFor="let recipe of recipes">
+      <div *ngFor="let recipe of user?.recipes">
         <div
           class="card border-0"
           style="width: 300px; cursor: pointer"

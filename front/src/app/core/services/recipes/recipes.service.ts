@@ -26,7 +26,7 @@ export class RecipesService {
     return this.http.get('http://127.0.0.1:8000/api/ingredients/')
   }
 
-  getIngredient(){
-    return this.http.get('http://127.0.0.1:8000/api/ingredients/11')
+  getIngredient(id:any){
+    return this.http.get(`http://127.0.0.1:8000/api/ingredients/${id}`)
   }
 }

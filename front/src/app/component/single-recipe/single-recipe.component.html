@@ -1,14 +1,15 @@
 
-<div class="container-xl mt-5">
+<div class="container-xl my-5">
     <h1 class="recipe-title">{{ recipe?.name }}</h1>
     <div class="w-100 mt-3 border p-0">
       <img
         src="{{ recipe?.image }}"
         class="w-100 bg-cover object-fit-cover"
         alt="recipe-image"
+        style="height: 80vh;"
       />
     </div>
-    <div class="rounded shadow bg-light p-4 mt-3">
+    <div class="rounded shadow bg-light p-4 mt-3 w-100">
       <p class="recipe-description text">{{ recipe?.description }}</p>
     </div>
 
@@ -16,7 +17,7 @@
       <div class="col-md-4 mb-4 mb-md-0">
         <h3 class="title text-uppercase">ingredients</h3>
         <ul class="body mt-2">
-          <li  *ngFor="let ingredient of recipe?.ingredients ">{{ ingredient.name }}</li>
+          <li  *ngFor="let ingredient of recipe?.ingredients "><i class="fa-solid fa-utensils me-2"></i>{{ ingredient.name }}</li>
         </ul>
       </div>
       <div class="col-md-6">
@@ -30,13 +31,6 @@
     <div class="related-recipes mt-5">
       <h3 class="title text-uppercase">related recipes</h3>
       <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
-        <!-- <div class="card-wrapper w-25">
-          <img class="card-img-top w-100 rounded" src="https://placehold.co/600x400" alt="Title" />
-          <div class="card-body">
-            <h4 class="card-title">a7eeh recipe</h4>
-          </div>
-        </div> -->
-        
         <div *ngFor="let recipe of ingredient?.recipes" >
             <div class="card border-0" style="width: 300px;cursor: pointer;" (click)="onRecipeClick(recipe.id)" >
               <img class="rounded card-img-top w-100" src="{{ recipe?.image }}" alt="Title"/>

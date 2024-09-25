@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Recipe extends Model
+class pending_recipe extends Model
 {
     use HasFactory;
-
     protected $guarded = [];
 
     public function category(){
@@ -19,10 +18,6 @@ class Recipe extends Model
         return $this->belongsTo(Subcategory::class);
     }
 
-    public function comments(){
-        return $this->hasMany(Comment::class);
-    }
-
     public function ingredients(){
         return $this->belongsToMany(Ingredient::class);
     }
@@ -30,17 +25,7 @@ class Recipe extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }
-
-    public function users_saves(){
-        return $this->belongsToMany(User::class,'recipe_user_saved');
-    }
-
-    public function users_ratings(){
-        return $this->belongsToMany(User::class,'recipe_user_rating')->withPivot('rating');
-    }
-
-    public function user(){
+    public function users(){
         return $this->belongsTo(User::class);
     }
-    
 }

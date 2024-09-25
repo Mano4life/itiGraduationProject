@@ -1,0 +1,158 @@
+.background{
+    background-color: #e9e9e8;
+    margin-top: 10px;
+    border-radius: 5%;
+}
+.background:hover{
+    background-color: #ffe0e0;
+    color: white;
+}
+.border-bottom{
+    border-color: var(--main-color) !important;
+}
+.color{
+    color: #d25c4c;
+    font-family: var(--second-font);
+    font-weight: 600;
+    /* font-family: "Oswald", sans-serif; */
+}
+.white{
+    cursor: pointer;
+}
+
+.inline{
+    display: inline !important;
+}
+.red{
+    color: #d25c4c;
+    font-family: var(--second-font);
+    font-weight: 600;
+}
+.white{
+    background-color: white;
+}
+h6{
+    display: inline-block !important;
+}
+.img-fluid{
+    width: 50px;
+    
+}
+.my-svg {
+    color: white;
+    
+   
+  }
+
+.green-div{
+    background-color: #39535b;
+    border-radius: 5%;
+    color: white;
+}
+.pink-btn{
+    background-color: var(--main-color); 
+    letter-spacing: 0.09em;
+    color: white;
+}
+.pink-btn:hover {
+    background-color: white; 
+    color: var(--main-color); 
+    border-color:var(--main-color) ;
+}
+.pink-btn:hover img{
+    filter: invert(100%);
+}
+.rounded-image{
+    border-radius: 5%;
+}
+
+
+
+h5{
+    font-family: var(--titleReciepe-font);
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--main-color);
+}
+.latestContent p{
+    font-family: var(--third-font);
+    font-size: 18px;
+    color: var(--second-color);
+}
+.selected {
+    
+    background-color: #ffe0e0; 
+}
+
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+
+
+@media screen and (max-width: 450px) {
+    .media{
+        flex-direction: column;
+    }
+    
+}
+@media (min-width: 981px) and (max-width: 1500px) {
+    .small-div {
+        width: 15%;
+        margin: 1%;
+    }
+    .smaller-div{
+        width: 100%;
+    }
+    .pink-btn{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1050px) {
+    .img-fluid{
+        width: 50px;
+    }
+    .category{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    
+}
+@media screen and (max-width: 760px) {
+    .img-fluid{
+        width: 25%;
+    }
+    .color{
+        font-size: 80% !important;
+    }
+    .green-div{
+        width: 100% !important;
+    }
+    .smaller-div ,.sm-div{
+        
+        width: 50%;
+        margin: auto;
+       
+ 
+     }
+}
+@media screen and (max-width: 670px) {
+    .smaller-div,.sm-div{
+       
+       width: 80%;
+       margin: auto;
+      
+
+    }
+    .img-fluid{
+        width: 50px;
+    }
+    .color{
+        font-size: 100% !important;
+    }
+
+}

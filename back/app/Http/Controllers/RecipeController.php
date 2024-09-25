@@ -13,7 +13,7 @@ class RecipeController extends Controller
 {
     public function index()
     {
-        $recipes = Recipe::with('category', 'subCategory', 'ingredients')->latest()->get();
+        $recipes = Recipe::with('category', 'subcategory', 'ingredients', 'user')->latest()->get();
         return response()->json($recipes, 200);
     }
 
@@ -26,7 +26,8 @@ class RecipeController extends Controller
             'image' => ['required', 'active_url'],
             'category' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
-            'ingredients' => ['required', 'array'] // Array of ingredient names, quantity, and measurement
+            'user_id' => ['required'],
+            'ingredients' => ['required', 'array'],
         ]);
 
         // Fetch or create category by name
@@ -42,7 +43,8 @@ class RecipeController extends Controller
             'directions' => $data['directions'],
             'image' => $data['image'],
             'category_id' => $category->id,
-            'subcategory_id' => $subcategory->id
+            'subcategory_id' => $subcategory->id,
+            'user_id' => $data['user_id']
         ]);
 
         // Attach ingredients with quantity and measurement
@@ -64,12 +66,20 @@ class RecipeController extends Controller
 
     public function show(Recipe $recipe)
     {
-        $recipe->load(['ingredients', 'category', 'subcategory']);
+        $recipe->load(['ingredients', 'category', 'subcategory', 'comments', 'user']);
+        $averageRating = $recipe->users_ratings()->avg('rating');
         if (is_null($recipe)) {
             return response()->json(['message' => 'recipe not found'], 404);
         }
 
+        $recipe->average_rating = $averageRating;
         return response()->json($recipe, 200);
+
+        // return response()->json([
+        //     'recipe' => $recipe,
+        //     'average_rating' => $averageRating,
+        // ], 200);
+
     }
 
 
@@ -81,19 +91,92 @@ class RecipeController extends Controller
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'subcategory_id' => ['required', 'exists:subcategories,id']
+            // 'category_id' => ['required', 'exists:categories,id'],
+            // 'subcategory_id' => ['required', 'exists:subcategories,id']
+            'category' => ['required', 'string'],
+            'subcategory' => ['required', 'string'],
+            'user_id' => ['required'],
+            'ingredients' => ['required', 'array'],
         ]);
 
-        $result = $recipe->update($data);
+        // Fetch or update category by name
+        $category = Category::firstOrCreate(['name' => $data['category']]);
 
-        return response()->json($result);
+        // Fetch or update subcategory by name
+        $subcategory = Subcategory::firstOrCreate(['name' => $data['subcategory'], 'category_id' => $category->id]);
+
+        // update the recipe with the fetched category and subcategory IDs
+        $recipe->update([
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'directions' => $data['directions'],
+            'image' => $data['image'],
+            'category_id' => $category->id,
+            'subcategory_id' => $subcategory->id,
+            'user_id' => $data['user_id']
+        ]);
+
+        // Update ingredients
+        $recipe->ingredients()->detach(); // Detach current ingredients
+
+        foreach ($data['ingredients'] as $ingredientData) {
+            $ingredient = Ingredient::firstOrCreate(['name' => $ingredientData['name']]);
+
+            // Attach the new ingredients with the additional pivot data (quantity, measurement_unit)
+            $recipe->ingredients()->attach($ingredient->id, [
+                'quantity' => $ingredientData['quantity'],
+                'measurement_unit' => $ingredientData['measurement_unit']
+            ]);
+        }
+
+        // Return the updated recipe with its average rating
+        $averageRating = $recipe->users_ratings()->avg('rating');
+        $recipe->average_rating = $averageRating;
+
+        return response()->json($recipe, 200);
     }
 
     public function destroy(Recipe $recipe)
     {
         $recipe->delete();
         return response()->json(['message' => 'deleted succesfully'], 200);
+    }
+
+    //save recipe (raghad)
+    public function saveRecipe(Request $request, Recipe $recipe)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $recipe->users_saves()->attach($request->user_id);
+        return response()->json(['message' => 'Recipe saved successfully.'], 200);
+    }
+    //unsave recipe (raghad)
+    public function unsaveRecipe(Request $request, Recipe $recipe)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $recipe->users_saves()->detach($request->user_id);
+        return response()->json(['message' => 'Recipe unsaved successfully.'], 200);
+    }
+
+
+    //rate recipe  (raghad)
+    public function rateRecipe(Request $request, Recipe $recipe)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        $recipe->users_ratings()->sync([
+            $request->user_id => ['rating' => $request->rating]
+        ]);
+
+        return response()->json(['message' => 'Recipe rated successfully.'], 200);
     }
 }
 
