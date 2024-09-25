@@ -17,11 +17,8 @@ use App\Http\Controllers\pending_recipeController;
 
 Route::apiResource('users',UserController::class);
 Route::apiResource('comments',CommentController::class);
-//Route::apiResource('recipe_user_rating',Recipe_user_RatingController::class);
 Route::apiResource('recipe_user_saved',Recipe_User_SavedController::class);
 Route::apiResource('recipes', RecipeController::class);
-Route::resource('recipes.ratings', Recipe_user_RatingController::class);
-Route::get('/recipes/{recipe}/average-rating', [Recipe_user_RatingController::class, 'getAverageRating']);
 
 
 // Recipe API resource route
@@ -49,4 +46,4 @@ Route::apiResource('ingredients', IngredientController::class);
 Route::post('/recipes/{recipe}/save', [RecipeController::class, 'saveRecipe']);
 Route::post('/recipes/{recipe}/unsave', [RecipeController::class, 'unsaveRecipe']);
 Route::post('/recipes/{recipe}/rate', [RecipeController::class, 'rateRecipe']);
-Route::post('pendingRecipes', pending_recipeController::class);
+Route::apiResource('pendingRecipes', pending_recipeController::class);
