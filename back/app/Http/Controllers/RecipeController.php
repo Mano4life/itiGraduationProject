@@ -26,7 +26,9 @@ class RecipeController extends Controller
             'image' => ['required', 'active_url'],
             'category' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
-            'ingredients' => ['required', 'array'] // Array of ingredient names, quantity, and measurement
+            'ingredients' => ['required', 'array'] ,
+
+            
         ]);
 
         // Fetch or create category by name
@@ -64,12 +66,16 @@ class RecipeController extends Controller
 
     public function show(Recipe $recipe)
     {
-        $recipe->load(['ingredients', 'category', 'subcategory']);
+        $recipe->load(['ingredients', 'category', 'subcategory','comments']);
+        $averageRating = $recipe->users_ratings()->avg('rating');
         if (is_null($recipe)) {
             return response()->json(['message' => 'recipe not found'], 404);
         }
 
-        return response()->json($recipe, 200);
+        return response()->json([
+            'recipe' => $recipe,
+            'average_rating' => $averageRating,
+        ], 200);
     }
 
 
@@ -95,6 +101,44 @@ class RecipeController extends Controller
         $recipe->delete();
         return response()->json(['message' => 'deleted succesfully'], 200);
     }
+    
+       //save recipe (raghad)
+    public function saveRecipe(Request $request, Recipe $recipe)
+    {
+      $request->validate([
+          'user_id' => 'required|exists:users,id',
+      ]);
+
+      $recipe->users_saves()->attach($request->user_id);
+      return response()->json(['message' => 'Recipe saved successfully.'], 200);
+    }
+    //unsave recipe (raghad)
+    public function unsaveRecipe(Request $request, Recipe $recipe)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+    
+        $recipe->users_saves()->detach($request->user_id);
+        return response()->json(['message' => 'Recipe unsaved successfully.'], 200);
+    }
+
+
+    //rate recipe  (raghad)
+    public function rateRecipe(Request $request, Recipe $recipe)
+    {
+      $request->validate([
+          'user_id' => 'required|exists:users,id',
+          'rating' => 'required|integer|min:1|max:5',
+      ]);
+  
+      $recipe->users_ratings()->sync([
+          $request->user_id => ['rating' => $request->rating]
+      ]);
+  
+      return response()->json(['message' => 'Recipe rated successfully.'], 200);
+    }
+    
 }
 
 

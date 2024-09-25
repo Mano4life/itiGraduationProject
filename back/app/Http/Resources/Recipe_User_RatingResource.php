@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class User_Saved_PostResource extends JsonResource
+class Recipe_User_RatingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
