@@ -1,0 +1,16 @@
+
+.title{
+  color: var(--main-color);
+}
+
+.card-title{
+  color: #141414;
+}
+
+.btn {
+  background-color: var(--main-color);
+}
+
+.btn:hover {
+  background-color: #141414;
+}

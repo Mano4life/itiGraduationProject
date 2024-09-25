@@ -1,6 +1,8 @@
 <div class="container mt-5">
   <form [formGroup]="recipeForm" class="row" (submit)="onSubmission()">
-    <h1 class="h3 text-center fw-bold text-uppercase mb-4 col-12">add a new recipe</h1>
+    <h1 class="h3 text-center fw-bold text-uppercase mb-4 col-12">
+      add a new recipe
+    </h1>
     <div class="mb-3 col-12">
       <label for="name-field" class="text-capitalize mb-2">name:</label>
       <input
@@ -10,14 +12,18 @@
         placeholder="Name"
         formControlName="name"
       />
-      @if(recipeForm.controls['name'].invalid && recipeForm.controls['name'].touched){
+      @if(recipeForm.controls['name'].invalid &&
+      recipeForm.controls['name'].touched){
       <p class="text-danger fw-bold ms-1">name is not valid</p>
-      }@else if (recipeForm.controls['name'].valid && recipeForm.controls['name'].touched) {
+      }@else if (recipeForm.controls['name'].valid &&
+      recipeForm.controls['name'].touched) {
       <p class="text-success">name is valid</p>
       }
     </div>
     <div class="mb-3 col-lg-6">
-      <label for="description-field" class="text-capitalize mb-2">description:</label>
+      <label for="description-field" class="text-capitalize mb-2"
+        >description:</label
+      >
       <textarea
         class="form-control"
         id="description-field"
@@ -25,14 +31,18 @@
         formControlName="description"
         rows="10"
       ></textarea>
-      @if(recipeForm.controls['description'].invalid && recipeForm.controls['description'].touched){
+      @if(recipeForm.controls['description'].invalid &&
+      recipeForm.controls['description'].touched){
       <p class="text-danger fw-bold ms-1">description is not valid</p>
-      }@else if (recipeForm.controls['description'].valid && recipeForm.controls['description'].touched) {
+      }@else if (recipeForm.controls['description'].valid &&
+      recipeForm.controls['description'].touched) {
       <p class="text-success">description is valid</p>
       }
     </div>
     <div class="mb-3 col-lg-6">
-      <label for="directions-field" class="text-capitalize mb-2">directions:</label>
+      <label for="directions-field" class="text-capitalize mb-2"
+        >directions:</label
+      >
       <textarea
         class="form-control"
         id="directions-field"
@@ -40,9 +50,11 @@
         formControlName="directions"
         rows="10"
       ></textarea>
-      @if(recipeForm.controls['directions'].invalid && recipeForm.controls['directions'].touched){
+      @if(recipeForm.controls['directions'].invalid &&
+      recipeForm.controls['directions'].touched){
       <p class="text-danger fw-bold ms-1">directions is not valid</p>
-      }@else if (recipeForm.controls['directions'].valid && recipeForm.controls['directions'].touched) {
+      }@else if (recipeForm.controls['directions'].valid &&
+      recipeForm.controls['directions'].touched) {
       <p class="text-success">directions is valid</p>
       }
     </div>
@@ -55,9 +67,11 @@
         placeholder="image"
         formControlName="image"
       />
-      @if(recipeForm.controls['image'].invalid && recipeForm.controls['image'].touched){
+      @if(recipeForm.controls['image'].invalid &&
+      recipeForm.controls['image'].touched){
       <p class="text-danger fw-bold ms-1">image is not valid</p>
-      }@else if (recipeForm.controls['image'].valid && recipeForm.controls['image'].touched) {
+      }@else if (recipeForm.controls['image'].valid &&
+      recipeForm.controls['image'].touched) {
       <p class="text-success">image is valid</p>
       }
     </div>
@@ -70,14 +84,18 @@
         placeholder="category..."
         formControlName="category"
       />
-      @if(recipeForm.controls['category'].invalid && recipeForm.controls['category'].touched){
+      @if(recipeForm.controls['category'].invalid &&
+      recipeForm.controls['category'].touched){
       <p class="text-danger fw-bold ms-1">category is not valid</p>
-      }@else if (recipeForm.controls['category'].valid && recipeForm.controls['category'].touched) {
+      }@else if (recipeForm.controls['category'].valid &&
+      recipeForm.controls['category'].touched) {
       <p class="text-success">category is valid</p>
       }
     </div>
     <div class="mb-3">
-      <label for="subcategory-field" class="text-capitalize mb-2">subcategory:</label>
+      <label for="subcategory-field" class="text-capitalize mb-2"
+        >subcategory:</label
+      >
       <input
         type="text"
         class="form-control"
@@ -85,13 +103,15 @@
         placeholder="subcategory..."
         formControlName="subcategory"
       />
-      @if(recipeForm.controls['subcategory'].invalid && recipeForm.controls['subcategory'].touched){
+      @if(recipeForm.controls['subcategory'].invalid &&
+      recipeForm.controls['subcategory'].touched){
       <p class="text-danger fw-bold ms-1">subcategory is not valid</p>
-      }@else if (recipeForm.controls['subcategory'].valid && recipeForm.controls['subcategory'].touched) {
+      }@else if (recipeForm.controls['subcategory'].valid &&
+      recipeForm.controls['subcategory'].touched) {
       <p class="text-success">subcategory is valid</p>
       }
     </div>
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label for="ingredients-field" class="text-capitalize mb-2">ingredients:</label>
       <input
         type="text"
@@ -105,22 +125,101 @@
       }@else if (recipeForm.controls['ingredients'].valid && recipeForm.controls['ingredients'].touched) {
       <p class="text-success">ingredients is valid</p>
       }
+    </div> -->
+
+    <div formArrayName="ingredients">
+      <div
+        *ngFor="let ingredient of ingredients.controls; let i = index"
+        [formGroupName]="i"
+        class="row"
+      >
+        <div class="col-4">
+          <label for="ingredientName">Ingredient Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="ingredientName"
+            placeholder="ingredient..."
+            formControlName="name"
+          />
+          <div
+            *ngIf="
+              ingredient.get('name')?.invalid && ingredient.get('name')?.touched
+            "
+          >
+            Ingredient name is required.
+          </div>
+        </div>
+
+        <div class="col-4">
+          <label for="quantity">Quantity:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="quantity"
+            placeholder="quantity..."
+            formControlName="quantity"
+          />
+          <div
+            *ngIf="
+              ingredient.get('quantity')?.invalid &&
+              ingredient.get('quantity')?.touched
+            "
+          >
+            Quantity is required.
+          </div>
+        </div>
+
+        <div class="col-4">
+          <label for="measurementUnit">Measurement Unit:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="measurementUnit"
+            placeholder="measurement unit..."
+            formControlName="measurement_unit"
+          />
+          <div
+            *ngIf="
+              ingredient.get('measurement_unit')?.invalid &&
+              ingredient.get('measurement_unit')?.touched
+            "
+          >
+            Measurement unit is required.
+          </div>
+        </div>
+
+        <div class="ingredient-controls mt-3 d-flex">
+          <button
+            type="button"
+            class="btn text-light me-4"
+            (click)="removeIngredient(i)"
+          >
+            Remove Ingredient
+          </button>
+          <button
+            type="button"
+            class="btn text-light"
+            (click)="addIngredient()"
+          >
+            Add Ingredient
+          </button>
+        </div>
+      </div>
     </div>
 
-    <!-- <div formArrayName="ingredients">
-      <div *ngFor="let ingredient of recipeForm.get('ingredients')?.controls; let i = index" [formGroupName]="i">
-        <input formControlName="name" placeholder="Ingredient Name" />
-        <input formControlName="quantity" placeholder="Quantity" />
-        <input formControlName="measurement_unit" placeholder="Measurement Unit" />
-      </div>
-    </div> -->
-    
-    <!-- <button (click)="addIngredient()">Add Ingredient</button> -->
     <div class="form-buttons">
-      <button type="submit" class="btn fw-bold text-capitalize text-light mt-4 px-4 py-2 ">
+      <button
+        type="submit"
+        class="btn fw-bold text-capitalize text-light mt-4 px-4 py-2"
+      >
         add
       </button>
-      <a routerLink="/profile" class="btn btn-outline-dark fw-bold text-capitalize mt-4 ms-4 px-4 py-2 ">cancel</a>
+      <a
+        routerLink="/profile"
+        class="btn btn-outline-dark fw-bold text-capitalize mt-4 ms-4 px-4 py-2"
+        >cancel</a
+      >
     </div>
-   </form>
+  </form>
 </div>

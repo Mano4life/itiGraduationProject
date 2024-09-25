@@ -19,6 +19,7 @@ import { NgFor } from '@angular/common';
 export class SingleRecipeComponent {
   recipe: any;
   ingredient: any;
+  ingredientId: any;
   scrollPosition: number = 0;
   routerSubscription!: Subscription;
 
@@ -29,22 +30,25 @@ export class SingleRecipeComponent {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(params => {
+    this.activatedRoute.paramMap.subscribe((params) => {
       const recipeId = params.get('id');
-      
+
       // Fetch the recipe based on recipe ID
       if (recipeId) {
         this.recipesService.getSingleRecipe(recipeId).subscribe((res) => {
           this.recipe = res;
-          console.log(this.recipe);
+          this.ingredientId = this.recipe.ingredients[0].id;
+
+          // Fetch ingredients related to the recipe
+          if (this.ingredientId) {
+            this.recipesService
+              .getIngredient(this.ingredientId)
+              .subscribe((res) => {
+                this.ingredient = res;
+              });
+          }
         });
       }
-  
-      // Fetch ingredients related to the recipe
-      this.recipesService.getIngredient().subscribe((res) => {
-        this.ingredient = res;
-        console.log(this.ingredient);
-      });
     });
   }
 
