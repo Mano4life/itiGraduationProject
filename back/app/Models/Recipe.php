@@ -38,7 +38,8 @@ class Recipe extends Model
     public function users_ratings(){
         return $this->belongsToMany(User::class,'recipe_user_rating')->withPivot('rating');
     }
-    public function users(){
+
+    public function user(){
         return $this->belongsTo(User::class);
     }
     

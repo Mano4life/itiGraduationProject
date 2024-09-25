@@ -46,18 +46,9 @@ class UserController extends Controller
     }
 
     public function show(User $User){
-        $User->load('recipes_saves');
-        $response = [
-            'id' => $User->id,
-            'name' => $User->name,
-            'email' => $User->email,
-            'role' => $User->role,
-            'date_of_birth' => $User->date_of_birth,
-            'gender' => $User->gender,
-            'saved_recipes' => $User->recipes_saves, 
-        ];
-    
-        return response()->json($response, 200);
+        $User->load('recipes_saves', 'recipes');
+        
+        return response()->json($User, 200);
         
     }
 
