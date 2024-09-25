@@ -2,7 +2,7 @@
     <div class="container mt-5">
         <div class="main">
             <h1>Sign Up</h1>
-        
+       
             <div class="signup">
                 <form [formGroup]="registerForm" (ngSubmit)="registerSender()" class="pt-1 ps-4">
                     <!-- Name -->
@@ -15,11 +15,11 @@
                     @if (registerForm.controls['name'].errors?.['required'] && registerForm.controls['name'].touched) {
                         <small id="name" class="form-text text-danger">please Add Your Name</small>
                     }
-            
+           
                     <!-- Email -->
                     <div class="form-group">
                         <!-- <label for="exampleInputEmail1">Email</label> -->
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                             formControlName = "email" placeholder="Email"
                         >
                     </div>
@@ -29,7 +29,7 @@
                     @if (registerForm.controls['email'].errors?.['pattern'] && !registerForm.controls['email'].errors?.['required']) {
                         <small id="emailHelp" class="form-text text-danger">Invalid email format. </small>
                     }
-            
+           
                     <!-- Password -->
                     <div class="form-group">
                         <!-- <label for="exampleInputPassword1">Password</label> -->
@@ -41,10 +41,10 @@
                         <small id="passHelp" class="form-text text-danger">please Add Your Password</small>
                     }
                     @if (registerForm.controls['pass'].errors?.['pattern'] && !registerForm.controls['pass'].errors?.['required']) {
-                        <small id="passHelp" class="form-text text-danger">password length not length than 8 chars , 
+                        <small id="passHelp" class="form-text text-danger">password length not length than 8 chars ,
                             contains at least one lowercase, one uppercase, at least one digit and special char </small>
-                    }  
-            
+                    } 
+           
                     <!-- Confirm Password -->
                     <div class="form-group">
                         <!-- <label for="exampleInputPassword1">Confirm Password</label> -->
@@ -56,13 +56,13 @@
                         <small id="emailHelp" class="form-text text-danger">please Add Your Confirm Password</small>
                     }
                     @if (registerForm.controls['confirmPass'].errors?.['pattern'] && !registerForm.controls['confirmPass'].errors?.['required']) {
-                        <small id="emailHelp" class="form-text text-danger">password length not length than 8 chars , 
+                        <small id="emailHelp" class="form-text text-danger">password length not length than 8 chars ,
                             contains at least one lowercase, one uppercase, at least one digit and special char </small>
                     }
                     @if (registerForm.controls['pass'].value  != registerForm.controls['confirmPass'].value && !registerForm.controls['confirmPass'].errors?.['required']) {
                         <small id="emailHelp" class="form-text text-danger">Passwords not equal Confirm Password</small>
                     }
-                
+               
                     <!-- DoB -->
                     <div class="form-group">
                         <!-- <label for="exampleInputUserName">Date Of Birth</label> -->
@@ -71,7 +71,7 @@
                     @if (registerForm.controls['DoB'].errors?.['required'] && registerForm.controls['DoB'].touched) {
                         <small id="DoBHelp" class="form-text text-danger">Please enter your date of birth.</small>
                     }
-            
+           
                     <!-- Gender -->
                     <div class="genderCheck form-group">
                         <div class="form-check">
@@ -86,7 +86,7 @@
                     @if (registerForm.controls['gender'].errors?.['required'] && registerForm.controls['gender'].touched) {
                         <small id="genderHelp" class="form-text text-danger">Please select your gender.</small>
                     }
-            
+           
                     <!-- Submit Btn -->
                     <button type="submit" class="btn btn-primary mt-4 d-flex" [disabled]="registerForm.invalid &&
                         registerForm.controls['pass'].value  != registerForm.controls['confirmPass'].value">Register</button>
@@ -97,4 +97,10 @@
             </div>
         </div>
     </div>
-</section>
+ </section>
+ 
+ 
+ 
+ 
+ 
+ 

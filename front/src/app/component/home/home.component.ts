@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FooterComponent } from "../footer/footer.component";
 import { RecipesService } from '../../core/services/recipes.service';
 import { CommonModule } from '@angular/common';
+import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FooterComponent,CommonModule],
+  imports: [FooterComponent, CommonModule, TopDishAreaComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

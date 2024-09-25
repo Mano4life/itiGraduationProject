@@ -35,13 +35,13 @@ p{
   height: 100vh;  
 }
 
-.container{
+.banner .container{
   display: flex;
   justify-content: center;
   padding: 55px;
 }
 
-.main{
+.banner .main{
   width: 500px;
   height: 670px;
   overflow: hidden;
@@ -52,14 +52,14 @@ p{
   box-shadow: 7px 25px 50px #000;
 }
 
-.main h1{
+.banner .main h1{
   text-align: center;
   color: white;
   padding-top: 18px;
   font-size: 55px;
 }
 
-.form-group{
+.banner .form-group{
   display: flex;
   align-items: center;
 }

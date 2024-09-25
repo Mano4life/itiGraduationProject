@@ -1,6 +1,8 @@
 <nav class="navbar">
+  <!-- <app-top-dish-area [showTitle]="false"  [isNavbar]="true"></app-top-dish-area> -->
+  <!-- customClass=".main-title .round-planet .main-title .round-planet.planet2 .top-dish-area .main-title.round-plane .shape.shape1 "> -->
   <div class="logo">
-    <img src="assets/image/logo.png" alt="Logo">
+    <img src="assets/image/logo.png" alt="Logo" routerLink="">
   </div>
 
   <!-- Search Bar -->
@@ -11,7 +13,7 @@
 
   <ul class="nav-links">
     <li>
-      <a href="#">
+      <a routerLink="">
         <img src="assets/image/home.svg" alt="All Recipes Icon">
         <span>home</span>
       </a>
@@ -29,8 +31,8 @@
       </a>
     </li>
     <li>
-      <a href="#">
-        <img src="assets/image/profile.svg" alt="Cakes Icon">
+      <a routerLink="/profile">
+        <img src="assets/image/profile.svg" alt="profile Icon">
         <span>profile</span>
       </a>
     </li>
