@@ -14,12 +14,12 @@ class Recipe_User_SavedController extends Controller
 {
     public function store(User $user,Recipe $recipe)
     {
-        $user->savedPosts()->attach($recipe->id);
+        $user->recipes_saves()->attach($recipe->id);
         return response()->json(['message' => 'Post saved successfully.'], 201);
     }
     public function destroy(User $user,Recipe $recipe)
     {
-        $user->savedPosts()->detach($recipe->id);
+        $user->recipes_saves()->detach($recipe->id);
         return response()->json(['message' => 'Post unsaved successfully.']);
     }
     

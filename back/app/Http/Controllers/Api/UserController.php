@@ -46,7 +46,18 @@ class UserController extends Controller
     }
 
     public function show(User $User){
-        return new UserResource($User);
+        $User->load('recipes_saves');
+        $response = [
+            'id' => $User->id,
+            'name' => $User->name,
+            'email' => $User->email,
+            'role' => $User->role,
+            'date_of_birth' => $User->date_of_birth,
+            'gender' => $User->gender,
+            'saved_recipes' => $User->recipes_saves, 
+        ];
+    
+        return response()->json($response, 200);
         
     }
 
@@ -79,4 +90,17 @@ class UserController extends Controller
         $User->delete();
         return response()->json(['message'=>' record  is deleted from database'],200);
     }
+
+    //see saved recipes
+    public function getSavedRecipes(Request $request)
+{
+    $request->validate([
+        'user_id' => 'required|exists:users,id',
+    ]);
+
+    $user = User::find($request->user_id);
+    $savedRecipes = $user->savedRecipes();
+
+    return response()->json($savedRecipes, 200);
+}
 }

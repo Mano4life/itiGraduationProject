@@ -13,8 +13,7 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\IngredientController;
-
-
+use App\Http\Controllers\pending_recipeController;
 
 Route::apiResource('users',UserController::class);
 Route::apiResource('comments',CommentController::class);
@@ -36,7 +35,7 @@ Route::apiResource('categories', CategoryController::class);
 Route::apiResource('subcategories', SubcategoryController::class);
 
 // Tag API resource route
-Route::apiResource('tags', TagController::class);
+//Route::apiResource('tags', TagController::class);
 
 // Ingredient API resource route
 Route::apiResource('ingredients', IngredientController::class);
@@ -45,3 +44,9 @@ Route::apiResource('ingredients', IngredientController::class);
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:sanctum');
+
+//raghad edited here
+Route::post('/recipes/{recipe}/save', [RecipeController::class, 'saveRecipe']);
+Route::post('/recipes/{recipe}/unsave', [RecipeController::class, 'unsaveRecipe']);
+Route::post('/recipes/{recipe}/rate', [RecipeController::class, 'rateRecipe']);
+Route::post('pendingRecipes', pending_recipeController::class);

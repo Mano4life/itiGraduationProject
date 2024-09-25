@@ -16,6 +16,9 @@
     font-weight: 600;
     /* font-family: "Oswald", sans-serif; */
 }
+.white{
+    cursor: pointer;
+}
 
 .inline{
     display: inline !important;

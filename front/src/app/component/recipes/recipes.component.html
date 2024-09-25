@@ -1,4 +1,4 @@
-<section>
+<section class="mt-5">
     <h1 class="text-center" style="color: var(--main-color);">All Recipes</h1>
 </section>
 <section class="mt-3 mb-3  category">
@@ -6,16 +6,16 @@
       <div class="col-lg-1 p-3 col-md-6 col-sm-10 background   mx-3 small-div d-flex flex-column justify-content-center align-items-center" (click)="toggleCategory('breakfast')" [class.selected]="isCategorySelected('breakfast')"  >
 
           <img src="assets/img/croissant.png" alt="Breakfast" class="img-fluid">
-          <a href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Breakfast</a>
+          <p href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Breakfast</p>
       </div>
       <div class="col-lg-1 col-md-6 p-3   col-sm-10 background   mx-3 small-div d-flex flex-column justify-content-center align-items-center" (click)="toggleCategory('lunch')" [class.selected]="isCategorySelected('lunch')" >
           <img src="assets/img/salad.png" alt="Lunch" class="img-fluid">
-          <a href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Lunch</a>
+          <p href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Lunch</p>
       </div>
       <div class="col-lg-1 col-md-6 p-3  col-sm-10 background   mx-3 small-div d-flex flex-column justify-content-center align-items-center" (click)="toggleCategory('dinner')" [class.selected]="isCategorySelected('dinner')"  >
 
           <img src="assets/img/dinner.png" alt="Dinner" class="img-fluid">
-          <a href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Dinner</a>
+          <p href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Dinner</p>
       </div>
   </div>
 </section>
@@ -58,7 +58,7 @@
     <div class="col-lg-12 m-auto">
       <div class="dropdown-content" *ngIf="dropdownOpen">
         <div class="checkbox-container">
-          <div *ngFor="let option of sub_category" class="background  m-1 px-2 ">
+          <div *ngFor="let option of sub_categoryList" class="background  m-1 px-2 ">
             <label>
               <input type="checkbox" [checked]="option.selected" (change)="toggleOption(option)" />
               {{ option.name }}
@@ -78,7 +78,7 @@
       </div>
       <div class="dropdown-content" *ngIf="dropdown2Open">
         <div class="checkbox-container">
-          <div *ngFor="let option of ingredents" class="background  m-1 px-2 ">
+          <div *ngFor="let option of ingredentsList" class="background  m-1 px-2 ">
             <label>
               <input type="checkbox" [checked]="option.selected" (change)="toggleOption2(option)" />
               {{ option.name }}
@@ -92,12 +92,12 @@
 <section>
   <div class="container d-flex flex-column w-80">
     <div class="row gx-3 mt-3">
-      <div class="col-lg-3 col-md-6 col-sm-12 white" *ngFor="let item of getFilteredRecipes(); let i = index">
+      <div class="col-lg-3 col-md-6 col-sm-12 white" *ngFor="let item of getFilteredRecipes(); let i = index" (click)="SingleRecipePage(item.id)">
         <div>
           <img class="rounded-image object-fit-cover" style="width: 100% !important; height: 330px !important;" [src]="item.image" alt="food">
         </div>
         <div>
-          <p class="red m-0">{{item.category}}</p>
+          <p class="red m-0">{{item.category.name}}</p>
         </div>
         <div>
           <h5>{{item.name}}</h5>

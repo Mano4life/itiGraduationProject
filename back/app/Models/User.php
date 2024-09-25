@@ -28,11 +28,17 @@ class User extends Authenticatable
     }
 
     public function recipes_saves(){
-        return $this->belongsToMany(Recipe::class,'recipe_user_saved', foreignPivotKey:'recipes_id');
+        return $this->belongsToMany(Recipe::class,'recipe_user_saved');
     }
 
     public function recipes_ratings(){
-        return $this->belongsToMany(Recipe::class,'recipe_user_rating', foreignPivotKey:'recipes_id')->withPivot('rating');
+        return $this->belongsToMany(Recipe::class,'recipe_user_rating')->withPivot('rating');
+    }
+    public function recipes(){
+        return $this->hasMany(Recipe::class);
+    }
+    public function pendingRecipes(){
+        return $this->hasMany(pending_recipe::class);
     }
     
 }
