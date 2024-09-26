@@ -32,12 +32,12 @@ export class SingleRecipeComponent {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {
       const recipeId = params.get('id');
-
       // Fetch the recipe based on recipe ID
       if (recipeId) {
         this.recipesService.getSingleRecipe(recipeId).subscribe((res) => {
           this.recipe = res;
-          this.ingredientId = this.recipe.ingredients[0].id;
+          console.log(this.recipe)
+          this.ingredientId = this.recipe.recipe.ingredients[0].id;
 
           // Fetch ingredients related to the recipe
           if (this.ingredientId) {

@@ -163,7 +163,7 @@ export class RecipesComponent {
     });
   }
   SingleRecipePage(recipeId:number){
-    this.router.navigate(['/recipe', recipeId]);
+    this.router.navigate(['/recipes', recipeId]);
   }
 
 }

@@ -49,4 +49,4 @@ Route::apiResource('ingredients', IngredientController::class);
 Route::post('/recipes/{recipe}/save', [RecipeController::class, 'saveRecipe']);
 Route::post('/recipes/{recipe}/unsave', [RecipeController::class, 'unsaveRecipe']);
 Route::post('/recipes/{recipe}/rate', [RecipeController::class, 'rateRecipe']);
-Route::post('pendingRecipes', pending_recipeController::class);
+Route::apiResource('pendingRecipes', pending_recipeController::class);

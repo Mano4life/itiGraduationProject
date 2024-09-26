@@ -1,22 +1,22 @@
 
 <div class="container-xl my-5">
-    <h1 class="recipe-title">{{ recipe?.name }}</h1>
+    <h1 class="recipe-title">{{ recipe?.recipe.name }}</h1>
     <div class="w-100 mt-3 border p-0">
       <img
-        src="{{ recipe?.image }}"
+        src="{{ recipe?.recipe.image }}"
         class="w-100 bg-cover object-fit-cover"
         alt="recipe-image"
       />
     </div>
     <div class="rounded shadow bg-light p-4 mt-3">
-      <p class="recipe-description text">{{ recipe?.description }}</p>
+      <p class="recipe-description text">{{ recipe?.recipe.description }}</p>
     </div>
 
     <div class="how-to row mt-4 p-2">
       <div class="col-md-4 mb-4 mb-md-0">
         <h3 class="title text-uppercase">ingredients</h3>
         <ul class="body mt-2">
-          <li  *ngFor="let ingredient of recipe?.ingredients "><i class="fa-solid fa-utensils me-2"></i>{{ ingredient.name }}</li>
+          <li  *ngFor="let ingredient of recipe?.recipe.ingredients "><i class="fa-solid fa-utensils me-2"></i>{{ ingredient.name }}</li>
         </ul>
       </div>
       <div class="col-md-6">
