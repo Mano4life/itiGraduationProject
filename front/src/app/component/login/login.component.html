@@ -24,7 +24,7 @@
                     formControlName = "pass" placeholder="Password" [type]="isPasswordVisible ? 'text' : 'password'" 
                     >
                     <div class="showIcon" (click)="togglePasswordVisibility()">
-                      <i class="fa-solid" [class.fa-eye]="!isPasswordVisible" [class.fa-eye-slash]="isPasswordVisible"></i>
+                        <i class="fa-solid" [class.fa-eye]="!isPasswordVisible" [class.fa-eye-slash]="isPasswordVisible"></i>
                     </div>
                 </div>
                 @if (LoginForm.controls['pass'].errors?.['required'] && LoginForm.controls['pass'].touched) {
@@ -35,11 +35,10 @@
                         contains at least one lowercase, one uppercase, at least one digit and special char </small>
                 }
         
-                <button type="submit">Login</button>
-                <!-- <button type="submit" class="btn btn-primary mt-4 d-flex" [disabled]="LoginForm.invalid">Login</button>
-                <p class="mt-4">Don't hava account
-                    <a class="text-black" routerLink="/signUp">Register</a>
-                </p> -->
+                <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="LoginForm.invalid">Login</button>
+                <p class="mt-4 switch">Don't hava account
+                    <a style="color: var(--btn-color);" routerLink="/register">Register</a>
+                </p>
             </form>
         </div>
     </div>

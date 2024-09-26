@@ -32,7 +32,7 @@ p{
 .banner{
   display: flex;
   height: 100vh;  
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.295);
 }
 
 .banner .container{
@@ -43,7 +43,7 @@ p{
 
 .banner .main{
   width: 500px;
-  height: 670px;
+  height: fit-content;
   overflow: hidden;
   background-color: #eaeaea ;
   border-radius: 20px;
@@ -62,8 +62,13 @@ p{
   align-items: center;
 }
 
+form{
+  text-align: center;
+}
+
 .form-group {
   position: relative;
+  color: #828487;
 }
 
 .showIcon {

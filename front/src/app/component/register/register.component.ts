@@ -14,6 +14,8 @@ export class RegisterComponent {
   registerForm!: FormGroup;
   isPasswordVisible: boolean = false;
   isConfirmPasswordVisible: boolean = false;
+  touched!: boolean;
+
 
   constructor(private router: Router) {
     this.registerForm = new FormGroup({
@@ -36,11 +38,24 @@ export class RegisterComponent {
   
   registerSender() {
     if (this.registerForm.valid) {
-      const userData = this.registerForm.value;
-      localStorage.setItem('user', JSON.stringify(userData));
-      this.router.navigate(['/login']); // Redirect to login after signup
+        const userData = this.registerForm.value;
+
+        // Format date of birth to yyyy-mm-dd
+        const dob = new Date(userData.DoB);
+        const formattedDob = `${dob.getFullYear()}-${String(dob.getMonth() + 1).padStart(2, '0')}-${String(dob.getDate()).padStart(2, '0')}`;
+        const dataToStore = {
+            name: userData.name,
+            email: userData.email,
+            pass: userData.pass,
+            DoB: formattedDob,
+            gender: userData.gender
+        }
+
+        localStorage.setItem('user', JSON.stringify(dataToStore));
+        this.router.navigate(['/login']);
     }
-  }
+}
+
   
 
   // registerSender(){
@@ -69,6 +84,7 @@ export class RegisterComponent {
   //   }
   // }
 
+  // Toggle password visibility
   togglePasswordVisibility(){
     this.isPasswordVisible = !this.isPasswordVisible;
   }

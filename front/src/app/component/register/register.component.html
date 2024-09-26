@@ -41,8 +41,9 @@
                         <small id="passHelp" class="form-text text-danger">please Add Your Password</small>
                     }
                     @if (registerForm.controls['pass'].errors?.['pattern'] && !registerForm.controls['pass'].errors?.['required']) {
-                        <small id="passHelp" class="form-text text-danger">password length not length than 6 chars ,
-                            contains at least one lowercase, one uppercase, at least one digit and special char </small>
+                        <small id="passHelp" class="form-text text-danger">Password must be at least 6 characters long and include one lowercase letter, one uppercase letter, 
+                            one digit, and one special character. 
+                        </small>
                     } 
         
                     <!-- Confirm Password -->
@@ -59,8 +60,8 @@
                         <small id="emailHelp" class="form-text text-danger">please Add Your Confirm Password</small>
                     }
                     @if (registerForm.controls['confirmPass'].errors?.['pattern'] && !registerForm.controls['confirmPass'].errors?.['required']) {
-                        <small id="emailHelp" class="form-text text-danger">password length not length than 6 chars ,
-                            contains at least one lowercase, one uppercase, at least one digit and special char </small>
+                        <small id="emailHelp" class="form-text text-danger">Password must be at least 6 characters long and include one lowercase letter, one uppercase letter,
+                            one digit, and one special character. </small>
                     }
                     @if (registerForm.controls['pass'].value  != registerForm.controls['confirmPass'].value && !registerForm.controls['confirmPass'].errors?.['required']) {
                         <small id="emailHelp" class="form-text text-danger">Passwords not equal Confirm Password</small>
@@ -68,7 +69,8 @@
     
                     <!-- DoB -->
                     <div class="form-group">
-                        <input type="date" class="form-control" id="exampleInputDoB" formControlName="DoB" style="padding: 0 10px; height: 35px;">
+                        <input type="date" class="form-control" id="exampleInputDoB" formControlName="DoB" 
+                            style="padding: 0 10px; height: 35px; font-weight: 500;">
                     </div>
                     @if (registerForm.controls['DoB'].errors?.['required'] && registerForm.controls['DoB'].touched) {
                         <small id="DoBHelp" class="form-text text-danger">Please enter your date of birth.</small>
@@ -90,10 +92,10 @@
                     }
 
                     <!-- Submit Btn -->
-                    <button type="submit" class="btn btn-primary mt-4 d-flex" [disabled]="registerForm.invalid &&
+                    <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="registerForm.invalid &&
                         registerForm.controls['pass'].value  != registerForm.controls['confirmPass'].value">Register</button>
-                    <p class="mt-4 text-light text-center">Already hava account
-                        <a class="text-black" routerLink="/signIn">login</a>
+                    <p class="mt-4 switch">Already have account
+                        <a style="color: var(--btn-color);" routerLink="/login">login</a>
                     </p>
                 </form>
             </div>
