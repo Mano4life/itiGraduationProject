@@ -42,19 +42,19 @@
         <div class="make-favorite text-center mt-2">
           <i class="fa-heart favorite h1" [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'" (click)="onFavorite()" ></i>
         </div>
-        <!-- mariaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaam bom -->
+
         <div class="give-rating">
           <div class="yourstars mt-3">
-            <i *ngFor="let star of stars; let i = index"
-                class="fa fa-star me-2"
+            <i *ngFor="let star of stars; let i = index" 
+                class="fa fa-star" 
                 [ngClass]="{
-                  'fa-solid': (i < currentHoveredStar && currentHoveredStar > 0) || (i < starRate),
-                  'fa-regular': (i >= currentHoveredStar && currentHoveredStar > 0) || (i >= starRate && currentHoveredStar === 0)
+                  'fa-solid': (i < currentHoveredStar && currentHoveredStar > 0) || (i < starRate),   
+                  'fa-regular': (i >= currentHoveredStar && currentHoveredStar > 0) || (i >= starRate && currentHoveredStar === 0) 
                 }"
-                [attr.data-value]="i + 1"
-                (click)="onStarClick(i + 1)"
-                (mouseenter)="onStarHover(i + 1)"
-                (mouseleave)="onStarLeave()">
+                [attr.data-value]="i + 1" 
+                (click)="onStarClick(i + 1)"       
+                (mouseenter)="onStarHover(i + 1)"  
+                (mouseleave)="onStarLeave()">     
             </i>
           </div>
         </div>

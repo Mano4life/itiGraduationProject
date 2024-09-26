@@ -32,17 +32,4 @@
   </div>
 </section>
 
-<div class="yourstars mt-3"></div>
-    <i *ngFor="let star of stars; let i = index" 
-        class="fa fa-star" 
-        [ngClass]="{
-          'fa-solid': (i < currentHoveredStar && currentHoveredStar > 0) || (i < starRate),   
-          'fa-regular': (i >= currentHoveredStar && currentHoveredStar > 0) || (i >= starRate && currentHoveredStar === 0) 
-        }"
-        [attr.data-value]="i + 1" 
-        (click)="onStarClick(i + 1)"       
-        (mouseenter)="onStarHover(i + 1)"  
-        (mouseleave)="onStarLeave()">     
-    </i>
-  </div>
 

@@ -40,20 +40,4 @@ export class AboutComponent {
     }
 
 ];
-
-stars = Array(5).fill(0);
-  currentHoveredStar = 0;    
-  starRate = 0; 
-
-  onStarHover(starValue: number) {
-    this.currentHoveredStar = starValue;
-  }
-
-  onStarLeave() {
-    this.currentHoveredStar = 0;
-  }
-
-  onStarClick(starValue: number) {
-    this.starRate = starValue;
-  }
 }
