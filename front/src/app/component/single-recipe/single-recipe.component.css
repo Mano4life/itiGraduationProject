@@ -23,6 +23,15 @@ h1,h2,h3,h4,h5,p{
   font-size: 14px;
 }
 
+.rating {
+  color: var(--main-color);
+}
+
+.favorite{
+  cursor: pointer;
+  color: var(--main-color);
+}
+
 @media (width < 1100px) {
   .recipe-title {
     font-size: 22px;
@@ -33,7 +42,7 @@ h1,h2,h3,h4,h5,p{
 .how-to .title {
   font-family: var(--main-font);
   color: var(--main-color);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
 }
 
