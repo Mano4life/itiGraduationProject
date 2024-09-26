@@ -1,6 +1,6 @@
 
 <div class="container-xl my-5">
-    <h1 class="recipe-title">{{ recipe?.recipe.name }}</h1>
+    <h1 class="recipe-title">{{ recipe?.name }}</h1>
     <div class="w-100 mt-3 border p-0">
       <img
         src="{{ recipe?.recipe.image }}"
@@ -9,7 +9,7 @@
       />
     </div>
     <div class="rounded shadow bg-light p-4 mt-3">
-      <p class="recipe-description text">{{ recipe?.recipe.description }}</p>
+      <p class="recipe-description text">{{ recipe?.description }}</p>
     </div>
 
     <div class="how-to row mt-4 p-2">

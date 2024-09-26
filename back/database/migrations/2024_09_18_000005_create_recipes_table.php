@@ -22,9 +22,6 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Subcategory::class)->constrained()->cascadeOnDelete();
-
-            // i think i am the one who added user key...raghad
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
