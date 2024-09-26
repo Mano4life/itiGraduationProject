@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RecipesService } from '../../core/services/recipes.service';
+import { RecipesService } from '../../core/services/recipes/recipes.service';
 import {
   Router,
   NavigationEnd,

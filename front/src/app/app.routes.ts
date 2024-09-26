@@ -16,13 +16,13 @@ export const routes: Routes = [
     path:'about',component: AboutComponent
   },
   {
-    path: 'profile', component: ProfileComponent
+    path: 'profile/:id', component: ProfileComponent
   },
   {
-    path: 'profile/edit-profile', component: EditProfileComponent
+    path: 'edit-profile/:id', component: EditProfileComponent
   },
   {
-    path: 'profile/add-recipe', component: AddRecipeComponent
+    path: 'add-recipe/:id', component: AddRecipeComponent
   },
   {
     path: 'recipes', component: RecipesComponent
