@@ -33,7 +33,7 @@
       <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
         <div *ngFor="let recipe of ingredient?.recipes" >
             <div class="card border-0" style="width: 300px;cursor: pointer;" (click)="onRecipeClick(recipe.id)" >
-              <img class="rounded card-img-top w-100" src="{{ recipe?.image }}" alt="Title"/>
+              <img class="rounded card-img-top w-100 object-fit-cover" src="{{ recipe?.image }}" alt="Title" style="height: 330px;"/>
               <div class="card-body">
                 <h4 class="card-title">{{ recipe?.name }}</h4>
               </div>
