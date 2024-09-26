@@ -15,9 +15,10 @@
           (click)="onRecipeClick(recipe.id)"
         >
           <img
-            class="rounded card-img-top w-100 cover"
+            class="rounded card-img-top w-100 object-fit-cover"
             src="{{ recipe?.image }}"
             alt="Title"
+            style="height: 330px;"
           />
           <div class="card-body">
             <h1 class="card-title h4">{{ recipe?.name }}</h1>
@@ -39,9 +40,10 @@
           (click)="onRecipeClick(recipe.id)"
         >
           <img
-            class="rounded card-img-top w-100"
+            class="rounded card-img-top w-100 object-fit-cover"
             src="{{ recipe?.image }}"
             alt="Title"
+            style="height: 330px;"
           />
           <div class="card-body">
             <h1 class="card-title h4">{{ recipe?.name }}</h1>
