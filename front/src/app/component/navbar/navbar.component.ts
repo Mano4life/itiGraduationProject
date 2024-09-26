@@ -10,6 +10,10 @@ import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  constructor() { }
+
+
+  // Dannle
 toggleDarkMode() {
 throw new Error('Method not implemented.');
 }
@@ -24,4 +28,6 @@ throw new Error('Method not implemented.');
       navLinks?.classList.remove('open');
     }
   }
+
+ 
 }

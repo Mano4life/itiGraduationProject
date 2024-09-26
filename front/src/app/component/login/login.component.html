@@ -1,3 +1,4 @@
+
 <section class="banner">
     <div class="container mt-5">
         <div class="main signin">
@@ -20,14 +21,17 @@
                 <!-- Password -->
                 <div class="form-group">
                     <input type="password" class="form-control" id="exampleInputPassword1"
-                    formControlName = "pass" placeholder="Password"
+                    formControlName = "pass" placeholder="Password" [type]="isPasswordVisible ? 'text' : 'password'" 
                     >
+                    <div class="showIcon" (click)="togglePasswordVisibility()">
+                      <i class="fa-solid" [class.fa-eye]="!isPasswordVisible" [class.fa-eye-slash]="isPasswordVisible"></i>
+                    </div>
                 </div>
                 @if (LoginForm.controls['pass'].errors?.['required'] && LoginForm.controls['pass'].touched) {
                     <small id="passHelp" class="form-text text-danger">please Add Your Password</small>
                 }
                 @if (LoginForm.controls['pass'].errors?.['pattern'] && !LoginForm.controls['pass'].errors?.['required']) {
-                    <small id="passHelp" class="form-text text-danger">password length not length than 8 chars , 
+                    <small id="passHelp" class="form-text text-danger">password length not length than 6 chars , 
                         contains at least one lowercase, one uppercase, at least one digit and special char </small>
                 }
         

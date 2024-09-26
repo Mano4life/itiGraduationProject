@@ -1,21 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router'; 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [ FormsModule, ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
-  touched!: boolean;
-  passwordMismatch!: boolean;
+  isPasswordVisible: boolean = false;
+  isConfirmPasswordVisible: boolean = false;
 
-  constructor(){
+  constructor(private router: Router) {
     this.registerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
 
@@ -23,10 +23,10 @@ export class RegisterComponent {
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
       ]),
 
-      pass: new FormControl('', [Validators.required, Validators.minLength(8),
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{8,}$/)]),
+      pass: new FormControl('', [Validators.required, Validators.minLength(6),
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{6,}$/)]),
       confirmPass: new FormControl('', [Validators.required, Validators.minLength(8),
-          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{8,}$/)]),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{6,}$/)]),
 
       DoB: new FormControl('', [Validators.required]),
 
@@ -34,22 +34,46 @@ export class RegisterComponent {
     })
   }
   
-  registerSender(){
-    console.log(this.registerForm);
-    
-    if(this.registerForm.controls['pass'].value != this.registerForm.controls['confirmPass'].value ){
-      console.log(this.registerForm.controls['pass'].value)
-      console.log(this.registerForm.controls['confirmPass'].value)
-      return false
-    }
-
-    if(this.registerForm.valid){
-      console.log("Your Form is valid", this.registerForm.value);
-      return true;
-    } else {
-        console.log("Your Form is Invalid", this.registerForm.value);
-        return false;
+  registerSender() {
+    if (this.registerForm.valid) {
+      const userData = this.registerForm.value;
+      localStorage.setItem('user', JSON.stringify(userData));
+      this.router.navigate(['/login']); // Redirect to login after signup
     }
   }
+  
 
+  // registerSender(){
+  //   if (this.registerForm.valid) {
+  //     const formData = {
+  //       name:this.registerForm.controls['name'].value,
+  //       email:this.registerForm.controls['email'].value,
+  //       password:this.registerForm.controls['pass'].value,
+  //       // dob:this.registerForm.controls['password'].value,
+  //       gender:this.registerForm.controls['gender'].value,
+  //       role:'user'
+  //     };
+  //     this.notvalid = false;
+  //     this.user.register(formData).subscribe({
+  //       next: (res) => {
+  //         console.log(res);
+  //         this.router.navigate(['/UserLogin']);
+  //       },
+  //       error: (err) => {
+  //         console.error('Error:', err);
+  //         this.notvalid = true;
+  //       }
+  //     });
+  //   } else {
+  //     this.notvalid = true;
+  //   }
+  // }
+
+  togglePasswordVisibility(){
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
+  toggleConfirmPasswordVisibility(){
+    this.isConfirmPasswordVisible = !this.isConfirmPasswordVisible;
+  }
 }
