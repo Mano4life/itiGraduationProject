@@ -37,7 +37,7 @@ export class SingleRecipeComponent {
         this.recipesService.getSingleRecipe(recipeId).subscribe((res) => {
           this.recipe = res;
           console.log(this.recipe)
-          this.ingredientId = this.recipe.recipe.ingredients[0].id;
+          this.ingredientId = this.recipe.ingredients[0].id;
 
           // Fetch ingredients related to the recipe
           if (this.ingredientId) {

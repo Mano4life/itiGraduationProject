@@ -15,4 +15,7 @@ export class UsersService {
   getUser(id: any){
     return this.http.get(`http://127.0.0.1:8000/api/users/${id}`);
   }
+  EditUser(Data: any, id: number) {
+    return this.http.patch(`http://127.0.0.1:8000/api/users/${id}`,Data);
+  }
 }

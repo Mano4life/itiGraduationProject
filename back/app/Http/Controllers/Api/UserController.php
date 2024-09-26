@@ -55,9 +55,9 @@ class UserController extends Controller
     public function update(Request $request,User $User){
         $validator=Validator::make( $request->all(),[
             'name'=>'required|string|min:3|max:10',
-             'email'=>'required|email|min:8',
-             'password'=>'required|string|min:5',
-             'role'=>'required|string',
+             //'email'=>'email|min:8',
+             //'password'=>'string|min:6',
+             //'role'=>'string',
              'date_of_birth'=>'date',
              'gender'=>'nullable|string|in:male,female'
        ]);
@@ -68,9 +68,9 @@ class UserController extends Controller
    
         $User->update([
           'name'=>$request->name,
-          'email'=>$request->email,
-          'password'=>$request->password,
-          'role'=>$request->role,
+         // 'email'=>$request->email,
+         // 'password'=>$request->password,
+         // 'role'=>$request->role,
           'date_of_birth'=>$request->date_of_birth,
           'gender'=>$request->gender,
         ]);
