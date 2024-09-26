@@ -91,3 +91,28 @@
 .top-dish-area {
   padding: 70px 0 75px;
 }
+
+
+/* Login Style */
+.modal-header{
+  border-bottom: none;
+}
+.modal-title{
+  text-align: center;
+  color: var(--main-color);
+  font-size: 55px;
+  margin: auto;
+}
+.modal-body{
+  padding: 0;
+}
+.switch{
+  color: var(--main-color);
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+.switch .switchCard{
+  color: var(--btn-color);
+  cursor: pointer;
+}

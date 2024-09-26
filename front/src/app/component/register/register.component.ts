@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router'; 
 
@@ -12,8 +12,9 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
-  isPasswordVisible: boolean = false;
-  isConfirmPasswordVisible: boolean = false;
+
+ 
+  
   touched!: boolean;
 
 
@@ -85,6 +86,8 @@ export class RegisterComponent {
   // }
 
   // Toggle password visibility
+  isPasswordVisible: boolean = false;
+  isConfirmPasswordVisible: boolean = false;
   togglePasswordVisibility(){
     this.isPasswordVisible = !this.isPasswordVisible;
   }

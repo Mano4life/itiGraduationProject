@@ -29,39 +29,6 @@ p{
 
 /* Login & Register */
 
-.banner{
-  display: flex;
-  height: 100vh;  
-  background-color: rgba(0, 0, 0, 0.295);
-}
-
-.banner .container{
-  display: flex;
-  justify-content: center;
-  padding: 55px;
-}
-
-.banner .main{
-  width: 500px;
-  height: fit-content;
-  overflow: hidden;
-  background-color: #eaeaea ;
-  border-radius: 20px;
-  box-shadow: 7px 25px 50px #000;
-}
-
-.banner .main h1{
-  text-align: center;
-  color: var(--main-color);
-  padding-top: 18px;
-  font-size: 55px;
-}
-
-.banner .form-group{
-  display: flex;
-  align-items: center;
-}
-
 form{
   text-align: center;
 }
@@ -69,6 +36,7 @@ form{
 .form-group {
   position: relative;
   color: #828487;
+  display: flex;
 }
 
 .showIcon {

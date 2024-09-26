@@ -14,7 +14,7 @@ label{
 input{
     width: 50%;
     height: 30px;
-    background: white;
+    background-color: #eee;
     margin: 15px auto;
     padding: 20px;
     border: none;
@@ -47,6 +47,7 @@ input{
 {
     color: var(--main-color);
 }
+
 .btn-auth{
     font-size: 23px;
     font-weight: 600;
@@ -66,11 +67,5 @@ input{
 .btn-auth:hover{
     background-color: white;
     color: var(--btn-color);
-}
-
-.switch{
-    color: var(--main-color);
-    font-size: 20px;
-    font-weight: 600;
 }
 
