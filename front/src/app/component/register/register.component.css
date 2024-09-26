@@ -30,6 +30,11 @@ input{
 .form-control{
     color: #828487;
 }
+form input:focus, form textarea:focus {
+    border-color: var(--main-color);
+    box-shadow: 0 0 10px 3px var(--main-color);
+}
+
 /* Checkbox */
 .form-check {
     flex-direction: column;
