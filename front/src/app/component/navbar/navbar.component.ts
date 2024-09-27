@@ -12,6 +12,8 @@ import { RegisterComponent } from "../register/register.component";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  logo: string = 'assets/imgs/logo.png';
+
   constructor() { }
 
 
