@@ -58,6 +58,11 @@ h1,h2,h3,h4,h5,p{
   color: var(--main-color);
 }
 
+.how-to .star-icon{
+  cursor: pointer;
+  color: var(--main-color);
+}
+
 @media (width < 1100px) {
   .how-to .title {
     font-size: 20px;
