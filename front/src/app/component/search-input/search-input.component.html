@@ -1,0 +1,20 @@
+
+<div class="search-container">
+    <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass search"></i>
+        <input class="form-control" type="text" placeholder="Search for recipes..." aria-label="Search"
+            [(ngModel)]="searchQuery" (input)="onSearch()"
+        >
+        <i class="fa-solid fa-x clear" (click)="onClear()"></i>
+    </div>
+
+    <div *ngIf="(searchResults$ | async)?.length as resultsLength" class="dropdown-list">
+      <ul *ngIf="resultsLength > 0">
+        <li *ngFor="let result of searchResults$ | async" class="dropdown-item">
+            <img [src]="result.img" alt="{{ result.name }}" />
+            <p>{{ result.name }}</p>
+            <!-- <p>{{ result.category }}</p> -->
+        </li>
+        </ul>
+    </div>
+</div>

@@ -1,36 +1,8 @@
 /* Navbar styles */
 .navbar {
   padding: 20px 70px;
-}
-
-/* .logo img {
-  height: 80px;
-  width: 140px;
-} */
-
-/* Search */
-.search-bar{
-  position: relative;
-}
-.search-bar input {
-  width: 500px; 
-  padding: 10px 10px;
-  border : none;
-  outline: none;
-  background-color: #EEE;
-}
-.search-bar i{
-  position: absolute;
-  top: 47%;
-  right: 3%;
-  font-size: 20px;
-  color: var(--main-color);
-  transform: translateY(-50%);
-}
-
-.search-bar input:focus, .search-bar textarea:focus {
-  border-color: var(--main-color);
-  box-shadow: 0 0 10px 3px var(--main-color);
+  position: fixed;
+  background-color: white;
 }
 
 /* links */
@@ -56,37 +28,11 @@
   color: var(--main-color);
 }
 
-.nav-links span{
+.nav-links p{
   margin-top: 4px;
   color: var(--btn-color);
-  font-weight: 500;
+  font-weight: bold;
   font-size: 20px;
-}
-/* .search-menu {
-  display: flex;
-  gap: 30px; 
-}
-
-.search-menu a img {
-  height: 24px;
-} */
-
-/*  */
-/* Navbar Style */
-/* Test TopArea Section */
-.main-title.round-plane .shape.shape1 {
-  left: 37px;
-}
-.main-title .round-planet.planet2 {
-  width: 70px;
-  height: 70px;
-}
-.main-title .round-planet {
-  width: 140px;
-  height: 150px;
-}
-.top-dish-area {
-  padding: 70px 0 75px;
 }
 
 
@@ -112,4 +58,22 @@
 .switch .switchCard{
   color: var(--btn-color);
   cursor: pointer;
+}
+
+/* Not Work */
+/* Navbar Style */
+/* Test TopArea Section */
+.main-title.round-plane .shape.shape1 {
+  left: 37px;
+}
+.main-title .round-planet.planet2 {
+  width: 70px;
+  height: 70px;
+}
+.main-title .round-planet {
+  width: 140px;
+  height: 150px;
+}
+.top-dish-area {
+  padding: 70px 0 75px;
 }
