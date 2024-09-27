@@ -35,23 +35,7 @@
 </section>
 
 <!-- Top Dish Area Section -->
-<section class="top-dish-area" id="categories">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="main-title position-relative">
-                    <h1>Where every dish tells a story.</h1>
-                    <div class="round-planet planet">
-                        <div class="round-planet planet2">
-                            <div class="shape shape1"></div>
-                            <div class="shape shape2"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<app-top-dish-area title="Where every dish tells a story."></app-top-dish-area>
 
 <!-- Categories Section -->
 <section class="categories">
@@ -114,7 +98,7 @@
                 </div>
             }
         </div>
-        <a class="main-btn recipe" href="#">View All Latest</a>
+        <a class="main-btn recipe" routerLink="/recipes">View All Latest</a>
     </div>
 </section>
 
@@ -135,23 +119,7 @@
 </div>
 
 <!-- Top Dish Area Section -->
-<section class="top-dish-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="main-title position-relative">
-                    <h1>Taste the magic in every recipe.</h1>
-                    <div class="round-planet planet">
-                        <div class="round-planet planet2">
-                            <div class="shape shape1"></div>
-                            <div class="shape shape2"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<app-top-dish-area title="Taste the magic in every recipe."></app-top-dish-area>
 
 <!-- Recipes Section -->
 <section class="recipes p-5">
@@ -170,8 +138,8 @@
                     </div>
                 </div>
             }
-            <a class="main-btn recipe" href="#">View All Recipes</a>
         </div>
+        <a class="main-btn recipe" routerLink="/recipes">View All Recipes</a>
     </div>
 </section>
 
@@ -191,11 +159,10 @@
                         Hi! We are the MDR Team, and this is my cozy space on the internet, supercharged with butter, flour, 
                         and copious amounts of pasta. Stay awhile, won't you?
                     </p>
-                    <a class="main-btn shadow-none" href="#">About Us</a>
+                    <a class="main-btn shadow-none" routerLink="/about">About Us</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<app-footer></app-footer>

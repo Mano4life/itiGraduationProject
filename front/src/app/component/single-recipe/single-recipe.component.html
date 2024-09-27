@@ -1,45 +1,87 @@
-
 <div class="container-xl my-5">
+  <div class="title-wrapper d-flex justify-content-between align-items-baseline">
     <h1 class="recipe-title">{{ recipe?.name }}</h1>
-    <div class="w-100 mt-3 border p-0">
-      <img
-        src="{{ recipe?.image }}"
-        class="w-100 bg-cover object-fit-cover"
-        alt="recipe-image"
-        style="height: 80vh;"
-      />
+    <div class="rating-favorite d-flex align-items-baseline gap-3">
+      <i class="fa-heart favorite" [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'" ></i>
+      <p
+        class="p-0 m-0 rating"
+        [innerHTML]="convertRatingToStars(recipe?.average_rating)"
+      ></p>
     </div>
-    <div class="rounded shadow bg-light p-4 mt-3 w-100">
-      <p class="recipe-description text">{{ recipe?.description }}</p>
-    </div>
+  </div>
+  <div class="w-100 mt-3 border p-0">
+    <img
+      src="{{ recipe?.image }}"
+      class="w-100 bg-cover object-fit-cover"
+      alt="recipe-image"
+      style="height: 80vh"
+    />
+  </div>
+  <div class="rounded shadow bg-light p-4 mt-3 w-100">
+    <p class="recipe-description text">{{ recipe?.description }}</p>
+  </div>
 
-    <div class="how-to row mt-4 p-2">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <h3 class="title text-uppercase">ingredients</h3>
-        <ul class="body mt-2">
-          <li  *ngFor="let ingredient of recipe?.ingredients "><i class="fa-solid fa-utensils me-2"></i>{{ ingredient.name }}</li>
-        </ul>
+  <div class="how-to row mt-4 p-2">
+    <div class="col-md-3 mb-4 mb-md-0">
+      <h3 class="title text-uppercase">ingredients</h3>
+      <ul class="body mt-2">
+        <li *ngFor="let ingredient of recipe?.ingredients">
+          <i class="fa-solid fa-utensils me-2"></i>{{ ingredient.name }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-5">
+      <h3 class="title text-uppercase">directions</h3>
+      <div class="body mt-2">
+        <p>{{ recipe?.directions }}</p>
       </div>
-      <div class="col-md-6">
-        <h3 class="title text-uppercase">directions</h3>
-        <div class="body mt-2">
-          <p>{{ recipe?.directions }}</p>
+    </div>
+    <div class="col-md-4">
+      <h3 class="title text-uppercase">did you like this recipe?</h3>
+      <div class="rating-tools d-flex justify-content-between">
+        <div class="make-favorite text-center mt-2">
+          <i class="fa-heart favorite h1" [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'" (click)="onFavorite()" ></i>
+        </div>
+
+        <div class="give-rating">
+          <div class="yourstars mt-3">
+            <i *ngFor="let star of stars; let i = index" 
+                class="fa fa-star" 
+                [ngClass]="{
+                  'fa-solid': (i < currentHoveredStar && currentHoveredStar > 0) || (i < starRate),   
+                  'fa-regular': (i >= currentHoveredStar && currentHoveredStar > 0) || (i >= starRate && currentHoveredStar === 0) 
+                }"
+                [attr.data-value]="i + 1" 
+                (click)="onStarClick(i + 1)"       
+                (mouseenter)="onStarHover(i + 1)"  
+                (mouseleave)="onStarLeave()">     
+            </i>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="related-recipes mt-5">
-      <h3 class="title text-uppercase">related recipes</h3>
-      <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
-        <div *ngFor="let recipe of ingredient?.recipes" >
-            <div class="card border-0" style="width: 300px;cursor: pointer;" (click)="onRecipeClick(recipe.id)" >
-              <img class="rounded card-img-top w-100 object-fit-cover" src="{{ recipe?.image }}" alt="Title" style="height: 330px;"/>
-              <div class="card-body">
-                <h4 class="card-title">{{ recipe?.name }}</h4>
-              </div>
-            </div>
+  <div class="related-recipes mt-5">
+    <h3 class="title text-uppercase">related recipes</h3>
+    <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
+      <div *ngFor="let recipe of ingredient?.recipes">
+        <div
+          class="card border-0"
+          style="width: 300px; cursor: pointer"
+          (click)="onRecipeClick(recipe.id)"
+        >
+          <img
+            class="rounded card-img-top w-100 object-fit-cover"
+            src="{{ recipe?.image }}"
+            alt="Title"
+            style="height: 330px"
+          />
+          <div class="card-body">
+            <h4 class="card-title">{{ recipe?.name }}</h4>
+          </div>
         </div>
       </div>
     </div>
-    
+  </div>
 </div>

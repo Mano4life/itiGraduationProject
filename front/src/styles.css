@@ -27,3 +27,24 @@ p{
   font-family: var(--second-font);
 }
 
+/* Login & Register */
+
+form{
+  text-align: center;
+  padding: 0 30px;
+}
+
+.form-group {
+  position: relative;
+  color: #828487;
+  display: flex;
+}
+
+.showIcon {
+  position: absolute;
+  right: 28%;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+}

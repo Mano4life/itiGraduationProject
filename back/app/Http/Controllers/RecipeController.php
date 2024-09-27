@@ -24,6 +24,8 @@ class RecipeController extends Controller
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
+            'servings' => ['required'],
+            'time' => ['required', 'min:3'],
             'category' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
             'user_id' => ['required'],
@@ -42,6 +44,8 @@ class RecipeController extends Controller
             'description' => $data['description'],
             'directions' => $data['directions'],
             'image' => $data['image'],
+            'servings' => $data['servings'],
+            'time' => $data['time'],
             'category_id' => $category->id,
             'subcategory_id' => $subcategory->id,
             'user_id' => $data['user_id']
