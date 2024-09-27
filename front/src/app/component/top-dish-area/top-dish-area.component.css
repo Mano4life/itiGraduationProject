@@ -1,0 +1,157 @@
+
+/* top-dish-area Section*/
+.top-dish-area {
+    padding: 135px 0 120px;
+}
+
+
+.main-title {
+    text-align: center;
+}
+.main-title h1 {
+    position: relative;
+    z-index: 10;
+    font-size: 48px;
+    
+}
+.main-title .round-planet {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    border: 3px solid var(--third-color);
+}
+
+
+.main-title .round-planet.planet2 {
+    width: 100px;
+    height: 100px;
+}
+
+
+.main-title .round-planet .shape {
+    border-radius: 50%;
+    left: 50%;
+    position: absolute;
+}
+
+.main-title .round-planet .shape.shape1 {
+    margin-top: -15px;
+    margin-left: -15px;
+    width: 100px;
+    height: 100px;
+    background-image: url("/assets/imgs/shape1.png");
+    background-size: cover;
+    left: 75%;
+    top: -30%;
+    animation: glow 1s infinite alternate;
+}
+
+.main-title .round-planet .shape.shape2 {
+    margin-top: -15px;
+    margin-left: -15px;
+    width: 80px;
+    height: 80px;
+    background-image: url("/assets/imgs/shape2.png");
+    background-size: cover;
+    left: 94%;
+    bottom: -11%;
+    animation: glow 1s infinite alternate;
+}
+.main-title .round-planet .shape.shape1 {
+    background: url("/assets/imgs/shape4.png");
+    left: 12px;
+    top: 12px;
+    animation: spin1 15s linear infinite;
+    background-repeat: no-repeat;
+}
+
+
+.main-title .round-planet .shape.shape2 {
+    background: url("/assets/imgs/shape3.png");
+    left: 24px;
+    bottom: 8px;
+    animation: spin2 10s linear infinite;
+    background-size: cover;
+}
+/* animation */
+@keyframes spin1 {
+    0% {
+        transform: rotate(0deg) translateY(-12px);
+    }
+    100% {
+        transform: rotate(360deg) translateY(-12px);
+    }
+}
+@keyframes spin2 {
+    0% {
+        transform: rotate(0deg) translateY(-70px);
+    }
+    100% {
+        transform: rotate(360deg) translateY(-70px);
+    }
+}
+/* Responsive */
+@media (max-width: 991px) {
+    .top-dish-area {
+        padding: 50px 0;
+    }
+    .main-title h1 {
+        font-size: 36px;
+    }
+    .main-title .round-planet {
+        display: none;
+    }
+}
+@media (max-width: 480px) {
+    .main-title {
+        margin-bottom: 30px;
+    }
+}
+
+/* Navbar Specific Styles */
+/* .navbar-dish-area {
+    padding: 70px 0 75px;
+} */
+/* 
+.main-title .round-planet.planet-navbar {
+    width: 140px;
+    height: 150px;
+}
+
+.main-title .round-planet.planet2-navbar {
+    width: 70px;
+    height: 70px;
+}
+
+.main-title .round-planet .shape.shape1.shape1-navbar {
+    left: 37px; 
+    animation: spinNav1 15s linear infinite;
+}
+
+.main-title .round-planet .shape.shape2.shape2-navbar {
+    left: 24px;
+    animation: spinNav2 10s linear infinite;
+}
+
+@keyframes spinNav1 {
+    0% {
+        transform: rotate(0deg) translate(-50%, -50%);
+    }
+    100% {
+        transform: rotate(360deg) translate(-50%, -50%);
+    }
+}
+
+@keyframes spinNav2 {
+    0% {
+        transform: rotate(0deg) translate(-50%, -50%);
+    }
+    100% {
+        transform: rotate(360deg) translate(-50%, -50%);
+    }
+} */

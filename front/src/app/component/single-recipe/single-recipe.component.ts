@@ -57,7 +57,7 @@ export class SingleRecipeComponent {
     this.router.navigate(['/recipes', id]);
   }
 
-// mariaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaam bom
+  // Review Fav and Rating
   convertRatingToStars(rating: number) {
     const fullStars = Math.floor(rating);
     const halfStar = rating % 1 >= 0.5 ? 1 : 0;
@@ -79,19 +79,20 @@ export class SingleRecipeComponent {
     this.isSolid = !this.isSolid;
   }
 
-  stars = Array(5);
-  currentHoveredStar = 0;
-  starRate!: number;
+  stars = Array(5).fill(0);
+  currentHoveredStar = 0;    
+  starRate = 0; 
+
   onStarHover(starValue: number) {
     this.currentHoveredStar = starValue;
   }
+
   onStarLeave() {
     this.currentHoveredStar = 0;
   }
+
   onStarClick(starValue: number) {
-    console.log(`You clicked ${this.starRate} star(s)`);
-    return this.starRate = starValue;
-    // Handle backend logic here if needed
+    this.starRate = starValue;
   }
 
   // convertRatingToStars(rating: any) {
