@@ -1,8 +1,13 @@
 <div class="container-xl my-5">
-  <div class="title-wrapper d-flex justify-content-between align-items-baseline">
+  <div
+    class="title-wrapper d-flex justify-content-between align-items-baseline"
+  >
     <h1 class="recipe-title">{{ recipe?.name }}</h1>
     <div class="rating-favorite d-flex align-items-baseline gap-3">
-      <i class="fa-heart favorite" [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'" ></i>
+      <i
+        class="fa-heart favorite"
+        [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'"
+      ></i>
       <p
         class="p-0 m-0 rating"
         [innerHTML]="convertRatingToStars(recipe?.average_rating)"
@@ -26,7 +31,13 @@
       <h3 class="title text-uppercase">ingredients</h3>
       <ul class="body mt-2">
         <li *ngFor="let ingredient of recipe?.ingredients">
-          <i class="fa-solid fa-utensils me-2"></i>{{ ingredient.name }}
+          <div class="d-flex justify-content-between pe-5">
+            <span
+              ><i class="fa-solid fa-utensils me-2"></i
+              >{{ ingredient.name }}:</span
+            >
+            <span> <span class="fw-bold">{{ ingredient.pivot.quantity }}</span> {{ ingredient.pivot.measurement_unit }} </span>
+          </div>
         </li>
       </ul>
     </div>
@@ -40,21 +51,31 @@
       <h3 class="title text-uppercase">did you like this recipe?</h3>
       <div class="rating-tools d-flex justify-content-between">
         <div class="make-favorite text-center mt-2">
-          <i class="fa-heart favorite h1" [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'" (click)="onFavorite()" ></i>
+          <i
+            class="fa-heart favorite h1"
+            [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'"
+            (click)="onFavorite()"
+          ></i>
         </div>
         <!-- mariaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaam bom -->
         <div class="give-rating">
           <div class="yourstars mt-3">
-            <i *ngFor="let star of stars; let i = index"
-                class="fa fa-star me-2"
-                [ngClass]="{
-                  'fa-solid': (i < currentHoveredStar && currentHoveredStar > 0) || (i < starRate),
-                  'fa-regular': (i >= currentHoveredStar && currentHoveredStar > 0) || (i >= starRate && currentHoveredStar === 0)
-                }"
-                [attr.data-value]="i + 1"
-                (click)="onStarClick(i + 1)"
-                (mouseenter)="onStarHover(i + 1)"
-                (mouseleave)="onStarLeave()">
+            <i
+              *ngFor="let star of stars; let i = index"
+              class="fa fa-star star-icon me-2"
+              [ngClass]="{
+                'fa-solid':
+                  (i < currentHoveredStar && currentHoveredStar > 0) ||
+                  i < starRate,
+                'fa-regular':
+                  (i >= currentHoveredStar && currentHoveredStar > 0) ||
+                  (i >= starRate && currentHoveredStar === 0)
+              }"
+              [attr.data-value]="i + 1"
+              (click)="onStarClick(i + 1)"
+              (mouseenter)="onStarHover(i + 1)"
+              (mouseleave)="onStarLeave()"
+            >
             </i>
           </div>
         </div>
