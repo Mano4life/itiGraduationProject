@@ -26,6 +26,7 @@ class pending_recipeController extends Controller
             'category' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
             'user_id' => ['required', 'string'],
+            'status'=>['string'],
             'ingredients' => ['required', 'array'] ,
 
             
@@ -45,7 +46,9 @@ class pending_recipeController extends Controller
             'image' => $data['image'],
             'category_id' => $category->id,
             'user_id'=>$data['user_id'],
+            'status'=>$data['status'],
             'subcategory_id' => $subcategory->id
+
         ]);
 
         // Attach ingredients with quantity and measurement
@@ -85,6 +88,7 @@ class pending_recipeController extends Controller
             'image' => ['required', 'active_url'],
             'category_id' => ['required', 'exists:categories,id'],
             'user_id' => ['required', 'exists:Users,id'],
+            'status' => ['in:pending,approved,declined'],
             'subcategory_id' => ['required', 'exists:subcategories,id']
         ]);
 

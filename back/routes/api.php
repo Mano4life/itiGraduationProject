@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\authController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +12,14 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\pending_recipeController;
+
+Route::post('/login',[authController::class,'login']);
+Route::post('/register',[authController::class,'register']);
+
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
 
 Route::apiResource('users',UserController::class);
 Route::apiResource('comments',CommentController::class);
