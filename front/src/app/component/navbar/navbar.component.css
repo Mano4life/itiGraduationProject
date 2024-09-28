@@ -1,7 +1,7 @@
 /* Navbar styles */
 .navbar {
   padding: 20px 70px;
-  position: fixed;
+  /* position: fixed; */
   background-color: white;
 }
 
@@ -37,6 +37,7 @@
 
 
 /* Login Style */
+
 .modal-header{
   border-bottom: none;
 }
