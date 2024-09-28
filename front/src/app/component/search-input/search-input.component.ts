@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SearchService } from '../../core/services/search/search.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { RecipesService } from '../../core/services/recipes/recipes.service';
 
 @Component({
   selector: 'app-search-input',
@@ -12,20 +12,32 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './search-input.component.css'
 })
 export class SearchInputComponent {
-  searchResults$: Observable<any[]>;
+  searchResults$!: Observable<any[]>;
   searchQuery: string = '';
 
-  constructor(private searchService: SearchService) {
-    this.searchResults$ = searchService.searchResults$;
+  private searchResultSource = new BehaviorSubject<any[]>([]);
+  recipes: any[] = [];
+
+  constructor(private recipesService: RecipesService) {
+    this.recipesService.getRecipes().subscribe((res: any) => {
+      this.recipes = res;
+      this.searchResults$ = this.searchResultSource.asObservable();
+    });
   }
 
-  onSearch(){
-      // const query = event.target.value;
-    this.searchService.search(this.searchQuery);
+  search(query: string) {
+    if (query.trim() === '') {
+      this.searchResultSource.next([]);
+    } else {
+      const filteredResults = this.recipes.filter((recipe: any) =>
+        recipe.name.toLowerCase().includes(query.toLowerCase())
+      );
+      this.searchResultSource.next(filteredResults);
+    }
   }
 
-  onClear(){
+  onClear() {
     this.searchQuery = '';
-    this.searchService.search('');
+    this.search(''); 
   }
 }
