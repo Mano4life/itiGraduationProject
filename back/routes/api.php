@@ -25,11 +25,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::patch('/updateUser',[UserController::class,'update']);
 });
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
-//Route::apiResource('users',UserController::class);
 Route::apiResource('comments',CommentController::class);
 
 
@@ -52,12 +47,5 @@ Route::apiResource('subcategories', SubcategoryController::class);
 
 // Ingredient API resource route
 Route::apiResource('ingredients', IngredientController::class);
-
-
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
-
-//raghad edited here
 
 Route::apiResource('pendingRecipes', pending_recipeController::class);

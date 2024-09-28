@@ -62,22 +62,16 @@ class UserController extends Controller
 
         }
 
+    //get user by token and get saved recipe with it
+    public function user(Request $request){
 
-    public function show(User $User){
-        $User->load('recipes_saves', 'recipes');
-        
-        return response()->json($User, 200);
-        
-    }
-    //get user by token
-    public function user(Request $request) {
         $user = $request->user();
-        $user->savedRecipes = $user->recipes_saves()->get();
-
-        return response()->json($user, 200);
+        $user ->load('recipes_saves', 'recipes');
+        
+        return response()->json($user , 200);
+        
     }
-
-
+    
     public function update(Request $request)
    {
         $user = $request->user(); // Get the authenticated user
@@ -102,21 +96,11 @@ class UserController extends Controller
     }
 
 
-    public function destroy(User $User){
-        $User->delete();
+    public function destroy(Request $request){
+        $user = $request->user(); // Get the authenticated user
+        $user->delete();
         return response()->json(['message'=>' record  is deleted from database'],200);
     }
 
-    //see saved recipes
-    public function getSavedRecipes(Request $request)
-{
-    $request->validate([
-        'user_id' => 'required|exists:users,id',
-    ]);
-
-    $user = User::find($request->user_id);
-    $savedRecipes = $user->savedRecipes();
-
-    return response()->json($savedRecipes, 200);
-}
+    
 }
