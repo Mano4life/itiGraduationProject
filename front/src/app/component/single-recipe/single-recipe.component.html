@@ -6,7 +6,7 @@
     <div class="rating-favorite d-flex align-items-baseline gap-3">
       <i
         class="fa-heart favorite"
-        [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'"
+        [ngClass]="isFavorite ? 'fa-solid' : 'fa-regular'"
       ></i>
       <p
         class="p-0 m-0 rating"
@@ -168,7 +168,7 @@
           <i class="fa-solid fa-quote-right"></i>
         </div>
       </div>
-      <div class="user-comment mt-5">
+      <form method="post" class="user-comment mt-5 text-start">
         <textarea
           class="form-control"
           name="user-comment-field"
@@ -176,7 +176,8 @@
           rows="10"
           placeholder="place a comment.."
         ></textarea>
-      </div>
+        <button type="submit" class="btn btn-success mt-3">submit</button>
+      </form>
     </div>
   </div>
 </div>

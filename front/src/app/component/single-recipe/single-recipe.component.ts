@@ -70,7 +70,7 @@ scaleIngredients(scaleFactor: number) {
   this.scaledIngredients = this.recipe.ingredients.map((ingredient:any) => {
     return {
       ...ingredient,
-      quantity: (ingredient.quantity * scaleFactor).toFixed(2) // Update quantity
+      quantity: (ingredient.quantity * scaleFactor).toFixed() // Update quantity
     };
   });
 }
@@ -105,6 +105,9 @@ isBtnSelected(btn: string): boolean {
   onFavorite(){
     this.isSolid = !this.isSolid;
   }
+
+  isFavorite = false;
+  
 
 
   // Review Fav and Rating
