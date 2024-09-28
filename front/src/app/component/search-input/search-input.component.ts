@@ -29,21 +29,28 @@ export class SearchInputComponent {
     if (query.trim() === '') {
       this.searchResultSource.next([]);
     } else {
-      const filteredResults = this.recipes.filter((recipe: any) => {
-        const nameMatches = recipe.name.toLowerCase().includes(query.toLowerCase());
-        const ingredientsMatch = recipe.ingredients?.some((ingredient: string) =>
-          ingredient.toLowerCase().includes(query.toLowerCase())
-        );
-  
-        return nameMatches || ingredientsMatch;
-      });
-  
+      const filteredResults = this.recipes.filter((recipe: any) =>
+        recipe.name.toLowerCase().includes(query.toLowerCase())
+      );
       this.searchResultSource.next(filteredResults);
     }
+
   }
 
   onClear() {
     this.searchQuery = '';
     this.search(''); 
   }
+
+//   const filteredResults = this.recipes.filter((recipe: any) => {
+//     const nameMatches = recipe.name.toLowerCase().includes(query.toLowerCase());
+//     const ingredientsMatch = recipe.ingredients?.some((ingredient: string) =>
+//       ingredient.toLowerCase().includes(query.toLowerCase())
+//     );
+
+//     return nameMatches || ingredientsMatch;
+//   });
+
+//   this.searchResultSource.next(filteredResults);
+// }
 }

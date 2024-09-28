@@ -13,7 +13,7 @@
         <li *ngFor="let result of searchResults$ | async" class="dropdown-item">
             <img [src]="result.image" alt="{{ result.name }}" />
             <p>{{ result.name }}</p>
-            <!-- <p>{{ result.category }}</p> -->
+            <!-- <p>{{ result.ingerdiants.name }}</p> -->
         </li>
         </ul>
 
