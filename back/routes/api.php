@@ -34,6 +34,7 @@ Route::apiResource('recipes', RecipeController::class);
 
 // Recipe API resource route
 Route::apiResource('recipes', RecipeController::class);
+Route::post('/recipes/store-multiple', [RecipeController::class, 'storeMultiple']);
 
 // Category API resource route
 Route::apiResource('categories', CategoryController::class);
