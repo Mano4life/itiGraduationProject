@@ -68,23 +68,41 @@ class RecipeController extends Controller
 
 
 
+    // public function show(Recipe $recipe)
+    // {
+    //     $recipe->load(['ingredients', 'category', 'subcategory', 'comments', 'user']);
+    //     $averageRating = $recipe->users_ratings()->avg('rating');
+    //     if (is_null($recipe)) {
+    //         return response()->json(['message' => 'recipe not found'], 404);
+    //     }
+
+    //     $recipe->average_rating = $averageRating;
+    //     return response()->json($recipe, 200);
+
+    // }
+
     public function show(Recipe $recipe)
-    {
-        $recipe->load(['ingredients', 'category', 'subcategory', 'comments', 'user']);
-        $averageRating = $recipe->users_ratings()->avg('rating');
-        if (is_null($recipe)) {
-            return response()->json(['message' => 'recipe not found'], 404);
-        }
+{
+    $recipe->load(['ingredients', 'category', 'subcategory', 'comments', 'user']);
+    $averageRating = $recipe->users_ratings()->avg('rating');
 
-        $recipe->average_rating = $averageRating;
-        return response()->json($recipe, 200);
-
-        // return response()->json([
-        //     'recipe' => $recipe,
-        //     'average_rating' => $averageRating,
-        // ], 200);
-
+    if (!$recipe) {
+        return response()->json(['message' => 'Recipe not found'], 404);
     }
+    $recipeData = $recipe->toArray();
+    $recipeData['average_rating'] = $averageRating;
+
+    $recipeData['ingredients'] = $recipe->ingredients->map(function($ingredient) {
+        return [
+            'id' => $ingredient->id,
+            'name' => $ingredient->name,
+            'quantity' => $ingredient->pivot->quantity,  
+            'measurement_unit' => $ingredient->pivot->measurement_unit 
+        ];
+    });
+    return response()->json($recipeData, 200);
+}
+
 
 
     public function update(Recipe $recipe)
