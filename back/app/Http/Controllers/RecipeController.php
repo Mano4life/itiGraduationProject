@@ -65,7 +65,67 @@ class RecipeController extends Controller
         return response()->json($recipe->load('ingredients'), 201); // Return the recipe with ingredients
     }
 
-
+    public function storeMultiple()
+    {
+        $data = request()->validate([
+            'recipes' => ['required', 'array'],  // Validate that recipes is an array
+            'recipes.*.name' => ['required', 'min:3'],
+            'recipes.*.description' => ['required', 'min:3'],
+            'recipes.*.directions' => ['required', 'min:3'],
+            'recipes.*.image' => ['required', 'active_url'],
+            'recipes.*.servings' => ['required'],
+            'recipes.*.time' => ['required', 'min:3'],
+            'recipes.*.category' => ['required', 'string'],
+            'recipes.*.subcategory' => ['required', 'string'],
+            'recipes.*.user_id' => ['required'],
+            'recipes.*.ingredients' => ['required', 'array'],
+            'recipes.*.ingredients.*.name' => ['required', 'string'],
+            'recipes.*.ingredients.*.quantity' => ['required', 'numeric'],
+            'recipes.*.ingredients.*.measurement_unit' => ['required', 'string'],
+        ]);
+    
+        $createdRecipes = [];
+    
+        foreach ($data['recipes'] as $recipeData) {
+            // Fetch or create category by name
+            $category = Category::firstOrCreate(['name' => $recipeData['category']]);
+    
+            // Fetch or create subcategory by name
+            $subcategory = Subcategory::firstOrCreate([
+                'name' => $recipeData['subcategory'],
+                'category_id' => $category->id,
+            ]);
+    
+            // Create the recipe with the fetched category and subcategory IDs
+            $recipe = Recipe::create([
+                'name' => $recipeData['name'],
+                'description' => $recipeData['description'],
+                'directions' => $recipeData['directions'],
+                'image' => $recipeData['image'],
+                'servings' => $recipeData['servings'],
+                'time' => $recipeData['time'],
+                'category_id' => $category->id,
+                'subcategory_id' => $subcategory->id,
+                'user_id' => $recipeData['user_id']
+            ]);
+    
+            // Attach ingredients with quantity and measurement
+            foreach ($recipeData['ingredients'] as $ingredientData) {
+                $ingredient = Ingredient::firstOrCreate(['name' => $ingredientData['name']]);
+    
+                // Attach with additional pivot data (quantity, measurement unit)
+                $recipe->ingredients()->attach($ingredient->id, [
+                    'quantity' => $ingredientData['quantity'],
+                    'measurement_unit' => $ingredientData['measurement_unit']
+                ]);
+            }
+    
+            $createdRecipes[] = $recipe->load('ingredients');  // Add the created recipe to the array
+        }
+    
+        return response()->json($createdRecipes, 201);  // Return all created recipes with ingredients
+    }
+    
 
 
     // public function show(Recipe $recipe)
