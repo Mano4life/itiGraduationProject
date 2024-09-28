@@ -9,6 +9,9 @@
 } */
 
 /* Search */
+li{
+  cursor: pointer;
+}
 .search-bar{
   position: relative;
 }

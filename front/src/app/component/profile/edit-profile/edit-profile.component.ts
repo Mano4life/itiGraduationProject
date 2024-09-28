@@ -29,7 +29,7 @@ export class EditProfileComponent {
   ngOnInit() {
     console.log(this.EditForm);
     this.UserId=this.routerActive.snapshot.params['id']
-    this.serv.getUser(this.UserId).subscribe((response:any)=>{
+    this.serv.getUser().subscribe((response:any)=>{
       this.UserList=response;
       this.populateForm();
       
@@ -55,7 +55,7 @@ export class EditProfileComponent {
     console.log(data)
     if(this.EditForm.valid){
       this.notvalid=false;
-      this.serv.EditUser(data,this.UserId).subscribe({
+      this.serv.EditUser(data).subscribe({
         next:(res:any)=>{
           console.log(res);
           alert("data is updated")

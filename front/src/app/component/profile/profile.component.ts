@@ -29,7 +29,7 @@ export class ProfileComponent {
 
     this.activatedRoute.paramMap.subscribe((params) => {
       const userId = params.get('id');
-      this.usersService.getUser(userId).subscribe((res) => {
+      this.usersService.getUser().subscribe((res) => {
         this.user = res;
         console.log(this.user);
       });

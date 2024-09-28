@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { UsersService } from '../../core/services/users/users.service';
 
 @Component({
   selector: 'app-login',
@@ -14,24 +15,34 @@ export class LoginComponent {
   LoginForm!: FormGroup;
   isPasswordVisible: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private serv:UsersService) {
     this.LoginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email,
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
       ]),
-      pass: new FormControl('', [Validators.required, Validators.minLength(8),
+      password: new FormControl('', [Validators.required, Validators.minLength(8),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{6,}$/)]),
     })
   }
 
   loginSender() {
-    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    if (this.LoginForm.valid) {
+      const Store = this.LoginForm.value;
+      const dataToStore = {
+        email: Store.email,
+        password: Store.password
+      };
 
-    if (storedUser.email === this.LoginForm.value.email && storedUser.pass === this.LoginForm.value.pass) {
-      console.log('Login successful');
-      this.router.navigate(['']);
-    } else {
-      console.log('Invalid email or password');
+      this.serv.login(dataToStore).subscribe({
+        next: (res) => {
+          console.log(res);
+          localStorage.setItem('auth_token', res.token); 
+          this.router.navigate(['/']);
+          },
+          error: (err) => {
+            console.error('Login failed', err);
+            }
+            });
     }
   }
 

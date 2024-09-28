@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,15 +7,29 @@ import { Injectable } from '@angular/core';
 export class UsersService {
 
   constructor(private http: HttpClient) { }
-
-  getUsers(){
-    return this.http.get('http://127.0.0.1:8000/api/users');
+  getUser(){
+    const token = localStorage.getItem('auth_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>('http://127.0.0.1:8000/api/user',{ headers });
   }
-
-  getUser(id: any){
-    return this.http.get(`http://127.0.0.1:8000/api/users/${id}`);
+  EditUser(Data: any) {
+     const token = localStorage.getItem('auth_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.patch(`http://127.0.0.1:8000/api/updateUser`,Data,{ headers });
   }
-  EditUser(Data: any, id: number) {
-    return this.http.patch(`http://127.0.0.1:8000/api/users/${id}`,Data);
+  login(Data: any){
+    return this.http.post<{
+      token: string;
+      
+    }>('http://127.0.0.1:8000/api/login',Data);
+  }
+  register(Data:any){
+    return this.http.post('http://127.0.0.1:8000/api/register',Data);
+  }
+  logout() {
+    const token = localStorage.getItem('auth_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post('http://127.0.0.1:8000/api/logout', {}, { headers });
+    
   }
 }

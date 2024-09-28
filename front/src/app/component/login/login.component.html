@@ -15,7 +15,7 @@
     <!-- Password -->
     <div class="form-group">
         <input type="password" class="form-control" id="exampleInputPassword1"
-        formControlName = "pass" placeholder="Password" [type]="isPasswordVisible ? 'text' : 'password'" 
+        formControlName = "password" placeholder="Password" [type]="isPasswordVisible ? 'text' : 'password'" 
         >
         <div class="showIcon" (click)="togglePasswordVisibility()">
             <i class="fa-solid" [class.fa-eye]="!isPasswordVisible" [class.fa-eye-slash]="isPasswordVisible"></i>
@@ -29,5 +29,5 @@
             contains at least one lowercase, one uppercase, at least one digit and special char </small>
     }
 
-    <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="LoginForm.invalid">Login</button>
+    <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="LoginForm.invalid" data-bs-dismiss="modal">Login</button>
 </form>

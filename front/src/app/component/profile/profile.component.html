@@ -1,58 +1,64 @@
-<div class="container mt-5">
-  <section class="user-details d-flex justify-content-between align-items-center">
-    <h1><span class="fw-bold text-capitalize">hello</span> {{ user?.name }}</h1>
-    <a  data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: var(--main-color); font-size: 24px;"><i class="fa fa-cog" aria-hidden="true"></i></a>
-  </section>
-  <section class="recipes-wrapper mt-5">
-    <div class="title">
-      <h1 class="fw-bold text-capitalize">your favorite recipes</h1>
+<section class="w-100 " style="background-color: #e9e9e8;">
+  <div class="container d-flex align-top">
+    <div  class="d-flex  flex-column w-25 bg-light  p-3 rounded m-3 shadow-sm"> 
+      <section class="user-details d-flex justify-content-between ">
+        <h1><span class="fw-bold text-capitalize">hello,</span><br>{{ user?.name }}</h1>
+        <a  data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: var(--main-color); font-size: 24px;"><i class="fa fa-cog" aria-hidden="true"></i></a>
+      </section>
     </div>
-    <div class="body mt-4 d-flex gap-3 overflow-x-scroll">
-      <div *ngFor="let recipe of user?.recipes_saves">
-        <div
-          class="card border-0"
-          style="width: 300px; cursor: pointer"
-          (click)="onRecipeClick(recipe.id)"
-        >
-          <img
-            class="rounded card-img-top w-100 object-fit-cover"
-            src="{{ recipe?.image }}"
-            alt="Title"
-            style="height: 330px;"
-          />
-          <div class="card-body">
-            <h1 class="card-title h4">{{ recipe?.name }}</h1>
+    <div class="d-flex  flex-column w-75">
+      <section class="recipes-wrapper mt-3 bg-light  p-3 rounded shadow-sm">
+        <div class="title">
+          <h1 class="fw-bold text-capitalize">your favorite recipes</h1>
+        </div>
+        <div class="body mt-4 d-flex gap-3 overflow-x-scroll">
+          <div *ngFor="let recipe of user?.recipes_saves">
+            <div
+              class="card border-0"
+              style="width: 300px; cursor: pointer"
+              (click)="onRecipeClick(recipe.id)"
+            >
+              <img
+                class="rounded card-img-top w-100 object-fit-cover"
+                src="{{ recipe?.image }}"
+                alt="Title"
+                style="height: 330px;"
+              />
+              <div class="card-body">
+                <h1 class="card-title h4">{{ recipe?.name }}</h1>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section class="recipes-wrapper mt-5">
-    <div class="title d-flex justify-content-between align-items-center">
-      <h1 class="fw-bold text-capitalize">your magic</h1>
-      <a routerLink="/add-recipe/{{ user.id }}" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">add recipe</a>
-    </div>
-    <div class="body mt-4 d-flex gap-3 overflow-x-scroll">
-      <div *ngFor="let recipe of user?.recipes">
-        <div
-          class="card border-0"
-          style="width: 300px; cursor: pointer"
-          (click)="onRecipeClick(recipe.id)"
-        >
-          <img
-            class="rounded card-img-top w-100 object-fit-cover"
-            src="{{ recipe?.image }}"
-            alt="Title"
-            style="height: 330px;"
-          />
-          <div class="card-body">
-            <h1 class="card-title h4">{{ recipe?.name }}</h1>
+      </section>
+      <section class="recipes-wrapper mt-3 bg-light  p-3 rounded shadow-sm">
+        <div class="title d-flex justify-content-between align-items-center">
+          <h1 class="fw-bold text-capitalize">your magic</h1>
+          <a routerLink="/add-recipe/{{ user.id }}" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">add recipe</a>
+        </div>
+        <div class="body mt-4 d-flex gap-3 overflow-x-scroll">
+          <div *ngFor="let recipe of user?.recipes">
+            <div
+              class="card border-0"
+              style="width: 300px; cursor: pointer"
+              (click)="onRecipeClick(recipe.id)"
+            >
+              <img
+                class="rounded card-img-top w-100 object-fit-cover"
+                src="{{ recipe?.image }}"
+                alt="Title"
+                style="height: 330px;"
+              />
+              <div class="card-body">
+                <h1 class="card-title h4">{{ recipe?.name }}</h1>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -69,4 +75,4 @@
         </div>
       </div>
     </div>
-  </div>
+</div>

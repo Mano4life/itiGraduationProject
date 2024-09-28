@@ -146,25 +146,21 @@ class RecipeController extends Controller
         return response()->json(['message' => 'deleted succesfully'], 200);
     }
 
-    //save recipe (raghad)
+    
     public function saveRecipe(Request $request, Recipe $recipe)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
+      $userId = $request->user()->id; 
+      $recipe->users_saves()->attach($userId);
 
-        $recipe->users_saves()->attach($request->user_id);
-        return response()->json(['message' => 'Recipe saved successfully.'], 200);
+      return response()->json(['message' => 'Recipe saved successfully.'], 200);
     }
-    //unsave recipe (raghad)
+
     public function unsaveRecipe(Request $request, Recipe $recipe)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
+      $userId = $request->user()->id; 
+      $recipe->users_saves()->detach($userId);
 
-        $recipe->users_saves()->detach($request->user_id);
-        return response()->json(['message' => 'Recipe unsaved successfully.'], 200);
+      return response()->json(['message' => 'Recipe unsaved successfully.'], 200);
     }
 
 

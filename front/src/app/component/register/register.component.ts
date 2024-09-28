@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output, output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router'; 
+import { UsersService } from '../../core/services/users/users.service';
 
 @Component({
   selector: 'app-register',
@@ -12,13 +13,11 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
-
- 
-  
+  notvalid:boolean=false;
   touched!: boolean;
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private serv:UsersService) {
     this.registerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
 
@@ -44,16 +43,29 @@ export class RegisterComponent {
         // Format date of birth to yyyy-mm-dd
         const dob = new Date(userData.DoB);
         const formattedDob = `${dob.getFullYear()}-${String(dob.getMonth() + 1).padStart(2, '0')}-${String(dob.getDate()).padStart(2, '0')}`;
+
         const dataToStore = {
             name: userData.name,
             email: userData.email,
-            pass: userData.pass,
-            DoB: formattedDob,
-            gender: userData.gender
+            password: userData.pass,
+            date_of_birth: formattedDob,
+            gender: userData.gender,
+            role:"user"
         }
+        this.notvalid = false;
+        this.serv.register(dataToStore).subscribe({
+          next: (res) => {
+            this.router.navigate(['/login']);
+            },
+            error: (err) => {
+              this.notvalid = true;
+              console.log(err);
+            }
 
-        localStorage.setItem('user', JSON.stringify(dataToStore));
-        this.router.navigate(['/login']);
+        }) 
+    }
+    else {
+      this.notvalid = true;
     }
 }
 
