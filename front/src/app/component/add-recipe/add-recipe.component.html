@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container my-5">
   <form [formGroup]="recipeForm" class="row" (submit)="onSubmission()">
     <h1 class="h3 text-center fw-bold text-uppercase mb-4 col-12">
       add a new recipe
@@ -111,22 +111,6 @@
       <p class="text-success">subcategory is valid</p>
       }
     </div>
-    <!-- <div class="mb-3">
-      <label for="ingredients-field" class="text-capitalize mb-2">ingredients:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="ingredients-field"
-        placeholder="ingredients..."
-        formControlName="ingredients"
-      />
-      @if(recipeForm.controls['ingredients'].invalid && recipeForm.controls['ingredients'].touched){
-      <p class="text-danger fw-bold ms-1">ingredients is not valid</p>
-      }@else if (recipeForm.controls['ingredients'].valid && recipeForm.controls['ingredients'].touched) {
-      <p class="text-success">ingredients is valid</p>
-      }
-    </div> -->
-
     <div formArrayName="ingredients">
       <div
         *ngFor="let ingredient of ingredients.controls; let i = index"

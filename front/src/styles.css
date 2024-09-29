@@ -30,8 +30,8 @@ p{
 /* Login & Register */
 
 form{
-  text-align: center;
-  padding: 0 30px;
+  /* text-align: center; */
+  /* padding: 0 30px; */
 }
 
 .form-group {

@@ -21,7 +21,8 @@ export class LoginComponent {
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
       ]),
       password: new FormControl('', [Validators.required, Validators.minLength(8),
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{6,}$/)]),
+        // Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{6,}$/)
+      ]),
     })
   }
 
@@ -38,6 +39,7 @@ export class LoginComponent {
           console.log(res);
           localStorage.setItem('auth_token', res.token); 
           this.router.navigate(['/']);
+          window.location.reload()
           },
           error: (err) => {
             console.error('Login failed', err);
