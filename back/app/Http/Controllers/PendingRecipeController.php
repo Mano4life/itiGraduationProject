@@ -70,7 +70,7 @@ class PendingRecipeController extends Controller
 
     public function show(PendingRecipe $pendingRecipe)
     {
-        $pendingRecipe->load(['ingredients', 'category', 'subcategory']);
+        $pendingRecipe->load(['ingredients', 'category', 'subcategory', 'user']);
         if (is_null($pendingRecipe)) {
             return response()->json(['message' => 'recipe not found'], 404);
         }
@@ -80,27 +80,60 @@ class PendingRecipeController extends Controller
 
     public function update(PendingRecipe $pendingRecipe)
     {
-        //authorize (on hold....)
+
         $data = request()->validate([
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'user_id' => ['required', 'exists:Users,id'],
-            'status' => ['in:pending,approved,declined'],
-            'subcategory_id' => ['required', 'exists:subcategories,id']
+            'category' => ['required', 'string'],
+            'subcategory' => ['required', 'string'],
+            'user_id' => ['required'],
+            'status' => ['required'],
+            'ingredients' => ['required', 'array'],
         ]);
 
-        $result = $pendingRecipe->update($data);
+        // Fetch or update category by name
+        $category = Category::firstOrCreate(['name' => $data['category']]);
+        // dd($category);
 
-        return response()->json($result);
+        // Fetch or update subcategory by name
+        $subcategory = Subcategory::firstOrCreate(['name' => $data['subcategory'], 'category_id' => $category->id]);
+
+        // update the recipe with the fetched category and subcategory IDs
+        $pendingRecipe->update([
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'directions' => $data['directions'],
+            'image' => $data['image'],
+            'status' => $data['status'],
+            'category_id' => $category->id,
+            'subcategory_id' => $subcategory->id,
+            'user_id' => $data['user_id']
+        ]);
+
+        // Update ingredients
+        $pendingRecipe->ingredients()->detach(); // Detach current ingredients
+
+        foreach ($data['ingredients'] as $ingredientData) {
+            $ingredient = Ingredient::firstOrCreate(['name' => $ingredientData['name']]);
+
+            // Attach the new ingredients with the additional pivot data (quantity, measurement_unit)
+            $pendingRecipe->ingredients()->attach($ingredient->id, [
+                'quantity' => $ingredientData['quantity'],
+                'measurement_unit' => $ingredientData['measurement_unit']
+            ]);
+        }
+        return response()->json($pendingRecipe, 200);
+        // Return the updated recipe with its average rating
+        // $averageRating = $pendingRecipe->users_ratings()->avg('rating');
+        // $pendingRecipe->average_rating = $averageRating;
+
     }
 
     public function destroy(PendingRecipe $pendingRecipe)
     {
         $deleted = $pendingRecipe->delete();
-        // return response()->json(['message' => 'deleted succesfully'], 200);
         if ($deleted) {
             return response()->json(['message' => 'Deleted successfully'], 200);
         } else {
