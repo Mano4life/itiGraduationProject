@@ -12,7 +12,7 @@ class PendingRecipeController extends Controller
 {
     public function index()
     {
-        $pendingRecipes = PendingRecipe::with('category', 'subCategory', 'ingredients', 'user')->latest()->get();
+        $pendingRecipes = PendingRecipe::with('category', 'subcategory', 'ingredients', 'user')->latest()->get();
         return response()->json($pendingRecipes, 200);
     }
 
@@ -138,6 +138,20 @@ class PendingRecipeController extends Controller
             return response()->json(['message' => 'Deleted successfully'], 200);
         } else {
             return response()->json(['message' => 'Failed to delete'], 500);
+        }
+    }
+
+    public function deny(PendingRecipe $pendingRecipe){
+        $data = request()->validate([
+            'status' => ['required']
+        ]);
+
+        $result = $pendingRecipe->update($data);
+        if($result){
+            // return response()->json($result, 200);
+            return response()->json(['message' => 'successfully denied', $data], 200);
+        }else {
+            return response()->json(['message'=> 'failed to deny'], 500);
         }
     }
 }
