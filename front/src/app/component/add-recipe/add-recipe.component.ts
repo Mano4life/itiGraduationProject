@@ -113,7 +113,7 @@ export class AddRecipeComponent {
         ),
       };
 
-      this.pendingService.postRecipe(recipeData).subscribe({
+      this.pendingService.postPendingRecipes(recipeData).subscribe({
         next: (res) => {
           console.log('Recipe added successfully:', res);
         },

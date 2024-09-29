@@ -29,8 +29,11 @@ export class AdminPendingRecipesComponent {
 
   // Delete a pending recipe
   deletePendingRecipe(id:number){
+    console.log(id);
+    // Bug
     this.pendingRecipesService.deletePendingRecipes(id).subscribe({
       next: () => {
+        console.log(id);
         this.getAllPendingRecipes();
       },
     error: (err) => {
@@ -48,7 +51,7 @@ export class AdminPendingRecipesComponent {
         
         this.pendingRecipesService.updatePendingRecipes(recipe).subscribe({
           next: () => {
-            
+
             this.getAllPendingRecipes();
           },
         })

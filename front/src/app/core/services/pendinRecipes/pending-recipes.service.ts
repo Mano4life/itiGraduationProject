@@ -12,6 +12,10 @@ export class PendingRecipesService {
     return this.http.get('http://127.0.0.1:8000/api/pendingRecipes');
   }
 
+  postPendingRecipes(data: any){
+    return this.http.post('http://127.0.0.1:8000/api/pendingRecipes',data)
+  }
+
   updatePendingRecipes(data: any){
     return this.http.patch('http://127.0.0.1:8000/api/pendingRecipes',data)
   }
