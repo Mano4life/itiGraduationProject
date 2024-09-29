@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function index(){
+        $users = User::all();
+        return response()->json($users, 200);
+    }
+
+
     public function login(Request $request)
     {
         $request->validate([
@@ -22,10 +28,10 @@ class UserController extends Controller
         if (!$User || !Hash::check($request->password,  $User->password)) {
             return response()->json(['message' => 'Invalid Credentials'], 401);
         }
-        if( $User->code!==NULL){
+        if ($User->code !== NULL) {
             return response()->json(['message' => 'Please verify your code'], 401);
         }
-        
+
         $token = $User->createToken('auth_token')->plainTextToken;
         return response()->json(['token' => $token, 'user' => $User], 200);
     }
@@ -73,22 +79,22 @@ class UserController extends Controller
 
     //get user by token and get saved recipe with it
     public function user(Request $request)
-{
-    $user = $request->user();
-    $user->load('recipes_saves', 'recipes', 'recipes_ratings'); 
-    
-    $userData = $user->toArray();
-    
-    $userData['ratings'] = $user->recipes_ratings->map(function($rating) {
-        return [
-            'rating' => $rating->pivot->rating, 
-            'recipe_id' => $rating->id, 
-        ];
-    });
+    {
+        $user = $request->user();
+        $user->load('recipes_saves', 'recipes', 'recipes_ratings');
 
-    return response()->json($userData, 200);
-}
-    
+        $userData = $user->toArray();
+
+        $userData['ratings'] = $user->recipes_ratings->map(function ($rating) {
+            return [
+                'rating' => $rating->pivot->rating,
+                'recipe_id' => $rating->id,
+            ];
+        });
+
+        return response()->json($userData, 200);
+    }
+
     public function update(Request $request)
     {
         $user = $request->user(); // Get the authenticated user

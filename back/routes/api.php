@@ -11,8 +11,6 @@ use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\pending_recipeController;
 use App\Http\Controllers\TwoFactorController;
 
-Route::post('/login',[UserController::class,'login']);
-Route::post('/register',[UserController::class,'register']);
 
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/logout',[UserController::class,'logout']);
@@ -26,8 +24,11 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 });
 
-//otp handler
+//otp handler and user api
 route::post('/verify-otp', [TwoFactorController::class, 'verifyOtp']);
+Route::post('/login',[UserController::class,'login']);
+Route::post('/register',[UserController::class,'register']);
+Route::get('users', [UserController::class, 'index']);
 
 
 // Recipe API resource route
