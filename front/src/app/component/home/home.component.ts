@@ -3,11 +3,12 @@ import { FooterComponent } from '../footer/footer.component';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { CommonModule } from '@angular/common';
 import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FooterComponent, CommonModule, TopDishAreaComponent],
+  imports: [FooterComponent, CommonModule, TopDishAreaComponent,RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -85,17 +86,21 @@ export class HomeComponent {
   constructor(private recipes: RecipesService) {}
 
   recipesArr!: any;
-
+  randomRecipesArr!: any;
+  shuffle!: any;
   ngOnInit() {
     this.recipes.getRecipes().subscribe((res) => {
       this.recipesArr = res;
       console.log(this.recipesArr);
+
+      this.randomRecipesArr = this.getRandomRecipes(4);
     });
   }
 
   // Display Random Recipes
   getRandomRecipes(count: number) {
-    const shuffle = this.recipesArr.sort(() => 0.5 - Math.random());
-    return shuffle.slice(0, count);
+    // [...]creates a shallow copy of recipesArr for shuffling. This way, the original array remains unchanged.
+    this.shuffle = [...this.recipesArr].sort(() => 0.5 - Math.random());
+    return this.shuffle.slice(0, count);
   }
 }

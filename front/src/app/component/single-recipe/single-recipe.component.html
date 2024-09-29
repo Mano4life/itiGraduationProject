@@ -1,45 +1,182 @@
-
 <div class="container-xl my-5">
+  <div
+    class="title-wrapper d-flex justify-content-between align-items-baseline"
+  >
     <h1 class="recipe-title">{{ recipe?.name }}</h1>
-    <div class="w-100 mt-3 border p-0">
-      <img
-        src="{{ recipe?.image }}"
-        class="w-100 bg-cover object-fit-cover"
-        alt="recipe-image"
-        style="height: 80vh;"
-      />
+    <div class="rating-favorite d-flex align-items-baseline gap-3">
+      <i
+        class="fa-heart favorite"
+        [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'"
+      ></i>
+      <p
+        class="p-0 m-0 rating"
+        [innerHTML]="convertRatingToStars(recipe?.average_rating)"
+      ></p>
     </div>
-    <div class="rounded shadow bg-light p-4 mt-3 w-100">
-      <p class="recipe-description text">{{ recipe?.description }}</p>
+  </div>
+  <div class="w-100 mt-3 border p-0">
+    <img
+      src="{{ recipe?.image }}"
+      class="w-100 bg-cover object-fit-cover"
+      alt="recipe-image"
+      style="height: 80vh"
+    />
+  </div>
+  <div class="rounded shadow bg-light p-4 mt-3 w-100">
+    <p class="recipe-description text">{{ recipe?.description }}</p>
+  </div>
+  <div class="servings mt-4 row p-2">
+    <div class="servings col-lg-4">
+      <span class="h5">number of servings: </span
+      ><span class="h2 fw-bold ms-2">{{ recipe.servings }} </span>
     </div>
-
-    <div class="how-to row mt-4 p-2">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <h3 class="title text-uppercase">ingredients</h3>
-        <ul class="body mt-2">
-          <li  *ngFor="let ingredient of recipe?.ingredients "><i class="fa-solid fa-utensils me-2"></i>{{ ingredient.name }}</li>
-        </ul>
+    <div class="scale col-lg-4 my-3 my-lg-0">
+      <span class="me-2 h5">scale:</span>
+      <button
+        class="btn me-1"
+        [class.selected]="isBtnSelected('half')"
+        (click)="toggleActive('half')"
+      >
+        1/2x
+      </button>
+      <button
+        class="btn me-1"
+        [class.selected]="isBtnSelected('one')"
+        (click)="toggleActive('one')"
+      >
+        1x
+      </button>
+      <button
+        class="btn"
+        [class.selected]="isBtnSelected('double')"
+        (click)="toggleActive('double')"
+      >
+        2x
+      </button>
+    </div>
+    <div class="time col-lg-4">
+      <span class="h5 me-2"><i class="fa fa-clock-o"></i></span>
+      <span class="h5">{{ recipe.time }}</span>
+    </div>
+  </div>
+  <div class="how-to row mt-3 p-2">
+    <div class="col-lg-3 mb-4 mb-lg-0">
+      <h3 class="title text-uppercase">ingredients</h3>
+      <ul class="body mt-2">
+        <li *ngFor="let ingredient of scaledIngredients">
+          <div class="d-flex justify-content-between pe-5">
+            <span
+              ><i class="fa-solid fa-utensils me-2"></i
+              >{{ ingredient.name }}:</span
+            >
+            <span>
+              <span class="fw-bold">{{ ingredient.quantity }}</span>
+              {{ ingredient.measurement_unit }}
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-5 mb-4 mb-lg-0">
+      <h3 class="title text-uppercase">directions</h3>
+      <div class="body mt-2">
+        <p>{{ recipe?.directions }}</p>
       </div>
-      <div class="col-md-6">
-        <h3 class="title text-uppercase">directions</h3>
-        <div class="body mt-2">
-          <p>{{ recipe?.directions }}</p>
+    </div>
+    <div class="col-lg-4 mb-4 mb-lg-0">
+      <h3 class="title text-uppercase">did you like this recipe?</h3>
+      <div class="rating-tools">
+        <div class="make-favorite mt-2">
+          <span class="h3 text-capitalize">save it! </span>
+          <i class="fa-solid fa-hand-point-right me-3 h3"></i>
+          <i
+            class="fa-heart favorite h2"
+            [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'"
+            (click)="onFavorite()"
+          ></i>
         </div>
+
+        <div class="give-rating">
+          <div class="yourstars mt-3 me-5">
+            <span class="h3 text-capitalize">rate it! </span>
+            <i class="fa-solid fa-hand-point-right me-3 h3"></i>
+            <i
+              *ngFor="let star of stars; let i = index"
+              class="fa fa-star star-icon me-1 h3"
+              [ngClass]="{
+                'fa-solid':
+                  (i < currentHoveredStar && currentHoveredStar > 0) ||
+                  i < starRate,
+                'fa-regular':
+                  (i >= currentHoveredStar && currentHoveredStar > 0) ||
+                  (i >= starRate && currentHoveredStar === 0)
+              }"
+              [attr.data-value]="i + 1"
+              (click)="onStarClick(i + 1)"
+              (mouseenter)="onStarHover(i + 1)"
+              (mouseleave)="onStarLeave()"
+            >
+            </i>
+          </div>
+        </div>
+
+        <!-- <div class="make-comment mt-3">
+          <span class="h3 text-capitalize">say it! </span>
+          <i class="fa-solid fa-hand-point-right me-3 h3"></i>
+          <a href="recipes/1#user-comment-field" class="h2"
+            >click me <i class="fa-regular fa-comment"></i
+          ></a>
+        </div> -->
       </div>
     </div>
+  </div>
 
-    <div class="related-recipes mt-5">
-      <h3 class="title text-uppercase">related recipes</h3>
-      <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
-        <div *ngFor="let recipe of ingredient?.recipes" >
-            <div class="card border-0" style="width: 300px;cursor: pointer;" (click)="onRecipeClick(recipe.id)" >
-              <img class="rounded card-img-top w-100 object-fit-cover" src="{{ recipe?.image }}" alt="Title" style="height: 330px;"/>
-              <div class="card-body">
-                <h4 class="card-title">{{ recipe?.name }}</h4>
-              </div>
+  <div class="related-recipes mt-5">
+    <h3 class="title text-uppercase">related recipes</h3>
+    <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
+      <div *ngFor="let recipe of ingredient?.recipes">
+        <div
+          class="card border-0"
+          style="width: 300px; cursor: pointer"
+          (click)="onRecipeClick(recipe.id)"
+        >
+          <img
+            class="rounded card-img-top w-100 object-fit-cover"
+            src="{{ recipe?.image }}"
+            alt="Title"
+            style="height: 330px"
+          />
+          <div class="card-body">
+            <div class="time">
+              <span class="h6 me-2"><i class="fa fa-clock-o"></i></span>
+              <span class="h6">{{ recipe.time }}</span>
             </div>
+            <h4 class="card-title">{{ recipe?.name }}</h4>
+          </div>
         </div>
       </div>
     </div>
-    
+  </div>
+
+  <div class="comments mt-5">
+    <h3 class="title text-uppercase">comments</h3>
+    <div class="body mt-3">
+      <div *ngFor="let comment of recipe.comments">
+        <div class="comment p-5 border-bottom text-center">
+          <i class="fa-solid fa-quote-left"></i>
+          <span class="mx-2 h3">{{ comment.content }}</span>
+          <i class="fa-solid fa-quote-right"></i>
+        </div>
+      </div>
+      <div class="user-comment mt-5">
+        <textarea
+          class="form-control"
+          name="user-comment-field"
+          id="user-comment-field"
+          rows="10"
+          placeholder="place a comment.."
+        ></textarea>
+      </div>
+    </div>
+  </div>
 </div>

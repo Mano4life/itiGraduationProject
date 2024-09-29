@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('description');
             $table->text('directions');
             $table->string('image')->nullable();
+            $table->string('servings');
+            $table->string('time');
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Subcategory::class)->constrained()->cascadeOnDelete();
 

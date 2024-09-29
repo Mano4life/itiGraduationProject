@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 
 :root{
   --main-background: #f9f9ff;
@@ -29,41 +31,22 @@ p{
 
 /* Login & Register */
 
-.banner{
-  display: flex;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2));
-  height: 100vh;  
-}
-
-.banner .container{
-  display: flex;
-  justify-content: center;
-  padding: 55px;
-}
-
-.banner .main{
-  width: 500px;
-  height: 670px;
-  overflow: hidden;
-  background-image: url(/assets/imgs/login1.jpg);
-  background-position: center;
-  background-size: cover;
-  border-radius: 20px;
-  box-shadow: 7px 25px 50px #000;
-}
-
-.banner .main h1{
+.auth {
   text-align: center;
-  color: white;
-  padding-top: 18px;
-  font-size: 55px;
+  padding: 0 30px;
 }
 
-.banner .form-group{
+.form-group {
+  position: relative;
+  color: #828487;
   display: flex;
-  align-items: center;
 }
 
-
-
-
+.showIcon {
+  position: absolute;
+  right: 28%;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+}

@@ -1,15 +1,24 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
+import { LoginComponent } from "../login/login.component";
+import { RegisterComponent } from "../register/register.component";
+import { SearchInputComponent } from "../search-input/search-input.component";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, TopDishAreaComponent],
+  imports: [RouterLink, TopDishAreaComponent, LoginComponent, RegisterComponent, SearchInputComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  logo: string = 'assets/imgs/logo.png';
+
+  constructor() { }
+
+
+  // Dannle
 toggleDarkMode() {
 throw new Error('Method not implemented.');
 }
@@ -24,4 +33,6 @@ throw new Error('Method not implemented.');
       navLinks?.classList.remove('open');
     }
   }
+
+ 
 }
