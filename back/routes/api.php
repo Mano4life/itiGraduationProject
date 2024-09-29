@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -8,9 +7,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\IngredientController;
-use App\Http\Controllers\pending_recipeController;
+use App\Http\Controllers\PendingRecipeController;
 use App\Http\Controllers\TwoFactorController;
-
 
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/logout',[UserController::class,'logout']);
@@ -46,5 +44,5 @@ Route::apiResource('subcategories', SubcategoryController::class);
 // Ingredient API resource route
 Route::apiResource('ingredients', IngredientController::class);
 
-Route::apiResource('pendingRecipes', pending_recipeController::class);
+Route::apiResource('pendingRecipes', PendingRecipeController::class);
 Route::apiResource('comments',CommentController::class);
