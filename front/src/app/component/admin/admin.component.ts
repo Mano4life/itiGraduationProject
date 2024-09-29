@@ -14,7 +14,6 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-  // data!: Array<any> ;
   p: number = 1;
   products: Array<any> = [
     {
@@ -77,15 +76,21 @@ export class AdminComponent {
 
   recipesArr!: any;
   ngOnInit() {
+
     this.recipes.getRecipes().subscribe((res) => {
       this.recipesArr = res;
       console.log(this.recipesArr);
     });
   }
 
-  activeSection: string = 'recipes';
+  activeSection: string = 'pendingRecipes';
   // Method to switch sections
   changeSection(section: string) {
     this.activeSection = section;
+  }
+
+  // Edit Recipes
+  editRecipe(data: any) {
+
   }
 }
