@@ -244,18 +244,23 @@ class RecipeController extends Controller
 
     //rate recipe  (raghad)
     public function rateRecipe(Request $request, Recipe $recipe)
-    {
-        $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-        ]);
-        $userId = $request->user()->id;
-        
-        $recipe->users_ratings()->sync([
-            $userId => ['rating' => $request->rating]
-        ]);
-    
-        return response()->json(['message' => 'Recipe rated successfully.'], 200);
+{
+    $request->validate([
+        'rating' => 'required|integer|min:1|max:5',
+    ]);
+    $userId = $request->user()->id;
+
+    // Check if the user has already rated this recipe
+    if ($recipe->users_ratings()->where('user_id', $userId)->exists()) {
+        // Update the existing rating
+        $recipe->users_ratings()->updateExistingPivot($userId, ['rating' => $request->rating]);
+    } else {
+        // Attach a new rating
+        $recipe->users_ratings()->attach($userId, ['rating' => $request->rating]);
     }
+
+    return response()->json(['message' => 'Recipe rated successfully.'], 200);
+}
 }
 
 
