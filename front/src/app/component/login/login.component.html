@@ -5,9 +5,11 @@
             formControlName="email" placeholder="Email">
     </div>
     <small *ngIf="LoginForm.controls['email'].errors?.['required'] && LoginForm.controls['email'].touched" 
-           class="form-text text-danger">Please add your email.</small>
+        class="form-text text-danger">Please add your email.
+    </small>
     <small *ngIf="LoginForm.controls['email'].errors?.['pattern'] && !LoginForm.controls['email'].errors?.['required']" 
-           class="form-text text-danger">Invalid email format.</small>
+        class="form-text text-danger">Invalid email format.
+    </small>
 
     <!-- Password -->
     <div class="form-group">
@@ -18,11 +20,16 @@
         </div>
     </div>
     <small *ngIf="LoginForm.controls['password'].errors?.['required'] && LoginForm.controls['password'].touched" 
-           class="form-text text-danger">Please add your password.</small>
+        class="form-text text-danger">Please add your password.
+    </small>
+    
     <small *ngIf="LoginForm.controls['password'].errors?.['pattern'] && !LoginForm.controls['password'].errors?.['required']" 
-           class="form-text text-danger">Password must be at least 6 characters long and include one lowercase letter, one uppercase letter, one digit, and one special character.</small>
-           @if(invalid){
-            <div class="mb-2"><span class="text-danger fw-normal text-capitalize">{{invalid}}</span></div>
-          }
+        class="form-text text-danger">Password must be at least 6 characters long and include one lowercase letter, one uppercase letter, 
+        one digit, and one special character.
+    </small>
+    @if(invalid){
+        <div class="mb-2"><span class="text-danger fw-normal text-capitalize">{{invalid}}</span></div>
+    }
+
     <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="LoginForm.invalid" >Login</button>
 </form>

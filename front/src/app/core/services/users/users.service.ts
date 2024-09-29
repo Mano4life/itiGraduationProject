@@ -7,13 +7,17 @@ import { Injectable } from '@angular/core';
 export class UsersService {
 
   constructor(private http: HttpClient) { }
+
+  getUsers(){
+    return this.http.get('http://127.0.0.1:8000/api/users');
+  }
   getUser(){
     const token = localStorage.getItem('auth_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>('http://127.0.0.1:8000/api/user',{ headers });
   }
   EditUser(Data: any) {
-     const token = localStorage.getItem('auth_token');
+    const token = localStorage.getItem('auth_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.patch(`http://127.0.0.1:8000/api/updateUser`,Data,{ headers });
   }

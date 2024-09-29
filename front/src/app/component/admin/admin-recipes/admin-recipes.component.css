@@ -1,0 +1,26 @@
+.table{
+    width: fit-content;
+}
+.dataName{
+    color: var(--main-color);
+    font-family: var(--main-font);
+    font-weight: 500;
+}
+.titleTable th{
+    color: var(--second-color);
+    font-family: var(--titleReciepe-font);
+}
+.dataTable td{
+    font-size: 18px;
+}
+
+/* popUp Card */
+.modal-body div{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding: 25px 30px;
+}
+.modal-body input{
+    width: 50%;
+}
