@@ -40,5 +40,20 @@ class User extends Authenticatable
     public function pendingRecipes(){
         return $this->hasMany(pending_recipe::class);
     }
+
+    //otp stuff
+    public function generateCode(){
+        $this->timestamps = false;
+        $this->code = rand(1000,9999);
+        $this->expires_at = now()->addMinute(15);
+        $this->save();
+    }
+
+    public function resetCode(){
+        $this->timestamps = false;
+        $this->code = null;
+        $this->expires_at = null;
+        $this->save();
+    }
     
 }
