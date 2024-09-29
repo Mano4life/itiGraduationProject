@@ -1,33 +1,28 @@
 <form [formGroup]="LoginForm" (ngSubmit)="loginSender()" class="auth">
     <!-- Email -->
     <div class="form-group">
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
-            formControlName = "email" placeholder="Email"
-        >
+        <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp" 
+            formControlName="email" placeholder="Email">
     </div>
-    @if (LoginForm.controls['email'].errors?.['required'] && LoginForm.controls['email'].touched) {
-        <small id="emailHelp" class="form-text text-danger">please Add Your Email</small>
-    }
-    @if (LoginForm.controls['email'].errors?.['pattern'] && !LoginForm.controls['email'].errors?.['required']) {
-        <small id="emailHelp" class="form-text text-danger">Invalid email format. </small>
-    }
+    <small *ngIf="LoginForm.controls['email'].errors?.['required'] && LoginForm.controls['email'].touched" 
+           class="form-text text-danger">Please add your email.</small>
+    <small *ngIf="LoginForm.controls['email'].errors?.['pattern'] && !LoginForm.controls['email'].errors?.['required']" 
+           class="form-text text-danger">Invalid email format.</small>
 
     <!-- Password -->
     <div class="form-group">
         <input type="password" class="form-control" id="exampleInputPassword1"
-        formControlName = "pass" placeholder="Password" [type]="isPasswordVisible ? 'text' : 'password'" 
-        >
+            formControlName="password" placeholder="Password" [type]="isPasswordVisible ? 'text' : 'password'">
         <div class="showIcon" (click)="togglePasswordVisibility()">
             <i class="fa-solid" [class.fa-eye]="!isPasswordVisible" [class.fa-eye-slash]="isPasswordVisible"></i>
         </div>
     </div>
-    @if (LoginForm.controls['pass'].errors?.['required'] && LoginForm.controls['pass'].touched) {
-        <small id="passHelp" class="form-text text-danger">please Add Your Password</small>
-    }
-    @if (LoginForm.controls['pass'].errors?.['pattern'] && !LoginForm.controls['pass'].errors?.['required']) {
-        <small id="passHelp" class="form-text text-danger">password length not length than 6 chars , 
-            contains at least one lowercase, one uppercase, at least one digit and special char </small>
-    }
-
-    <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="LoginForm.invalid">Login</button>
+    <small *ngIf="LoginForm.controls['password'].errors?.['required'] && LoginForm.controls['password'].touched" 
+           class="form-text text-danger">Please add your password.</small>
+    <small *ngIf="LoginForm.controls['password'].errors?.['pattern'] && !LoginForm.controls['password'].errors?.['required']" 
+           class="form-text text-danger">Password must be at least 6 characters long and include one lowercase letter, one uppercase letter, one digit, and one special character.</small>
+           @if(invalid){
+            <div class="mb-2"><span class="text-danger fw-normal text-capitalize">{{invalid}}</span></div>
+          }
+    <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="LoginForm.invalid" >Login</button>
 </form>

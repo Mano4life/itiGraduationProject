@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container my-5">
   <form [formGroup]="recipeForm" class="row" (submit)="onSubmission()">
     <h1 class="h3 text-center fw-bold text-uppercase mb-4 col-12">
       add a new recipe
@@ -18,6 +18,40 @@
       }@else if (recipeForm.controls['name'].valid &&
       recipeForm.controls['name'].touched) {
       <p class="text-success">name is valid</p>
+      }
+    </div>
+    <div class="mb-3 col-6">
+      <label for="serving-field" class="text-capitalize mb-2">Serving:</label>
+      <input
+        type="number"
+        class="form-control"
+        id="serving-field"
+        placeholder="Serving"
+        formControlName="Serving"
+      />
+      @if(recipeForm.controls['Serving'].invalid &&
+      recipeForm.controls['Serving'].touched){
+      <p class="text-danger fw-bold ms-1">Serving is not valid</p>
+      }@else if (recipeForm.controls['Serving'].valid &&
+      recipeForm.controls['Serving'].touched) {
+      <p class="text-success">Serving is valid</p>
+      }
+    </div>
+    <div class="mb-3 col-6">
+      <label for="serving-field" class="text-capitalize mb-2">Time:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="time-field"
+        placeholder="time"
+        formControlName="time"
+      />
+      @if(recipeForm.controls['time'].invalid &&
+      recipeForm.controls['time'].touched){
+      <p class="text-danger fw-bold ms-1">time is not valid</p>
+      }@else if (recipeForm.controls['time'].valid &&
+      recipeForm.controls['time'].touched) {
+      <p class="text-success">time is valid</p>
       }
     </div>
     <div class="mb-3 col-lg-6">
@@ -111,22 +145,6 @@
       <p class="text-success">subcategory is valid</p>
       }
     </div>
-    <!-- <div class="mb-3">
-      <label for="ingredients-field" class="text-capitalize mb-2">ingredients:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="ingredients-field"
-        placeholder="ingredients..."
-        formControlName="ingredients"
-      />
-      @if(recipeForm.controls['ingredients'].invalid && recipeForm.controls['ingredients'].touched){
-      <p class="text-danger fw-bold ms-1">ingredients is not valid</p>
-      }@else if (recipeForm.controls['ingredients'].valid && recipeForm.controls['ingredients'].touched) {
-      <p class="text-success">ingredients is valid</p>
-      }
-    </div> -->
-
     <div formArrayName="ingredients">
       <div
         *ngFor="let ingredient of ingredients.controls; let i = index"

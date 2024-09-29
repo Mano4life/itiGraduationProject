@@ -14,3 +14,6 @@
 .btn:hover {
   background-color: #141414;
 }
+.fa-cog{
+  cursor: pointer;
+}

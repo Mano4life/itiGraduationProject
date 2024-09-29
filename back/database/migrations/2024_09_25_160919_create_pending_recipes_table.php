@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('directions');
             $table->string('image')->nullable();
+            $table->string('status')->default('pending');
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Subcategory::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();

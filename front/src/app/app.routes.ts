@@ -7,23 +7,41 @@ import { EditProfileComponent } from './component/profile/edit-profile/edit-prof
 import { AddRecipeComponent } from './component/add-recipe/add-recipe.component';
 import { AboutComponent } from './component/about/about.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { OtpValidatorComponent } from './component/otp-validator/otp-validator.component';
+import { userGuard } from './guard/user.guard';
 import { AdminComponent } from './component/admin/admin.component';
 
 export const routes: Routes = [
 
-  { path: '', component: HomeComponent },
-
-  { path:'about',component: AboutComponent },
-
-  { path: 'profile/:id', component: ProfileComponent },
-  { path: 'edit-profile/:id', component: EditProfileComponent },
-
-  { path: 'add-recipe/:id', component: AddRecipeComponent },
-  { path: 'recipes', component: RecipesComponent },
-  { path: 'recipes/:id', component: SingleRecipeComponent },
-  
-  { path:'admin',component: AdminComponent },
-
-  {  path: '**', component:NotFoundComponent  },
+  {
+    path: '', component: HomeComponent
+  },
+  {
+    path:'about',component: AboutComponent
+  },
+  {
+    path: 'profile', component: ProfileComponent,canActivate:[userGuard]
+  },
+  {
+    path: 'edit-profile/:id', component: EditProfileComponent,canActivate:[userGuard]
+  },
+  {
+    path: 'add-recipe/:id', component: AddRecipeComponent,canActivate:[userGuard]
+  },
+  {
+    path: 'recipes', component: RecipesComponent
+  },
+  {
+    path: 'recipes/:id', component: SingleRecipeComponent
+  },
+  {
+    path: 'otp', component: OtpValidatorComponent
+  },
+  {
+    path: 'admin', component: AdminComponent
+  },
+  { 
+    path: '**', component:NotFoundComponent 
+  },
 
 ];

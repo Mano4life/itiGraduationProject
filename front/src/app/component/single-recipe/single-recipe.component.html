@@ -6,7 +6,7 @@
     <div class="rating-favorite d-flex align-items-baseline gap-3">
       <i
         class="fa-heart favorite"
-        [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'"
+        [ngClass]="isFavorite ? 'fa-solid' : 'fa-regular'"
       ></i>
       <p
         class="p-0 m-0 rating"
@@ -115,8 +115,10 @@
               (click)="onStarClick(i + 1)"
               (mouseenter)="onStarHover(i + 1)"
               (mouseleave)="onStarLeave()"
+              
             >
             </i>
+            
           </div>
         </div>
 
@@ -160,23 +162,26 @@
 
   <div class="comments mt-5">
     <h3 class="title text-uppercase">comments</h3>
-    <div class="body mt-3">
-      <div *ngFor="let comment of recipe.comments">
-        <div class="comment p-5 border-bottom text-center">
-          <i class="fa-solid fa-quote-left"></i>
-          <span class="mx-2 h3">{{ comment.content }}</span>
-          <i class="fa-solid fa-quote-right"></i>
-        </div>
-      </div>
-      <div class="user-comment mt-5">
+    <div class="body mt-3 border-top">
+      <form  class="user-comment mt-5 text-start" [formGroup]="commentForm" (ngSubmit)="comment()">
         <textarea
           class="form-control"
           name="user-comment-field"
           id="user-comment-field"
-          rows="10"
+          rows="2"
           placeholder="place a comment.."
+          formControlName="content"
         ></textarea>
+        <button type="submit" class="btn btn-auth mt-3" >Comment</button>
+      </form>
+      <div *ngFor="let comment of recipe.comments">
+        <div class="comment p-5 border-bottom ">
+          
+          <span class="mx-2 h3">{{ comment.content }}</span>
+          
+        </div>
       </div>
+  
     </div>
   </div>
 </div>

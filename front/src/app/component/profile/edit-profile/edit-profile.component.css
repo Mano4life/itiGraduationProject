@@ -1,0 +1,6 @@
+.btn {
+    background-color: var(--main-color);
+  }
+  h1, form label{
+    color: var(--main-color);
+  }
