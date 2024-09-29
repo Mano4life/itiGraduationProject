@@ -9,6 +9,7 @@ import { AboutComponent } from './component/about/about.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { OtpValidatorComponent } from './component/otp-validator/otp-validator.component';
 import { userGuard } from './guard/user.guard';
+import { AdminComponent } from './component/admin/admin.component';
 
 export const routes: Routes = [
 
@@ -35,6 +36,9 @@ export const routes: Routes = [
   },
   {
     path: 'otp', component: OtpValidatorComponent
+  },
+  {
+    path: 'admin', component: AdminComponent
   },
   { 
     path: '**', component:NotFoundComponent 

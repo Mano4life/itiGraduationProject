@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-input',
@@ -18,7 +19,8 @@ export class SearchInputComponent {
   private searchResultSource = new BehaviorSubject<any[]>([]);
   recipes: any[] = [];
 
-  constructor(private recipesService: RecipesService) {
+
+  constructor(private recipesService: RecipesService,private router: Router) {
     this.recipesService.getRecipes().subscribe((res: any) => {
       this.recipes = res;
       this.searchResults$ = this.searchResultSource.asObservable();
@@ -40,6 +42,9 @@ export class SearchInputComponent {
   onClear() {
     this.searchQuery = '';
     this.search(''); 
+  }
+  onSelect(id:number){
+    this.router.navigate(['/recipes', id]);
   }
 
 //   const filteredResults = this.recipes.filter((recipe: any) => {

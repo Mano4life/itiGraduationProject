@@ -10,7 +10,8 @@
 
     <div *ngIf="(searchResults$ | async)?.length as resultsLength" class="dropdown-list">
       <ul *ngIf="resultsLength > 0">
-        <li *ngFor="let result of searchResults$ | async" class="dropdown-item">
+        <li *ngFor="let result of searchResults$ | async" class="dropdown-item"  (click)="onSelect(result.id)">
+
             <img [src]="result.image" alt="{{ result.name }}" />
             <p>{{ result.name }}</p>
             <!-- <p>{{ result.ingerdiants.name }}</p> -->
