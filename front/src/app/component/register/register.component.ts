@@ -10,7 +10,8 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UsersService } from '../../core/services/users/users.service';
-
+import jQuery from 'jquery';
+const $ = jQuery;
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -70,6 +71,7 @@ export class RegisterComponent {
           
           localStorage.setItem('email',dataToStore.email)
           this.router.navigate(['/otp']);
+          $('#registerModal').modal('hide');
         },
         error: (err) => {
           this.notvalid=err.error.message;
