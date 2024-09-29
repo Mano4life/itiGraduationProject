@@ -1,12 +1,6 @@
 /* Navbar styles */
-.navbar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: white;
-  border-bottom: 1px solid #eaeaea;
-}
+
+
 
 .logo img {
   height: 80px;
@@ -45,6 +39,10 @@
   position: relative;
 
 }
+.dark-mode .navbar{
+  background-color: #121212;
+    
+}
 .search-bar .searchicon{
   position: absolute ;
   right: 10px;
@@ -71,3 +69,31 @@
 .search-menu a img {
   height: 24px;
 }
+/* Ensure dark mode applies to the navbar */
+body.dark-mode .navbar {
+  background-color: #121212;
+  color: #fff; /* Ensure text color is updated */
+  border-bottom: 1px solid #444; /* Update border color in dark mode */
+}
+body.dark-mode .navbar {
+  background-color: red; /* Just for testing */
+}
+.navbar.dark-mode {
+  background-color: #121212;
+  color: #fff;
+}
+
+
+body.dark-mode .nav-links a {
+  color: #fff; /* Update link color to white in dark mode */
+}
+
+body.dark-mode .search-bar input {
+  background-color: #333; /* Update search bar background */
+  color: #fff; /* Update search bar text to white */
+}
+
+body.dark-mode .searchicon {
+  color: #fff; /* Ensure the search icon is white */
+}
+

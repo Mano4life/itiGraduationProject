@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TestService } from '../../test.service';
+import { TestService } from '../../service/test.service';
 
 @Component({
   selector: 'app-recipes',

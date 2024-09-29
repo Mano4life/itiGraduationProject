@@ -26,4 +26,53 @@ h1{
 p{
   font-family: var(--second-font);
 }
+body.dark-mode .team-section {
+  background-color: #333333 !important;
+  color: #ffffff !important;
+}
+body.dark-mode {
+  --primary: #000000;
+}
+
+body {
+  
+  --primary: #FFFFFF;
+}
+
+body.dark-mode .team-member {
+  background-color: #444444 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .member-info h3,
+body.dark-mode .member-info h4,
+body.dark-mode .member-info p {
+  color: #ffffff !important;
+}
+
+body.dark-mode .member-photo {
+  border-color: #ffffff !important;
+}
+/* styles.css or styles.scss */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+
+.navbar{
+ 
+  background-color: var(--primary);
+}
+
+.card.dark-mode {
+  background-color: #444444;
+  color: #ffffff;
+}
+
+/* Add other necessary component or container classes */
+
+
+
+
 

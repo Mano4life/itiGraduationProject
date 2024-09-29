@@ -1,0 +1,31 @@
+/* styles.css or styles.scss */
+
+/* Global dark mode settings */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  .team-section.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  
+  .team-member.dark-mode {
+    background-color: #444444;
+    color: #ffffff;
+  }
+  
+  .member-info h3.dark-mode,
+  .member-info h4.dark-mode,
+  .member-info p.dark-mode {
+    color: #ffffff; /* Text color for member details */
+  }
+  
+  /* Make sure the photo border adapts to dark mode */
+  .member-photo.dark-mode {
+    border-color: #ffffff; /* Adjust the border color in dark mode */
+  }
+  
+  /* If there are any other custom styles that need to switch in dark mode, update them here */
+  

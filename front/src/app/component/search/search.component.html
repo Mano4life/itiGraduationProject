@@ -1,0 +1,23 @@
+<div class="search-bar">
+    <input 
+      class="form-control" 
+      type="search" 
+      placeholder="Search" 
+      aria-label="Search" 
+      [(ngModel)]="value" 
+      (input)="search()"
+    />
+    <img class="searchicon" src="assets/image/search.svg" alt="Search">
+  
+    <!-- Dropdown list for search results -->
+    <ul *ngIf="filteredObjects.length > 0" class="dropdown-list">
+      <li 
+        *ngFor="let object of filteredObjects" 
+        (click)="selectItem(object.value)" 
+        class="dropdown-item"
+      >
+        {{ object.value }}
+      </li>
+    </ul>
+  </div>
+  

@@ -99,4 +99,5 @@ export class HomeComponent {
     const shuffle = this.recipesArr.sort(() => 0.5 - Math.random());    
     return shuffle.slice(0, count);
   }
+  
 }
