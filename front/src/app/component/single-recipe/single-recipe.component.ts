@@ -8,15 +8,18 @@ import {
 } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgClass, NgFor } from '@angular/common';
+import { UsersService } from '../../core/services/users/users.service';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-single-recipe',
   standalone: true,
-  imports: [NgFor, RouterLink, NgClass],
+  imports: [NgFor, RouterLink, NgClass,FormsModule, ReactiveFormsModule],
   templateUrl: './single-recipe.component.html',
   styleUrl: './single-recipe.component.css',
 })
 export class SingleRecipeComponent {
+  commentForm!: FormGroup;
   recipe: any;
   ingredient: any;
   ingredientId: any;
@@ -24,15 +27,24 @@ export class SingleRecipeComponent {
   routerSubscription!: Subscription;
   originalServings: number = 1; // Store the original servings
   scaledIngredients: any[] = []; // To store scaled ingredients
-
+  userlist:any;
+  isFavorite = false;
+  
 
   constructor(
     private recipesService: RecipesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private user:UsersService
+  ) {
+    this.commentForm = new FormGroup({
+      content: new FormControl('', [Validators.required])
+    })
+  }
 
   ngOnInit() {
+    
+    
     this.activatedRoute.paramMap.subscribe((params) => {
       const recipeId = params.get('id');
       // Fetch the recipe based on recipe ID
@@ -54,6 +66,16 @@ export class SingleRecipeComponent {
         });
       }
     });
+    this.user.getUser().subscribe({
+      next: (res) => {
+        this.userlist = res.recipes_saves; 
+        this.isFavorite  = this.userlist.some((userRecipe: { id: any; }) => userRecipe.id === this.recipe.id);
+        this.isSolid = this.userlist.some((userRecipe: { id: any; }) => userRecipe.id === this.recipe.id);
+        },
+        error: (err) => {
+          console.error(err);
+          }
+    })
   }
 
   onRecipeClick(id: number) {
@@ -100,12 +122,38 @@ isBtnSelected(btn: string): boolean {
     this.isActive = !this.isActive;
   }
 
+  
   isSolid = false;
   onFavorite(){
-    this.isSolid = !this.isSolid;
+    if(this.isSolid){
+      this.recipesService.unsaverecipe(this.recipe.id).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.isSolid=false;
+          this.isFavorite = false;
+        },
+        error: (error) => {
+          console.error(error);
+          }
+      })
+    }
+    else{
+      this.recipesService.saverecipe(this.recipe.id).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.isSolid=true;
+          this.isFavorite = true;
+        },
+        error: (error) => {
+          console.error(error);
+          }
+      })
+
+    }
+    //this.isSolid = !this.isSolid;
   }
 
-  isFavorite = false;
+ 
   
 
 
@@ -142,6 +190,28 @@ isBtnSelected(btn: string): boolean {
 
   onStarClick(starValue: number) {
     this.starRate = starValue;
+    this.recipesService.rateRecipe(this.recipe.id,this.starRate).subscribe({
+      next: (response) => {
+        console.log(response);
+        },
+        error: (error) => {
+          console.error(error);
+          }
+    })
+  }
+  comment(){
+    if (this.commentForm.valid) {
+      console.log(this.commentForm.value)
+      this.recipesService.comment(this.recipe.id,this.commentForm.value).subscribe({
+        next: (response) => {
+          console.log(response);
+          },
+          error: (error) => {
+            console.error(error);
+            }
+            })
+    }
+    
   }
 
   // convertRatingToStars(rating: any) {

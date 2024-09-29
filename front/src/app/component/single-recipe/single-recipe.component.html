@@ -161,6 +161,17 @@
   <div class="comments mt-5">
     <h3 class="title text-uppercase">comments</h3>
     <div class="body mt-3">
+      <form  class="user-comment mt-5 text-start" [formGroup]="commentForm" (ngSubmit)="comment()">
+        <textarea
+          class="form-control"
+          name="user-comment-field"
+          id="user-comment-field"
+          rows="2"
+          placeholder="place a comment.."
+          formControlName="content"
+        ></textarea>
+        <button type="submit" class="btn btn-success mt-3" >submit</button>
+      </form>
       <div *ngFor="let comment of recipe.comments">
         <div class="comment p-5 border-bottom text-center">
           <i class="fa-solid fa-quote-left"></i>
@@ -168,16 +179,7 @@
           <i class="fa-solid fa-quote-right"></i>
         </div>
       </div>
-      <form method="post" class="user-comment mt-5 text-start">
-        <textarea
-          class="form-control"
-          name="user-comment-field"
-          id="user-comment-field"
-          rows="10"
-          placeholder="place a comment.."
-        ></textarea>
-        <button type="submit" class="btn btn-success mt-3">submit</button>
-      </form>
+  
     </div>
   </div>
 </div>

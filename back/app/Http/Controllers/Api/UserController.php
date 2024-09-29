@@ -63,14 +63,22 @@ class UserController extends Controller
         }
 
     //get user by token and get saved recipe with it
-    public function user(Request $request){
+    public function user(Request $request)
+{
+    $user = $request->user();
+    $user->load('recipes_saves', 'recipes', 'recipes_ratings'); 
+    
+    $userData = $user->toArray();
+    
+    $userData['ratings'] = $user->recipes_ratings->map(function($rating) {
+        return [
+            'rating' => $rating->pivot->rating, 
+            'recipe_id' => $rating->id, 
+        ];
+    });
 
-        $user = $request->user();
-        $user ->load('recipes_saves', 'recipes');
-        
-        return response()->json($user , 200);
-        
-    }
+    return response()->json($userData, 200);
+}
     
     public function update(Request $request)
    {

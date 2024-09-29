@@ -20,6 +20,40 @@
       <p class="text-success">name is valid</p>
       }
     </div>
+    <div class="mb-3 col-6">
+      <label for="serving-field" class="text-capitalize mb-2">Serving:</label>
+      <input
+        type="number"
+        class="form-control"
+        id="serving-field"
+        placeholder="Serving"
+        formControlName="Serving"
+      />
+      @if(recipeForm.controls['Serving'].invalid &&
+      recipeForm.controls['Serving'].touched){
+      <p class="text-danger fw-bold ms-1">Serving is not valid</p>
+      }@else if (recipeForm.controls['Serving'].valid &&
+      recipeForm.controls['Serving'].touched) {
+      <p class="text-success">Serving is valid</p>
+      }
+    </div>
+    <div class="mb-3 col-6">
+      <label for="serving-field" class="text-capitalize mb-2">Time:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="time-field"
+        placeholder="time"
+        formControlName="time"
+      />
+      @if(recipeForm.controls['time'].invalid &&
+      recipeForm.controls['time'].touched){
+      <p class="text-danger fw-bold ms-1">time is not valid</p>
+      }@else if (recipeForm.controls['time'].valid &&
+      recipeForm.controls['time'].touched) {
+      <p class="text-success">time is valid</p>
+      }
+    </div>
     <div class="mb-3 col-lg-6">
       <label for="description-field" class="text-capitalize mb-2"
         >description:</label

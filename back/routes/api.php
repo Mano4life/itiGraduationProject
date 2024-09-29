@@ -23,9 +23,12 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/recipes/{recipe}/unsave', [RecipeController::class, 'unsaveRecipe']);
     Route::post('/recipes/{recipe}/rate', [RecipeController::class, 'rateRecipe']);
     Route::patch('/updateUser',[UserController::class,'update']);
+    Route::post('/recipes/{recipe}/comment', [CommentController::class, 'store']);
+    Route::put('/comments/{comment}', [CommentController::class, 'update']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 });
 
-Route::apiResource('comments',CommentController::class);
+
 
 
 Route::apiResource('recipes', RecipeController::class);
