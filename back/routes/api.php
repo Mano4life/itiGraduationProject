@@ -45,4 +45,6 @@ Route::apiResource('subcategories', SubcategoryController::class);
 Route::apiResource('ingredients', IngredientController::class);
 
 Route::apiResource('pendingRecipes', PendingRecipeController::class);
+Route::patch('/pendingRecipes/{pendingRecipe}/deny', [PendingRecipeController::class, 'deny']);
+
 Route::apiResource('comments',CommentController::class);

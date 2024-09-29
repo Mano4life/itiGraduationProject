@@ -140,4 +140,18 @@ class PendingRecipeController extends Controller
             return response()->json(['message' => 'Failed to delete'], 500);
         }
     }
+
+    public function deny(PendingRecipe $pendingRecipe){
+        $data = request()->validate([
+            'status' => ['required']
+        ]);
+
+        $result = $pendingRecipe->update($data);
+        if($result){
+            // return response()->json($result, 200);
+            return response()->json(['message' => 'successfully denied', $data], 200);
+        }else {
+            return response()->json(['message'=> 'failed to deny'], 500);
+        }
+    }
 }
