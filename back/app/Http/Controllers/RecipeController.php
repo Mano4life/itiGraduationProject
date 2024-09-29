@@ -224,25 +224,21 @@ class RecipeController extends Controller
         return response()->json(['message' => 'deleted succesfully'], 200);
     }
 
-    //save recipe (raghad)
+    
     public function saveRecipe(Request $request, Recipe $recipe)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
+      $userId = $request->user()->id; 
+      $recipe->users_saves()->attach($userId);
 
-        $recipe->users_saves()->attach($request->user_id);
-        return response()->json(['message' => 'Recipe saved successfully.'], 200);
+      return response()->json(['message' => 'Recipe saved successfully.'], 200);
     }
-    //unsave recipe (raghad)
+
     public function unsaveRecipe(Request $request, Recipe $recipe)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-        ]);
+      $userId = $request->user()->id; 
+      $recipe->users_saves()->detach($userId);
 
-        $recipe->users_saves()->detach($request->user_id);
-        return response()->json(['message' => 'Recipe unsaved successfully.'], 200);
+      return response()->json(['message' => 'Recipe unsaved successfully.'], 200);
     }
 
 
@@ -250,14 +246,14 @@ class RecipeController extends Controller
     public function rateRecipe(Request $request, Recipe $recipe)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
             'rating' => 'required|integer|min:1|max:5',
         ]);
-
+        $userId = $request->user()->id;
+        
         $recipe->users_ratings()->sync([
-            $request->user_id => ['rating' => $request->rating]
+            $userId => ['rating' => $request->rating]
         ]);
-
+    
         return response()->json(['message' => 'Recipe rated successfully.'], 200);
     }
 }

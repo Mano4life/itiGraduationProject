@@ -34,6 +34,8 @@ export class AddRecipeComponent {
 
     this.recipeForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      Serving: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      time: new FormControl('', [Validators.required, Validators.minLength(3)]),
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -89,6 +91,8 @@ export class AddRecipeComponent {
     if (this.recipeForm.valid) {
       const recipeData = {
         name: this.recipeForm.value.name,
+        time:this.recipeForm.value.time,
+        servings:this.recipeForm.value.Serving,
         description: this.recipeForm.value.description,
         directions: this.recipeForm.value.directions,
         image: this.recipeForm.value.image,

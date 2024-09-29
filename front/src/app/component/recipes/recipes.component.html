@@ -17,6 +17,11 @@
           <img src="assets/img/dinner.png" alt="Dinner" class="img-fluid">
           <p href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Dinner</p>
       </div>
+      <div class="col-lg-1 col-md-6 p-3  col-sm-10 background   mx-3 small-div d-flex flex-column justify-content-center align-items-center" (click)="toggleCategory('dessert')" [class.selected]="isCategorySelected('dessert')"  >
+
+        <img src="assets/img/cupcake.png" alt="Dinner" class="img-fluid">
+        <p href="#" class="text-decoration-none fs-5 color p-1 m-1 align-middle">Dessert</p>
+    </div>
   </div>
 </section>
 <section >
@@ -105,7 +110,7 @@
         <div class="d-flex justify-content-between">
           <div class="d-flex">
             <i class="fa fa-clock-o" style="font-size:24px"></i>
-            <p class="inline-block px-2" style="color: #666;">{{item.time}} mins</p>
+            <p class="inline-block px-2" style="color: #666;">{{item.time}}</p>
           </div>
         </div>
       </div>

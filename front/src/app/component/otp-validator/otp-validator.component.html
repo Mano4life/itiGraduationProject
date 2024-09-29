@@ -1,0 +1,23 @@
+<div class="container row m-auto mb-5">
+    <div class=" col-12 col-lg-4 col-md-6 col-sm-10 co m-auto">
+        
+        <div class="rounded shadow-sm p-3" style="background-color: var(--main-background);">
+            <h2 class="text-center" style="color: var(--footer-color);">Verify Your Account</h2>
+            <p class="text-center mt-3" >A verification code was send to user Email please check and enter the sent code </p>
+            <form [formGroup]="OTPForm" (ngSubmit)="OTPSender()" class=" m-4">
+
+                <!-- otp -->
+                <div class="form-group">
+                    <input type="text" class="form-control" id="login-otp" aria-describedby="otpHelp" 
+                        formControlName="otp" placeholder="Enter verification code....">
+                </div>
+                @if(invalid){
+                    <div class="mb-2"><span class="text-danger fw-normal text-capitalize">{{invalid}}</span></div>
+                  }
+                <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="OTPForm.invalid" data-bs-dismiss="modal">Send</button>
+            </form>
+        </div>
+        
+        
+    </div>
+</div>

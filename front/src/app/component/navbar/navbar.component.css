@@ -1,8 +1,39 @@
 /* Navbar styles */
 .navbar {
   padding: 20px 70px;
-  /* position: fixed; */
-  background-color: white;
+}
+
+/* .logo img {
+  height: 80px;
+  width: 140px;
+} */
+
+/* Search */
+li{
+  cursor: pointer;
+}
+.search-bar{
+  position: relative;
+}
+.search-bar input {
+  width: 500px; 
+  padding: 10px 10px;
+  border : none;
+  outline: none;
+  background-color: #EEE;
+}
+.search-bar i{
+  position: absolute;
+  top: 47%;
+  right: 3%;
+  font-size: 16px;
+  color: var(--main-color);
+  transform: translateY(-50%);
+}
+
+.search-bar input:focus, .search-bar textarea:focus {
+  border-color: var(--main-color);
+  box-shadow: 0 0 10px 3px var(--main-color);
 }
 
 /* links */
@@ -16,23 +47,26 @@
 
 .nav-links a {
   text-decoration: none;
-  color: black;
   text-transform: capitalize;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--main-color)
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--btn-color);
 }
 
 .nav-links i {
   font-size: 20px;
-  color: var(--main-color);
 }
 
 .nav-links a p{
   margin-top: 4px;
-  color: var(--main-color);
-  font-weight: bold;
-  font-size: 20px;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 
