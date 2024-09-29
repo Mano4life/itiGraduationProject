@@ -35,7 +35,7 @@ export class AddRecipeComponent {
     this.recipeForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       Serving: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      time: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      time: new FormControl('', [Validators.required, Validators.minLength(1)]),
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
