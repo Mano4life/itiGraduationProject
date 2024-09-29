@@ -1,0 +1,34 @@
+<!-- Pending Recipes Section -->
+<p-table [value]="pendingRecipes" [paginator]="true" [rows]="4">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between fs-3 dataName">
+            Pending Recipes
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr class="titleTable">
+            <th>Id</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>UserName</th>
+            <th>Accept</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>Deny</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+        <tr class="dataTable">
+            <td>{{ data.id }}</td>
+            <td>
+                <img [src]="data.image" [alt]="data.name" width="100" class="shadow-4" />
+            </td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.user_id }}</td>
+            <td class="text-center"><i class="fa-solid fa-check" style="color: var(--main-color);"></i></td>
+            <td class="text-center"><i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);"></i></td>
+            <td class="text-center"><i class="fa-solid fa-trash text-danger"></i></td>
+            <td class="text-center"><i class="fa-solid fa-ban" style="color: var(--second-color);"></i></td>
+        </tr>
+    </ng-template>
+</p-table>
