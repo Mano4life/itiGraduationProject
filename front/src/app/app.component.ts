@@ -11,6 +11,5 @@ import { FooterComponent } from "./component/footer/footer.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'front';
-
+  title = 'My Daily Recipeies site';
 }
