@@ -25,7 +25,7 @@ class pending_recipeController extends Controller
             'image' => ['required', 'active_url'],
             'category' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
-            'user_id' => ['required', 'string'],
+            'user_id' => ['required'],
             'status'=>['string'],
             'ingredients' => ['required', 'array'] ,
 
