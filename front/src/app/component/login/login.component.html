@@ -1,7 +1,7 @@
 <form [formGroup]="LoginForm" (ngSubmit)="loginSender()">
     <!-- Email -->
     <div class="form-group">
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+        <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp" 
             formControlName="email" placeholder="Email">
     </div>
     <small *ngIf="LoginForm.controls['email'].errors?.['required'] && LoginForm.controls['email'].touched" 

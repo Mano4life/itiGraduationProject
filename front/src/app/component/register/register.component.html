@@ -1,74 +1,175 @@
-<form [formGroup]="registerForm" (ngSubmit)="registerSender()" class="pt-1 ps-4">
-    <!-- Name -->
-    <div class="form-group">
-        <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-            formControlName="name" placeholder="Name">
-    </div>
-    <small *ngIf="registerForm.controls['name'].errors?.['required'] && registerForm.controls['name'].touched" 
-           class="form-text text-danger">Please add your name.</small>
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="registerSender()"
+  class="pt-1 ps-4"
+>
+  <!-- Name -->
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      id="exampleInputName"
+      aria-describedby="emailHelp"
+      formControlName="name"
+      placeholder="Name"
+    />
+  </div>
+  @if (registerForm.controls['name'].errors?.['required'] &&
+  registerForm.controls['name'].touched) {
+  <small id="name" class="form-text text-danger">please Add Your Name</small>
+  }
 
-    <!-- Email -->
-    <div class="form-group">
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            formControlName="email" placeholder="Email">
-    </div>
-    <small *ngIf="registerForm.controls['email'].errors?.['required'] && registerForm.controls['email'].touched" 
-           class="form-text text-danger">Please add your email.</small>
-    <small *ngIf="registerForm.controls['email'].errors?.['pattern'] && !registerForm.controls['email'].errors?.['required']" 
-           class="form-text text-danger">Invalid email format.</small>
+  <!-- Email -->
+  <div class="form-group">
+    <input
+      type="email"
+      class="form-control"
+      id="register-email"
+      aria-describedby="emailHelp"
+      formControlName="email"
+      placeholder="Email"
+    />
+  </div>
+  @if (registerForm.controls['email'].errors?.['required'] &&
+  registerForm.controls['email'].touched) {
+  <small id="emailHelp" class="form-text text-danger"
+    >please Add Your Email</small
+  >
+  } @if (registerForm.controls['email'].errors?.['pattern'] &&
+  !registerForm.controls['email'].errors?.['required']) {
+  <small id="emailHelp" class="form-text text-danger"
+    >Invalid email format.
+  </small>
+  }
 
-    <!-- Password -->
-    <div class="form-group">
-        <input type="password" class="form-control" id="exampleInputPassword1"
-            formControlName="pass" placeholder="Password" [type]="isPasswordVisible ? 'text' : 'password'">
-        <div class="showIcon" (click)="togglePasswordVisibility()">
-            <i class="fa-solid" [class.fa-eye]="!isPasswordVisible" [class.fa-eye-slash]="isPasswordVisible"></i>
-        </div>
+  <!-- Password -->
+  <div class="form-group">
+    <input
+      type="password"
+      class="form-control"
+      id="register-password"
+      formControlName="pass"
+      placeholder="Password"
+      [type]="isPasswordVisible ? 'text' : 'password'"
+    />
+    <div class="showIcon" (click)="togglePasswordVisibility()">
+      <i
+        class="fa-solid"
+        [class.fa-eye]="!isPasswordVisible"
+        [class.fa-eye-slash]="isPasswordVisible"
+      ></i>
     </div>
-    <small *ngIf="registerForm.controls['pass'].errors?.['required'] && registerForm.controls['pass'].touched" 
-           class="form-text text-danger">Please add your password.</small>
-    <small *ngIf="registerForm.controls['pass'].errors?.['pattern'] && !registerForm.controls['pass'].errors?.['required']" 
-           class="form-text text-danger">Password must be at least 6 characters long and include one lowercase letter, one uppercase letter, one digit, and one special character.</small>
+  </div>
+  @if (registerForm.controls['pass'].errors?.['required'] &&
+  registerForm.controls['pass'].touched) {
+  <small id="passHelp" class="form-text text-danger"
+    >please Add Your Password</small
+  >
+  } @if (registerForm.controls['pass'].errors?.['pattern'] &&
+  !registerForm.controls['pass'].errors?.['required']) {
+  <small id="passHelp" class="form-text text-danger"
+    >Password must be at least 6 characters long and include one lowercase
+    letter, one uppercase letter, one digit, and one special character.
+  </small>
+  }
 
-    <!-- Confirm Password -->
-    <div class="form-group">
-        <input type="password" class="form-control" id="exampleInputPassword1"
-            formControlName="confirmPass" placeholder="Confirm Password" [type]="isConfirmPasswordVisible ? 'text' : 'password'">
-        <div class="showIcon" (click)="toggleConfirmPasswordVisibility()">
-            <i class="fa-solid" [class.fa-eye]="!isConfirmPasswordVisible" [class.fa-eye-slash]="isConfirmPasswordVisible"></i>
-        </div>
+  <!-- Confirm Password -->
+  <div class="form-group">
+    <input
+      type="password"
+      class="form-control"
+      id="register-confirm-password"
+      formControlName="confirmPass"
+      placeholder="Confirm Password"
+      [type]="isConfirmPasswordVisible ? 'text' : 'password'"
+    />
+    <div class="showIcon" (click)="toggleConfirmPasswordVisibility()">
+      <i
+        class="fa-solid"
+        [class.fa-eye]="!isConfirmPasswordVisible"
+        [class.fa-eye-slash]="isConfirmPasswordVisible"
+      ></i>
     </div>
-    <small *ngIf="registerForm.controls['confirmPass'].errors?.['required'] && registerForm.controls['confirmPass'].touched" 
-           class="form-text text-danger">Please add your confirm password.</small>
-    <small *ngIf="registerForm.controls['confirmPass'].errors?.['pattern'] && !registerForm.controls['confirmPass'].errors?.['required']" 
-           class="form-text text-danger">Password must be at least 6 characters long and include one lowercase letter, one uppercase letter, one digit, and one special character.</small>
-    <small *ngIf="registerForm.controls['pass'].value != registerForm.controls['confirmPass'].value && !registerForm.controls['confirmPass'].errors?.['required']" 
-           class="form-text text-danger">Passwords do not match.</small>
+  </div>
+  @if (registerForm.controls['confirmPass'].errors?.['required'] &&
+  registerForm.controls['confirmPass'].touched) {
+  <small id="emailHelp" class="form-text text-danger"
+    >please Add Your Confirm Password</small
+  >
+  } @if (registerForm.controls['confirmPass'].errors?.['pattern'] &&
+  !registerForm.controls['confirmPass'].errors?.['required']) {
+  <small id="emailHelp" class="form-text text-danger"
+    >Password must be at least 6 characters long and include one lowercase
+    letter, one uppercase letter, one digit, and one special character.
+  </small>
+  } @if (registerForm.controls['pass'].value !=
+  registerForm.controls['confirmPass'].value &&
+  !registerForm.controls['confirmPass'].errors?.['required']) {
+  <small id="emailHelp" class="form-text text-danger"
+    >Passwords not equal Confirm Password</small
+  >
+  }
 
-    <!-- DoB -->
-    <div class="form-group">
-        <input type="date" class="form-control" id="exampleInputDoB" formControlName="DoB" 
-            style="padding: 0 10px; height: 35px; font-weight: 500;">
+  <!-- DoB -->
+  <div class="form-group">
+    <input
+      type="date"
+      class="form-control"
+      id="exampleInputDoB"
+      formControlName="DoB"
+      style="padding: 0 10px; height: 35px; font-weight: 500"
+    />
+  </div>
+  @if (registerForm.controls['DoB'].errors?.['required'] &&
+  registerForm.controls['DoB'].touched) {
+  <small id="DoBHelp" class="form-text text-danger"
+    >Please enter your date of birth.</small
+  >
+  }
+
+  <!-- Gender -->
+  <div class="genderCheck form-group">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        id="male"
+        formControlName="gender"
+        value="male"
+      />
+      <label class="form-check-label" for="male">Male</label>
     </div>
-    <small *ngIf="registerForm.controls['DoB'].errors?.['required'] && registerForm.controls['DoB'].touched" 
-           class="form-text text-danger">Please enter your date of birth.</small>
-
-    <!-- Gender -->
-    <div class="genderCheck form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="radio" id="male" formControlName="gender" value="male">
-            <label class="form-check-label" for="male">Male</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" id="female" formControlName="gender" value="female">
-            <label class="form-check-label" for="female">Female</label>
-        </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        id="female"
+        formControlName="gender"
+        value="female"
+      />
+      <label class="form-check-label" for="female">Female</label>
     </div>
-    <small *ngIf="registerForm.controls['gender'].errors?.['required'] && registerForm.controls['gender'].touched" 
-           class="form-text text-danger">Please select your gender.</small>
+  </div>
+  @if (registerForm.controls['gender'].errors?.['required'] &&
+  registerForm.controls['gender'].touched) {
+  <small id="genderHelp" class="form-text text-danger"
+    >Please select your gender.</small
+  >
+  }
 
-    <!-- Submit Btn -->
-    <button type="submit" class="btn btn-auth mt-4 d-flex" 
-            [disabled]="registerForm.invalid || registerForm.controls['pass'].value != registerForm.controls['confirmPass'].value">Register
-    </button>
+  @if(notvalid){
+    <div class="mb-2"><span class="text-danger fw-normal text-capitalize">email is taken</span></div>
+  }
+  <!-- Submit Btn -->
+  <button
+    type="submit"
+    class="btn btn-auth mt-4 d-flex"
+    [disabled]="
+      registerForm.invalid ||
+      registerForm.controls['pass'].value !=
+        registerForm.controls['confirmPass'].value
+    "
+  >
+    Register
+  </button>
 </form>

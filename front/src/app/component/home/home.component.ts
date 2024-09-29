@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FooterComponent, CommonModule, TopDishAreaComponent,RouterLink],
+  imports: [FooterComponent, TopDishAreaComponent,RouterLink, NgIf, NgFor],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -96,7 +96,7 @@ export class HomeComponent {
 
   // Display Random Recipes
   getRandomRecipes(count: number) {
-    const shuffle = this.recipesArr.sort(() => 0.5 - Math.random());
-    return shuffle.slice(0, count);
+    const shuffle = this.recipesArr?.sort(() => 0.5 - Math.random());
+    return shuffle?.slice(0, count);
   }
 }

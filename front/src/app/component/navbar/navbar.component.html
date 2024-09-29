@@ -1,61 +1,120 @@
 <nav class="navbar">
   <div class="container-fluid">
     <div class="logo w-25">
-      <img [src]="logo" alt="Logo" routerLink="" class="w-25">
+      <img [src]="logo" alt="Logo" routerLink="" class="w-25" />
     </div>
-  
+
     <!-- Search Bar -->
     <div class="search-bar">
-      <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+      <input
+        class="form-control"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
       <i class="fa-solid fa-magnifying-glass"></i>
     </div>
-  
+
     <ul class="nav-links">
       <li>
-        <a routerLink="">
+        <a
+          routerLinkActive="active"
+          routerLink=""
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <i class="fa-solid fa-house-chimney"></i>
           <span>home</span>
         </a>
       </li>
       <li>
-        <a routerLink="/recipes">
+        <a routerLinkActive="active" routerLink="/recipes">
           <i class="fa-solid fa-utensils"></i>
           <span>recipes</span>
         </a>
       </li>
       <li>
-        <a routerLink="/about">
+        <a routerLinkActive="active" routerLink="/about">
           <i class="fa-solid fa-people-group"></i>
           <span>about</span>
         </a>
       </li>
       <li *ngIf="isLogged">
-        <a routerLink="/profile/{{ UserId }}">
+        <a routerLinkActive="active" routerLink="/profile/{{ UserId }}">
           <i class="fa-solid fa-user"></i>
           <span>Profile</span>
         </a>
       </li>
-  
-      <!-- Login -->
-<li *ngIf="!isLogged">
-  <a data-bs-toggle="modal" data-bs-target="#loginModal">
-      <i class="fa-solid fa-right-to-bracket"></i>
-      <span>Login</span>
-  </a>
-</li>
 
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
+      <!-- Login -->
+      <li *ngIf="!isLogged">
+        <a data-bs-toggle="modal" data-bs-target="#loginModal">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span>login</span>
+        </a>
+      </li>
+
+      <div
+        class="modal fade"
+        id="loginModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
               <h1 class="modal-title" id="exampleModalLabel">Sign In</h1>
-          </div>
-          <div class="modal-body">
+            </div>
+            <div class="modal-body text-center">
               <app-login></app-login>
-              <p class="mt-4 switch">Don't have an account!
-                  <a class="switchCard" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
+              <p class="mt-4 switch">
+                Already have an account!
+                <a
+                  class="switchCard"
+                  (click)="switchModals('loginModal', 'registerModal')"
+                  data-bs-dismiss="modal"
+                >
+                  Register
+                </a>
               </p>
           </div>
+        </div>
+      </div>
+
+      <!-- Register -->
+      <li *ngIf="!isLogged">
+        <a data-bs-toggle="modal" data-bs-target="#registerModal">
+
+        </a>
+      </li>
+
+      <div
+        class="modal fade"
+        id="registerModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title" id="exampleModalLabel">Sign Up</h1>
+            </div>
+            <div class="modal-body text-center">
+              <app-register></app-register>
+              <p class="mt-4 switch">
+                Don't have an account!
+                <a
+                  class="switchCard"
+                  (click)="switchModals('registerModal', 'loginModal')"
+                  data-bs-dismiss="modal"
+                >
+                  Login
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
   </div>
 </div>
@@ -90,7 +149,6 @@
           <span>Logout</span>
         </a>
       </li>
-  
     </ul>
   </div>
   <!-- <app-top-dish-area [showTitle]="false"  [isNavbar]="true"></app-top-dish-area> -->
