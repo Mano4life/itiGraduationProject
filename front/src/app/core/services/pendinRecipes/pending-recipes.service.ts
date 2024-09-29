@@ -16,8 +16,8 @@ export class PendingRecipesService {
     return this.http.post('http://127.0.0.1:8000/api/pendingRecipes',data)
   }
 
-  updatePendingRecipes(id:number, data: any){
-    return this.http.patch(`http://127.0.0.1:8000/api/pendingRecipes/${id}`,data)
+  denyPendingRecipes(id:number, data: any){
+    return this.http.patch(`http://127.0.0.1:8000/api/pendingRecipes/${id}/deny`,data)
   }
 
   deletePendingRecipes(id: number){

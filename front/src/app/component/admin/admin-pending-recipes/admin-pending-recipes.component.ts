@@ -47,12 +47,12 @@ export class AdminPendingRecipesComponent {
       deniedRecipe.status = 'denied';
     }
   
-    this.pendingRecipesService.updatePendingRecipes(id, deniedRecipe).subscribe({
+    this.pendingRecipesService.denyPendingRecipes(id, { status: 'denied'}).subscribe({
       next: () => {
         console.log('Recipe status updated to denied');
       },
       error: (err) => {
-        console.error('Error updating recipe status:', err);
+        console.error('Error Dening recipe status:', err);
       }
     });
   }
