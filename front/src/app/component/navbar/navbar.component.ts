@@ -1,12 +1,38 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
+import { LoginComponent } from "../login/login.component";
+import { RegisterComponent } from "../register/register.component";
+import { SearchInputComponent } from "../search-input/search-input.component";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, TopDishAreaComponent, LoginComponent, RegisterComponent, SearchInputComponent],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  logo: string = 'assets/imgs/logo.png';
 
+  constructor() { }
+
+
+  // Dannle
+toggleDarkMode() {
+throw new Error('Method not implemented.');
+}
+  menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+    const navLinks = document.querySelector('.nav-links');
+    if (this.menuOpen) {
+      navLinks?.classList.add('open');
+    } else {
+      navLinks?.classList.remove('open');
+    }
+  }
+
+ 
 }
