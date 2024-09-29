@@ -20,7 +20,7 @@ import { UsersService } from '../../core/services/users/users.service';
 })
 export class RegisterComponent {
   registerForm!: FormGroup;
-  notvalid: boolean = false;
+  notvalid: any;
   touched!: boolean;
 
   constructor(private router: Router, private usersService: UsersService) {
@@ -67,13 +67,12 @@ export class RegisterComponent {
       this.notvalid = false;
       this.usersService.register(dataToStore).subscribe({
         next: (res) => {
-          this.notvalid = false;
-          // this.router.navigate(['/login']);
+          
+          localStorage.setItem('email',dataToStore.email)
+          this.router.navigate(['/otp']);
         },
         error: (err) => {
-          this.notvalid = true;
-          console.error('Registration error:', err);
-          // You can add more logic here based on the error response
+          this.notvalid=err.error.message;
         },
       });
     } else {

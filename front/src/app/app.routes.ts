@@ -9,6 +9,8 @@ import { AboutComponent } from './component/about/about.component';
 import { RegisterComponent } from './component/register/register.component';
 import { LoginComponent } from './component/login/login.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { OtpValidatorComponent } from './component/otp-validator/otp-validator.component';
+import { userGuard } from './guard/user.guard';
 
 export const routes: Routes = [
 
@@ -19,19 +21,22 @@ export const routes: Routes = [
     path:'about',component: AboutComponent
   },
   {
-    path: 'profile/:id', component: ProfileComponent
+    path: 'profile', component: ProfileComponent,canActivate:[userGuard]
   },
   {
-    path: 'edit-profile/:id', component: EditProfileComponent
+    path: 'edit-profile/:id', component: EditProfileComponent,canActivate:[userGuard]
   },
   {
-    path: 'add-recipe/:id', component: AddRecipeComponent
+    path: 'add-recipe/:id', component: AddRecipeComponent,canActivate:[userGuard]
   },
   {
     path: 'recipes', component: RecipesComponent
   },
   {
     path: 'recipes/:id', component: SingleRecipeComponent
+  },
+  {
+    path: 'otp', component: OtpValidatorComponent
   },
   { 
     path: '**', component:NotFoundComponent 

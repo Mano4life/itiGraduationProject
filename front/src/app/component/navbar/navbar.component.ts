@@ -23,21 +23,6 @@ export class NavbarComponent {
   constructor(private serv:UsersService, private router: Router) { }
   ngOnInit() {
     this.isLogged = localStorage.getItem('auth_token') !== null;
-
-    if (this.isLogged) {
-      this.serv.getUser().subscribe({
-        next: (res) => {
-          this.Userinfo = res;
-          this.UserId = this.Userinfo.id ;
-          console.log(this.Userinfo);
-          
-          },
-          error: (err) => {
-            console.error(err);
-            }
-      })
-      
-    }
     
   }
 

@@ -22,6 +22,9 @@ class UserController extends Controller
         if (!$User || !Hash::check($request->password,  $User->password)) {
             return response()->json(['message' => 'Invalid Credentials'], 401);
         }
+        if( $User->code!==NULL){
+            return response()->json(['message' => 'Please verify your code'], 401);
+        }
         
         $token = $User->createToken('auth_token')->plainTextToken;
         return response()->json(['token' => $token, 'user' => $User], 200);

@@ -115,8 +115,10 @@
               (click)="onStarClick(i + 1)"
               (mouseenter)="onStarHover(i + 1)"
               (mouseleave)="onStarLeave()"
+              
             >
             </i>
+            
           </div>
         </div>
 
@@ -160,7 +162,7 @@
 
   <div class="comments mt-5">
     <h3 class="title text-uppercase">comments</h3>
-    <div class="body mt-3">
+    <div class="body mt-3 border-top">
       <form  class="user-comment mt-5 text-start" [formGroup]="commentForm" (ngSubmit)="comment()">
         <textarea
           class="form-control"
@@ -170,13 +172,13 @@
           placeholder="place a comment.."
           formControlName="content"
         ></textarea>
-        <button type="submit" class="btn btn-success mt-3" >submit</button>
+        <button type="submit" class="btn btn-auth mt-3" >Comment</button>
       </form>
       <div *ngFor="let comment of recipe.comments">
-        <div class="comment p-5 border-bottom text-center">
-          <i class="fa-solid fa-quote-left"></i>
+        <div class="comment p-5 border-bottom ">
+          
           <span class="mx-2 h3">{{ comment.content }}</span>
-          <i class="fa-solid fa-quote-right"></i>
+          
         </div>
       </div>
   

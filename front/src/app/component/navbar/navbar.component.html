@@ -39,7 +39,7 @@
         </a>
       </li>
       <li *ngIf="isLogged">
-        <a routerLinkActive="active" routerLink="/profile/{{ UserId }}">
+        <a routerLinkActive="active" routerLink="/profile">
           <i class="fa-solid fa-user"></i>
           <span>Profile</span>
         </a>
@@ -77,6 +77,7 @@
                   Register
                 </a>
               </p>
+            </div>
           </div>
         </div>
       </div>
@@ -116,32 +117,6 @@
           </div>
         </div>
       </div>
-  </div>
-</div>
-
-<!-- Register -->
-<li *ngIf="!isLogged">
-  <a data-bs-toggle="modal" data-bs-target="#registerModal">
-      <i class="fa-solid fa-right-to-bracket"></i>
-      <span>Register</span>
-  </a>
-</li>
-
-<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h1 class="modal-title" id="exampleModalLabel">Sign Up</h1>
-          </div>
-          <div class="modal-body">
-              <app-register></app-register>
-              <p class="mt-4 switch">Already have an account!
-                  <a class="switchCard" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-              </p>
-          </div>
-      </div>
-  </div>
-</div>
 
       <li li *ngIf="isLogged">
         <a (click)="logout()">

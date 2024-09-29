@@ -67,10 +67,15 @@ export class SingleRecipeComponent {
       }
     });
     this.user.getUser().subscribe({
-      next: (res) => {
-        this.userlist = res.recipes_saves; 
-        this.isFavorite  = this.userlist.some((userRecipe: { id: any; }) => userRecipe.id === this.recipe.id);
+      next: (res) => {this.userlist = res.recipes_saves; 
+        this.isFavorite = this.userlist.some((userRecipe: { id: any; }) => userRecipe.id === this.recipe.id);
         this.isSolid = this.userlist.some((userRecipe: { id: any; }) => userRecipe.id === this.recipe.id);
+        
+        const val = res.ratings;
+        console.log(val);
+        
+        const ratingUser = val.find((userrating: { recipe_id: any; }) => userrating.recipe_id === this.recipe.id);
+        this.starRate = ratingUser ? ratingUser.rating : 0;
         },
         error: (err) => {
           console.error(err);
@@ -86,7 +91,7 @@ export class SingleRecipeComponent {
 
 // Method to scale the ingredients
 scaleIngredients(scaleFactor: number) {
-  this.recipe.servings = this.originalServings * scaleFactor;
+  this.recipe.servings = Math.trunc(this.originalServings * scaleFactor);
 
   this.scaledIngredients = this.recipe.ingredients.map((ingredient:any) => {
     return {
@@ -204,7 +209,7 @@ isBtnSelected(btn: string): boolean {
       console.log(this.commentForm.value)
       this.recipesService.comment(this.recipe.id,this.commentForm.value).subscribe({
         next: (response) => {
-          console.log(response);
+          window.location.reload()
           },
           error: (error) => {
             console.error(error);

@@ -14,6 +14,7 @@ import { UsersService } from '../../core/services/users/users.service';
 export class LoginComponent {
   LoginForm!: FormGroup;
   isPasswordVisible: boolean = false;
+  invalid:any;
 
   constructor(private router: Router,private serv:UsersService) {
     this.LoginForm = new FormGroup({
@@ -42,7 +43,7 @@ export class LoginComponent {
           window.location.reload()
           },
           error: (err) => {
-            console.error('Login failed', err);
+            this.invalid=err.error.message;
             }
             });
     }
