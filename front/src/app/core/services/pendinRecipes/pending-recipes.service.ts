@@ -11,4 +11,13 @@ export class PendingRecipesService {
   pendingRecipes(){
     return this.http.get('http://127.0.0.1:8000/api/pendingRecipes');
   }
+
+  
+  postRecipe(data: any){
+    return this.http.post('http://127.0.0.1:8000/api/pendingRecipes/', data)
+  }
+
+  deleteRecipe(id: any){
+    return this.http.delete(`http://127.0.0.1:8000/api/pendingRecipes/${id}`)
+  }
 }
