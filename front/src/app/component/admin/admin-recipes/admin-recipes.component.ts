@@ -30,7 +30,6 @@ export class AdminRecipesComponent {
     this.recipesServices.deleteRecipe(id).subscribe({
       next: () => {
         this.getAllRecipes();
-        
       },
     error: (err) => {
         console.error('Error deleting recipe:', err);

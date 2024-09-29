@@ -16,11 +16,11 @@ export class PendingRecipesService {
     return this.http.post('http://127.0.0.1:8000/api/pendingRecipes',data)
   }
 
-  updatePendingRecipes(data: any){
-    return this.http.patch('http://127.0.0.1:8000/api/pendingRecipes',data)
+  updatePendingRecipes(id:number, data: any){
+    return this.http.patch(`http://127.0.0.1:8000/api/pendingRecipes/${id}`,data)
   }
 
-  deletePendingRecipes(id: any){
+  deletePendingRecipes(id: number){
     return this.http.delete(`http://127.0.0.1:8000/api/pendingRecipes/${id}`)
   }
   

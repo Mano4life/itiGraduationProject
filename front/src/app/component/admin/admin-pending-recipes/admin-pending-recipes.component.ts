@@ -29,11 +29,8 @@ export class AdminPendingRecipesComponent {
 
   // Delete a pending recipe
   deletePendingRecipe(id:number){
-    console.log(id);
-    // Bug
     this.pendingRecipesService.deletePendingRecipes(id).subscribe({
       next: () => {
-        console.log(id);
         this.getAllPendingRecipes();
       },
     error: (err) => {
@@ -44,18 +41,23 @@ export class AdminPendingRecipesComponent {
 
   // Deny a pending recipe
   denyRecipe(id:number){
-    this.pendingRecipes.filter( (recipe:any) => {
-      if(recipe.id === id){
-        recipe.status = 'denied';
-        console.log(recipe.status);
-        
-        this.pendingRecipesService.updatePendingRecipes(recipe).subscribe({
-          next: () => {
+    const deniedRecipe = this.pendingRecipes.find( (recipe:any) => recipe.id === id);
 
-            this.getAllPendingRecipes();
-          },
-        })
+    if(deniedRecipe){
+      deniedRecipe.status = 'denied';
+      console.log(deniedRecipe.id);
+      console.log(deniedRecipe.status);
+    }
+  
+    this.pendingRecipesService.updatePendingRecipes(id, deniedRecipe).subscribe({
+      next: () => {
+        console.log('Recipe status updated to denied');
+        // Optionally, you can fetch the updated data again:
+        // this.getAllPendingRecipes();
+      },
+      error: (err) => {
+        console.error('Error updating recipe status:', err);
       }
-    })
+    });
   }
 }
