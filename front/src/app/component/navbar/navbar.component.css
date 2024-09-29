@@ -28,9 +28,9 @@
   color: var(--main-color);
 }
 
-.nav-links p{
+.nav-links a p{
   margin-top: 4px;
-  color: var(--btn-color);
+  color: var(--main-color);
   font-weight: bold;
   font-size: 20px;
 }

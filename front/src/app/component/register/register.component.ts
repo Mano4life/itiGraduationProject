@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, output } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router'; 
 
 @Component({
@@ -11,13 +11,9 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  registerForm!: FormGroup;
-
- 
-  
   touched!: boolean;
-
-
+  
+  registerForm!: FormGroup;
   constructor(private router: Router) {
     this.registerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -28,7 +24,7 @@ export class RegisterComponent {
 
       pass: new FormControl('', [Validators.required, Validators.minLength(6),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{6,}$/)]),
-      confirmPass: new FormControl('', [Validators.required, Validators.minLength(8),
+      confirmPass: new FormControl('', [Validators.required, Validators.minLength(6),
           Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{6,}$/)]),
 
       DoB: new FormControl('', [Validators.required]),

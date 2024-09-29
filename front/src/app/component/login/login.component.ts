@@ -19,7 +19,7 @@ export class LoginComponent {
       email: new FormControl('', [Validators.required, Validators.email,
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
       ]),
-      pass: new FormControl('', [Validators.required, Validators.minLength(8),
+      pass: new FormControl('', [Validators.required, Validators.minLength(6),
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{6,}$/)]),
     })
   }

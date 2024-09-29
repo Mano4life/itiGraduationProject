@@ -1,6 +1,6 @@
 
 
-<form [formGroup]="registerForm" (ngSubmit)="registerSender()" class="pt-1 ps-4">
+<form [formGroup]="registerForm" (ngSubmit)="registerSender()" class="auth">
     <!-- Name -->
     <div class="form-group">
         <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
@@ -65,7 +65,7 @@
 
     <!-- DoB -->
     <div class="form-group">
-        <input type="date" class="form-control" id="exampleInputDoB" formControlName="DoB" 
+        <input type="date" class="form-control dob" id="exampleInputDoB" formControlName="DoB" 
             style="padding: 0 10px; height: 35px; font-weight: 500;">
     </div>
     @if (registerForm.controls['DoB'].errors?.['required'] && registerForm.controls['DoB'].touched) {
