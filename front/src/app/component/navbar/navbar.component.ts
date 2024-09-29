@@ -65,5 +65,5 @@ throw new Error('Method not implemented.');
     const nextModalInstance = new bootstrap.Modal(nextModalEl);
     nextModalInstance.show();
   }
- 
+
 }

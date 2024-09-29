@@ -24,3 +24,9 @@
 .modal-body input{
     width: 50%;
 }
+
+/* Delete Button */
+.delete .modal-footer{
+    border-top: none;
+    margin: auto;
+}

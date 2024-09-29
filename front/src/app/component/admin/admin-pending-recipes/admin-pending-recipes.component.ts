@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
-import { RecipesService } from '../../../core/services/recipes/recipes.service';
+import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
 
 @Component({
   selector: 'app-admin-pending-recipes',
@@ -12,20 +12,13 @@ import { RecipesService } from '../../../core/services/recipes/recipes.service';
 })
 export class AdminPendingRecipesComponent {
 
-  constructor(private recipesServices: RecipesService) {}
+  constructor(private pendingRecipesServices: PendingRecipesService) {}
 
-  recipes!: any;
-  users!: any;
+  pendingRecipes!: any;
   ngOnInit() {
-    // Get all recipes
-    this.recipesServices.getRecipes().subscribe((res) => {
-      this.recipes = res;
-    });
-  }
-
-  activeSection: string = 'pendingRecipes';
-  // Method to switch sections
-  changeSection(section: string) {
-    this.activeSection = section;
+    // Get pending recipes
+    this.pendingRecipesServices.pendingRecipes().subscribe((res:any) => {
+      this.pendingRecipes = res;
+    })
   }
 }

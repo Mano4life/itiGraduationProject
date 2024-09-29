@@ -18,15 +18,25 @@ export class AdminRecipesComponent {
   recipes!: any;
   ngOnInit() {
     // Get all recipes
+    this.getAllRecipes();
+  }
+
+  getAllRecipes(){
     this.recipesServices.getRecipes().subscribe((res) => {
       this.recipes = res;
       console.log(res);
-      
     });
   }
 
-  selectedRecipe: any = null;
-  setSelectedRecipe(recipes:any){
-    this.selectedRecipe = [...recipes];
+  deleteRecipe(id:any){
+    this.recipesServices.deleteRecipe(id).subscribe({
+      next: () => {
+        this.getAllRecipes();
+        
+      },
+    error: (err) => {
+        console.error('Error deleting recipe:', err);
+      }
+    })
   }
 }
