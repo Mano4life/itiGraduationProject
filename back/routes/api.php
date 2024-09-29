@@ -29,6 +29,8 @@ route::post('/verify-otp', [TwoFactorController::class, 'verifyOtp']);
 Route::post('/login',[UserController::class,'login']);
 Route::post('/register',[UserController::class,'register']);
 Route::get('users', [UserController::class, 'index']);
+// Route::get('/users/delete', [UserController::class, 'destroy']);
+Route::apiResource('users', UserController::class);
 
 
 // Recipe API resource route

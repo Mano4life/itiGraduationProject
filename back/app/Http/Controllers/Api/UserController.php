@@ -119,10 +119,15 @@ class UserController extends Controller
     }
 
 
-    public function destroy(Request $request)
-    {
-        $user = $request->user(); // Get the authenticated user
+    // public function destroy(Request $request)
+    // {
+    //     $user = $request->user(); // Get the authenticated user
+    //     $user->delete();
+    //     return response()->json(['message' => ' record  is deleted from database'], 200);
+    // }
+
+    public function destroy(User $user){
         $user->delete();
-        return response()->json(['message' => ' record  is deleted from database'], 200);
+        return response()->json(['message' => 'deleted succesfully'], 200);
     }
 }
