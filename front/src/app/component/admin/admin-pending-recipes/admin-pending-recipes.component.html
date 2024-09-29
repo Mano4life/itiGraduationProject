@@ -26,7 +26,7 @@
                 <img [src]="data.image" [alt]="data.name" width="100" class="shadow-4" />
             </td>
             <td>{{ data.name }}</td>
-            <td>{{ data.user.name }}</td>
+            <td>{{ data.id }}</td>
 
             <!-- Accept Button -->
             <td class="text-center">
@@ -61,7 +61,7 @@
             </td>
 
             <!-- Deny Button -->
-            <td class="text-center">
+            <td class="text-center" (click)="denyRecipe(data.id)">
                 <i class="fa-solid fa-ban" style="color: var(--second-color);"></i>
             </td>
         </tr>

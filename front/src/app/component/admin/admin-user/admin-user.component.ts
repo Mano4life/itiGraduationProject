@@ -26,7 +26,7 @@ export class AdminUserComponent {
     })
   }
   
-  deleteUser(id:any){
+  deleteUser(id:number){
     this.usersService.deleteUser(id).subscribe({
       next: () => {
         this.getAllUsers();

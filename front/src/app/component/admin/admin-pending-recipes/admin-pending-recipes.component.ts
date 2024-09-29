@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
-import { RecipesService } from '../../../core/services/recipes/recipes.service';
 
 @Component({
   selector: 'app-admin-pending-recipes',
@@ -13,7 +12,7 @@ import { RecipesService } from '../../../core/services/recipes/recipes.service';
 })
 export class AdminPendingRecipesComponent {
 
-  constructor(private pendingRecipesServices: PendingRecipesService) {}
+  constructor(private pendingRecipesService: PendingRecipesService) {}
 
   pendingRecipes!: any;
   ngOnInit() {
@@ -22,20 +21,37 @@ export class AdminPendingRecipesComponent {
   }
 
   getAllPendingRecipes(){
-    this.pendingRecipesServices.getPendingRecipes().subscribe((res) => {
+    this.pendingRecipesService.getPendingRecipes().subscribe((res) => {
       this.pendingRecipes = res;
       console.log(this.pendingRecipes);
     });
   }
 
-  deletePendingRecipe(id:any){
-    this.pendingRecipesServices.deletePendingRecipe(id).subscribe({
+  // Delete a pending recipe
+  deletePendingRecipe(id:number){
+    this.pendingRecipesService.deletePendingRecipes(id).subscribe({
       next: () => {
         this.getAllPendingRecipes();
-        
       },
     error: (err) => {
         console.error('Error deleting pending recipes:', err);
+      }
+    })
+  }
+
+  // Deny a pending recipe
+  denyRecipe(id:number){
+    this.pendingRecipes.filter( (recipe:any) => {
+      if(recipe.id === id){
+        recipe.status = 'denied';
+        console.log(recipe.status);
+        
+        this.pendingRecipesService.updatePendingRecipes(recipe).subscribe({
+          next: () => {
+            
+            this.getAllPendingRecipes();
+          },
+        })
       }
     })
   }

@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { RecipesService } from '../../../core/services/recipes/recipes.service';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-recipes',
   standalone: true,
-  imports: [TableModule,CommonModule,FormsModule],
+  imports: [TableModule,CommonModule],
   templateUrl: './admin-recipes.component.html',
   styleUrl: './admin-recipes.component.css'
 })
@@ -27,7 +26,7 @@ export class AdminRecipesComponent {
     });
   }
 
-  deleteRecipe(id:any){
+  deleteRecipe(id:number){
     this.recipesServices.deleteRecipe(id).subscribe({
       next: () => {
         this.getAllRecipes();

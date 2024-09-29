@@ -12,4 +12,5 @@
 }
 .dataTable td{
     font-size: 18px;
+    cursor: pointer;
 }
