@@ -21,6 +21,11 @@ export class UsersService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.patch(`http://127.0.0.1:8000/api/updateUser`,Data,{ headers });
   }
+
+  deleteUser(id: any){
+    return this.http.delete(`http://127.0.0.1:8000/api/users/${id}`)
+  }
+
   login(Data: any){
     return this.http.post<{
       token: string;

@@ -11,15 +11,29 @@ import { CommonModule } from '@angular/common';
   styleUrl: './admin-user.component.css'
 })
 export class AdminUserComponent {
-  activeSection: string = 'pendingRecipes';
 
   constructor(private usersService: UsersService) {}
 
   users!: any;
   ngOnInit() {
-    // Get all users
+    // Get all recipes
+    this.getAllUsers();
+  }
+
+  getAllUsers(){
     this.usersService.getUsers().subscribe((res) => {
       this.users = res;
+    })
+  }
+  
+  deleteUser(id:any){
+    this.usersService.deleteUser(id).subscribe({
+      next: () => {
+        this.getAllUsers();
+      },
+    error: (err) => {
+        console.error('Error Deleting User:', err);
+      }
     })
   }
 }

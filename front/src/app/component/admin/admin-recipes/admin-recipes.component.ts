@@ -24,7 +24,6 @@ export class AdminRecipesComponent {
   getAllRecipes(){
     this.recipesServices.getRecipes().subscribe((res) => {
       this.recipes = res;
-      console.log(res);
     });
   }
 

@@ -18,23 +18,10 @@ import { AdminPendingRecipesComponent } from "./admin-pending-recipes/admin-pend
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-  p: number = 1;
 
-  constructor(private recipesServices: RecipesService, private usersService: UsersService) {}
-
-  recipes!: any;
-  users!: any;
+  constructor() {}
+  
   ngOnInit() {
-    // Get all recipes
-    this.recipesServices.getRecipes().subscribe((res) => {
-      this.recipes = res;
-    });
-
-    // Get all users
-    this.usersService.getUsers().subscribe((res) => {
-      this.users = res;
-      
-    })
   }
 
   activeSection: string = 'pendingRecipes';
@@ -43,8 +30,4 @@ export class AdminComponent {
     this.activeSection = section;
   }
 
-  // Edit Recipes
-  editRecipe(data: any) {
-
-  }
 }
