@@ -86,17 +86,21 @@ export class HomeComponent {
   constructor(private recipes: RecipesService) {}
 
   recipesArr!: any;
-
+  randomRecipesArr!: any;
+  shuffle!: any;
   ngOnInit() {
     this.recipes.getRecipes().subscribe((res) => {
       this.recipesArr = res;
       console.log(this.recipesArr);
+
+      this.randomRecipesArr = this.getRandomRecipes(4);
     });
   }
 
   // Display Random Recipes
   getRandomRecipes(count: number) {
-    const shuffle = this.recipesArr?.sort(() => 0.5 - Math.random());
-    return shuffle?.slice(0, count);
+    // [...]creates a shallow copy of recipesArr for shuffling. This way, the original array remains unchanged.
+    this.shuffle = [...this.recipesArr].sort(() => 0.5 - Math.random());
+    return this.shuffle.slice(0, count);
   }
 }

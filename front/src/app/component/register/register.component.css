@@ -27,7 +27,7 @@ input{
     gap: 20px;
 }
 
-.form-control{
+.form-control.dob{
     color: #828487;
 }
 form input:focus, form textarea:focus {

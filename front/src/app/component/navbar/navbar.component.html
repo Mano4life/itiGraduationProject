@@ -5,16 +5,9 @@
     </div>
 
     <!-- Search Bar -->
-    <div class="search-bar">
-      <input
-        class="form-control"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </div>
-
+    <app-search-input></app-search-input>
+    
+    <!-- navLinks -->
     <ul class="nav-links">
       <li>
         <a
@@ -23,19 +16,19 @@
           [routerLinkActiveOptions]="{ exact: true }"
         >
           <i class="fa-solid fa-house-chimney"></i>
-          <span>home</span>
+          <p>home</p>
         </a>
       </li>
       <li>
         <a routerLinkActive="active" routerLink="/recipes">
           <i class="fa-solid fa-utensils"></i>
-          <span>recipes</span>
+          <p>recipes</p>
         </a>
       </li>
       <li>
         <a routerLinkActive="active" routerLink="/about">
           <i class="fa-solid fa-people-group"></i>
-          <span>about</span>
+          <p>about</p>
         </a>
       </li>
       <li *ngIf="isLogged">
@@ -49,7 +42,7 @@
       <li *ngIf="!isLogged">
         <a data-bs-toggle="modal" data-bs-target="#loginModal">
           <i class="fa-solid fa-right-to-bracket"></i>
-          <span>login</span>
+          <p>login</p>
         </a>
       </li>
 

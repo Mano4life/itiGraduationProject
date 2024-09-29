@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { TestService } from '../../test.service';
 import { CommonModule } from '@angular/common';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
-import { CategoriesService } from '../../core/services/categories/categories.service';
 import { IngredientsService } from '../../core/services/ingredients/ingredients.service';
 import { Router } from '@angular/router';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';

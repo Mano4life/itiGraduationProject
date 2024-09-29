@@ -63,40 +63,15 @@ li{
   font-size: 20px;
 }
 
-.nav-links span{
+.nav-links a p{
   margin-top: 4px;
   font-weight: 500;
   font-size: 16px;
 }
-/* .search-menu {
-  display: flex;
-  gap: 30px; 
-}
-
-.search-menu a img {
-  height: 24px;
-} */
-
-/*  */
-/* Navbar Style */
-/* Test TopArea Section */
-.main-title.round-plane .shape.shape1 {
-  left: 37px;
-}
-.main-title .round-planet.planet2 {
-  width: 70px;
-  height: 70px;
-}
-.main-title .round-planet {
-  width: 140px;
-  height: 150px;
-}
-.top-dish-area {
-  padding: 70px 0 75px;
-}
 
 
 /* Login Style */
+
 .modal-header{
   border-bottom: none;
 }
@@ -118,4 +93,22 @@ li{
 .switch .switchCard{
   color: var(--btn-color);
   cursor: pointer;
+}
+
+/* Not Work */
+/* Navbar Style */
+/* Test TopArea Section */
+.main-title.round-plane .shape.shape1 {
+  left: 37px;
+}
+.main-title .round-planet.planet2 {
+  width: 70px;
+  height: 70px;
+}
+.main-title .round-planet {
+  width: 140px;
+  height: 150px;
+}
+.top-dish-area {
+  padding: 70px 0 75px;
 }

@@ -6,8 +6,6 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { EditProfileComponent } from './component/profile/edit-profile/edit-profile.component';
 import { AddRecipeComponent } from './component/add-recipe/add-recipe.component';
 import { AboutComponent } from './component/about/about.component';
-import { RegisterComponent } from './component/register/register.component';
-import { LoginComponent } from './component/login/login.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { OtpValidatorComponent } from './component/otp-validator/otp-validator.component';
 import { userGuard } from './guard/user.guard';
