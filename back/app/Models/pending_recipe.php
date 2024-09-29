@@ -19,7 +19,7 @@ class pending_recipe extends Model
     }
 
     public function ingredients(){
-        return $this->belongsToMany(Ingredient::class);
+        return $this->belongsToMany(Ingredient::class, 'ingredient_pending_recipe')->withPivot('quantity', 'measurement_unit');
     }
 
     public function tags(){
