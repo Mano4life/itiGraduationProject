@@ -12,7 +12,7 @@ class PendingRecipeController extends Controller
 {
     public function index()
     {
-        $pendingRecipes = PendingRecipe::with('category', 'subCategory', 'ingredients', 'user')->latest()->get();
+        $pendingRecipes = PendingRecipe::with('category', 'subcategory', 'ingredients', 'user')->latest()->get();
         return response()->json($pendingRecipes, 200);
     }
 

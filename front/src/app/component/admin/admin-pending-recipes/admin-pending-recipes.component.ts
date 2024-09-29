@@ -45,15 +45,11 @@ export class AdminPendingRecipesComponent {
 
     if(deniedRecipe){
       deniedRecipe.status = 'denied';
-      console.log(deniedRecipe.id);
-      console.log(deniedRecipe.status);
     }
   
     this.pendingRecipesService.updatePendingRecipes(id, deniedRecipe).subscribe({
       next: () => {
         console.log('Recipe status updated to denied');
-        // Optionally, you can fetch the updated data again:
-        // this.getAllPendingRecipes();
       },
       error: (err) => {
         console.error('Error updating recipe status:', err);
