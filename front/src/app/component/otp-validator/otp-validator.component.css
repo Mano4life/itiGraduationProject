@@ -27,12 +27,4 @@
 .check-icon {
     animation: bounce 1s ease infinite;
 }
-a{
-    text-decoration: none;
-    color: var(--btn-color);
-    font-weight: bold;
-}
-a:hover{
-    font-size: large;
-    transition: all 50ms;
-}
+

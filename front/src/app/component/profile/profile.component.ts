@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule, NgFor } from '@angular/common';
 import { UsersService } from '../../core/services/users/users.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-profile',
   standalone: true,

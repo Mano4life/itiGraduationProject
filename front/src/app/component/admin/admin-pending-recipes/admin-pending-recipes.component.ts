@@ -50,6 +50,7 @@ export class AdminPendingRecipesComponent {
         "user_id":res.user_id
         }
       this.recipe.postRecipe(this.newrecipe).subscribe((res)=>{
+        
         this.deletePendingRecipe(id);
       })
     })

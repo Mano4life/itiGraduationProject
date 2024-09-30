@@ -1,23 +1,30 @@
-<div class="container  d-flex justify-content-center">
-    <div class="w-50">
-        <h1 class="h3 text-center fw-bold text-uppercase mb-4 col-12">Edit</h1>
+<div class="container">
+  <div *ngIf="!success" class="w-100">
+    <p class="fw-bold mb-4 col-12">Personal Information</p>
     <form [formGroup]="EditForm" (ngSubmit)="EditUser()">
       <div class="mb-3">
         <label for="Username" class="form-label fs-5">Name</label>
-        <input type="text"  id="Username" formControlName="Username"  class="form-control">
+        <input type="text" id="Username" formControlName="Username" class="form-control">
       </div>
       <div class="mb-3">
         <label for="DOB" class="form-label fs-5">Date of Birth</label>
-        <input type="date"  id="DOB" formControlName="DOB"  class="form-control">
+        <input type="date" id="DOB" formControlName="DOB" class="form-control">
       </div>
-      <label for="gender" class="form-label fs-5">
-          Gender
-      </label>
-      <div class="form-check" *ngFor='let option of gender; let i = index'>
-        <input class="form-check-input" type="radio"  [value]='option' name="gender" formControlName="gender" id="gender" >{{option}}
+      <label for="gender" class="form-label fs-5">Gender</label>
+      <div class="d-flex mb-3">
+        <div class="form-check me-3" *ngFor="let option of gender; let i = index">
+          <input class="form-check-input" type="radio" [value]="option" formControlName="gender" id="gender{{i}}">
+          <label class="form-check-label" for="gender{{i}}">{{option}}</label>
+        </div>
       </div>
 
-      <button type="submit" class="btn text-light mt-4 " >Edit</button>
+      <button type="submit" class="btn text-light px-4 mt-4">Edit</button>
     </form>
-    </div>
   </div>
+
+  <div *ngIf="success" class="text-center mb-4">
+    <i class="far fa-check-circle check-icon" style="color: var(--btn-color); font-size: 50px;"></i>
+    <p class="text-center" style="color: var(--footer-color);">Your Personal information has been edited successfully!</p>
+  </div>
+</div>
+
