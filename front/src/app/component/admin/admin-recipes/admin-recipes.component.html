@@ -25,47 +25,10 @@
             <td>{{ data.user.name }}</td>
             
             <!-- Edit Button -->
-            <td class="text-center">
-                <a data-bs-toggle="modal" data-bs-target="#editmodal" style="cursor: pointer;">
-                    <i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);"></i>
-                </a>
-
-                <!-- <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="recipeId" class="form-label">Id:</label>
-                                    <input type="number" class="form-control" id="recipeId" [(ngModel)]="selectedRecipe.id" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipeName" class="form-label">Name:</label>
-                                    <input type="text" class="form-control" id="recipeName" [(ngModel)]="selectedRecipe.name" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipeUserName" class="form-label">Username:</label>
-                                    <input type="text" class="form-control" id="recipeUserName" [(ngModel)]="selectedRecipe.user.name" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipeImage" class="form-label">Image URL:</label>
-                                    <input type="text" class="form-control" id="recipeImage" [(ngModel)]="selectedRecipe.image" />
-                                </div>
-                            </div>
-                            
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+            <td class="text-center" (click)="editRecipe(data.id)">
+                <i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);"></i>
             </td>
-
+            
             <!-- Delete Button -->
             <td class="text-center delete">
                 <a data-bs-toggle="modal" data-bs-target="#deletemodal" style="cursor: pointer;">
