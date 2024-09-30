@@ -4,9 +4,7 @@ form .inputs{
     align-items: center;
     gap: 10px;
 }
-.form-control{
-    width: fit-content;
-}
+
 /*  */
 .btn {
     background-color: var(--main-color);

@@ -11,6 +11,7 @@ import { OtpValidatorComponent } from './component/otp-validator/otp-validator.c
 import { userGuard } from './guard/user.guard';
 import { AdminComponent } from './component/admin/admin.component';
 import { AdminEditRecipesComponent } from './component/admin/admin-edit-recipes/admin-edit-recipes.component';
+import { AdminEditUserComponent } from './component/admin/admin-edit-user/admin-edit-user.component';
 
 export const routes: Routes = [
 
@@ -43,6 +44,9 @@ export const routes: Routes = [
   },
   {
     path: 'admin-edit-recipes/:id', component: AdminEditRecipesComponent
+  },
+  {
+    path:'admin-edit-user/:id',component:AdminEditUserComponent
   },
   { 
     path: '**', component:NotFoundComponent 

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RecipesService } from '../../../core/services/recipes/recipes.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-edit-recipes',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule,CommonModule],
   templateUrl: './admin-edit-recipes.component.html',
   styleUrl: './admin-edit-recipes.component.css'
 })
@@ -16,17 +17,44 @@ export class AdminEditRecipesComponent {
   editSingleRecipe!: any;
 
   constructor(private routerActive:ActivatedRoute, private recipeService: RecipesService) {
-    this.editForm = new FormGroup({
-      id: new FormControl({ value: '', disabled: true }, Validators.required),
-      name: new FormControl('', Validators.required),
-      user: new FormGroup({
-        name: new FormControl('', Validators.required),
-      }),
-      image: new FormControl('') // To hold the image URL
-    });
+
   }
 
   ngOnInit() {
+    this.editForm = new FormGroup({
+      id:new FormControl('',[Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      Username:new FormControl('',[Validators.required]),
+      Servings: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      time: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      Description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      Direction: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      image: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      category: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      subcategory: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      ingredients: new FormArray([
+        new FormGroup({
+          name: new FormControl('', Validators.required),
+          quantity: new FormControl('', Validators.required),
+          measurement_unit: new FormControl('', Validators.required),
+        }),
+      ]),
+    });
     this.editRecipeId = this.routerActive.snapshot.params['id']; 
 
     if(this.editRecipeId){
@@ -38,12 +66,33 @@ export class AdminEditRecipesComponent {
         this.editForm.patchValue({
           id: data.id,
           name: data.name,
-          user: { name: data.user.name },
-          image: data.image // Assuming 'image' is a property in your data
+          Servings: data.servings,
+          time: data.time,
+          Description: data.description,
+          Direction: data.directions,
+          Username:data.user.name,
+          image: data.image 
         });
       });
     }
     
+  }
+  get ingredients() {
+    return this.editForm.get('ingredients') as FormArray;
+  }
+  addIngredient() {
+    const ingredientGroup = new FormGroup({
+      name: new FormControl('', Validators.required),
+      quantity: new FormControl('', Validators.required),
+      measurement_unit: new FormControl('', Validators.required),
+    });
+
+    this.ingredients.push(ingredientGroup);
+  }
+
+  // Remove an ingredient form group from the FormArray
+  removeIngredient(index: number) {
+    this.ingredients.removeAt(index);
   }
 
   editRecipe(){

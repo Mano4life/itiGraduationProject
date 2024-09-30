@@ -25,6 +25,9 @@ export class UsersService {
   deleteUser(id: any){
     return this.http.delete(`http://127.0.0.1:8000/api/users/${id}`)
   }
+  adminEditUser(id:any, data:any){
+    return  this.http.put(`http://127.0.0.1:8000/api/adminEditUser/${id}`,data);
+  }
 
   login(Data: any){
     return this.http.post<{
