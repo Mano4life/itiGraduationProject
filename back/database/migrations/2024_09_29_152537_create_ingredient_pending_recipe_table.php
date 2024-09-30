@@ -1,7 +1,8 @@
 <?php
 
 use App\Models\Ingredient;
-use App\Models\pending_recipe;
+use App\Models\pending_recipes;
+use App\Models\PendingRecipe;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('ingredient_pending_recipe', function (Blueprint $table) {
             $table->foreignIdFor(Ingredient::class)->cascadeOnDelete();
-            $table->foreignIdFor(pending_recipe::class)->cascadeOnDelete();
+            $table->foreignIdFor(PendingRecipe::class)->cascadeOnDelete();
 
             $table->float('quantity');
             $table->string('measurement_unit');

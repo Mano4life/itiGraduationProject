@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
+import { RecipesService } from '../../../core/services/recipes/recipes.service';
 
 @Component({
   selector: 'app-admin-pending-recipes',
@@ -12,8 +13,8 @@ import { PendingRecipesService } from '../../../core/services/pendinRecipes/pend
 })
 export class AdminPendingRecipesComponent {
 
-  constructor(private pendingRecipesService: PendingRecipesService) {}
-
+  constructor(private pendingRecipesService: PendingRecipesService,private recipe:RecipesService ) {}
+  newrecipe:any;
   pendingRecipes!: any;
   ngOnInit() {
     // Get all pending recipes
@@ -23,10 +24,17 @@ export class AdminPendingRecipesComponent {
   getAllPendingRecipes(){
     this.pendingRecipesService.getPendingRecipes().subscribe((res) => {
       this.pendingRecipes = res;
-      console.log(this.pendingRecipes);
+      console.log("pending",this.pendingRecipes);
     });
   }
-
+  posttorecipe(id:any){
+    this.pendingRecipesService.getOnePendingRecipe(id).subscribe((res)=>{
+      this.newrecipe=res;
+      this.recipe.postRecipe(this.newrecipe).subscribe((res)=>{
+        console.log(res);
+      })
+    })
+  }
   // Delete a pending recipe
   deletePendingRecipe(id:number){
     this.pendingRecipesService.deletePendingRecipes(id).subscribe({

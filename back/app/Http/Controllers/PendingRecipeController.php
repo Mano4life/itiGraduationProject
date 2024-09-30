@@ -23,10 +23,12 @@ class PendingRecipeController extends Controller
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
-            'category' => ['required', 'string'],
+            'category_id' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
             'user_id' => ['required'],
-            'status' => ['string'],
+            'servings'=>['required'],
+            'status'=>['required','string'],
+            'time'=>['required','string'],
             'ingredients' => ['required', 'array'],
 
 
@@ -36,7 +38,7 @@ class PendingRecipeController extends Controller
         $category = Category::firstOrCreate(['name' => $data['category']]);
 
         // Fetch or create subcategory by name
-        $subcategory = Subcategory::firstOrCreate(['name' => $data['subcategory'], 'category_id' => $category->id]);
+        $subcategory = Subcategory::firstOrCreate(['name' => $data['subcategory'], 'category' => $category->id]);
 
         // Create thePendingRecipe with the fetched category and subcategory IDs
         $pendingRecipe = PendingRecipe::create([
@@ -47,6 +49,8 @@ class PendingRecipeController extends Controller
             'category_id' => $category->id,
             'user_id' => $data['user_id'],
             'status' => $data['status'],
+            'time'=>$data['time'],
+            'servings'=>$data['servings'],
             'subcategory_id' => $subcategory->id
 
         ]);
@@ -86,10 +90,12 @@ class PendingRecipeController extends Controller
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
-            'category' => ['required', 'string'],
+            'category_id' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
+            'servings'=>['required'],
+            'status'=>['required','string'],
+            'time'=>['required','string'],
             'user_id' => ['required'],
-            'status' => ['required'],
             'ingredients' => ['required', 'array'],
         ]);
 
@@ -108,6 +114,8 @@ class PendingRecipeController extends Controller
             'image' => $data['image'],
             'status' => $data['status'],
             'category_id' => $category->id,
+            'time'=>$data['time'],
+            'servings'=>$data['servings'],
             'subcategory_id' => $subcategory->id,
             'user_id' => $data['user_id']
         ]);

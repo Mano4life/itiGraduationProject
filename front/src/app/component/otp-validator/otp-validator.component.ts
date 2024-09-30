@@ -35,7 +35,7 @@ export class OtpValidatorComponent {
               const nextModalInstance = new bootstrap.Modal(nextModalEl);
               nextModalInstance.show();
               localStorage.removeItem('email');
-              
+              this.router.navigate(['']);
               },
               error: (err) => {
                 this.invalid=err.error.message;

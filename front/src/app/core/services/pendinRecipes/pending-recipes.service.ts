@@ -23,5 +23,8 @@ export class PendingRecipesService {
   deletePendingRecipes(id: number){
     return this.http.delete(`http://127.0.0.1:8000/api/pendingRecipes/${id}`)
   }
+  getOnePendingRecipe(id:number){
+    return this.http.get(`http://127.0.0.1:8000/api/pendingRecipes/${id}`)
+  }
   
 }
