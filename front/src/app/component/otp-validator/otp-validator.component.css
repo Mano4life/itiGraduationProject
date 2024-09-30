@@ -12,3 +12,27 @@
     margin: 20px auto 0;
     max-width: 200px;
 }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+  
+.check-icon {
+    animation: bounce 1s ease infinite;
+}
+a{
+    text-decoration: none;
+    color: var(--btn-color);
+    font-weight: bold;
+}
+a:hover{
+    font-size: large;
+    transition: all 50ms;
+}

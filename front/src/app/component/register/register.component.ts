@@ -10,8 +10,8 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UsersService } from '../../core/services/users/users.service';
-import jQuery from 'jquery';
-const $ = jQuery;
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -47,8 +47,10 @@ export class RegisterComponent {
     });
   }
 
-  registerSender() {
+  registerSender(currentModalId: string) {
     if (this.registerForm.valid) {
+      const currentModalEl = document.getElementById(currentModalId);
+      const currentModalInstance = bootstrap.Modal.getInstance(currentModalEl);
       const userData = this.registerForm.value;
 
       // Format date of birth to yyyy-mm-dd
@@ -71,7 +73,9 @@ export class RegisterComponent {
           
           localStorage.setItem('email',dataToStore.email)
           this.router.navigate(['/otp']);
-          $('#registerModal').modal('hide');
+          if (currentModalInstance) {
+            currentModalInstance.hide();
+          }
         },
         error: (err) => {
           this.notvalid=err.error.message;

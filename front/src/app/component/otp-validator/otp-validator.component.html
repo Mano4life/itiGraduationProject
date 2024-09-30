@@ -4,7 +4,7 @@
         <div class="rounded shadow-sm p-3" style="background-color: var(--main-background);">
             <h2 class="text-center" style="color: var(--footer-color);">Verify Your Account</h2>
             <p class="text-center mt-3" >A verification code was send to user Email please check and enter the sent code </p>
-            <form [formGroup]="OTPForm" (ngSubmit)="OTPSender()" class=" m-4">
+            <form [formGroup]="OTPForm" (ngSubmit)="OTPSender('OtpSuccess')" class=" m-4">
 
                 <!-- otp -->
                 <div class="form-group">
@@ -21,3 +21,25 @@
         
     </div>
 </div>
+<div class="modal fade " id="OtpSuccess" tabindex="-1" role="dialog" aria-labelledby="OtpSuccess" aria-hidden="true" style="background-color: var(--main-background);">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+               <div class="text-center mb-4">
+                <i class="far fa-check-circle check-icon" style="color: var(--btn-color); font-size: 50px;"></i>
+              </div>
+              <div>
+                <p class="text-center" style="color: var(--footer-color);">Your Email has been verified; you can log in now!</p>
+              </div>
+              <!-- <div class="text-center mb-4">
+                <a routerLink="" >Go back to Home</a>
+              </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+ 
+  

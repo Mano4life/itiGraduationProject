@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { IngredientsService } from '../../core/services/ingredients/ingredients.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
 
 @Component({
@@ -16,17 +16,43 @@ export class RecipesComponent {
   recipeList: any[] = [];
   sub_categoryList: any[] = [];
   ingredentsList: any[] = [];
-
+  
   constructor(
     private recipes: RecipesService,
     private subcategories: SubcategoriesService,
     private ingredent: IngredientsService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private  route: ActivatedRoute
+
+  ) {
+    
+  }
   ngOnInit(): void {
     this.getreciepes();
     this.getsubcategories();
     this.getingredients();
+    this.getFilterFromHome()
+    
+  }
+  getFilterFromHome() {
+    this.route.queryParams.subscribe((res) => {
+      let filteredRecipes = this.recipeList; // Start with the original list
+  
+      if (res['category']) {
+        filteredRecipes = filteredRecipes.filter((recipe) => {
+          return recipe.category.name === res['category'];
+        });
+      }
+      
+      if (res['subcategory']) {
+        filteredRecipes = filteredRecipes.filter((recipe) => {
+          return recipe.subcategory.name === res['subcategory'];
+        });
+      }
+  
+      // Update the original recipe list with filtered results
+      this.recipeList = filteredRecipes; // This modifies the original list
+    });
   }
   getreciepes() {
     this.recipes.getRecipes().subscribe({
