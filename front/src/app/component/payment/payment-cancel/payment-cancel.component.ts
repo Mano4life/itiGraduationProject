@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { PaymentService } from '../../../core/services/payment/payment.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-payment-cancel',
-  // template: `<h1>Payment Canceled</h1>`,
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './payment-cancel.component.html',
   styleUrl: './payment-cancel.component.css'
 })

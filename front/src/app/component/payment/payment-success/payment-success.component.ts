@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { PaymentService } from '../../../core/services/payment/payment.service';
 import { UsersService } from '../../../core/services/users/users.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-payment-success',
   // template: `<h1>Payemnt Successful!</h1>`,
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './payment-success.component.html',
   styleUrl: './payment-success.component.css'
 })
