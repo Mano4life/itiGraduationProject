@@ -20,16 +20,16 @@ class stripController extends Controller
                     'price_data' => [
                         'currency' => 'gbp',
                         'product_data' => [
-                            'name' => $request->input('product_name') // Dynamically pass the product name from the request
+                            'name' => 'Premium Subscription' // Dynamically pass the product name from the request
                         ],
-                        'unit_amount' => $request->input('amount') // Get amount from request
+                        'unit_amount' => 1000 // Get amount from request
                     ],
-                    'quantity' => $request->input('quantity', 1) // Default quantity to 1
+                    'quantity' => 1 // Default quantity to 1
                 ]
             ],
             'mode' => 'payment',
-            'success_url' => url('/api/payment/success'), // Change success URL to your API route
-            'cancel_url' => url('/api/payment/cancel') // Change cancel URL to your API route
+            'success_url' => env('FRONTEND_URL') . '/payment/success', // Change success URL to your API route
+            'cancel_url' => env('FRONTEND_URL') . '/payment/cancel' // Change cancel URL to your API route
         ]);
 
         // Return the session URL as a JSON response
