@@ -28,10 +28,29 @@ export class AdminPendingRecipesComponent {
     });
   }
   posttorecipe(id:any){
-    this.pendingRecipesService.getOnePendingRecipe(id).subscribe((res)=>{
-      this.newrecipe=res;
+    this.pendingRecipesService.getOnePendingRecipe(id).subscribe((res:any)=>{
+      const ingredientsWithQuantities = res.ingredients.map((ingredient: any) => ({
+        id: ingredient.id,
+        name: ingredient.name,
+        quantity: ingredient.pivot.quantity, 
+        measurement_unit: ingredient.pivot.measurement_unit
+    }));
+      this.newrecipe={
+        "name":res.name,
+        "description":res.description,
+        "category_id":res.category_id,
+        "directions":res.directions,
+        "ingredients":ingredientsWithQuantities,
+        "image":res.image,
+        "servings":res.servings,
+        "time":res.time,
+        "subcategory_id":res.subcategory_id,
+        "category":res.category.name,
+        "subcategory":res.subcategory.name,
+        "user_id":res.user_id
+        }
       this.recipe.postRecipe(this.newrecipe).subscribe((res)=>{
-        console.log(res);
+        this.deletePendingRecipe(id);
       })
     })
   }

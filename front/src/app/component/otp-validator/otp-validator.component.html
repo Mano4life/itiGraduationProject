@@ -14,14 +14,14 @@
                 @if(invalid){
                     <div class="mb-2"><span class="text-danger fw-normal text-capitalize">{{invalid}}</span></div>
                   }
-                <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="OTPForm.invalid" data-bs-dismiss="modal">Send</button>
+                <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="OTPForm.invalid" >Send</button>
             </form>
         </div>
         
         
     </div>
 </div>
-<div class="modal fade " id="OtpSuccess" tabindex="-1" role="dialog" aria-labelledby="OtpSuccess" aria-hidden="true" style="background-color: var(--main-background);">
+<div class="modal fade " id="OtpSuccess" tabindex="-1" role="dialog" aria-labelledby="OtpSuccess" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -31,9 +31,7 @@
               <div>
                 <p class="text-center" style="color: var(--footer-color);">Your Email has been verified; you can log in now!</p>
               </div>
-              <!-- <div class="text-center mb-4">
-                <a routerLink="" >Go back to Home</a>
-              </div> -->
+              
         </div>
       </div>
     </div>
