@@ -9,6 +9,7 @@ import {
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
+import { PendingRecipesService } from '../../core/services/pendinRecipes/pending-recipes.service';
 
 @Component({
   selector: 'app-add-recipe',
@@ -22,8 +23,7 @@ export class AddRecipeComponent {
   recipe!: any;
   userId!: any;
   constructor(
-    private recipesService: RecipesService,
-    private router: Router,
+    private pendingService: PendingRecipesService,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -96,6 +96,7 @@ export class AddRecipeComponent {
         description: this.recipeForm.value.description,
         directions: this.recipeForm.value.directions,
         image: this.recipeForm.value.image,
+        status: 'pending',
         category: this.recipeForm.value.category,
         subcategory: this.recipeForm.value.subcategory,
         user_id: this.userId,
@@ -112,7 +113,7 @@ export class AddRecipeComponent {
         ),
       };
 
-      this.recipesService.postRecipe(recipeData).subscribe({
+      this.pendingService.postPendingRecipes(recipeData).subscribe({
         next: (res) => {
           console.log('Recipe added successfully:', res);
         },

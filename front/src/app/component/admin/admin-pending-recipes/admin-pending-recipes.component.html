@@ -1,0 +1,71 @@
+<!-- Recipes Section -->
+<p-table [value]="pendingRecipes" [paginator]="true" [rows]="4">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between fs-3 dataName">
+            Pending Recipes
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr class="titleTable">
+            <th>Id</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>UserName</th>
+            <th>Accept</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>Deny</th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-data>
+        <tr class="dataTable">
+            <td>{{ data.id }}</td>
+            <td>
+                <img [src]="data.image" [alt]="data.name" width="100" class="shadow-4" />
+            </td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.user.name }}</td>
+
+            <!-- Accept Button -->
+            <td class="text-center">
+                <i class="fa-solid fa-check" style="color: var(--main-color);"></i>
+            </td>
+
+            <!-- Edit Button -->
+            <td class="text-center">
+                <i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);"></i>
+            </td>
+
+            <!-- Delete Button -->
+            <td class="text-center delete">
+                <a data-bs-toggle="modal"  [attr.data-bs-target]="'#deletePendingModal-' + data.id" style="cursor: pointer;">
+                    <i class="fa-solid fa-trash text-danger"></i>
+                </a>
+                
+                <div class="modal fade" [attr.id]="'deletePendingModal-' + data.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content"> 
+                            <div class="modal-body">
+                                <p class="mt-3 mb-0">Are you sure you want to delete this pending recipe?</p>
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-danger" (click)="deletePendingRecipe(data.id)"  data-bs-dismiss="modal">Delete Pending Recipe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+
+            <!-- Deny Button -->
+            <td class="text-center" (click)="denyRecipe(data.id)">
+                <i class="fa-solid fa-ban"  
+                    [ngStyle]="{ color: data.status === 'denied' ? 'black' : 'var(--second-color)'}">
+                </i>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class pending_recipe extends Model
+class PendingRecipe extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -19,13 +19,15 @@ class pending_recipe extends Model
     }
 
     public function ingredients(){
-        return $this->belongsToMany(Ingredient::class);
+        return $this->belongsToMany(Ingredient::class, 'ingredient_pending_recipe')->withPivot('quantity', 'measurement_unit');
     }
 
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }
-    public function users(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
+
+
 }

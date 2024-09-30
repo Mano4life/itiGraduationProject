@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -8,11 +7,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\IngredientController;
-use App\Http\Controllers\pending_recipeController;
+use App\Http\Controllers\PendingRecipeController;
 use App\Http\Controllers\TwoFactorController;
-
-Route::post('/login',[UserController::class,'login']);
-Route::post('/register',[UserController::class,'register']);
 
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/logout',[UserController::class,'logout']);
@@ -26,8 +22,13 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 });
 
-//otp handler
+//otp handler and user api
 route::post('/verify-otp', [TwoFactorController::class, 'verifyOtp']);
+Route::post('/login',[UserController::class,'login']);
+Route::post('/register',[UserController::class,'register']);
+Route::get('users', [UserController::class, 'index']);
+// Route::get('/users/delete', [UserController::class, 'destroy']);
+Route::apiResource('users', UserController::class);
 
 
 // Recipe API resource route
@@ -43,5 +44,7 @@ Route::apiResource('subcategories', SubcategoryController::class);
 // Ingredient API resource route
 Route::apiResource('ingredients', IngredientController::class);
 
-Route::apiResource('pendingRecipes', pending_recipeController::class);
+Route::apiResource('pendingRecipes', PendingRecipeController::class);
+Route::patch('/pendingRecipes/{pendingRecipe}/deny', [PendingRecipeController::class, 'deny']);
+
 Route::apiResource('comments',CommentController::class);

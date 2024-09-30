@@ -173,8 +173,6 @@ class RecipeController extends Controller
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
-            // 'category_id' => ['required', 'exists:categories,id'],
-            // 'subcategory_id' => ['required', 'exists:subcategories,id']
             'category' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
             'user_id' => ['required'],

@@ -22,6 +22,10 @@ export class RecipesService {
     return this.http.post('http://127.0.0.1:8000/api/recipes/', data)
   }
 
+  deleteRecipe(id: any){
+    return this.http.delete(`http://127.0.0.1:8000/api/recipes/${id}`)
+  }
+
   getIngredients(){
     return this.http.get('http://127.0.0.1:8000/api/ingredients/')
   }
@@ -49,4 +53,5 @@ export class RecipesService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`http://127.0.0.1:8000/api/recipes/${recipe}/comment`,comment,{headers});
   }
+
 }
