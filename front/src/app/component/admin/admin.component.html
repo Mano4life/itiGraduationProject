@@ -1,7 +1,7 @@
 
 <div class="container position-relative mt-5 p-2">
     <div class="row mb-5">
-        <div class="col-md-3 col-12 text-center">
+        <div class="col-md-4 col-12 text-center">
             <div class="sidebar p-3">
                 <a (click)="changeSection('users')">Users</a>
                 <a (click)="changeSection('recipes')">Recipes</a>
@@ -10,17 +10,17 @@
         </div>
 
     <!-- User Section -->
-    <div class="col-md-9 col-12 " *ngIf="activeSection === 'users'">
+    <div class="col-md-12 col-lg-8 sections " *ngIf="activeSection === 'users'">
         <app-admin-user></app-admin-user>
     </div>
     
     <!-- Recipes Section -->
-    <div class="col-md-9 col-12" *ngIf="activeSection === 'recipes'">
+    <div class="col-md-12 col-lg-8 sections" *ngIf="activeSection === 'recipes'">
         <app-admin-recipes></app-admin-recipes>
     </div>
 
     <!-- Pending Recipes Section -->
-    <div class="col-md-9 col-12" *ngIf="activeSection === 'pendingRecipes'">
+    <div class="col-md-12 col-lg-8 sections" *ngIf="activeSection === 'pendingRecipes'">
         <app-admin-pending-recipes></app-admin-pending-recipes>
     </div>
 </div>

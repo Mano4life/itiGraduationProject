@@ -21,7 +21,7 @@
 .sidebar::after{
     position: absolute;
     top: -5%;
-    left: 20%;
+    left: 25%;
     width: 5px;
     height: 100%;
     content: "";
@@ -32,9 +32,22 @@
     background-color:#756f64;
 }
 
-@media (max-width: 945px){
-    .sidebar::after{
+@media (max-width: 992px) {
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+    .sidebar {
+        margin-right: 0;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .sidebar::after {
         content: none;
     }
-}
 
+    .sections{
+        padding: 0;
+    }
+}
