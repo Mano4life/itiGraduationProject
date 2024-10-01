@@ -1,64 +1,39 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { RouterModule } from '@angular/router'; // Use RouterModule instead of RouterLink
+import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 import { LoginComponent } from "../login/login.component";
 import { RegisterComponent } from "../register/register.component";
 import { SearchInputComponent } from "../search-input/search-input.component";
+import { CommonModule } from '@angular/common'; // Import CommonModule
 
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule,  SearchInputComponent, LoginComponent, RegisterComponent], // RouterModule instead of RouterLink
+  imports: [
+    CommonModule,  // Add CommonModule here
+    RouterLink,
+    SearchInputComponent,
+    LoginComponent,
+    RegisterComponent
+  ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
-toggleNavbar() {
-throw new Error('Method not implemented.');
-}
+
+export class NavbarComponent {
   logo: string = 'assets/imgs/logo.png';
+  menuOpen: boolean = false; // Track menu state
+  darkMode: boolean = false; // Track dark mode state
 
-  constructor(private renderer: Renderer2) { }
-
-  /* toggleDarkMode() {
-    const body = document.body;
-    const teamSection = document.querySelector('.team-section');
-    const teamMembers = document.querySelectorAll('.team-member');
-
-    if (body.classList.contains('dark-mode')) {
-      this.renderer.removeClass(body, 'dark-mode');
-      if (teamSection) this.renderer.removeClass(teamSection, 'dark-mode');
-      teamMembers.forEach(member => {
-        this.renderer.removeClass(member, 'dark-mode');
-      });
-      localStorage.setItem('theme', 'light');
-    } else {
-      this.renderer.addClass(body, 'dark-mode');
-      if (teamSection) this.renderer.addClass(teamSection, 'dark-mode');
-      teamMembers.forEach(member => {
-        this.renderer.addClass(member, 'dark-mode');
-      });
-      localStorage.setItem('theme', 'dark');
-    }
-  }
-*/
-  toggleResponsiveMenu() {
-    const topnav = document.getElementById('myTopnav');
-
-    if (topnav) {
-      if (topnav.className === 'topnav') {
-        topnav.className += ' responsive';
-      } else {
-        topnav.className = 'topnav';
-      }
-    }
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
   }
 
-  ngOnInit() {
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-      this.renderer.addClass(document.body, 'dark-mode');
-    }
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    document.body.classList.toggle('dark-mode', this.darkMode);
   }
+
+  constructor() { }
 }

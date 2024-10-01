@@ -5,25 +5,23 @@
 }
 
 .navbar {
-  padding: 20px 30px; /* Reduce padding for smaller screens */
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 20px 70px;
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
 }
 
 /* Links */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 30px;
+  gap: 55px;
   padding: 0;
   margin: 0;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: black;
+  color: var(--primary-text-color);
   text-transform: capitalize;
   display: flex;
   flex-direction: column;
@@ -39,73 +37,108 @@
   margin-top: 4px;
   color: var(--main-color);
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
 }
 
-/* Media Query for Mobile */
-@media (max-width: 768px) {
+/* Login Style */
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-title {
+  text-align: center;
+  color: var(--main-color);
+  font-size: 55px;
+  margin: auto;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.switch {
+  color: var(--main-color);
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.switch .switchCard {
+  color: var(--btn-color);
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
   .navbar {
-    flex-direction: column; /* Stack items vertically */
-    padding: 10px;
+    padding: 10px 30px;
   }
 
-  @media (max-width: 768px) {
-    .logo img {
-      max-height: 50px;
-      max-width: 70px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .logo img {
-      max-height: 40px;
-      max-width: 60px;
-    }
-  }
-  
   .nav-links {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .nav-links a p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo img {
+    height: 60px;
+    width: 80px;
+  }
+
+  .nav-links {
+    display: block;
     width: 100%;
     text-align: center;
   }
 
-  .nav-links a {
-    font-size: 18px;
-  }
-}
-
-/* Media Query for Tablets */
-@media (max-width: 1024px) {
   .navbar {
-    padding: 15px 20px;
+    padding: 10px 20px;
   }
 
-  .nav-links {
-    gap: 40px;
+  .nav-links a p {
+    font-size: 14px;
   }
 }
 
-/* Ensure dark mode applies to the navbar */
+@media (max-width: 576px) {
+  .logo img {
+    height: 50px;
+    width: 70px;
+  }
+}
+
+/* Dark Mode Specific Styles */
 body.dark-mode .navbar {
-  background-color: #121212;
-  color: #fff; /* Ensure text color is updated */
-  border-bottom: 1px solid #444; /* Update border color in dark mode */
+  background-color: var(--third-color);
+  color: var(--primary-text-color);
 }
 
 body.dark-mode .nav-links a {
-  color: #fff; /* Update link color to white in dark mode */
+  color: var(--primary-text-color);
 }
 
-body.dark-mode .search-bar input {
-  background-color: #333; /* Update search bar background */
-  color: #fff; /* Update search bar text to white */
+body.dark-mode .nav-links i {
+  color: var(--second-color);
 }
 
-body.dark-mode .searchicon {
-  color: #fff; /* Ensure the search icon is white */
+body.dark-mode .nav-links a p {
+  color: var(--primary-text-color);
 }
-/* Add styles for the topnav class */
 
+body.dark-mode .modal-title {
+  color: var(--second-color);
+}
 
+body.dark-mode .switch {
+  color: var(--second-color);
+}
 
+body.dark-mode .switch .switchCard {
+  color: var(--btn-color);
+}
