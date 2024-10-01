@@ -1,144 +1,104 @@
-/* Navbar styles */
-.logo img {
-  height: 80px;
-  width: 100px;
-}
-
+/* Navbar container */
 .navbar {
-  padding: 20px 70px;
-  background-color: var(--primary-background-color);
-  color: var(--primary-text-color);
-}
-
-/* Links */
-.nav-links {
   display: flex;
-  list-style: none;
-  gap: 55px;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--primary-text-color);
-  text-transform: capitalize;
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  flex-wrap: wrap; /* Enable wrapping for small screens */
 }
 
-.nav-links i {
-  font-size: 20px;
-  color: var(--main-color);
+/* Logo */
+.logo img {
+  height: 50px; /* Adjusted for mobile */
+  width: auto;
 }
 
-.nav-links a p {
-  margin-top: 4px;
-  color: var(--main-color);
-  font-weight: bold;
-  font-size: 20px;
-}
-
-/* Login Style */
-.modal-header {
-  border-bottom: none;
-}
-
-.modal-title {
-  text-align: center;
-  color: var(--main-color);
-  font-size: 55px;
-  margin: auto;
-}
-
-.modal-body {
-  padding: 0;
-}
-
-.switch {
-  color: var(--main-color);
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-}
-
-.switch .switchCard {
-  color: var(--btn-color);
+/* Toggler button for mobile */
+.navbar-toggler {
+  font-size: 24px;
+  background: none;
+  border: none;
   cursor: pointer;
+  display: none; /* Hidden by default, shown on mobile */
 }
 
-/* Responsive Styles */
-@media (max-width: 992px) {
-  .navbar {
-    padding: 10px 30px;
-  }
+.navbar-toggler i {
+  color: #333;
+}
 
-  .nav-links {
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-  }
-
-  .nav-links a p {
-    font-size: 16px;
-  }
+/* Search input */
+app-search-input {
+  flex-grow: 1;
+  max-width: 400px;
+  margin: 0 10px;
 }
 
 @media (max-width: 768px) {
-  .logo img {
-    height: 60px;
-    width: 80px;
+  /* Display the toggler button on mobile */
+  .navbar-toggler {
+    display: block;
   }
 
+  /* Stack elements vertically */
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Search input should resize properly */
+  app-search-input {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  /* Adjust logo size for mobile */
+  .logo img {
+    height: 40px;
+  }
+
+  /* Center and stack the links */
   .nav-links {
-    display: block;
+    display: none; /* Hide by default */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Show links when the menu is open */
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Make links full width for mobile */
+  .nav-links li {
     width: 100%;
     text-align: center;
   }
-
-  .navbar {
-    padding: 10px 20px;
-  }
-
-  .nav-links a p {
-    font-size: 14px;
-  }
 }
 
-@media (max-width: 576px) {
-  .logo img {
-    height: 50px;
-    width: 70px;
-  }
+/* Navbar links */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 20px;
 }
 
-/* Dark Mode Specific Styles */
-body.dark-mode .navbar {
-  background-color: var(--third-color);
-  color: var(--primary-text-color);
+.nav-links li a {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
 }
 
-body.dark-mode .nav-links a {
-  color: var(--primary-text-color);
+.nav-links li a i {
+  font-size: 20px;
 }
 
-body.dark-mode .nav-links i {
-  color: var(--second-color);
-}
-
-body.dark-mode .nav-links a p {
-  color: var(--primary-text-color);
-}
-
-body.dark-mode .modal-title {
-  color: var(--second-color);
-}
-
-body.dark-mode .switch {
-  color: var(--second-color);
-}
-
-body.dark-mode .switch .switchCard {
-  color: var(--btn-color);
+.nav-links li a p {
+  margin-top: 5px;
+  font-weight: bold;
 }

@@ -1,40 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
+import { NgClass } from '@angular/common';  // Import NgClass for using it in your component
+import { SearchInputComponent } from "../search-input/search-input.component";
 import { LoginComponent } from "../login/login.component";
 import { RegisterComponent } from "../register/register.component";
-import { SearchInputComponent } from "../search-input/search-input.component";
 import { SearchComponent } from '../search/search.component';
-import { CommonModule } from '@angular/common'; // Import CommonModule
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [
-    CommonModule,  // Add CommonModule here
-    RouterLink,
-    SearchComponent,
-    SearchInputComponent,
-    LoginComponent,
-    RegisterComponent
-  ],
+  imports: [RouterLink, SearchComponent, SearchInputComponent, LoginComponent, RegisterComponent, NgClass],  // Add NgClass to imports
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   logo: string = 'assets/imgs/logo.png';
-  menuOpen: boolean = false; // Track menu state
-  darkMode: boolean = false; // Track dark mode state
-
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
-
-  toggleDarkMode() {
-    this.darkMode = !this.darkMode;
-    document.body.classList.toggle('dark-mode', this.darkMode);
-  }
+  isMenuOpen: boolean = false;
 
   constructor() { }
+
+  // Toggle dark mode by adding/removing the dark-mode class on the body
+  toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+  }
+
+  // Check the localStorage for theme preference on component initialization
+  ngOnInit() {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  }
+
+  // Toggle the visibility of the navigation menu on smaller screens
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }
