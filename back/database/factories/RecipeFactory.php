@@ -22,12 +22,12 @@ class RecipeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(3),
-            'description' => fake()->paragraph(),
-            'directions' => fake()->paragraph(30),
-            'image' => fake()->imageUrl(),
-            'category_id' => Category::factory(),
-            'subcategory_id' => Subcategory::factory()
+            // 'name' => fake()->sentence(3),
+            // 'description' => fake()->paragraph(),
+            // 'directions' => fake()->paragraph(30),
+            // 'image' => fake()->imageUrl(),
+            // 'category_id' => Category::factory(),
+            // 'subcategory_id' => Subcategory::factory()
         ];
     }
 
