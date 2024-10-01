@@ -551,10 +551,10 @@ video {
         padding: 15px;
     }
 }
-.dark-mode .navbar{
+body.dark-mode .navbar{
     background-color: #121212;
       
   }
-  .dark-mode .home-banner .banner-left{
+ body .dark-mode .home-banner .banner-left{
     position: relative;
   }

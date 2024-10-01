@@ -1,85 +1,101 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importing themes */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 
-:root{
+/* Light Mode Variables */
+:root {
   --main-background: #f9f9ff;
-
   --main-color: #395963;
   --second-color: #777;
   --third-color: #eee;
-
   --boxCategory-color: #F6E1D3;
   --btn-color: #fe735c; 
-
   --boxShadow-color: rgba(244, 47, 44, 0.32);
+  --footer-color: #395963;
 
+  /* Font Families */
   --main-font: 'Playfair Display', serif;
   --second-font: 'Nanum Gothic', sans-serif;
   --titleReciepe-font: "EB Garamond", serif;
-  
-  --footer-color: #395963;
+
+  /* Light mode background and text colors */
+  --primary-background-color: #ffffff;
+  --primary-text-color: #000000;
 }
 
-h1{
-  font-family: var(--main-font);
-}
-
-p{
-  font-family: var(--second-font);
-}
-body.dark-mode .team-section {
-  background-color: #333333 !important;
-  color: #ffffff !important;
-}
+/* Dark Mode Variables */
 body.dark-mode {
-  --primary: #000000;
+  --main-background: #121212;
+  --main-color: #e60c0c;
+  --second-color: #bbbbbb;
+  --third-color: #4c4b4b;
+  --fourth-color:white;
+  --boxCategory-color: #2a2a2a;
+  --btn-color: #63091b; 
+  --boxShadow-color: rgba(5, 5, 5, 0.5);
+  --footer-color: #2a2a2a;
+
+  /* Dark mode background and text colors */
+  --primary-background-color: #121212;
+  --primary-text-color: #e0e0e0;
 }
 
+/* Global Elements */
 body {
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
+}
+
+/* Headings and Paragraphs */
+h1 {
+  font-family: var(--main-font);
+  color: var(--primary-text-color);
+}
+
+p {
+  font-family: var(--second-font);
+  color: var(--second-color);
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--primary-background-color);
+  color: var(--main-color);
+}
+
+/* Card for Both Modes */
+.card {
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
+}
+
+/* Team Section in Dark Mode */
+
+body.dark-mode .navbar {
+  /* background-color: var(--main-background);*/
+  color: white !important;
+}
+body.dark-mode .navbar a {
   
-  --primary: #FFFFFF;
+  color: white;
 }
 
 body.dark-mode .team-member {
-  background-color: #444444 !important;
-  color: #ffffff !important;
+  background-color: var(--boxCategory-color);
+  color: var(--primary-text-color);
 }
 
 body.dark-mode .member-info h3,
 body.dark-mode .member-info h4,
 body.dark-mode .member-info p {
-  color: #ffffff !important;
+  color: var(--primary-text-color);
 }
 
 body.dark-mode .member-photo {
-  border-color: #ffffff !important;
-}
-/* styles.css or styles.scss */
-body.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
+  border-color: var(--primary-text-color);
 }
 
-
-.navbar{
- 
-  background-color: var(--primary);
-}
-
-.card.dark-mode {
-  background-color: #444444;
-  color: #ffffff;
-}
-
-/* Add other necessary component or container classes */
-
-
-
-
-
-/* Login & Register */
-
+/* Login & Register Forms */
 .auth {
   text-align: center;
   padding: 0 30px;
@@ -87,7 +103,7 @@ body.dark-mode {
 
 .form-group {
   position: relative;
-  color: #828487;
+  color: var(--second-color);
   display: flex;
 }
 
@@ -98,4 +114,32 @@ body.dark-mode {
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 20px;
+}
+
+/* Responsive Text Scaling */
+@media (max-width: 992px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 0.8rem;
+  }
 }

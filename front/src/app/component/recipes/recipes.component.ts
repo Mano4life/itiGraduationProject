@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { IngredientsService } from '../../core/services/ingredients/ingredients.service';
 import { Router } from '@angular/router';
-import { SubcategoriesService } from '../../service/core/services/subcategories/subcategories.service';
+import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
 
 @Component({
   selector: 'app-recipes',
