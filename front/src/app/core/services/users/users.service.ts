@@ -12,9 +12,18 @@ export class UsersService {
     return this.http.get('http://127.0.0.1:8000/api/users');
   }
   getUser(){
+    
     const token = localStorage.getItem('auth_token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<any>('http://127.0.0.1:8000/api/user',{ headers });
+    const admin=localStorage.getItem('admin_auth');
+    if(token){
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      return this.http.get<any>('http://127.0.0.1:8000/api/user',{ headers });
+    }
+    else{
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
+      return this.http.get<any>('http://127.0.0.1:8000/api/user',{ headers });
+    }
+    
   }
   EditUser(Data: any) {
     const token = localStorage.getItem('auth_token');
@@ -26,7 +35,7 @@ export class UsersService {
     return this.http.delete(`http://127.0.0.1:8000/api/users/${id}`)
   }
   adminEditUser(id:any, data:any){
-    return  this.http.put(`http://127.0.0.1:8000/api/adminEditUser/${id}`,data);
+    return  this.http.patch(`http://127.0.0.1:8000/api/adminEditUser/${id}`,data);
   }
 
   login(Data: any){

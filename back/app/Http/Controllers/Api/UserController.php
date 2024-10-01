@@ -81,7 +81,7 @@ class UserController extends Controller
     public function user(Request $request)
     {
         $user = $request->user();
-        $user->load('recipes_saves', 'recipes', 'recipes_ratings');
+        $user->load('recipes_saves', 'recipes', 'recipes_ratings','pendingRecipes');
 
         $userData = $user->toArray();
 
