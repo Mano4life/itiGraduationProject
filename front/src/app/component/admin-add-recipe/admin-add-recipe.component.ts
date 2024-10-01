@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Renderer2 } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
-import { PendingRecipesService } from '../../core/services/pendinRecipes/pending-recipes.service';
+import { RecipesService } from '../../core/services/recipes/recipes.service';
 declare var bootstrap: any;
 
 @Component({
@@ -17,7 +17,7 @@ export class AdminAddRecipeComponent {
   recipe!: any;
   userId!: any;
   constructor(
-    private pendingService: PendingRecipesService,
+    private recipeService: RecipesService,
     private activatedRoute: ActivatedRoute,
     private renderer: Renderer2,
     private router: Router
@@ -64,7 +64,7 @@ export class AdminAddRecipeComponent {
     const modalElement = document.getElementById('recipesuccess');
     if (modalElement) {
       this.renderer.listen(modalElement, 'hidden.bs.modal', () => {
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/admin']);
       });
     }
   }
@@ -99,7 +99,6 @@ export class AdminAddRecipeComponent {
         description: this.recipeForm.value.description,
         directions: this.recipeForm.value.directions,
         image: this.recipeForm.value.image,
-        status: 'pending',
         category: this.recipeForm.value.category,
         subcategory: this.recipeForm.value.subcategory,
         user_id: this.userId,
@@ -116,7 +115,7 @@ export class AdminAddRecipeComponent {
         ),
       };
 
-      this.pendingService.postPendingRecipes(recipeData).subscribe({
+      this.recipeService.postRecipe(recipeData).subscribe({
         next: (res) => {
           console.log('Recipe added successfully:', res);
           const nextModalEl = document.getElementById(modal);

@@ -11,20 +11,23 @@ export class UsersService {
   getUsers(){
     return this.http.get('http://127.0.0.1:8000/api/users');
   }
-  getUser(){
-    
+
+  getUser() {
     const token = localStorage.getItem('auth_token');
-    const admin=localStorage.getItem('admin_auth');
-    if(token){
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      return this.http.get<any>('http://127.0.0.1:8000/api/user',{ headers });
+    const admin = localStorage.getItem('admin_token');
+
+    // Determine which token to use
+    const authToken = token || admin;
+
+    if (authToken) {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
+        return this.http.get<any>('http://127.0.0.1:8000/api/user', { headers });
+    } else {
+        // Handle the case where neither token exists
+        throw new Error('No authorization token found');
     }
-    else{
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
-      return this.http.get<any>('http://127.0.0.1:8000/api/user',{ headers });
-    }
-    
   }
+
   EditUser(Data: any) {
     const token = localStorage.getItem('auth_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RecipesService } from '../../../core/services/recipes/recipes.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-edit-recipes',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, RouterLinkWithHref],
+  imports: [FormsModule, ReactiveFormsModule,CommonModule,RouterLink],
   templateUrl: './admin-edit-recipes.component.html',
   styleUrl: './admin-edit-recipes.component.css'
 })
@@ -16,35 +17,74 @@ export class AdminEditRecipesComponent {
   editSingleRecipe!: any;
 
   constructor(private routerActive:ActivatedRoute, private recipeService: RecipesService,private router:Router) {
-    this.editForm = new FormGroup({
-      id: new FormControl({ value: '', disabled: true }, Validators.required),
-      name: new FormControl('', Validators.required),
-      user: new FormGroup({
-        name: new FormControl('', Validators.required),
-      }),
-      image: new FormControl('') // To hold the image URL
-    });
+
   }
 
   ngOnInit() {
+    this.editForm = new FormGroup({
+      id:new FormControl('',[Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      Username:new FormControl('',[Validators.required]),
+      Servings: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      time: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      Description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      Direction: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      image: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      category: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      subcategory: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      ingredients: new FormArray([])
+    });
     this.editRecipeId = this.routerActive.snapshot.params['id']; 
 
-    if(this.editRecipeId){
+    if (this.editRecipeId) {
       this.recipeService.getSingleRecipe(this.editRecipeId).subscribe((data) => {
-          this.editSingleRecipe = data;
-          console.log(this.editSingleRecipe);
-          
-          // Patch the form with the returned recipe data
+        this.editSingleRecipe = data;
+        console.log("recipe output",this.editSingleRecipe)
+        // Patch the form with the basic recipe data
         this.editForm.patchValue({
           id: data.id,
           name: data.name,
-          user: { name: data.user.name },
-          image: data.image // Assuming 'image' is a property in your data
+          Servings: data.servings,
+          time: data.time,
+          Description: data.description,
+          Direction: data.directions,
+          Username: data.user.name,
+          image: data.image,
+          category:data.category.name,
+          subcategory:data.subcategory.name,
+        });
+        console.log(this.editForm)
+    
+        // Clear existing ingredients and add new ones
+        const ingredientsFormArray = this.editForm.get('ingredients') as FormArray;
+        ingredientsFormArray.clear(); // Clear the existing FormArray
+    
+        data.ingredients.forEach((ingredient: { name: string; quantity: string; measurement_unit: string }) => {
+          const ingredientGroup = new FormGroup({
+            name: new FormControl(ingredient.name, Validators.required),
+            quantity: new FormControl(ingredient.quantity, Validators.required),
+            measurement_unit: new FormControl(ingredient.measurement_unit, Validators.required),
+          });
+          ingredientsFormArray.push(ingredientGroup); // Add to FormArray
         });
       });
-    }
-    
-  }
+    }}
+
 
   editRecipe(){
     if (!this.editForm.valid) {

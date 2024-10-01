@@ -23,6 +23,40 @@ h1, form label{
     margin: 0;
 }
 
-.formEdit input{
-    width: 75%;
+@media (max-width: 1200px) {
+    .col-lg-4,
+    .col-lg-8 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .formEdit {
+        margin-top: 20px;
+    }
+    .btn {
+        width: fit-content;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        align-items: flex-start;
+    }
+
+    .main .back {
+        margin-top: 15px;
+    }
+
+    .btn {
+        width: fit-content;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn {
+        width: fit-content;
+    padding: 10px 20px;
+    }
 }

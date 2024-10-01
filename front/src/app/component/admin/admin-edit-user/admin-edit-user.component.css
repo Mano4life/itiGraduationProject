@@ -21,3 +21,24 @@
   .main .back p{
     margin: 0;
   }
+
+  @media (max-width: 768px) {
+    
+    .main {
+      align-items: flex-start;
+    }
+  
+    .main .back {
+      margin-top: 10px;
+    }
+  }
+  
+@media (max-width: 576px) {
+    h1 {
+      margin-bottom: 2rem;
+    }
+  
+    .btn {
+      padding: 10px 0;
+    }
+}
