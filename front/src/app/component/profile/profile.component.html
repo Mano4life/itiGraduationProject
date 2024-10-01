@@ -43,11 +43,11 @@
   <!-- premium ========================================================================================= -->
   <section class="recipes-wrapper mt-5" *ngIf="isPremium">
     <div class="title d-flex justify-content-between align-items-center">
-      <h1 class="fw-bold text-capitalize">your magic</h1>
-      <a routerLink="/add-recipe/{{ user.id }}" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">add recipe</a>
+      <h1 class="fw-bold text-capitalize">Waiting for Aproval</h1>
+      
     </div>
-    <div class="body mt-4 d-flex gap-3 overflow-x-auto" *ngIf="user.recipes.length!=0">
-      <div *ngFor="let recipe of user?.recipes">
+    <div class="body mt-4 d-flex gap-3 overflow-x-auto" *ngIf="user.pending_recipes.length!=0">
+      <div *ngFor="let recipe of user?.pending_recipes"  class="position-relative">
         <div
           class="card border-0"
           style="width: 300px; cursor: pointer"
@@ -59,6 +59,8 @@
             alt="Title"
             style="height: 330px;"
           />
+          <span class="badge bg-secondary position-absolute top-0 start-0 m-2" *ngIf="recipe.status=='pending'">{{recipe.status}}</span>
+          <span class="badge bg-danger position-absolute top-0 start-0 m-2"*ngIf="recipe.status=='denied'">{{recipe.status}}</span>
           <div class="card-body">
             <h1 class="card-title h4">{{ recipe?.name }}</h1>
           </div>
@@ -70,7 +72,45 @@
       
         <img src="assets/img/empty-box_4826310.png" alt="empty" class="w-100">
       </div> -->
-      <div class="p-5">
+      <div class="p-5"  *ngIf="user.pending_recipes.length==0">
+
+        <h3 class="text-center text-secondary p-5">No Submitted Recipes yet!!</h3>
+      </div>
+    </div>
+    
+  </section>
+  <section class="recipes-wrapper mt-5" *ngIf="isPremium">
+    <div class="title d-flex justify-content-between align-items-center">
+      <h1 class="fw-bold text-capitalize">your magic</h1>
+      <a routerLink="/add-recipe/{{ user.id }}" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">add recipe</a>
+    </div>
+    <div class="body mt-4 d-flex gap-3 overflow-x-auto" *ngIf="user.recipes.length!=0">
+      <div *ngFor="let recipe of user?.recipes" class="position-relative">
+        <div
+          class="card border-0"
+          style="width: 300px; cursor: pointer"
+          (click)="onRecipeClick(recipe.id)"
+        >
+          <img
+            class="rounded card-img-top w-100 object-fit-cover"
+            src="{{ recipe?.image }}"
+            alt="Title"
+            style="height: 330px;"
+          />
+          <span class="badge bg-success position-absolute top-0 start-0 m-2">Accepted</span>
+          <div class="card-body">
+            <h1 class="card-title h4">{{ recipe?.name }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <!-- <div *ngIf="user.recipes.length==0 " class="col-lg-2 col-m-3 col-sm-3 col-4">
+      
+        <img src="assets/img/empty-box_4826310.png" alt="empty" class="w-100">
+      </div> -->
+      <div class="p-5"  *ngIf="user.recipes.length==0">
+
         <h3 class="text-center text-secondary p-5">Share your culinary magic with us and get featured on our website! Send your favorite recipe  !!</h3>
       </div>
     </div>

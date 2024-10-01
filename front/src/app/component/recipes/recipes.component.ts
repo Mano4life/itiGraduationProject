@@ -205,7 +205,7 @@ export class RecipesComponent {
   timeMatches(recipeTime: number, selectedTimes: string[]): boolean {
     return selectedTimes.some((selected) => {
       if (selected === '15 min >')
-        return recipeTime == 15 && recipeTime < 20;
+        return recipeTime == 15 || recipeTime < 15;
       if (selected === '20 min >')
         return recipeTime == 20 && recipeTime < 30;
       if (selected === '30 min >')

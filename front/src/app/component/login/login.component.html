@@ -30,6 +30,11 @@
     @if(invalid){
         <div class="mb-2"><span class="text-danger fw-normal text-capitalize">{{invalid}}</span></div>
     }
+    @if(authenticated){
+        <div class="mb-2"><span class="text-danger fw-normal text-capitalize">Your Account is not verified </span></div>
+        <div class="mb-2"><a class="text-danger fw-normal text-capitalize" routerLink="/otp">Click here to verify </a></div>
+    }
+
 
     <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="LoginForm.invalid" >Login</button>
 </form>
