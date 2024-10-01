@@ -1,8 +1,11 @@
 <!-- Recipes Section -->
 <p-table [value]="recipes" [paginator]="true" [rows]="4">
     <ng-template pTemplate="caption">
-        <div class="flex align-items-center justify-content-between fs-3 dataName">
-            Recipes
+        <div class="fs-3 dataName">
+            <h1>Recipes</h1>
+            <div routerLink="/admin-add-recipes/{{admin.id}}">
+                <i class="fa-solid fa-plus"></i>
+            </div>
         </div>
     </ng-template>
     <ng-template pTemplate="header">

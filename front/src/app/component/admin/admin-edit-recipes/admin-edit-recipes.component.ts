@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RecipesService } from '../../../core/services/recipes/recipes.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-edit-recipes',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule,CommonModule],
+  imports: [FormsModule, ReactiveFormsModule,CommonModule,RouterLink],
   templateUrl: './admin-edit-recipes.component.html',
   styleUrl: './admin-edit-recipes.component.css'
 })
@@ -84,7 +84,7 @@ export class AdminEditRecipesComponent {
         });
       });
     }}
- 
+
 
   editRecipe(){
     if (!this.editForm.valid) {

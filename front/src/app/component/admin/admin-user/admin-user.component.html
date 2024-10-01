@@ -2,8 +2,8 @@
 <!-- User Section -->
 <p-table [value]="users" [paginator]="true" [rows]="4">
     <ng-template pTemplate="caption">
-        <div class="flex align-items-center justify-content-between fs-3 dataName">
-            Users
+        <div class="fs-3 dataName">
+            <h1>Users</h1>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -11,6 +11,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Role</th>
             <th class="text-center">Edit</th>
             <th class="text-center">Delete</th>
         </tr>
@@ -20,8 +21,11 @@
             <td>{{ data.id }}</td>
             <td>{{ data.name }}</td>
             <td>{{ data.email }}</td>
+            <td>{{ data.role }}</td>
             <td class="text-center" (click)="routeToEdit(data.id)">
                 <i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);" ></i>
+            <td class="text-center">
+                <i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);"></i>
             </td>
 
             <!-- Delete Button -->

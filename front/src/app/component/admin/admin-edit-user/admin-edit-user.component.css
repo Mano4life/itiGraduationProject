@@ -4,3 +4,41 @@
   h1, form label{
     color: var(--main-color);
   }
+
+  .main{
+    color: var(--main-color);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .main .back{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+
+  .main .back p{
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    
+    .main {
+      align-items: flex-start;
+    }
+  
+    .main .back {
+      margin-top: 10px;
+    }
+  }
+  
+@media (max-width: 576px) {
+    h1 {
+      margin-bottom: 2rem;
+    }
+  
+    .btn {
+      padding: 10px 0;
+    }
+}

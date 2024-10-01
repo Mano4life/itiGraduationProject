@@ -2,9 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
-import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { ButtonModule } from 'primeng/button';
-import { UsersService } from '../../core/services/users/users.service';
 import { AdminUserComponent } from "./admin-user/admin-user.component";
 import { AdminRecipesComponent } from "./admin-recipes/admin-recipes.component";
 import { AdminPendingRecipesComponent } from "./admin-pending-recipes/admin-pending-recipes.component";
@@ -22,6 +20,7 @@ export class AdminComponent {
   constructor() {}
   
   ngOnInit() {
+    
   }
 
   activeSection: string = 'pendingRecipes';

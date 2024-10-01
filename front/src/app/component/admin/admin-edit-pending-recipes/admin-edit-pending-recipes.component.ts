@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-edit-pending-recipes',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule,CommonModule],
+  imports: [FormsModule, ReactiveFormsModule,CommonModule, RouterLink],
   templateUrl: './admin-edit-pending-recipes.component.html',
   styleUrl: './admin-edit-pending-recipes.component.css'
 })
 export class AdminEditPendingRecipesComponent {
   editForm!:FormGroup;
-  editRecipeId!:number;
-  editSingleRecipe!: any;
+  pendingRecipeId!:number;
+  editPendingRecipe!: any;
 
-  constructor(private routerActive:ActivatedRoute, private recipeService: PendingRecipesService,private router:Router) {
+  constructor(private routerActive:ActivatedRoute, private pendingRecipeService: PendingRecipesService,private router:Router) {
 
   }
 
@@ -49,12 +49,12 @@ export class AdminEditPendingRecipesComponent {
       ]),
       ingredients: new FormArray([])
     });
-    this.editRecipeId = this.routerActive.snapshot.params['id']; 
+    this.pendingRecipeId = this.routerActive.snapshot.params['id']; 
 
-    if (this.editRecipeId) {
-      this.recipeService.getOnePendingRecipe(this.editRecipeId).subscribe((data:any) => {
-        this.editSingleRecipe = data;
-        console.log("output pending",this.editSingleRecipe)
+    if (this.pendingRecipeId) {
+      this.pendingRecipeService.getOnePendingRecipe(this.pendingRecipeId).subscribe((data:any) => {
+        this.editPendingRecipe = data;
+        console.log("output pending",this.editPendingRecipe)
         // Patch the form with the basic recipe data
         this.editForm.patchValue({
           id: data.id,
@@ -84,7 +84,7 @@ export class AdminEditPendingRecipesComponent {
         });
       });
     }}
- 
+
 
   editRecipe(){
     if (!this.editForm.valid) {
@@ -106,7 +106,7 @@ export class AdminEditPendingRecipesComponent {
         image: this.editForm.value.image,
         category: this.editForm.value.category,
         subcategory: this.editForm.value.subcategory,
-        user_id: this.editSingleRecipe.user.id,
+        user_id: this.editPendingRecipe.user.id,
         status:'pending',
         ingredients: this.editForm.value.ingredients.map(
           (ingredient: {
@@ -122,7 +122,7 @@ export class AdminEditPendingRecipesComponent {
       };
       console.log("data to be sent",recipeData);
 
-      this.recipeService.updatePendingRecipe(this.editRecipeId,recipeData).subscribe({
+      this.pendingRecipeService.updatePendingRecipe(this.pendingRecipeId,recipeData).subscribe({
         next: (res) => {
           console.log('Recipe added successfully:', res);
           this.router.navigate(['/admin']);

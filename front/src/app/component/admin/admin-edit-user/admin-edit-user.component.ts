@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../../../core/services/users/users.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-edit-user',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,RouterLink],
   templateUrl: './admin-edit-user.component.html',
   styleUrl: './admin-edit-user.component.css'
 })
