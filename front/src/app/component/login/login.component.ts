@@ -15,7 +15,7 @@ export class LoginComponent {
   LoginForm!: FormGroup;
   isPasswordVisible: boolean = false;
   invalid:any;
-
+  authenticated:boolean=false;
   constructor(private router: Router,private serv:UsersService) {
     this.LoginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email,
@@ -26,6 +26,11 @@ export class LoginComponent {
       ]),
     })
   }
+  ngOnInit(): void {
+    this.authenticated = !!localStorage.getItem('email');
+    console.log(this.authenticated)
+  }
+
 
   loginSender() {
     if (this.LoginForm.valid) {

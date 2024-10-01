@@ -20,7 +20,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-data>
-        <tr class="dataTable">
+        <tr class="dataTable" [ngStyle]="{ 'background-color': data.status === 'denied' ? '#ffe0e0' : 'white' }">
             <td>{{ data.id }}</td>
             <td>
                 <img [src]="data.image" [alt]="data.name" width="100" class="shadow-4" />
