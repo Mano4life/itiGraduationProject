@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule, NgFor } from '@angular/common';
 import { UsersService } from '../../core/services/users/users.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -15,6 +15,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 export class ProfileComponent {
   recipes!: any;
   user!: any;
+  isPremium:boolean = false;
   constructor(
     private recipesService: RecipesService,
     private usersService: UsersService,
@@ -27,11 +28,16 @@ export class ProfileComponent {
       this.recipes = res;
     });
 
-    this.activatedRoute.paramMap.subscribe((params) => {
+    
       this.usersService.getUser().subscribe((res) => {
         this.user = res;
+        if(this.user.role == 'premium' || this.user.role == 'admin'){
+          this.isPremium = true;
+         
+        }
+        console.log("output",this.user)
       });
-    });
+ 
   }
 
   onRecipeClick(id: number) {

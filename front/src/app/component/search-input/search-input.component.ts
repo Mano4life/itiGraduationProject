@@ -45,6 +45,7 @@ export class SearchInputComponent {
   }
   onSelect(id:number){
     this.router.navigate(['/recipes', id]);
+    this.onClear()
   }
 
 //   const filteredResults = this.recipes.filter((recipe: any) => {

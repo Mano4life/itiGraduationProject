@@ -103,6 +103,7 @@ class UserController extends Controller
             'name' => 'required|string|min:3|max:10',
             'date_of_birth' => 'date',
             'gender' => 'nullable|string|in:male,female',
+
         ]);
 
         if ($validator->fails()) {
@@ -113,6 +114,7 @@ class UserController extends Controller
             'name' => $request->name,
             'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,
+            'role' => $request->role
         ]);
 
         return response()->json(['message' => 'Record updated in database', 'data' => new UserResource($user)], 200);
@@ -129,5 +131,18 @@ class UserController extends Controller
     public function destroy(User $user){
         $user->delete();
         return response()->json(['message' => 'deleted succesfully'], 200);
+    }
+    public function updateUser(User $user){
+        $data = request()->validate([
+            'name' => 'required|string|min:3|max:10',
+            'date_of_birth' => 'date',
+            'gender' => 'nullable|string|in:male,female',
+            'role'=> 'required|string|in:admin,user,premium',
+            'email' => 'required|email|unique:users,email|min:8',
+            ]);
+            $user->update($data);
+            return response()->json(['message' => 'user updated succesfully'], 200);
+            
+
     }
 }

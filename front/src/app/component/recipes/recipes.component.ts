@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { IngredientsService } from '../../core/services/ingredients/ingredients.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
 
 @Component({
@@ -16,17 +16,43 @@ export class RecipesComponent {
   recipeList: any[] = [];
   sub_categoryList: any[] = [];
   ingredentsList: any[] = [];
-
+  
   constructor(
     private recipes: RecipesService,
     private subcategories: SubcategoriesService,
     private ingredent: IngredientsService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private  route: ActivatedRoute
+
+  ) {
+    
+  }
   ngOnInit(): void {
     this.getreciepes();
     this.getsubcategories();
     this.getingredients();
+    this.getFilterFromHome()
+    
+  }
+  getFilterFromHome() {
+    this.route.queryParams.subscribe((res) => {
+      let filteredRecipes = this.recipeList; // Start with the original list
+  
+      if (res['category']) {
+        filteredRecipes = filteredRecipes.filter((recipe) => {
+          return recipe.category.name === res['category'];
+        });
+      }
+      
+      if (res['subcategory']) {
+        filteredRecipes = filteredRecipes.filter((recipe) => {
+          return recipe.subcategory.name === res['subcategory'];
+        });
+      }
+  
+      // Update the original recipe list with filtered results
+      this.recipeList = filteredRecipes; // This modifies the original list
+    });
   }
   getreciepes() {
     this.recipes.getRecipes().subscribe({
@@ -74,9 +100,11 @@ export class RecipesComponent {
     });
   }
   time = [
-    { id: 1, name: '10 t0 20 mins', selected: false },
-    { id: 2, name: '20 to 40 mins', selected: false },
-    { id: 3, name: 'more than 40 mins', selected: false },
+    { id: 1, name: '15 min >', selected: false },
+    { id: 2, name: '20 min >', selected: false },
+    { id: 3, name: '30 min >', selected: false },
+    { id: 4, name: '40 min >', selected: false },
+    { id: 5, name: '60 min >', selected: false },
   ];
 
   dropdownOpen = false;
@@ -107,6 +135,7 @@ export class RecipesComponent {
     return this.sub_categoryList
       .filter((option) => option.selected)
       .map((opt) => opt.name);
+
   }
   toggleOption2(option: any) {
     option.selected = !option.selected;
@@ -154,9 +183,7 @@ export class RecipesComponent {
         this.selectedCategories.includes(recipe.category.name);
       const matchesSubCategory =
         selectedSubCategories.length === 0 ||
-        selectedSubCategories.includes(recipe.sub_category.name);
-
-      // Use 'any' type for the ingredient parameter
+        selectedSubCategories.includes(recipe.subcategory.name);
       const matchesIngredients =
         selectedIngredients.length === 0 ||
         recipe.ingredients.some((ingredient: any) =>
@@ -177,11 +204,16 @@ export class RecipesComponent {
   }
   timeMatches(recipeTime: number, selectedTimes: string[]): boolean {
     return selectedTimes.some((selected) => {
-      if (selected === '10 to 20 mins')
-        return recipeTime >= 10 && recipeTime <= 20;
-      if (selected === '20 to 40 mins')
-        return recipeTime > 20 && recipeTime <= 40;
-      if (selected === 'more than 40 mins') return recipeTime > 40;
+      if (selected === '15 min >')
+        return recipeTime == 15 && recipeTime < 20;
+      if (selected === '20 min >')
+        return recipeTime == 20 && recipeTime < 30;
+      if (selected === '30 min >')
+        return recipeTime == 30 && recipeTime < 30;
+      if (selected === '40 min >')
+        return recipeTime == 40 && recipeTime < 60;
+      if (selected === '60 min >')
+         return recipeTime == 60 || recipeTime > 60;
       return false;
     });
   }

@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../../core/services/users/users.service';
 import { CommonModule } from '@angular/common';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-edit-profile',
   standalone: true,
@@ -17,7 +17,8 @@ export class EditProfileComponent {
   UserId!:number;
   gender: any = ['female', 'male'];
   notvalid:boolean=false;
-  constructor(private routerActive:ActivatedRoute,private router:Router,private serv:UsersService) { 
+  success:boolean=false;
+  constructor(private routerActive:ActivatedRoute,private router:Router,private serv:UsersService ,private renderer: Renderer2) { 
 
     this.EditForm=new FormGroup({
       Username: new FormControl('', Validators.required),
@@ -34,6 +35,12 @@ export class EditProfileComponent {
       this.populateForm();
       
     })
+    const modalElement = document.getElementById('Edit');
+    if (modalElement) {
+      this.renderer.listen(modalElement, 'hidden.bs.modal', () => {
+        this.success = false; // Reset the success flag
+      });
+    }
     
   }
   populateForm() {
@@ -46,6 +53,7 @@ export class EditProfileComponent {
 
 
   }
+  
   EditUser(){
     var data={
       name:this.EditForm.value.Username,
@@ -57,9 +65,9 @@ export class EditProfileComponent {
       this.notvalid=false;
       this.serv.EditUser(data).subscribe({
         next:(res:any)=>{
-          console.log(res);
-          alert("data is updated")
+          this.success=true;
           this.router.navigate(['/profile',this.UserId]);
+
         },
         error:(err:any)=>{
           console.log(err)
@@ -74,5 +82,5 @@ export class EditProfileComponent {
     }
     
   }
-
+  
 }

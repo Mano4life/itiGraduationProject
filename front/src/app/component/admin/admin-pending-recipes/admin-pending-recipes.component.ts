@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
+import { RecipesService } from '../../../core/services/recipes/recipes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-pending-recipes',
@@ -12,8 +14,8 @@ import { PendingRecipesService } from '../../../core/services/pendinRecipes/pend
 })
 export class AdminPendingRecipesComponent {
 
-  constructor(private pendingRecipesService: PendingRecipesService) {}
-
+  constructor(private pendingRecipesService: PendingRecipesService,private recipe:RecipesService,private router:Router ) {}
+  newrecipe:any;
   pendingRecipes!: any;
   ngOnInit() {
     // Get all pending recipes
@@ -23,10 +25,37 @@ export class AdminPendingRecipesComponent {
   getAllPendingRecipes(){
     this.pendingRecipesService.getPendingRecipes().subscribe((res) => {
       this.pendingRecipes = res;
-      console.log(this.pendingRecipes);
+      console.log("pending",this.pendingRecipes);
     });
   }
-
+  posttorecipe(id:any){
+    this.pendingRecipesService.getOnePendingRecipe(id).subscribe((res:any)=>{
+      const ingredientsWithQuantities = res.ingredients.map((ingredient: any) => ({
+        id: ingredient.id,
+        name: ingredient.name,
+        quantity: ingredient.pivot.quantity, 
+        measurement_unit: ingredient.pivot.measurement_unit
+    }));
+      this.newrecipe={
+        "name":res.name,
+        "description":res.description,
+        "category_id":res.category_id,
+        "directions":res.directions,
+        "ingredients":ingredientsWithQuantities,
+        "image":res.image,
+        "servings":res.servings,
+        "time":res.time,
+        "subcategory_id":res.subcategory_id,
+        "category":res.category.name,
+        "subcategory":res.subcategory.name,
+        "user_id":res.user_id
+        }
+      this.recipe.postRecipe(this.newrecipe).subscribe((res)=>{
+        
+        this.deletePendingRecipe(id);
+      })
+    })
+  }
   // Delete a pending recipe
   deletePendingRecipe(id:number){
     this.pendingRecipesService.deletePendingRecipes(id).subscribe({
@@ -55,5 +84,8 @@ export class AdminPendingRecipesComponent {
         console.error('Error Dening recipe status:', err);
       }
     });
+  }
+  editPendingRecipe(id:any){
+    this.router.navigate(['/admin-edit-pendingRecipes',id]);
   }
 }

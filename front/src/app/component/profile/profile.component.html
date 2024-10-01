@@ -1,13 +1,18 @@
-<div class="container mt-5">
+<!-- <div *ngIf="isPremium" >
+  <h1>hello from premium</h1>
+</div> -->
+
+<div class="container my-5">
   <section class="user-details d-flex justify-content-between align-items-center">
-    <h1><span class="fw-bold text-capitalize">hello</span> {{ user?.name }}</h1>
+    <h1 class="text-capitalize"><span class="fw-bold text-capitalize">hello</span> {{ user?.name }}</h1>
     <a  data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: var(--main-color); font-size: 24px;"><i class="fa fa-cog" aria-hidden="true"></i></a>
   </section>
   <section class="recipes-wrapper mt-5">
     <div class="title">
       <h1 class="fw-bold text-capitalize">your favorite recipes</h1>
     </div>
-    <div class="body mt-4 d-flex gap-3 overflow-x-scroll">
+    <div class="body mt-4 d-flex gap-3 overflow-x-auto"  *ngIf="user.recipes_saves.length > 0">
+
       <div *ngFor="let recipe of user?.recipes_saves">
         <div
           class="card border-0"
@@ -26,13 +31,22 @@
         </div>
       </div>
     </div>
+    <div class="row d-flex justify-content-center flex-column align-items-center" *ngIf="user.recipes_saves.length==0 " >
+      <!-- <div class="col-lg-1 col-m-2 col-sm-3 col-4">
+       <img src="assets/img/heart.png" alt="empty" class="w-100">
+      </div> -->
+      <div class="p-5">
+        <h3 class="text-center text-secondary p-5">Your Favorite List is Empty Fill it with recipes to come back to !!</h3>
+      </div>
+    </div>
   </section>
-  <section class="recipes-wrapper mt-5">
+  <!-- premium ========================================================================================= -->
+  <section class="recipes-wrapper mt-5" *ngIf="isPremium">
     <div class="title d-flex justify-content-between align-items-center">
       <h1 class="fw-bold text-capitalize">your magic</h1>
       <a routerLink="/add-recipe/{{ user.id }}" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">add recipe</a>
     </div>
-    <div class="body mt-4 d-flex gap-3 overflow-x-scroll">
+    <div class="body mt-4 d-flex gap-3 overflow-x-auto" *ngIf="user.recipes.length!=0">
       <div *ngFor="let recipe of user?.recipes">
         <div
           class="card border-0"
@@ -51,9 +65,42 @@
         </div>
       </div>
     </div>
+    <div class="row d-flex justify-content-center">
+      <!-- <div *ngIf="user.recipes.length==0 " class="col-lg-2 col-m-3 col-sm-3 col-4">
+      
+        <img src="assets/img/empty-box_4826310.png" alt="empty" class="w-100">
+      </div> -->
+      <div class="p-5">
+        <h3 class="text-center text-secondary p-5">Share your culinary magic with us and get featured on our website! Send your favorite recipe  !!</h3>
+      </div>
+    </div>
+    
   </section>
+  <!-- regular ========================================================================================= -->
+  <!-- <section class="mt-5 bg-body-secondary px-5 py-3 rounded d-flex justify-content-between">
+    <h1>get more! get premium!</h1>
+    <button class="btn btn-success fw-bold text-uppercase">go!</button>
+  </section> -->
+  <!-- premium banner -->
+<section class="ad-banner mt-5"  *ngIf="!isPremium">
+
+  <div class="container" style="background-color: #395963;">
+      <div class="row p-4 align-items-center">
+          <div class="borderSection">
+              <!-- Content Section -->
+              <div class="col-12 userContent">
+                  <h1 class="text-white text-uppercase">get premium</h1>
+                  <p class="mb-5 mt-3 text-white w-75">
+                      support us and get more, add you're own recipies to our webiste, let the world see your magic with our premium one time payment!
+                  </p>
+                  <a class="main-btn shadow-none fw-bold" routerLink="/payment">check it</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Edit" tabindex="-1" aria-labelledby="Edit" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -62,9 +109,6 @@
       </div>
       <div class="modal-body">
         <app-edit-profile></app-edit-profile>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>

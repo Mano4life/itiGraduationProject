@@ -50,6 +50,7 @@ export class SingleRecipeComponent {
       // Fetch the recipe based on recipe ID
       if (recipeId) {
         this.recipesService.getSingleRecipe(recipeId).subscribe((res) => {
+          console.log("single recipe",res)
           this.recipe = res;
           this.originalServings = this.recipe.servings; // Store original servings
           this.scaledIngredients = [...this.recipe.ingredients]; // Copy ingredients for scaling

@@ -25,6 +25,8 @@ class PendingRecipeController extends Controller
             'image' => ['required', 'active_url'],
             'category' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
+            'servings' => ['required'],
+            'time' => ['required', 'min:1'],
             'user_id' => ['required'],
             'status' => ['string'],
             'ingredients' => ['required', 'array'],
@@ -46,6 +48,8 @@ class PendingRecipeController extends Controller
             'image' => $data['image'],
             'category_id' => $category->id,
             'user_id' => $data['user_id'],
+            'servings' => $data['servings'],
+            'time' => $data['time'],
             'status' => $data['status'],
             'subcategory_id' => $subcategory->id
 
@@ -90,6 +94,8 @@ class PendingRecipeController extends Controller
             'subcategory' => ['required', 'string'],
             'user_id' => ['required'],
             'status' => ['required'],
+            'servings' => ['required'],
+            'time' => ['required', 'min:1'],
             'ingredients' => ['required', 'array'],
         ]);
 

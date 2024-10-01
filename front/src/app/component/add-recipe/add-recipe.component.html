@@ -1,5 +1,5 @@
 <div class="container my-5">
-  <form [formGroup]="recipeForm" class="row" (submit)="onSubmission()">
+  <form [formGroup]="recipeForm" class="row" (submit)="onSubmission('recipesuccess')">
     <h1 class="h3 text-center fw-bold text-uppercase mb-4 col-12">
       add a new recipe
     </h1>
@@ -43,7 +43,8 @@
         type="text"
         class="form-control"
         id="time-field"
-        placeholder="time"
+        placeholder="Enter time in minutes"
+
         formControlName="time"
       />
       @if(recipeForm.controls['time'].invalid &&
@@ -240,4 +241,19 @@
       >
     </div>
   </form>
+</div>
+<div class="modal fade " id="recipesuccess" tabindex="-1" role="dialog" aria-labelledby="recipesuccess" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+             <div class="text-center mb-4">
+              <i class="far fa-check-circle check-icon" style="color: var(--btn-color); font-size: 50px;"></i>
+            </div>
+            <div>
+              <p class="text-center" style="color: var(--footer-color);">Recipe added Successfully!!</p>
+            </div>
+            
+      </div>
+    </div>
+  </div>
 </div>

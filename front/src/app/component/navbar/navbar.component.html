@@ -31,10 +31,16 @@
           <p>about</p>
         </a>
       </li>
-      <li *ngIf="isLogged">
+      <li *ngIf="isLogged && !admin">
         <a routerLinkActive="active" routerLink="/profile">
-          <i class="fa-solid fa-user"></i>
+          <i class="fa-solid fa-user pb-1"></i>
           <span>Profile</span>
+        </a>
+      </li>
+      <li *ngIf="isLogged && admin">
+        <a routerLinkActive="active" routerLink="/admin">
+          <i class="fa-solid fa-user pb-1"></i>
+          <span>Admin</span>
         </a>
       </li>
 

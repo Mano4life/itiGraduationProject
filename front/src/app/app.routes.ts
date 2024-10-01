@@ -11,41 +11,77 @@ import { OtpValidatorComponent } from './component/otp-validator/otp-validator.c
 import { userGuard } from './guard/user.guard';
 import { AdminComponent } from './component/admin/admin.component';
 import { AdminEditRecipesComponent } from './component/admin/admin-edit-recipes/admin-edit-recipes.component';
+import { AdminEditUserComponent } from './component/admin/admin-edit-user/admin-edit-user.component';
+import { AdminEditPendingRecipesComponent } from './component/admin/admin-edit-pending-recipes/admin-edit-pending-recipes.component';
+import { PaymentComponent } from './component/payment/payment.component';
+import { PaymentCancelComponent } from './component/payment/payment-cancel/payment-cancel.component';
+import { PaymentSuccessComponent } from './component/payment/payment-success/payment-success.component';
+import { adminGuard } from './guard/admin.guard';
 
 export const routes: Routes = [
-
   {
-    path: '', component: HomeComponent
+    path: '',
+    component: HomeComponent,
   },
   {
-    path:'about',component: AboutComponent
+    path: 'about',
+    component: AboutComponent,
   },
   {
-    path: 'profile', component: ProfileComponent,canActivate:[userGuard]
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [userGuard],
   },
   {
-    path: 'edit-profile/:id', component: EditProfileComponent,canActivate:[userGuard]
+    path: 'edit-profile/:id',
+    component: EditProfileComponent,
+    canActivate: [userGuard],
   },
   {
-    path: 'add-recipe/:id', component: AddRecipeComponent,canActivate:[userGuard]
+    path: 'add-recipe/:id',
+    component: AddRecipeComponent,
+    canActivate: [userGuard],
   },
   {
-    path: 'recipes', component: RecipesComponent
+    path: 'recipes',
+    component: RecipesComponent,
   },
   {
-    path: 'recipes/:id', component: SingleRecipeComponent
+    path: 'recipes/:id',
+    component: SingleRecipeComponent,
   },
   {
-    path: 'otp', component: OtpValidatorComponent
+    path: 'otp',
+    component: OtpValidatorComponent,
   },
   {
-    path: 'admin', component: AdminComponent
+    path: 'admin',
+    component: AdminComponent,canActivate:[adminGuard]
   },
   {
-    path: 'admin-edit-recipes/:id', component: AdminEditRecipesComponent
+    path: 'admin-edit-recipes/:id', component: AdminEditRecipesComponent,canActivate:[adminGuard]
+  },
+  {
+    path:'admin-edit-user/:id',component:AdminEditUserComponent,canActivate:[adminGuard]
+  },
+  {
+    path: 'admin-edit-pendingRecipes/:id', component: AdminEditPendingRecipesComponent,canActivate:[adminGuard]
   },
   { 
-    path: '**', component:NotFoundComponent 
+    
+    path: 'payment',
+    component: PaymentComponent,
   },
-
+  {
+    path: 'payment/success',
+    component: PaymentSuccessComponent,
+  },
+  {
+    path: 'payment/cancel',
+    component: PaymentCancelComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];

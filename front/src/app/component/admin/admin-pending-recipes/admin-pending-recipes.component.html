@@ -30,12 +30,12 @@
 
             <!-- Accept Button -->
             <td class="text-center">
-                <i class="fa-solid fa-check" style="color: var(--main-color);"></i>
+                <i class="fa-solid fa-check" style="color: var(--main-color);" (click)="posttorecipe(data.id)"></i>
             </td>
 
             <!-- Edit Button -->
-            <td class="text-center">
-                <i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);"></i>
+            <td class="text-center" (click)="editPendingRecipe(data.id)">
+                <i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);" ></i>
             </td>
 
             <!-- Delete Button -->
