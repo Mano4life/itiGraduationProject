@@ -28,14 +28,16 @@ export class ProfileComponent {
       this.recipes = res;
     });
 
-    this.activatedRoute.paramMap.subscribe((params) => {
+    
       this.usersService.getUser().subscribe((res) => {
         this.user = res;
         if(this.user.role == 'premium' || this.user.role == 'admin'){
           this.isPremium = true;
+         
         }
+        console.log("output",this.user)
       });
-    });
+ 
   }
 
   onRecipeClick(id: number) {

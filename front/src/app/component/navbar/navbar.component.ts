@@ -21,16 +21,18 @@ export class NavbarComponent {
   isLogged:boolean=false;
   Userinfo!:any;
   UserId!:any;
-
+  admin:boolean=false;
   constructor(private serv:UsersService, private router: Router) { }
   ngOnInit() {
-    this.isLogged = localStorage.getItem('auth_token') !== null;
-    
+    this.isLogged = localStorage.getItem('auth_token') !== null || localStorage.getItem('admin_token') !== null ;
+    this.admin=localStorage.getItem('admin_token') !== null;
+    console.log(this.admin)
   }
 
   logout(){
     this.serv.logout();
     localStorage.removeItem('auth_token');
+    localStorage.removeItem('admin_token');
     this.isLogged = false;
     this.router.navigate(['/']);
   }

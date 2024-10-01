@@ -16,6 +16,7 @@ import { AdminEditPendingRecipesComponent } from './component/admin/admin-edit-p
 import { PaymentComponent } from './component/payment/payment.component';
 import { PaymentCancelComponent } from './component/payment/payment-cancel/payment-cancel.component';
 import { PaymentSuccessComponent } from './component/payment/payment-success/payment-success.component';
+import { adminGuard } from './guard/admin.guard';
 
 export const routes: Routes = [
   {
@@ -55,16 +56,16 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent,
+    component: AdminComponent,canActivate:[adminGuard]
   },
   {
-    path: 'admin-edit-recipes/:id', component: AdminEditRecipesComponent
+    path: 'admin-edit-recipes/:id', component: AdminEditRecipesComponent,canActivate:[adminGuard]
   },
   {
-    path:'admin-edit-user/:id',component:AdminEditUserComponent
+    path:'admin-edit-user/:id',component:AdminEditUserComponent,canActivate:[adminGuard]
   },
   {
-    path: 'admin-edit-pendingRecipes/:id', component: AdminEditPendingRecipesComponent
+    path: 'admin-edit-pendingRecipes/:id', component: AdminEditPendingRecipesComponent,canActivate:[adminGuard]
   },
   { 
     
