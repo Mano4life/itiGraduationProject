@@ -12,6 +12,7 @@ import { userGuard } from './guard/user.guard';
 import { AdminComponent } from './component/admin/admin.component';
 import { AdminEditRecipesComponent } from './component/admin/admin-edit-recipes/admin-edit-recipes.component';
 import { AdminEditUserComponent } from './component/admin/admin-edit-user/admin-edit-user.component';
+import { AdminEditPendingRecipesComponent } from './component/admin/admin-edit-pending-recipes/admin-edit-pending-recipes.component';
 
 export const routes: Routes = [
 
@@ -47,6 +48,9 @@ export const routes: Routes = [
   },
   {
     path:'admin-edit-user/:id',component:AdminEditUserComponent
+  },
+  {
+    path: 'admin-edit-pendingRecipes/:id', component: AdminEditPendingRecipesComponent
   },
   { 
     path: '**', component:NotFoundComponent 

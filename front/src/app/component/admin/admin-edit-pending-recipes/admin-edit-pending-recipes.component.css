@@ -1,0 +1,13 @@
+form .inputs{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/*  */
+.btn {
+    background-color: var(--main-color);
+}
+h1, form label{
+    color: var(--main-color);
+}

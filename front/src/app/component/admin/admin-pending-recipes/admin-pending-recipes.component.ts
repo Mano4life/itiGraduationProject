@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
 import { RecipesService } from '../../../core/services/recipes/recipes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-pending-recipes',
@@ -13,7 +14,7 @@ import { RecipesService } from '../../../core/services/recipes/recipes.service';
 })
 export class AdminPendingRecipesComponent {
 
-  constructor(private pendingRecipesService: PendingRecipesService,private recipe:RecipesService ) {}
+  constructor(private pendingRecipesService: PendingRecipesService,private recipe:RecipesService,private router:Router ) {}
   newrecipe:any;
   pendingRecipes!: any;
   ngOnInit() {
@@ -83,5 +84,8 @@ export class AdminPendingRecipesComponent {
         console.error('Error Dening recipe status:', err);
       }
     });
+  }
+  editPendingRecipe(id:any){
+    this.router.navigate(['/admin-edit-pendingRecipes',id]);
   }
 }
