@@ -1,58 +1,89 @@
-<nav class="navbar ">
-  <div class="logo">
-    <img src="assets/image/logo.png" alt="Logo">
-  </div>
-
-  <!-- Search Bar -->
- <app-search></app-search>
-
-  <ul class="nav-links">
-    <li>
-      <a href="#">
-        <img src="assets/image/home.svg" alt="All Recipes Icon">
-        <span>home</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <img src="assets/image/recipes.svg" alt="Bread Icon">
-        <span>recipes</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/about">
-        <img src="assets/image/about-us.svg" alt="Breakfast Icon">
-        <span>about</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <img src="assets/image/profile.svg" alt="Cakes Icon">
-        <span>profile</span>
-      </a>
-    </li>
-  </ul>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-     
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-           
-          </li>
-          <!-- Other nav links -->
-        </ul>
-        <!-- Dark mode toggle button -->
-        <button class="btn btn-dark" (click)="toggleDarkMode()">Dark Mode</button>
-        
-      </div>
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="logo w-25">
+      <img [src]="logo" alt="Logo" routerLink="" class="w-25">
     </div>
+  
+    <!-- Search Bar -->
+    <app-search-input></app-search-input>
     
-  </nav>
+    <!-- navLinks -->
+    <ul class="nav-links">
+      <li>
+        <a routerLink="">
+          <i class="fa-solid fa-house-chimney"></i>
+          <p>home</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/recipes">
+          <i class="fa-solid fa-utensils"></i>
+          <p>recipes</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/about">
+          <i class="fa-solid fa-people-group"></i>
+          <p>about</p>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/profile">
+          <i class="fa-solid fa-user"></i>
+          <p>profile</p>
+        </a>
+      </li>
   
+      <!-- Login -->
+      <li>
+        <a data-bs-toggle="modal" data-bs-target="#loginModal">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <p>login</p>
+        </a>
+      </li>
   
+      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title" id="exampleModalLabel">Sign In</h1>
+            </div>
+            <div class="modal-body">
+              <app-login></app-login>
+              <p class="mt-4 switch">Already have account!
+                <a class="switchCard" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div> 
   
+      <!-- Register -->
+      <li>
+        <a data-bs-toggle="modal" data-bs-target="#registerModal">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <p>register</p>
+        </a>
+      </li>
+  
+      <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title" id="exampleModalLabel">Sign Up</h1>
+            </div>
+            <div class="modal-body">
+              <app-register></app-register>
+              <p class="mt-4 switch">Don't hava account!
+                <a class="switchCard" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </ul>
+  </div>
+  <!-- <app-top-dish-area [showTitle]="false"  [isNavbar]="true"></app-top-dish-area> -->
+  <!-- customClass=".main-title .round-planet .main-title .round-planet.planet2 .top-dish-area .main-title.round-plane .shape.shape1 "> -->
 </nav>

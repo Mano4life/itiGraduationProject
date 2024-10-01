@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {  Renderer2, OnInit } from '@angular/core';
-import { SearchComponent } from "../search/search.component";
+import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
+import { LoginComponent } from "../login/login.component";
+import { RegisterComponent } from "../register/register.component";
+import { SearchInputComponent } from "../search-input/search-input.component";
 
 @Component({
   selector: 'app-navbar',
@@ -27,6 +29,13 @@ export class NavbarComponent implements OnInit {
 
   }
 */
+export class NavbarComponent {
+  logo: string = 'assets/imgs/logo.png';
+
+  constructor() { }
+
+
+  // Dannle
 toggleDarkMode() {
   const body = document.body;
   const teamSection = document.querySelector('.team-section');
@@ -60,4 +69,7 @@ toggleDarkMode() {
     }
   }
   
+}
+
+ 
 }

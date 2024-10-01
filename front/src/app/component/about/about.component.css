@@ -4,14 +4,14 @@
   max-width: 1200px;
   margin: auto;
   padding: 20px;
-  background-color: white;
+  
 }
 
 .team-member {
   display: flex;
   align-items: center;
   color: white;
-  background-color: white;
+  
   padding: 20px;
   border: none; /* Remove borders */
   box-shadow: none; /* Remove shadows */

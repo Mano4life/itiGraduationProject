@@ -24,18 +24,23 @@ class Recipe extends Model
     }
 
     public function ingredients(){
-        return $this->belongsToMany(Ingredient::class);
+        return $this->belongsToMany(Ingredient::class)->withPivot('quantity', 'measurement_unit');
     }
 
     public function tags(){
         return $this->belongsToMany(Tag::class);
     }
 
-    public function visitors_saves(){
-        return $this->belongsToMany(Visitor::class,'recipe_user_saved', relatedPivotKey:'visitor_id');
+    public function users_saves(){
+        return $this->belongsToMany(User::class,'recipe_user_saved');
     }
 
-    public function visitores_ratings(){
-        return $this->belongsToMany(Visitor::class,'recipe_user_rating', relatedPivotKey:'visitor_id')->withPivot('rating');
+    public function users_ratings(){
+        return $this->belongsToMany(User::class,'recipe_user_rating')->withPivot('rating');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    
 }

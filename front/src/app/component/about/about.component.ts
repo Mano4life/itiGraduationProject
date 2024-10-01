@@ -1,33 +1,43 @@
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, CommonModule],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
   teamMembers: any = [
     {
-      name: 'Lindsay',
-      role: 'Voice, Author, Creator',
-      bio: 'Lindsay is the voice, author, and creator behind Pinch of Yum. She develops recipes and writes content for the blog and Instagram.',
-      imageUrl: 'https://ibb.co/KyRfW9G'
+      name: 'Raghad',
+      role: 'Full stack developer PHP',
+      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      imageUrl: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg'
     },
     {
-      name: 'Bjork',
-      role: 'Chief Tech Consultant',
-      bio: 'Bjork is the chief tech consultant / business advisor / taste tester at Pinch of Yum.',
-      imageUrl: 'https://placehold.co/600x400'
+      name: 'Momen',
+      role: 'Full stack developer PHP',
+      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      imageUrl: 'https://preview.redd.it/6q7k7hfumj471.jpg?width=640&crop=smart&auto=webp&s=3411f42389cdb97c6968da623d074697bde3cbdc'
     },
     {
-      name: 'Jenna',
-      role: 'Communications Manager',
-      bio: 'Jenna is the Communications Manager at Pinch of Yum. She manages much of the day-to-day communication with readers and brands.',
-      imageUrl: 'https://placehold.co/600x400'
+      name: 'Mariam',
+      role: 'Full stack developer PHP',
+      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      imageUrl: 'https://i.pinimg.com/originals/35/c1/0e/35c10edc6ef5cfc52b6f76f9f9455b77.jpg'
 
-}
+      
+    },
+    {
+      name: 'Dannel',
+      role: 'Full stack developer PHP',
+      bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      imageUrl: 'https://media.tenor.com/w3dtW9NFejcAAAAe/sleepy-cat.png'
+
+      
+    }
+
 ];
 }

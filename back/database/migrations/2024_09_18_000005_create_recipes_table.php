@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,8 +20,13 @@ return new class extends Migration
             $table->text('description');
             $table->text('directions');
             $table->string('image')->nullable();
+            $table->string('servings');
+            $table->string('time');
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Subcategory::class)->constrained()->cascadeOnDelete();
+
+            // i think i am the one who added user key...raghad
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

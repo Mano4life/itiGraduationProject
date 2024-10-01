@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 
 :root{
   --main-background: #f9f9ff;
@@ -76,3 +78,24 @@ body.dark-mode {
 
 
 
+/* Login & Register */
+
+.auth {
+  text-align: center;
+  padding: 0 30px;
+}
+
+.form-group {
+  position: relative;
+  color: #828487;
+  display: flex;
+}
+
+.showIcon {
+  position: absolute;
+  right: 28%;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+}
