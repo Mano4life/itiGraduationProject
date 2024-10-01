@@ -23,6 +23,8 @@ class PendingRecipeController extends Controller
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
+            'servings' => ['required'],
+            'time' => ['required'],
             'category' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
             'user_id' => ['required'],
@@ -44,6 +46,8 @@ class PendingRecipeController extends Controller
             'description' => $data['description'],
             'directions' => $data['directions'],
             'image' => $data['image'],
+            'servings' => $data['servings'],
+            'time' => $data['time'],
             'category_id' => $category->id,
             'user_id' => $data['user_id'],
             'status' => $data['status'],
@@ -86,6 +90,8 @@ class PendingRecipeController extends Controller
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
             'image' => ['required', 'active_url'],
+            'servings' => ['required'],
+            'time' => ['required'],
             'category' => ['required', 'string'],
             'subcategory' => ['required', 'string'],
             'user_id' => ['required'],
@@ -106,6 +112,8 @@ class PendingRecipeController extends Controller
             'description' => $data['description'],
             'directions' => $data['directions'],
             'image' => $data['image'],
+            'servings' => $data['servings'],
+            'time' => $data['time'],
             'status' => $data['status'],
             'category_id' => $category->id,
             'subcategory_id' => $subcategory->id,
@@ -141,17 +149,18 @@ class PendingRecipeController extends Controller
         }
     }
 
-    public function deny(PendingRecipe $pendingRecipe){
+    public function deny(PendingRecipe $pendingRecipe)
+    {
         $data = request()->validate([
             'status' => ['required']
         ]);
 
         $result = $pendingRecipe->update($data);
-        if($result){
+        if ($result) {
             // return response()->json($result, 200);
             return response()->json(['message' => 'successfully denied', $data], 200);
-        }else {
-            return response()->json(['message'=> 'failed to deny'], 500);
+        } else {
+            return response()->json(['message' => 'failed to deny'], 500);
         }
     }
 }
