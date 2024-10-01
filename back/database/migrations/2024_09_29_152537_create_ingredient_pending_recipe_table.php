@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Ingredient;
-use App\Models\pending_recipes;
 use App\Models\PendingRecipe;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
