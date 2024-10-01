@@ -31,7 +31,7 @@ Route::post('/register', [UserController::class, 'register']);
 Route::get('users', [UserController::class, 'index']);
 // Route::get('/users/delete', [UserController::class, 'destroy']);
 Route::apiResource('users', UserController::class);
-Route::put('/adminEditUser/{user}',[UserController::class,'updateUser']);
+Route::patch('/adminEditUser/{user}',[UserController::class,'updateUser']);
 
 
 // Recipe API resource route

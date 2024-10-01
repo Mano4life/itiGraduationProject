@@ -38,23 +38,51 @@ export class RecipesService {
   }
   rateRecipe(id:any,rating:any){
     const token = localStorage.getItem('auth_token');
+    const admin=localStorage.getItem('admin_auth');
+    if(token){
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/rate`,{rating},{ headers });
+    }
+    else{
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
+    return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/rate`,{rating},{ headers });
+    }
   }
   saverecipe(id:any){
     const token = localStorage.getItem('auth_token');
+    const admin=localStorage.getItem('admin_auth');
+    if(token){
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/save`,{},{ headers });
+    }
+    else{
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
+    return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/save`,{},{ headers });
+    }
   }
   unsaverecipe(id:any){
     const token = localStorage.getItem('auth_token');
+    const admin=localStorage.getItem('admin_auth');
+    if(token){
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/unsave`,{},{ headers });
+    }
+    else{
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
+      return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/unsave`,{},{ headers });
+    }
   }
   comment(recipe:any,comment:any){
     const token = localStorage.getItem('auth_token');
+    const admin=localStorage.getItem('admin_auth');
+    if(token){
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`http://127.0.0.1:8000/api/recipes/${recipe}/comment`,comment,{headers});
+    }
+    else{
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
+    return this.http.post(`http://127.0.0.1:8000/api/recipes/${recipe}/comment`,comment,{headers});
+    }
   }
 
 

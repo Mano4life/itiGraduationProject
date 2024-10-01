@@ -81,7 +81,7 @@ class UserController extends Controller
     public function user(Request $request)
     {
         $user = $request->user();
-        $user->load('recipes_saves', 'recipes', 'recipes_ratings');
+        $user->load('recipes_saves', 'recipes', 'recipes_ratings','pendingRecipes');
 
         $userData = $user->toArray();
 
@@ -138,7 +138,7 @@ class UserController extends Controller
             'date_of_birth' => 'date',
             'gender' => 'nullable|string|in:male,female',
             'role'=> 'required|string|in:admin,user,premium',
-            'email' => 'required|email|unique:users,email|min:8',
+            'email' => 'required|email|unique:users,email,' . $user->id . '|min:8',
             ]);
             $user->update($data);
             return response()->json(['message' => 'user updated succesfully'], 200);

@@ -38,7 +38,7 @@ class User extends Authenticatable
         return $this->hasMany(Recipe::class);
     }
     public function pendingRecipes(){
-        return $this->hasMany(pending_recipe::class);
+        return $this->hasMany(PendingRecipe::class);
     }
 
     //otp stuff
