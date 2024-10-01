@@ -1,15 +1,22 @@
 /* Navbar styles */
-.navbar {
-  padding: 20px 70px;
-  /* position: fixed; */
-  background-color: white;
+.logo img {
+  height: 80px;
+  width: 100px;
 }
 
-/* links */
+.navbar {
+  padding: 20px 30px; /* Reduce padding for smaller screens */
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Links */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 55px; 
+  gap: 30px;
   padding: 0;
   margin: 0;
 }
@@ -28,53 +35,77 @@
   color: var(--main-color);
 }
 
-.nav-links a p{
+.nav-links a p {
   margin-top: 4px;
   color: var(--main-color);
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
 }
 
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    padding: 10px;
+  }
 
-/* Login Style */
+  @media (max-width: 768px) {
+    .logo img {
+      max-height: 50px;
+      max-width: 70px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .logo img {
+      max-height: 40px;
+      max-width: 60px;
+    }
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    text-align: center;
+  }
 
-.modal-header{
-  border-bottom: none;
-}
-.modal-title{
-  text-align: center;
-  color: var(--main-color);
-  font-size: 55px;
-  margin: auto;
-}
-.modal-body{
-  padding: 0;
-}
-.switch{
-  color: var(--main-color);
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-}
-.switch .switchCard{
-  color: var(--btn-color);
-  cursor: pointer;
+  .nav-links a {
+    font-size: 18px;
+  }
 }
 
-/* Not Work */
-/* Navbar Style */
-/* Test TopArea Section */
-.main-title.round-plane .shape.shape1 {
-  left: 37px;
+/* Media Query for Tablets */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    gap: 40px;
+  }
 }
-.main-title .round-planet.planet2 {
-  width: 70px;
-  height: 70px;
+
+/* Ensure dark mode applies to the navbar */
+body.dark-mode .navbar {
+  background-color: #121212;
+  color: #fff; /* Ensure text color is updated */
+  border-bottom: 1px solid #444; /* Update border color in dark mode */
 }
-.main-title .round-planet {
-  width: 140px;
-  height: 150px;
+
+body.dark-mode .nav-links a {
+  color: #fff; /* Update link color to white in dark mode */
 }
-.top-dish-area {
-  padding: 70px 0 75px;
+
+body.dark-mode .search-bar input {
+  background-color: #333; /* Update search bar background */
+  color: #fff; /* Update search bar text to white */
 }
+
+body.dark-mode .searchicon {
+  color: #fff; /* Ensure the search icon is white */
+}
+/* Add styles for the topnav class */
+
+
+

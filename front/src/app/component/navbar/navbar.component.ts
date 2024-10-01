@@ -1,38 +1,64 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { RouterModule } from '@angular/router'; // Use RouterModule instead of RouterLink
 import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 import { LoginComponent } from "../login/login.component";
 import { RegisterComponent } from "../register/register.component";
 import { SearchInputComponent } from "../search-input/search-input.component";
 
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, TopDishAreaComponent, LoginComponent, RegisterComponent, SearchInputComponent],
+  imports: [RouterModule,  SearchInputComponent, LoginComponent, RegisterComponent], // RouterModule instead of RouterLink
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  logo: string = 'assets/imgs/logo.png';
-
-  constructor() { }
-
-
-  // Dannle
-toggleDarkMode() {
+export class NavbarComponent implements OnInit {
+toggleNavbar() {
 throw new Error('Method not implemented.');
 }
-  menuOpen = false;
+  logo: string = 'assets/imgs/logo.png';
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-    const navLinks = document.querySelector('.nav-links');
-    if (this.menuOpen) {
-      navLinks?.classList.add('open');
+  constructor(private renderer: Renderer2) { }
+
+  /* toggleDarkMode() {
+    const body = document.body;
+    const teamSection = document.querySelector('.team-section');
+    const teamMembers = document.querySelectorAll('.team-member');
+
+    if (body.classList.contains('dark-mode')) {
+      this.renderer.removeClass(body, 'dark-mode');
+      if (teamSection) this.renderer.removeClass(teamSection, 'dark-mode');
+      teamMembers.forEach(member => {
+        this.renderer.removeClass(member, 'dark-mode');
+      });
+      localStorage.setItem('theme', 'light');
     } else {
-      navLinks?.classList.remove('open');
+      this.renderer.addClass(body, 'dark-mode');
+      if (teamSection) this.renderer.addClass(teamSection, 'dark-mode');
+      teamMembers.forEach(member => {
+        this.renderer.addClass(member, 'dark-mode');
+      });
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+*/
+  toggleResponsiveMenu() {
+    const topnav = document.getElementById('myTopnav');
+
+    if (topnav) {
+      if (topnav.className === 'topnav') {
+        topnav.className += ' responsive';
+      } else {
+        topnav.className = 'topnav';
+      }
     }
   }
 
- 
+  ngOnInit() {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      this.renderer.addClass(document.body, 'dark-mode');
+    }
+  }
 }
