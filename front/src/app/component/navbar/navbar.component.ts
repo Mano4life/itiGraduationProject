@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 import { LoginComponent } from "../login/login.component";
 import { RegisterComponent } from "../register/register.component";
 import { CommonModule } from '@angular/common';
@@ -11,8 +10,7 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, TopDishAreaComponent, LoginComponent, RegisterComponent,CommonModule, RouterLinkActive, SearchInputComponent],
-
+  imports: [RouterLink, LoginComponent, RegisterComponent,CommonModule, RouterLinkActive, SearchInputComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })

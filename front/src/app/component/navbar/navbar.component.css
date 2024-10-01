@@ -1,5 +1,15 @@
 /* Navbar styles */
+.logo img {
+  height: 80px;
+  width: 100px;
+}
+
 .navbar {
+  padding: 20px 30px; /* Reduce padding for smaller screens */
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px 70px;
 }
 
@@ -32,11 +42,11 @@ li{
   box-shadow: 0 0 10px 3px var(--main-color);
 }
 
-/* links */
+/* Links */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 55px; 
+  gap: 30px;
   padding: 0;
   margin: 0;
 }
@@ -59,14 +69,16 @@ li{
   font-size: 20px;
 }
 
-.nav-links a p{
+.nav-links a p {
   margin-top: 4px;
-  font-weight: 500;
-  font-size: 16px;
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 20px;
 }
 
 
 /* Login Style */
+
 .modal-header{
   border-bottom: none;
 }
@@ -88,4 +100,22 @@ li{
 .switch .switchCard{
   color: var(--btn-color);
   cursor: pointer;
+}
+
+/* Not Work */
+/* Navbar Style */
+/* Test TopArea Section */
+.main-title.round-plane .shape.shape1 {
+  left: 37px;
+}
+.main-title .round-planet.planet2 {
+  width: 70px;
+  height: 70px;
+}
+.main-title .round-planet {
+  width: 140px;
+  height: 150px;
+}
+.top-dish-area {
+  padding: 70px 0 75px;
 }
