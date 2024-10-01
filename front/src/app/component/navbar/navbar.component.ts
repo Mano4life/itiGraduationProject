@@ -4,7 +4,7 @@ import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 import { LoginComponent } from "../login/login.component";
 import { RegisterComponent } from "../register/register.component";
 import { SearchInputComponent } from "../search-input/search-input.component";
-
+import { CommonModule } from '@angular/common'; // Import CommonModule
 @Component({
   selector: 'app-navbar',
   standalone: true,
