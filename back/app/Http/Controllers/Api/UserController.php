@@ -114,6 +114,7 @@ class UserController extends Controller
             'name' => $request->name,
             'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,
+            'role' => $request->role
         ]);
 
         return response()->json(['message' => 'Record updated in database', 'data' => new UserResource($user)], 200);

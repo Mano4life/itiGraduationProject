@@ -15,6 +15,7 @@ declare var bootstrap: any;
 export class ProfileComponent {
   recipes!: any;
   user!: any;
+  isPremium:boolean = false;
   constructor(
     private recipesService: RecipesService,
     private usersService: UsersService,
@@ -30,6 +31,9 @@ export class ProfileComponent {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.usersService.getUser().subscribe((res) => {
         this.user = res;
+        if(this.user.role == 'premium' || this.user.role == 'admin'){
+          this.isPremium = true;
+        }
       });
     });
   }
