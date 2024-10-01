@@ -14,6 +14,7 @@ import { SearchInputComponent } from "../search-input/search-input.component";
 })
 export class NavbarComponent {
   logo: string = 'assets/imgs/logo.png';
+  
 
   constructor() { }
 
