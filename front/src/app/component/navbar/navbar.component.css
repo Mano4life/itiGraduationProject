@@ -1,22 +1,27 @@
 /* Navbar styles */
-.navbar {
-  padding: 20px 70px;
-  /* position: fixed; */
-  background-color: white;
+.logo img {
+  height: 80px;
+  width: 100px;
 }
 
-/* links */
+.navbar {
+  padding: 20px 70px;
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
+}
+
+/* Links */
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 55px; 
+  gap: 55px;
   padding: 0;
   margin: 0;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: black;
+  color: var(--primary-text-color);
   text-transform: capitalize;
   display: flex;
   flex-direction: column;
@@ -28,56 +33,41 @@
   color: var(--main-color);
 }
 
-.nav-links a p{
+.nav-links a p {
   margin-top: 4px;
   color: var(--main-color);
   font-weight: bold;
   font-size: 20px;
 }
 
-
 /* Login Style */
-
-.modal-header{
+.modal-header {
   border-bottom: none;
 }
-.modal-title{
+
+.modal-title {
   text-align: center;
   color: var(--main-color);
   font-size: 55px;
   margin: auto;
 }
-.modal-body{
+
+.modal-body {
   padding: 0;
 }
-.switch{
+
+.switch {
   color: var(--main-color);
   font-size: 20px;
   font-weight: 600;
   text-align: center;
 }
-.switch .switchCard{
+
+.switch .switchCard {
   color: var(--btn-color);
   cursor: pointer;
 }
 
-/* Not Work */
-/* Navbar Style */
-/* Test TopArea Section */
-.main-title.round-plane .shape.shape1 {
-  left: 37px;
-}
-.main-title .round-planet.planet2 {
-  width: 70px;
-  height: 70px;
-}
-.main-title .round-planet {
-  width: 140px;
-  height: 150px;
-}
-.top-dish-area {
-  padding: 70px 0 75px;
-}
 /* Responsive Styles */
 @media (max-width: 992px) {
   .navbar {
@@ -121,4 +111,34 @@
     height: 50px;
     width: 70px;
   }
+}
+
+/* Dark Mode Specific Styles */
+body.dark-mode .navbar {
+  background-color: var(--third-color);
+  color: var(--primary-text-color);
+}
+
+body.dark-mode .nav-links a {
+  color: var(--primary-text-color);
+}
+
+body.dark-mode .nav-links i {
+  color: var(--second-color);
+}
+
+body.dark-mode .nav-links a p {
+  color: var(--primary-text-color);
+}
+
+body.dark-mode .modal-title {
+  color: var(--second-color);
+}
+
+body.dark-mode .switch {
+  color: var(--second-color);
+}
+
+body.dark-mode .switch .switchCard {
+  color: var(--btn-color);
 }
