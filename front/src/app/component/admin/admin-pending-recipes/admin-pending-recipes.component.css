@@ -5,6 +5,9 @@
     color: var(--main-color);
     font-family: var(--main-font);
     font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
 }
 .titleTable th{
     color: var(--second-color);

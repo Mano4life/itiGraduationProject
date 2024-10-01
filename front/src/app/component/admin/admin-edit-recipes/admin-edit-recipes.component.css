@@ -1,14 +1,28 @@
 
-form .inputs{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/*  */
 .btn {
     background-color: var(--main-color);
 }
 h1, form label{
     color: var(--main-color);
+}
+
+.main{
+    color: var(--main-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.main .back{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+}
+
+.main .back p{
+    margin: 0;
+}
+
+.formEdit input{
+    width: 75%;
 }

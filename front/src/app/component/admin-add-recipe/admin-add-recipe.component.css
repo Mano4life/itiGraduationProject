@@ -1,0 +1,21 @@
+h1, form label{
+    color: var(--main-color);
+  }
+  
+  form input:focus, form textarea:focus {
+    border-color: var(--main-color);
+    box-shadow: 0 0 10px 3px var(--main-color);
+  }
+  
+  form button {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+  }
+  
+  form button:hover{
+    filter: brightness(1.1);
+  }
+  
+  form .text-danger {
+    color: var(--btn-color) !important;
+  }

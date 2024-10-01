@@ -4,3 +4,20 @@
   h1, form label{
     color: var(--main-color);
   }
+
+  .main{
+    color: var(--main-color);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .main .back{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+
+  .main .back p{
+    margin: 0;
+  }

@@ -1,6 +1,13 @@
-<div class="container d-flex  justify-content-center">
-    <div  class="w-50 p-3">
-      <h1 class="fw-bold mb-4 col-12">User Edit Form</h1>
+<div class="container d-flex justify-content-center">
+    <div class="w-50 p-3">
+      <div class="main">
+        <h1 class="fw-bold mb-4">User Edit Form</h1>
+        <div class="back" routerLink="/admin">
+          <i class="fa-solid fa-chevron-left"></i>
+          <p>Go Back</p>
+        </div>
+      </div>
+
       <form [formGroup]="EditForm" (ngSubmit)="EditUser()" >
         <div class="mb-3">
           <label for="Username" class="form-label fs-5">Name</label>

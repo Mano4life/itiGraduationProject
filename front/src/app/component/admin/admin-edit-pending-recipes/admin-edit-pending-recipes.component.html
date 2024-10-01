@@ -1,7 +1,13 @@
 <div class="container-fluid">
-    
-    <div class="row" >
-        <h1 class="h3  fw-bold text-uppercase mb-4 col-12">Edit Recipe</h1>
+    <div class="row">
+      <div class="main">
+        <h1 class="fw-bold mb-4">Edit Pending Recipe</h1>
+
+        <div class="back" routerLink="/admin">
+          <i class="fa-solid fa-chevron-left"></i>
+          <p>Go Back</p>
+        </div>
+      </div>
         <div class="mb-2 col-lg-4">
             <img [src]="editForm.get('image')?.value" alt="Recipe Image"  class="img-thumbnail" />
         </div>
@@ -48,7 +54,7 @@
                 </div>
                 <div formArrayName="ingredients">
                     <div
-                      *ngFor="let ingredient of editSingleRecipe?.ingredients
+                      *ngFor="let ingredient of editPendingRecipe?.ingredients
                       ; let i = index"
                       [formGroupName]="i"
                       class="row"

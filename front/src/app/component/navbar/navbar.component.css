@@ -3,10 +3,6 @@
   padding: 20px 70px;
 }
 
-/* .logo img {
-  height: 80px;
-  width: 140px;
-} */
 
 /* Search */
 li{
@@ -71,7 +67,6 @@ li{
 
 
 /* Login Style */
-
 .modal-header{
   border-bottom: none;
 }
@@ -93,22 +88,4 @@ li{
 .switch .switchCard{
   color: var(--btn-color);
   cursor: pointer;
-}
-
-/* Not Work */
-/* Navbar Style */
-/* Test TopArea Section */
-.main-title.round-plane .shape.shape1 {
-  left: 37px;
-}
-.main-title .round-planet.planet2 {
-  width: 70px;
-  height: 70px;
-}
-.main-title .round-planet {
-  width: 140px;
-  height: 150px;
-}
-.top-dish-area {
-  padding: 70px 0 75px;
 }

@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
+import { Router, RouterLink } from '@angular/router';
 import { RecipesService } from '../../../core/services/recipes/recipes.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-pending-recipes',
@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
 })
 export class AdminPendingRecipesComponent {
 
-  constructor(private pendingRecipesService: PendingRecipesService,private recipe:RecipesService,private router:Router ) {}
+  constructor(private pendingRecipesService: PendingRecipesService,private recipe:RecipesService,private router:Router) {}
+  
   newrecipe:any;
   pendingRecipes!: any;
   ngOnInit() {
@@ -25,9 +26,10 @@ export class AdminPendingRecipesComponent {
   getAllPendingRecipes(){
     this.pendingRecipesService.getPendingRecipes().subscribe((res) => {
       this.pendingRecipes = res;
-      console.log("pending",this.pendingRecipes);
     });
   }
+
+  // post to recipe
   posttorecipe(id:any){
     this.pendingRecipesService.getOnePendingRecipe(id).subscribe((res:any)=>{
       const ingredientsWithQuantities = res.ingredients.map((ingredient: any) => ({
@@ -56,6 +58,7 @@ export class AdminPendingRecipesComponent {
       })
     })
   }
+
   // Delete a pending recipe
   deletePendingRecipe(id:number){
     this.pendingRecipesService.deletePendingRecipes(id).subscribe({
@@ -85,6 +88,8 @@ export class AdminPendingRecipesComponent {
       }
     });
   }
+
+  // edit
   editPendingRecipe(id:any){
     this.router.navigate(['/admin-edit-pendingRecipes',id]);
   }

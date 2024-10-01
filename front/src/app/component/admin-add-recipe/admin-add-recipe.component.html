@@ -1,0 +1,260 @@
+<div class="container my-5">
+    <form [formGroup]="recipeForm" class="row" (submit)="onSubmission('recipesuccess')">
+      <h1 class="h3 text-center fw-bold text-uppercase mb-4 col-12">
+        add a new recipe
+      </h1>
+      <div class="mb-3 col-12">
+        <label for="name-field" class="text-capitalize mb-2">name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name-field"
+          placeholder="Name"
+          formControlName="name"
+        />
+        @if(recipeForm.controls['name'].invalid &&
+        recipeForm.controls['name'].touched){
+        <p class="text-danger fw-bold ms-1">name is not valid</p>
+        }@else if (recipeForm.controls['name'].valid &&
+        recipeForm.controls['name'].touched) {
+        <p class="text-success">name is valid</p>
+        }
+      </div>
+      <div class="mb-3 col-6">
+        <label for="serving-field" class="text-capitalize mb-2">Serving:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="serving-field"
+          placeholder="Serving"
+          formControlName="Serving"
+        />
+        @if(recipeForm.controls['Serving'].invalid &&
+        recipeForm.controls['Serving'].touched){
+        <p class="text-danger fw-bold ms-1">Serving is not valid</p>
+        }@else if (recipeForm.controls['Serving'].valid &&
+        recipeForm.controls['Serving'].touched) {
+        <p class="text-success">Serving is valid</p>
+        }
+      </div>
+      <div class="mb-3 col-6">
+        <label for="serving-field" class="text-capitalize mb-2">Time:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="time-field"
+          placeholder="Enter time in minutes"
+  
+          formControlName="time"
+        />
+        @if(recipeForm.controls['time'].invalid &&
+        recipeForm.controls['time'].touched){
+        <p class="text-danger fw-bold ms-1">time is not valid</p>
+        }@else if (recipeForm.controls['time'].valid &&
+        recipeForm.controls['time'].touched) {
+        <p class="text-success">time is valid</p>
+        }
+      </div>
+      <div class="mb-3 col-lg-6">
+        <label for="description-field" class="text-capitalize mb-2"
+          >description:</label
+        >
+        <textarea
+          class="form-control"
+          id="description-field"
+          placeholder="description..."
+          formControlName="description"
+          rows="10"
+        ></textarea>
+        @if(recipeForm.controls['description'].invalid &&
+        recipeForm.controls['description'].touched){
+        <p class="text-danger fw-bold ms-1">description is not valid</p>
+        }@else if (recipeForm.controls['description'].valid &&
+        recipeForm.controls['description'].touched) {
+        <p class="text-success">description is valid</p>
+        }
+      </div>
+      <div class="mb-3 col-lg-6">
+        <label for="directions-field" class="text-capitalize mb-2"
+          >directions:</label
+        >
+        <textarea
+          class="form-control"
+          id="directions-field"
+          placeholder="directions..."
+          formControlName="directions"
+          rows="10"
+        ></textarea>
+        @if(recipeForm.controls['directions'].invalid &&
+        recipeForm.controls['directions'].touched){
+        <p class="text-danger fw-bold ms-1">directions is not valid</p>
+        }@else if (recipeForm.controls['directions'].valid &&
+        recipeForm.controls['directions'].touched) {
+        <p class="text-success">directions is valid</p>
+        }
+      </div>
+      <div class="mb-3">
+        <label for="image-field" class="text-capitalize mb-2">image:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="image-field"
+          placeholder="image"
+          formControlName="image"
+        />
+        @if(recipeForm.controls['image'].invalid &&
+        recipeForm.controls['image'].touched){
+        <p class="text-danger fw-bold ms-1">image is not valid</p>
+        }@else if (recipeForm.controls['image'].valid &&
+        recipeForm.controls['image'].touched) {
+        <p class="text-success">image is valid</p>
+        }
+      </div>
+      <div class="mb-3">
+        <label for="category-field" class="text-capitalize mb-2">category:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="category-field"
+          placeholder="category..."
+          formControlName="category"
+        />
+        @if(recipeForm.controls['category'].invalid &&
+        recipeForm.controls['category'].touched){
+        <p class="text-danger fw-bold ms-1">category is not valid</p>
+        }@else if (recipeForm.controls['category'].valid &&
+        recipeForm.controls['category'].touched) {
+        <p class="text-success">category is valid</p>
+        }
+      </div>
+      <div class="mb-3">
+        <label for="subcategory-field" class="text-capitalize mb-2"
+          >subcategory:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="subcategory-field"
+          placeholder="subcategory..."
+          formControlName="subcategory"
+        />
+        @if(recipeForm.controls['subcategory'].invalid &&
+        recipeForm.controls['subcategory'].touched){
+        <p class="text-danger fw-bold ms-1">subcategory is not valid</p>
+        }@else if (recipeForm.controls['subcategory'].valid &&
+        recipeForm.controls['subcategory'].touched) {
+        <p class="text-success">subcategory is valid</p>
+        }
+      </div>
+      <div formArrayName="ingredients">
+        <div
+          *ngFor="let ingredient of ingredients.controls; let i = index"
+          [formGroupName]="i"
+          class="row"
+        >
+          <div class="col-4">
+            <label for="ingredientName">Ingredient Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="ingredientName"
+              placeholder="ingredient..."
+              formControlName="name"
+            />
+            <div
+              *ngIf="
+                ingredient.get('name')?.invalid && ingredient.get('name')?.touched
+              "
+            >
+              Ingredient name is required.
+            </div>
+          </div>
+  
+          <div class="col-4">
+            <label for="quantity">Quantity:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="quantity"
+              placeholder="quantity..."
+              formControlName="quantity"
+            />
+            <div
+              *ngIf="
+                ingredient.get('quantity')?.invalid &&
+                ingredient.get('quantity')?.touched
+              "
+            >
+              Quantity is required.
+            </div>
+          </div>
+  
+          <div class="col-4">
+            <label for="measurementUnit">Measurement Unit:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="measurementUnit"
+              placeholder="measurement unit..."
+              formControlName="measurement_unit"
+            />
+            <div
+              *ngIf="
+                ingredient.get('measurement_unit')?.invalid &&
+                ingredient.get('measurement_unit')?.touched
+              "
+            >
+              Measurement unit is required.
+            </div>
+          </div>
+  
+          <div class="ingredient-controls mt-3 d-flex">
+            <button
+              type="button"
+              class="btn text-light me-4"
+              (click)="removeIngredient(i)"
+            >
+              Remove Ingredient
+            </button>
+            <button
+              type="button"
+              class="btn text-light"
+              (click)="addIngredient()"
+            >
+              Add Ingredient
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-buttons">
+        <button
+          type="submit"
+          class="btn fw-bold text-capitalize text-light mt-4 px-4 py-2"
+        >
+          add
+        </button>
+        <a
+          routerLink="/profile/{{ userId }}"
+          class="btn btn-outline-dark fw-bold text-capitalize mt-4 ms-4 px-4 py-2"
+          >cancel</a
+        >
+      </div>
+    </form>
+  </div>
+  <div class="modal fade " id="recipesuccess" tabindex="-1" role="dialog" aria-labelledby="recipesuccess" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+               <div class="text-center mb-4">
+                <i class="far fa-check-circle check-icon" style="color: var(--btn-color); font-size: 50px;"></i>
+              </div>
+              <div>
+                <p class="text-center" style="color: var(--footer-color);">Recipe added Successfully!!</p>
+              </div>
+              
+        </div>
+      </div>
+    </div>
+  </div>
+  
