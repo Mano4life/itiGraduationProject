@@ -12,7 +12,6 @@ export class UsersService {
     return this.http.get('http://127.0.0.1:8000/api/users');
   }
   getUser(){
-    
     const token = localStorage.getItem('auth_token');
     const admin=localStorage.getItem('admin_auth');
     if(token){
