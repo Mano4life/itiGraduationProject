@@ -30,7 +30,6 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 Route::get('users', [UserController::class, 'index']);
 Route::delete('/users/delete/{user}', [UserController::class, 'destroy']);
-//Route::apiResource('users', UserController::class);
 Route::patch('/adminEditUser/{user}',[UserController::class,'updateUser']);
 
 
