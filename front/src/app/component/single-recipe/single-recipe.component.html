@@ -6,7 +6,7 @@
     <div class="rating-favorite d-flex align-items-baseline gap-3">
       <i
         class="fa-heart favorite"
-        [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'"
+        [ngClass]="isFavorite ? 'fa-solid' : 'fa-regular'"
       ></i>
       <p
         class="p-0 m-0 rating"
@@ -56,7 +56,7 @@
     </div>
     <div class="time col-lg-4">
       <span class="h5 me-2"><i class="fa fa-clock-o"></i></span>
-      <span class="h5">{{ recipe.time }}</span>
+      <span class="h5">{{ recipe.time }} mins</span>
     </div>
   </div>
   <div class="how-to row mt-3 p-2">
@@ -92,7 +92,7 @@
           <i
             class="fa-heart favorite h2"
             [ngClass]="isSolid ? 'fa-solid' : 'fa-regular'"
-            (click)="onFavorite()"
+            (click)="onFavorite('loginModal')"
           ></i>
         </div>
 
@@ -112,11 +112,13 @@
                   (i >= starRate && currentHoveredStar === 0)
               }"
               [attr.data-value]="i + 1"
-              (click)="onStarClick(i + 1)"
+              (click)="onStarClick(i + 1,'loginModal')"
               (mouseenter)="onStarHover(i + 1)"
               (mouseleave)="onStarLeave()"
+              
             >
             </i>
+            
           </div>
         </div>
 
@@ -158,25 +160,30 @@
     </div>
   </div>
 
-  <div class="comments mt-5">
+  <div class="comments-wrapper mt-5">
     <h3 class="title text-uppercase">comments</h3>
-    <div class="body mt-3">
-      <div *ngFor="let comment of recipe.comments">
-        <div class="comment p-5 border-bottom text-center">
-          <i class="fa-solid fa-quote-left"></i>
-          <span class="mx-2 h3">{{ comment.content }}</span>
-          <i class="fa-solid fa-quote-right"></i>
+    <div class="body mt-3 border-top ">
+      <form  class="user-comment mt-5 text-start " [formGroup]="commentForm" (ngSubmit)="comment('loginModal')">
+        <textarea
+        class="form-control"
+        name="user-comment-field"
+        id="user-comment-field"
+        rows="2"
+        placeholder="place a comment.."
+        formControlName="content"
+        ></textarea>
+        <button type="submit" class="btn btn-auth mt-3" >Comment</button>
+      </form>
+      <div class="comments">
+        <div *ngFor="let comment of recipe.comments">
+          <div class="comment p-5 border-bottom ">
+        
+            <span class="mx-2 h3">{{ comment.content }}</span>
+        
+          </div>
         </div>
       </div>
-      <div class="user-comment mt-5">
-        <textarea
-          class="form-control"
-          name="user-comment-field"
-          id="user-comment-field"
-          rows="10"
-          placeholder="place a comment.."
-        ></textarea>
-      </div>
+      
     </div>
   </div>
 </div>

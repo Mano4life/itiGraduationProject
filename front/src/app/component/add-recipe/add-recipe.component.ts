@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import {
   FormArray,
   FormControl,
@@ -9,7 +9,8 @@ import {
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
-
+import { PendingRecipesService } from '../../core/services/pendinRecipes/pending-recipes.service';
+declare var bootstrap: any;
 @Component({
   selector: 'app-add-recipe',
   standalone: true,
@@ -22,9 +23,10 @@ export class AddRecipeComponent {
   recipe!: any;
   userId!: any;
   constructor(
-    private recipesService: RecipesService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private pendingService: PendingRecipesService,
+    private activatedRoute: ActivatedRoute,
+    private renderer: Renderer2,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -34,6 +36,8 @@ export class AddRecipeComponent {
 
     this.recipeForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      Serving: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      time: new FormControl('', [Validators.required, Validators.minLength(1)]),
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -62,6 +66,13 @@ export class AddRecipeComponent {
         }),
       ]),
     });
+
+    const modalElement = document.getElementById('recipesuccess');
+    if (modalElement) {
+      this.renderer.listen(modalElement, 'hidden.bs.modal', () => {
+        this.router.navigate(['/profile']);
+      });
+    }
   }
 
   // Get the FormArray for ingredients
@@ -85,13 +96,16 @@ export class AddRecipeComponent {
     this.ingredients.removeAt(index);
   }
 
-  onSubmission() {
+  onSubmission(modal:string) {
     if (this.recipeForm.valid) {
       const recipeData = {
         name: this.recipeForm.value.name,
+        time:this.recipeForm.value.time,
+        servings:this.recipeForm.value.Serving,
         description: this.recipeForm.value.description,
         directions: this.recipeForm.value.directions,
         image: this.recipeForm.value.image,
+        status: 'pending',
         category: this.recipeForm.value.category,
         subcategory: this.recipeForm.value.subcategory,
         user_id: this.userId,
@@ -108,9 +122,12 @@ export class AddRecipeComponent {
         ),
       };
 
-      this.recipesService.postRecipe(recipeData).subscribe({
+      this.pendingService.postPendingRecipes(recipeData).subscribe({
         next: (res) => {
           console.log('Recipe added successfully:', res);
+          const nextModalEl = document.getElementById(modal);
+          const nextModalInstance = new bootstrap.Modal(nextModalEl);
+          nextModalInstance.show();
         },
         error: (err) => {
           console.error('Error creating recipe', err);

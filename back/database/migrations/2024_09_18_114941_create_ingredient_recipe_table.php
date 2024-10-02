@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Ingredient::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Recipe::class)->constrained()->cascadeOnDelete();
             $table->float('quantity');
-            $table->string('measurement_unit')->default('gm');
+            $table->string('measurement_unit');
             $table->timestamps();
         });
     }

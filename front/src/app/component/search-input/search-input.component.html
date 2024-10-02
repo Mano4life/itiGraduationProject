@@ -5,13 +5,16 @@
         <input class="form-control" type="text" placeholder="Search for recipes..." aria-label="Search"
             [(ngModel)]="searchQuery" (input)="search(searchQuery)"
         >
-        <i class="fa-solid fa-x clear" (click)="onClear()"></i>
+        @if(searchQuery){
+            <i class="fa-solid fa-x clear" (click)="onClear()"></i>
+        }
     </div>
 
     <div *ngIf="(searchResults$ | async)?.length as resultsLength" class="dropdown-list">
       <ul *ngIf="resultsLength > 0">
-        <li *ngFor="let result of searchResults$ | async" class="dropdown-item">
-            <img [src]="result.image" alt="" />
+        <li *ngFor="let result of searchResults$ | async" class="dropdown-item"  (click)="onSelect(result.id)">
+
+            <img [src]="result.image" alt="{{ result.name }}" />
             <p>{{ result.name }}</p>
             <!-- <p>{{ result.ingerdiants.name }}</p> -->
         </li>

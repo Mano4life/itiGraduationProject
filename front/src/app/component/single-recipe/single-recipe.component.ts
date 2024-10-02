@@ -8,15 +8,18 @@ import {
 } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgClass, NgFor } from '@angular/common';
-
+import { UsersService } from '../../core/services/users/users.service';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+declare var bootstrap: any;
 @Component({
   selector: 'app-single-recipe',
   standalone: true,
-  imports: [NgFor, RouterLink, NgClass],
+  imports: [NgFor, RouterLink, NgClass,FormsModule, ReactiveFormsModule],
   templateUrl: './single-recipe.component.html',
   styleUrl: './single-recipe.component.css',
 })
 export class SingleRecipeComponent {
+  commentForm!: FormGroup;
   recipe: any;
   ingredient: any;
   ingredientId: any;
@@ -24,21 +27,30 @@ export class SingleRecipeComponent {
   routerSubscription!: Subscription;
   originalServings: number = 1; // Store the original servings
   scaledIngredients: any[] = []; // To store scaled ingredients
-
+  userlist:any;
+  isFavorite = false;
+  
 
   constructor(
     private recipesService: RecipesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private user:UsersService
+  ) {
+    this.commentForm = new FormGroup({
+      content: new FormControl('', [Validators.required])
+    })
+  }
 
   ngOnInit() {
+    
+    
     this.activatedRoute.paramMap.subscribe((params) => {
       const recipeId = params.get('id');
-
       // Fetch the recipe based on recipe ID
       if (recipeId) {
         this.recipesService.getSingleRecipe(recipeId).subscribe((res) => {
+          console.log("single recipe",res)
           this.recipe = res;
           this.originalServings = this.recipe.servings; // Store original servings
           this.scaledIngredients = [...this.recipe.ingredients]; // Copy ingredients for scaling
@@ -55,6 +67,21 @@ export class SingleRecipeComponent {
         });
       }
     });
+    this.user.getUser().subscribe({
+      next: (res) => {this.userlist = res.recipes_saves; 
+        this.isFavorite = this.userlist.some((userRecipe: { id: any; }) => userRecipe.id === this.recipe.id);
+        this.isSolid = this.userlist.some((userRecipe: { id: any; }) => userRecipe.id === this.recipe.id);
+        
+        const val = res.ratings;
+        console.log(val);
+        
+        const ratingUser = val.find((userrating: { recipe_id: any; }) => userrating.recipe_id === this.recipe.id);
+        this.starRate = ratingUser ? ratingUser.rating : 0;
+        },
+        error: (err) => {
+          console.error(err);
+          }
+    })
   }
 
   onRecipeClick(id: number) {
@@ -65,12 +92,12 @@ export class SingleRecipeComponent {
 
 // Method to scale the ingredients
 scaleIngredients(scaleFactor: number) {
-  this.recipe.servings = this.originalServings * scaleFactor;
+  this.recipe.servings = Math.trunc(this.originalServings * scaleFactor);
 
   this.scaledIngredients = this.recipe.ingredients.map((ingredient:any) => {
     return {
       ...ingredient,
-      quantity: (ingredient.quantity * scaleFactor).toFixed(2) // Update quantity
+      quantity: (ingredient.quantity * scaleFactor).toFixed() // Update quantity
     };
   });
 }
@@ -101,10 +128,42 @@ isBtnSelected(btn: string): boolean {
     this.isActive = !this.isActive;
   }
 
+  
   isSolid = false;
-  onFavorite(){
-    this.isSolid = !this.isSolid;
+  onFavorite(modal:string){
+    if(this.isSolid){
+      this.recipesService.unsaverecipe(this.recipe.id).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.isSolid=false;
+          this.isFavorite = false;
+        },
+        error: (error) => {
+          console.error(error);
+          }
+      })
+    }
+    else{
+      this.recipesService.saverecipe(this.recipe.id).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.isSolid=true;
+          this.isFavorite = true;
+        },
+        error: (error) => {
+          console.error(error);
+          const nextModalEl = document.getElementById(modal);
+          const nextModalInstance = new bootstrap.Modal(nextModalEl);
+          nextModalInstance.show();
+          }
+      })
+
+    }
+    //this.isSolid = !this.isSolid;
   }
+
+ 
+  
 
 
   // Review Fav and Rating
@@ -138,8 +197,36 @@ isBtnSelected(btn: string): boolean {
     this.currentHoveredStar = 0;
   }
 
-  onStarClick(starValue: number) {
+  onStarClick(starValue: number,modal:string) {
     this.starRate = starValue;
+    this.recipesService.rateRecipe(this.recipe.id,this.starRate).subscribe({
+      next: (response) => {
+        console.log(response);
+        },
+        error: (error) => {
+          console.error(error);
+          const nextModalEl = document.getElementById(modal);
+          const nextModalInstance = new bootstrap.Modal(nextModalEl);
+          nextModalInstance.show();
+          }
+    })
+  }
+  comment(modal:string){
+    if (this.commentForm.valid) {
+      console.log(this.commentForm.value)
+      this.recipesService.comment(this.recipe.id,this.commentForm.value).subscribe({
+        next: (response) => {
+          window.location.reload()
+          },
+          error: (error) => {
+            console.error(error);
+            const nextModalEl = document.getElementById(modal);
+            const nextModalInstance = new bootstrap.Modal(nextModalEl);
+            nextModalInstance.show();
+            }
+            })
+    }
+    
   }
 
   // convertRatingToStars(rating: any) {

@@ -1,0 +1,43 @@
+<div class="container row m-auto mb-5">
+    <div class=" col-12 col-lg-4 col-md-6 col-sm-10 co m-auto">
+        
+        <div class="rounded shadow-sm p-3" style="background-color: var(--main-background);">
+            <h2 class="text-center" style="color: var(--footer-color);">Verify Your Account</h2>
+            <p class="text-center mt-3" >A verification code was send to user Email please check and enter the sent code </p>
+            <form [formGroup]="OTPForm" (ngSubmit)="OTPSender('OtpSuccess')" class=" m-4">
+
+                <!-- otp -->
+                <div class="form-group">
+                    <input type="text" class="form-control" id="login-otp" aria-describedby="otpHelp" 
+                        formControlName="otp" placeholder="Enter verification code....">
+                </div>
+                @if(invalid){
+                    <div class="mb-2"><span class="text-danger fw-normal text-capitalize">{{invalid}}</span></div>
+                  }
+                <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="OTPForm.invalid" >Send</button>
+            </form>
+        </div>
+        
+        
+    </div>
+</div>
+<div class="modal fade " id="OtpSuccess" tabindex="-1" role="dialog" aria-labelledby="OtpSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+               <div class="text-center mb-4">
+                <i class="far fa-check-circle check-icon" style="color: var(--btn-color); font-size: 50px;"></i>
+              </div>
+              <div>
+                <p class="text-center" style="color: var(--footer-color);">Your Email has been verified; you can log in now!</p>
+              </div>
+              
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+ 
+  

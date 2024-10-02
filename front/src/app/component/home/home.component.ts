@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FooterComponent, CommonModule, TopDishAreaComponent,RouterLink],
+  imports: [FooterComponent, TopDishAreaComponent,RouterLink, NgIf, NgFor],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -30,12 +30,12 @@ export class HomeComponent {
     },
     {
       id: 3,
-      name: 'Dinner',
+      name: 'dinner',
       img: 'https://pinchofyum.com/wp-content/uploads/cropped-Tempeh-Bowls-6.jpg',
     },
     {
       id: 4,
-      name: 'Desserts',
+      name: 'dessert',
       img: 'https://www.twopeasandtheirpod.com/wp-content/uploads/2019/06/cropped-Brownies-7-420x420.jpg',
     },
   ];
@@ -48,7 +48,7 @@ export class HomeComponent {
     },
     {
       id: 2,
-      name: 'Chieckn',
+      name: 'chicken',
       img: 'https://therecipecritic.com/wp-content/uploads/2020/05/chickenmarinade_5-300x300.jpg',
     },
     {
@@ -78,12 +78,12 @@ export class HomeComponent {
     },
     {
       id: 8,
-      name: 'Cakes',
+      name: 'cake',
       img: 'https://www.davidlebovitz.com/wp-content/uploads/2015/05/Cranberry-Upside-Down-Cake-recipe-8-292x292.jpg',
     },
   ];
 
-  constructor(private recipes: RecipesService) {}
+  constructor(private recipes: RecipesService,private router:Router) {}
 
   recipesArr!: any;
   randomRecipesArr!: any;
@@ -102,5 +102,19 @@ export class HomeComponent {
     // [...]creates a shallow copy of recipesArr for shuffling. This way, the original array remains unchanged.
     this.shuffle = [...this.recipesArr].sort(() => 0.5 - Math.random());
     return this.shuffle.slice(0, count);
+  }
+  categoryClicked(name: string) {
+    this.router.navigate(['/recipes'], {
+        queryParams: {
+            category: name
+        }
+    });
+}
+  subcategoryClicked(name:string){
+    this.router.navigate(['/recipes'],{
+      queryParams:{
+        subcategory:name
+      }
+      })
   }
 }

@@ -1,7 +1,21 @@
 *{
   box-sizing: border-box;
 }
+.btn-auth{
+  font-size: 15px;
+  font-weight: 600;
+  background-color: var(--btn-color);
+  text-align: right;
+  color: #fff;
+  border: 1px solid var(--btn-color);
+  border-radius: 5px;
+  transition: all 300ms linear 0s;
+  text-transform: capitalize;
+  box-shadow: -10px 10px 40px var(--boxShadow-color);
+  margin: 20px auto 0;
+  max-width: 200px;
 
+}
 h1,h2,h3,h4,h5,p{
   margin: 0;
   padding: 0;
@@ -146,4 +160,21 @@ h1,h2,h3,h4,h5,p{
   .related-recipes .title {
     font-size: 22px;
   }
+}
+
+/* comments =============================== */
+.comments-wrapper .btn-auth{
+  font-size: 15px;
+  font-weight: 600;
+  background-color: var(--btn-color);
+  text-align: center;
+  color: #fff;
+  border: 1px solid var(--btn-color);
+  border-radius: 5px;
+  transition: all 300ms linear 0s;
+  text-transform: capitalize;
+  box-shadow: -10px 10px 40px var(--boxShadow-color);
+  margin: 20px auto 0;
+  max-width: 200px;
+  /* float: right; */
 }
