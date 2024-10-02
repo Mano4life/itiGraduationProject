@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 import { NgClass, NgFor } from '@angular/common';
 import { UsersService } from '../../core/services/users/users.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-single-recipe',
   standalone: true,
@@ -130,7 +130,7 @@ isBtnSelected(btn: string): boolean {
 
   
   isSolid = false;
-  onFavorite(){
+  onFavorite(modal:string){
     if(this.isSolid){
       this.recipesService.unsaverecipe(this.recipe.id).subscribe({
         next: (res) => {
@@ -152,6 +152,9 @@ isBtnSelected(btn: string): boolean {
         },
         error: (error) => {
           console.error(error);
+          const nextModalEl = document.getElementById(modal);
+          const nextModalInstance = new bootstrap.Modal(nextModalEl);
+          nextModalInstance.show();
           }
       })
 
@@ -194,7 +197,7 @@ isBtnSelected(btn: string): boolean {
     this.currentHoveredStar = 0;
   }
 
-  onStarClick(starValue: number) {
+  onStarClick(starValue: number,modal:string) {
     this.starRate = starValue;
     this.recipesService.rateRecipe(this.recipe.id,this.starRate).subscribe({
       next: (response) => {
@@ -202,10 +205,13 @@ isBtnSelected(btn: string): boolean {
         },
         error: (error) => {
           console.error(error);
+          const nextModalEl = document.getElementById(modal);
+          const nextModalInstance = new bootstrap.Modal(nextModalEl);
+          nextModalInstance.show();
           }
     })
   }
-  comment(){
+  comment(modal:string){
     if (this.commentForm.valid) {
       console.log(this.commentForm.value)
       this.recipesService.comment(this.recipe.id,this.commentForm.value).subscribe({
@@ -214,6 +220,9 @@ isBtnSelected(btn: string): boolean {
           },
           error: (error) => {
             console.error(error);
+            const nextModalEl = document.getElementById(modal);
+            const nextModalInstance = new bootstrap.Modal(nextModalEl);
+            nextModalInstance.show();
             }
             })
     }

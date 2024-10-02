@@ -35,7 +35,7 @@ export class UsersService {
   }
 
   deleteUser(id: any){
-    return this.http.delete(`http://127.0.0.1:8000/api/users/${id}`)
+    return this.http.delete(`http://127.0.0.1:8000/api/users/delete/${id}`)
   }
   adminEditUser(id:any, data:any){
     return  this.http.patch(`http://127.0.0.1:8000/api/adminEditUser/${id}`,data);

@@ -58,7 +58,8 @@ export class EditProfileComponent {
     var data={
       name:this.EditForm.value.Username,
       date_of_birth:this.EditForm.value.DOB,
-      gender:this.EditForm.value.gender
+      gender:this.EditForm.value.gender,
+      role:this.UserList.role
     }
     console.log(data)
     if(this.EditForm.valid){
