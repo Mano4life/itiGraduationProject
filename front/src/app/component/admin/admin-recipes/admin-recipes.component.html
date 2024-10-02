@@ -34,11 +34,11 @@
             
             <!-- Delete Button -->
             <td class="text-center delete">
-                <a data-bs-toggle="modal" data-bs-target="#deletemodal" style="cursor: pointer;">
+                <a data-bs-toggle="modal" [attr.data-bs-target]="'#deleteRecipeModal-' + data.id" style="cursor: pointer;">
                     <i class="fa-solid fa-trash text-danger"></i>
                 </a>
                 
-                <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" [attr.id]="'deleteRecipeModal-' + data.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content"> 
                             <div class="modal-body">

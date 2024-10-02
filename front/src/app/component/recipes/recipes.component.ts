@@ -104,7 +104,7 @@ export class RecipesComponent {
     { id: 2, name: '20 min >', selected: false },
     { id: 3, name: '30 min >', selected: false },
     { id: 4, name: '40 min >', selected: false },
-    { id: 5, name: '60 min >', selected: false },
+    { id: 5, name: 'more than 60 min ', selected: false },
   ];
 
   dropdownOpen = false;
@@ -207,12 +207,12 @@ export class RecipesComponent {
       if (selected === '15 min >')
         return recipeTime == 15 || recipeTime < 15;
       if (selected === '20 min >')
-        return recipeTime == 20 && recipeTime < 30;
+        return recipeTime == 15 || recipeTime <= 20;
       if (selected === '30 min >')
-        return recipeTime == 30 && recipeTime < 30;
+        return recipeTime == 30 || recipeTime < 40;
       if (selected === '40 min >')
-        return recipeTime == 40 && recipeTime < 60;
-      if (selected === '60 min >')
+        return recipeTime == 40 || recipeTime < 60;
+      if (selected === 'more than 60 min ')
          return recipeTime == 60 || recipeTime > 60;
       return false;
     });

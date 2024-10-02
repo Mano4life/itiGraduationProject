@@ -27,8 +27,7 @@ export class LoginComponent {
     })
   }
   ngOnInit(): void {
-    this.authenticated = !!localStorage.getItem('email');
-    console.log(this.authenticated)
+   
   }
 
 
@@ -54,6 +53,7 @@ export class LoginComponent {
           },
           error: (err) => {
             this.invalid=err.error.message;
+            this.authenticated = !!localStorage.getItem('email');
             }
             });
     }

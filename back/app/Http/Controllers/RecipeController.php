@@ -261,8 +261,7 @@ class RecipeController extends Controller
         $recipe->users_ratings()->attach($userId, ['rating' => $request->rating]);
     }
 
-    return response()->json(['message' => 'Recipe rated successfully.'], 200);
-}
+
 }
 
 
