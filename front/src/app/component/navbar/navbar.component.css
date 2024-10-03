@@ -89,3 +89,13 @@ li{
   color: var(--btn-color);
   cursor: pointer;
 }
+.active-premium i {
+  color:  #fcb900;
+}
+.active-premium span{
+  color: #fcb900;
+}
+.premium-hover:hover{
+  color: #FFAF45 !important;
+}
+

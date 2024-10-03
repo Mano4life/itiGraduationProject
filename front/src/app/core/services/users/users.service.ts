@@ -15,9 +15,10 @@ export class UsersService {
   getUser() {
     const token = localStorage.getItem('auth_token');
     const admin = localStorage.getItem('admin_token');
-
+    const premium = localStorage.getItem('premium_token');
     // Determine which token to use
-    const authToken = token || admin;
+    const authToken = token || admin || premium;
+
 
     if (authToken) {
         const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);

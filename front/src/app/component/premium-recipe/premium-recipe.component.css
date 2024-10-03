@@ -23,12 +23,6 @@
 .inline{
     display: inline !important;
 }
-.badge{
-    color: #fcb900;
-    font-size: 15px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .red{
     color: #d25c4c;
     font-family: var(--second-font);
