@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\PasswordResetToken;
 use App\Models\User;
 use App\Notifications\TwoFactorCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -145,4 +147,38 @@ class UserController extends Controller
             
 
     }
+    //forget password
+    public function forgotPassword(Request $request){
+        $request->validate(['email' => 'required|email|exists:users,email']);
+
+        $token = Str::random(60);
+        $email = $request->email;
+
+        PasswordResetToken::updateOrCreate(
+            ['email' => $email],
+            ['token' => $token, 'created_at' => now()]
+        );
+       // Mail::to($email)->send(new ResetPasswordMail($token));
+
+        return response()->json(['message' => 'Reset password link sent!']);
+    }
+    //RESET PASSWORD
+    public function resetPassword(Request $request){
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email|exists:password_reset_tokens,email',
+        'password' => 'required|min:8',
+    ]);
+    $resetToken = PasswordResetToken::where('email', $request->email)->first();
+    if (!$resetToken || $resetToken->token !== $request->token) {
+        return response()->json(['message' => 'Invalid token.'], 400);
+    }
+
+    // Update user password
+    $user = User::where('email', $request->email)->first();
+    $user->password = bcrypt($request->password);
+    $user->save();
+    PasswordResetToken::where('email', $request->email)->delete();
+    return response()->json(['message' => 'Password has been reset.']);
+}
 }
