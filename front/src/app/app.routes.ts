@@ -18,6 +18,8 @@ import { PaymentCancelComponent } from './component/payment/payment-cancel/payme
 import { PaymentSuccessComponent } from './component/payment/payment-success/payment-success.component';
 import { adminGuard } from './guard/admin.guard';
 import { AdminAddRecipeComponent } from './component/admin-add-recipe/admin-add-recipe.component';
+import { PremiumRecipeComponent } from './component/premium-recipe/premium-recipe.component';
+import { premiumGuard } from './guard/premium.guard';
 
 export const routes: Routes = [
   {
@@ -47,6 +49,7 @@ export const routes: Routes = [
     path: 'recipes',
     component: RecipesComponent,
   },
+  
   {
     path: 'recipes/:id',
     component: SingleRecipeComponent,
@@ -83,6 +86,10 @@ export const routes: Routes = [
   {
     path: 'payment/cancel',
     component: PaymentCancelComponent,
+  },
+  {
+    path: 'premium',
+    component:PremiumRecipeComponent,canActivate:[premiumGuard]
   },
   {
     path: '**',

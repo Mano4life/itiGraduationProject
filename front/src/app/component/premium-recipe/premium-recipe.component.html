@@ -97,12 +97,9 @@
 <section>
   <div class="container d-flex flex-column w-80">
     <div class="row gx-3 mt-3">
-      <div class="col-lg-3 col-md-6 col-sm-12 white position-relative"  *ngFor="let item of getFilteredRecipes(); let i = index" 
-      (click)="item.user?.role === 'premium' &&  !isPremiumUser() ? $event.stopPropagation() : SingleRecipePage(item.id)"
-      >
+      <div class="col-lg-3 col-md-6 col-sm-12 white" *ngFor="let item of getFilteredRecipes(); let i = index" (click)="SingleRecipePage(item.id)">
         <div>
           <img class="rounded-image object-fit-cover" style="width: 100% !important; height: 330px !important;" [src]="item.image" alt="food">
-          <span class="badge  position-absolute top-0 start-0 ms-3 mt-2" *ngIf="item.user?.role === 'premium'"><i class="fa-solid fa-crown pb-1" ></i></span>
         </div>
         <div>
           <p class="red m-0">{{item.category.name}}</p>
@@ -120,3 +117,4 @@
     </div>
   </div>
 </section>
+

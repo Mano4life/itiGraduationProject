@@ -1,31 +1,28 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RecipesService } from '../../core/services/recipes/recipes.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IngredientsService } from '../../core/services/ingredients/ingredients.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
-import { UsersService } from '../../core/services/users/users.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-recipes',
+  selector: 'app-premium-recipe',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './recipes.component.html',
-  styleUrl: './recipes.component.css',
+  templateUrl: './premium-recipe.component.html',
+  styleUrl: './premium-recipe.component.css'
 })
-export class RecipesComponent {
+export class PremiumRecipeComponent {
   recipeList: any[] = [];
   sub_categoryList: any[] = [];
   ingredentsList: any[] = [];
-  disable:boolean=true;
-  user:any;
+  
   constructor(
     private recipes: RecipesService,
     private subcategories: SubcategoriesService,
     private ingredent: IngredientsService,
     private router: Router,
-    private  route: ActivatedRoute,
-    private  UserService:UsersService
+    private  route: ActivatedRoute
 
   ) {
     
@@ -35,18 +32,7 @@ export class RecipesComponent {
     this.getsubcategories();
     this.getingredients();
     this.getFilterFromHome()
-    this.getUser();
     
-  }
-  getUser(){
-    this.UserService.getUser().subscribe((res:any)=>{
-      this.user=res;
-      
-      })
-  }
-  isPremiumUser(): boolean {
-    return this.user && this.user.role === 'premium' ||  this.user && this.user.role === 'admin';
-
   }
   getFilterFromHome() {
     this.route.queryParams.subscribe((res) => {
@@ -72,7 +58,15 @@ export class RecipesComponent {
     this.recipes.getRecipes().subscribe({
       next: (Response: any) => {
         this.recipeList = Response;
-        console.log(this.recipeList);
+        const premiumRecipes = this.recipeList.filter(recipe => 
+           recipe.user.role === 'premium'
+        );
+  
+        if (premiumRecipes.length > 0) {
+          this.recipeList = premiumRecipes;
+        } else {
+          this.recipeList = []; // Or handle the case when no premium recipes are found
+        }
       },
       error: (error: any) => {
         console.log(error);
@@ -234,4 +228,5 @@ export class RecipesComponent {
   SingleRecipePage(recipeId: number) {
     this.router.navigate(['/recipes', recipeId]);
   }
+
 }
