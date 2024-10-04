@@ -261,10 +261,8 @@ class RecipeController extends Controller
         $recipe->users_ratings()->attach($userId, ['rating' => $request->rating]);
     }
 
-
 }
-
-
+}
     // public function store()
     // {
     //     $data = request()->validate([
