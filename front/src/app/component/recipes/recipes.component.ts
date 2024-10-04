@@ -33,19 +33,18 @@ export class RecipesComponent {
     
   }
   ngOnInit(): void {
-    this.getreciepes();
+    // All Recipe Button
+    this.route.queryParams.subscribe((params) => {
+      // Check if reverse parameter is set
+      this.reverseOrder = params['reverse'] === 'true';
+      this.getreciepes();
+    });
+
     this.getsubcategories();
     this.getingredients();
     this.getFilterFromHome()
     this.getUser();
 
-    // All Recipe Button
-    this.route.queryParams.subscribe((params) => {
-      // Reverse if 'reverse=true' is passed
-      this.reverseOrder = params['reverse'] == 'true';
-      this.getreciepes();
-    })
-    
   }
   getUser(){
     this.UserService.getUser().subscribe((res:any)=>{
@@ -80,10 +79,10 @@ export class RecipesComponent {
   getreciepes() {
     this.recipes.getRecipes().subscribe({
       next: (Response: any) => {        
-        this.recipeList = Response;
-
         if(this.reverseOrder){
-          this.recipeList = this.recipeList.reverse();
+          this.recipeList = [...Response].reverse();          
+        }else{
+          this.recipeList = Response;
         }
       },
       error: (error: any) => {
