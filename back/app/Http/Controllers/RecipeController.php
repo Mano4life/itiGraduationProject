@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Ingredient;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 
 class RecipeController extends Controller
 {
@@ -23,7 +22,7 @@ class RecipeController extends Controller
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
-            'image' => ['required', 'active_url'],
+            'image' => ['required', 'file', 'mimes:jpg,jpeg,png,gif'],
             'servings' => ['required'],
             'time' => ['required', 'min:1'],
             'category' => ['required', 'string'],
@@ -32,10 +31,14 @@ class RecipeController extends Controller
             'ingredients' => ['required', 'array'],
         ]);
 
-        // Fetch or create category by name
-        $category = Category::firstOrCreate(['name' => $data['category']]);
+        // Handle image upload to Cloudinary
+        if (request()->hasFile('image')) {
+            $image = request()->file('image')->storeOnCloudinary('recipies');
+            $url = $image->getSecurePath();
+        }
 
-        // Fetch or create subcategory by name
+        // Fetch or create category & subcategory by name
+        $category = Category::firstOrCreate(['name' => $data['category']]);
         $subcategory = Subcategory::firstOrCreate(['name' => $data['subcategory'], 'category_id' => $category->id]);
 
         // Create the recipe with the fetched category and subcategory IDs
@@ -43,7 +46,7 @@ class RecipeController extends Controller
             'name' => $data['name'],
             'description' => $data['description'],
             'directions' => $data['directions'],
-            'image' => $data['image'],
+            'image' => $url,
             'servings' => $data['servings'],
             'time' => $data['time'],
             'category_id' => $category->id,
@@ -126,21 +129,6 @@ class RecipeController extends Controller
         return response()->json($createdRecipes, 201);  // Return all created recipes with ingredients
     }
 
-
-
-    // public function show(Recipe $recipe)
-    // {
-    //     $recipe->load(['ingredients', 'category', 'subcategory', 'comments', 'user']);
-    //     $averageRating = $recipe->users_ratings()->avg('rating');
-    //     if (is_null($recipe)) {
-    //         return response()->json(['message' => 'recipe not found'], 404);
-    //     }
-
-    //     $recipe->average_rating = $averageRating;
-    //     return response()->json($recipe, 200);
-
-    // }
-
     public function show(Recipe $recipe)
     {
         $recipe->load(['ingredients', 'category', 'subcategory', 'comments', 'user']);
@@ -172,7 +160,7 @@ class RecipeController extends Controller
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
-            'image' => ['required', 'active_url'],
+            'image' => ['required', 'file', 'mimes:jpg,jpeg,png,gif'],
             'servings' => ['required'],
             'time' => ['required'],
             'category' => ['required', 'string'],
@@ -181,18 +169,23 @@ class RecipeController extends Controller
             'ingredients' => ['required', 'array'],
         ]);
 
-        // Fetch or update category by name
-        $category = Category::firstOrCreate(['name' => $data['category']]);
+        // Handle image upload to Cloudinary
+        if (request()->hasFile('image')) {
+            $image = request()->file('image')->storeOnCloudinary('recipies');
+            $url = $image->getSecurePath();
+        }
 
-        // Fetch or update subcategory by name
+        // Fetch or create category & subcategory by name
+        $category = Category::firstOrCreate(['name' => $data['category']]);
         $subcategory = Subcategory::firstOrCreate(['name' => $data['subcategory'], 'category_id' => $category->id]);
+
 
         // update the recipe with the fetched category and subcategory IDs
         $recipe->update([
             'name' => $data['name'],
             'description' => $data['description'],
             'directions' => $data['directions'],
-            'image' => $data['image'],
+            'image' => $url,
             'servings' => $data['servings'],
             'time' => $data['time'],
             'category_id' => $category->id,
@@ -258,8 +251,6 @@ class RecipeController extends Controller
 
         return response()->json(['message' => 'Recipe rated successfully.'], 200);
     }
-
-
 }
 
 
