@@ -369,7 +369,8 @@ body{
 .latestContent p{
     font-family: var(--third-font);
     font-size: 18px;
-    color: var(--second-color);
+    color: var(--btn-color);
+    margin-bottom: 0;
 }
 
 .main-btn.recipe{
