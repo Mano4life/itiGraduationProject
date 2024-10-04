@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Renderer2 } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
-import { RecipesService } from '../../core/services/recipes/recipes.service';
+import { RecipesService } from '../../../core/services/recipes/recipes.service';
 declare var bootstrap: any;
 
 @Component({

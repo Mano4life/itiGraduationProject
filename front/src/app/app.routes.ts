@@ -17,7 +17,7 @@ import { PaymentComponent } from './component/payment/payment.component';
 import { PaymentCancelComponent } from './component/payment/payment-cancel/payment-cancel.component';
 import { PaymentSuccessComponent } from './component/payment/payment-success/payment-success.component';
 import { adminGuard } from './guard/admin.guard';
-import { AdminAddRecipeComponent } from './component/admin-add-recipe/admin-add-recipe.component';
+import { AdminAddRecipeComponent } from './component/admin/admin-add-recipe/admin-add-recipe.component';
 import { PremiumRecipeComponent } from './component/premium-recipe/premium-recipe.component';
 import { premiumGuard } from './guard/premium.guard';
 
