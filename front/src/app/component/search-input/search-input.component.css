@@ -5,6 +5,10 @@
     align-items: center; /* Center the search bar vertically */
 }
 
+.search-bar {
+    width: 500px !important;
+}
+
 .search-bar input {
     width: 100%; /* Full width by default */
     max-width: 1300px; /* Max width on large screens */
@@ -44,7 +48,7 @@ input::placeholder {
 
 .search-bar input:focus, .search-bar textarea:focus {
     border-color: var(--main-color);
-    box-shadow: 0 0 10px 3px var(--main-color);
+    box-shadow: 0 0 4px 3px var(--main-color);
 }
 
 .search-container .dropdown-list {
@@ -92,6 +96,9 @@ input::placeholder {
     .search-bar input {
         max-width: 500px; /* Slightly smaller for medium-large screens */
     }
+    .search-bar {
+        width: 550px !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -113,6 +120,10 @@ input::placeholder {
     .dropdown-list li img {
         width: 40px;
         height: 40px;
+    }
+
+    .search-bar {
+        width: 300px !important;
     }
 }
 

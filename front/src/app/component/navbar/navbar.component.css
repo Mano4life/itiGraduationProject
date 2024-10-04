@@ -1,13 +1,14 @@
 /* Navbar styles */
 .logo img {
-  height: 80px;
-  width: 100px;
+  height: 80px !important;
+  width: 100px !important;
 }
 
 .navbar {
   padding: 20px 70px;
   background-color: var(--primary-background-color);
   color: var(--primary-text-color);
+  background-color: #32373d;
 }
 
 /* Links */
@@ -30,12 +31,12 @@
 
 .nav-links i {
   font-size: 20px;
-  color: var(--main-color);
+  color: white;
 }
 
 .nav-links a p {
   margin-top: 4px;
-  color: var(--main-color);
+  color: white;
   font-weight: bold;
   font-size: 20px;
 }
@@ -87,8 +88,8 @@
 
 @media (max-width: 768px) {
   .logo img {
-    height: 60px;
-    width: 80px;
+    height: 60px !important;
+    width: 80px !important;
   }
 
   .nav-links {
@@ -108,37 +109,68 @@
 
 @media (max-width: 576px) {
   .logo img {
-    height: 50px;
-    width: 70px;
+    height: 50px !important;
+    width: 70px !important;
   }
 }
 
 /* Dark Mode Specific Styles */
-body.dark-mode .navbar {
-  background-color: var(--third-color);
-  color: var(--primary-text-color);
+
+
+@media (orientation: landscape) {
+  .search-position {
+    vertical-align: bottom;
+    display: flex;
+    order: 1;
+  }
+  li#home {
+    order: 2;
+  }
+  li#recipes {
+    order: 3;
+  }
+  li#about {
+    order: 4;
+  }
+  li#profile {
+    order: 5;
+  }
+  li#login {
+    order: 6;
+  }
+  li#register {
+    order: 7;
+  }
+  li#darkMode {
+    order: 8;
+  }
 }
 
-body.dark-mode .nav-links a {
-  color: var(--primary-text-color);
+@media (orientation: portrait) {
+  li#home {
+    order: 1;
+  }
+  li#recipes {
+    order: 2;
+  }
+  li#about {
+    order: 3;
+  }
+  li#profile {
+    order: 4;
+  }
+  li#login {
+    order: 5;
+  }
+  li#register {
+    order: 6;
+  }
+  li#darkMode {
+    order: 7;
+  }
+  .search-position {
+    order: 8;
+  }
 }
 
-body.dark-mode .nav-links i {
-  color: var(--second-color);
-}
-
-body.dark-mode .nav-links a p {
-  color: var(--primary-text-color);
-}
-
-body.dark-mode .modal-title {
-  color: var(--second-color);
-}
-
-body.dark-mode .switch {
-  color: var(--second-color);
-}
-
-body.dark-mode .switch .switchCard {
-  color: var(--btn-color);
-}
+/* li#search{} */

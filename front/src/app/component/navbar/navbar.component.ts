@@ -32,6 +32,7 @@ export class NavbarComponent {
 
   toggleDarkMode() {
     this.darkMode = !this.darkMode;
+    console.log(this.darkMode)
     document.body.classList.toggle('dark-mode', this.darkMode);
   }
 

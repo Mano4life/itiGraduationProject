@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <div class="logo">
-      <img [src]="logo" alt="Logo" routerLink="" class="w-25">
+      <img [src]="logo" alt="Logo" routerLink="">
     </div>
     <!-- Toggle button for small screens -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,32 +9,30 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <!-- Search Bar -->
-      <app-search-input></app-search-input>
       
       <!-- navLinks -->
-      <ul class="navbar-nav ms-auto nav-links">
-        <li class="nav-item">
+      <ul class="navbar-nav nav-links">
+        <li class="nav-item" id="home">
           <a routerLink="" class="nav-link">
-            <i class="fa-solid fa-house-chimney"></i>
+            <i class="fa-solid fa-house-chimney mt-4"></i>
             <p>home</p>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="recipes">
           <a routerLink="/recipes" class="nav-link">
-            <i class="fa-solid fa-utensils"></i>
+            <i class="fa-solid fa-utensils mt-4"></i>
             <p>recipes</p>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="about">
           <a routerLink="/about" class="nav-link">
-            <i class="fa-solid fa-people-group"></i>
+            <i class="fa-solid fa-people-group mt-4"></i>
             <p>about</p>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="profile">
           <a routerLink="/profile" class="nav-link">
-            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-user mt-4"></i>
             <p>profile</p>
           </a>
         </li>
@@ -43,9 +41,9 @@
        
 
         <!-- Login -->
-        <li class="nav-item">
+        <li class="nav-item" id="login">
           <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
-            <i class="fa-solid fa-right-to-bracket"></i>
+            <i class="fa-solid fa-right-to-bracket mt-4"></i>
             <p>login</p>
           </a>
         </li>
@@ -68,17 +66,19 @@
         </div>
 
         <!-- Register -->
-        <li class="nav-item">
+        <li class="nav-item" id="register">
           <a class="nav-link" data-bs-toggle="modal" data-bs-target="#registerModal">
-            <i class="fa-solid fa-right-to-bracket"></i>
+            <i class="fa-solid fa-right-to-bracket mt-4"></i>
             <p>register</p>
           </a>
         </li>
-        <li class="nav-item">
-          <button class="nav-link btn" (click)="toggleDarkMode()" aria-label="Toggle Dark Mode">
-            <span *ngIf="darkMode">☀️ Light Mode</span>
-            <span *ngIf="!darkMode">🌙 Dark Mode</span>
-          </button>
+
+        <li class="nav-item"  id="darkMode" (click)="toggleDarkMode()">
+          <a class="nav-link" >
+            <i class="fa-solid mt-4" [ngClass]="{'fa-sun-o': darkMode, 'fa-moon-o': !darkMode}"></i>
+            <p *ngIf="darkMode">Light Mode</p>
+            <p *ngIf="!darkMode">Dark Mode</p>
+          </a>
         </li>
 
         <!-- Register Modal -->
@@ -97,6 +97,9 @@
             </div>
           </div>
         </div>
+
+        <!-- Search Bar -->
+        <app-search-input class="search-position mx-3"></app-search-input>
       </ul>
     </div>
   </div>

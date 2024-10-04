@@ -29,11 +29,12 @@ p{
   font-family: var(--second-font);
 }
 body.dark-mode .team-section {
-  background-color: #333333 !important;
-  color: #ffffff !important;
+  background-color: #4e5455!important;/* OUR TEAM FRAME*/
+  color: #fcf9f9 !important; /*OUR TEAM*/
 }
-body.dark-mode {
-  --primary: #000000;
+.dark-mode .logoContent p{
+  font-size: 17px;
+  color: white !important;
 }
 
 body {
@@ -42,7 +43,7 @@ body {
 }
 
 body.dark-mode .team-member {
-  background-color: #444444 !important;
+  background-color: #32373d!important;
   color: #ffffff !important;
 }
 
@@ -55,28 +56,59 @@ body.dark-mode .member-info p {
 body.dark-mode .member-photo {
   border-color: #ffffff !important;
 }
-/* styles.css or styles.scss */
+
 body.dark-mode {
-  background-color: #121212;
+  background-color: #4e5455 !important; /* most of the background pages*/
   color: #ffffff;
 }
 
 body.dark-mode .footer {
-  background-color: #080808 !important; /* Override any other background color */
+  background-color: #32373d !important; /* footer */
 }
+
 body.dark-mode .latest{
-  background-color: #080808 !important;
+  background-color: #4e5455 !important; /*LATEST RECIPES*/
+}
+.dark-mode .border{
+  background-color: #32373d!important;
 }
 
-
-.navbar{
- 
-  background-color: var(--primary);
+.dark-mode .heading{
+  color: white !important;
 }
-
-.card.dark-mode {
-  background-color: #444444;
-  color: #ffffff;
+.dark-mode .menu-column ul {
+  list-style-type: none;
+  padding-left: 0;
+  color: white !important;
+}
+.dark-mode .menu-column ul li a {
+  color: #FE735C;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 400;
+  color: white !important;
+}
+.dark-mode .home-banner .banner-left {
+  background: #4e5455 !important;
+  height: 100vh;
+  padding: 0 16%;
+}
+.dark-mode .smallBox .categoryName h5{
+  color: white !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: var(--second-font);
+  margin-top: 18px;
+  font-size: 18px;    
+}
+.dark-mode .borderSection{
+  border: 1px solid #fff;
+  padding: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #fff;
+  background-color: #32373d !important ;
 }
 
 /* Add other necessary component or container classes */
