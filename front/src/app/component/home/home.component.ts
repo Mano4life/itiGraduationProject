@@ -91,7 +91,6 @@ export class HomeComponent {
   ngOnInit() {
     this.recipes.getRecipes().subscribe((res) => {
       this.recipesArr = res;
-      console.log(this.recipesArr);
 
       this.randomRecipesArr = this.getRandomRecipes(4);
     });

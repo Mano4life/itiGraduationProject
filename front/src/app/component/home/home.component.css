@@ -220,11 +220,14 @@ body{
     width: 100%;
 }
 
+.box{
+    cursor: pointer;
+}
 .box,.smallBox,.latestContent{
     transition: all 0.3s;
 }
 
-.box:hover,.smallBox:hover,.latestContent:hover{
+.box:hover,.latestContent:hover{
     opacity: 0.6;
 }
 

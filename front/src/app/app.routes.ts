@@ -49,7 +49,6 @@ export const routes: Routes = [
     path: 'recipes',
     component: RecipesComponent,
   },
-  
   {
     path: 'recipes/:id',
     component: SingleRecipeComponent,

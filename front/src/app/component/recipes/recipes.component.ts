@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { IngredientsService } from '../../core/services/ingredients/ingredients.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
 import { UsersService } from '../../core/services/users/users.service';
 
@@ -15,6 +15,8 @@ import { UsersService } from '../../core/services/users/users.service';
 })
 export class RecipesComponent {
   recipeList: any[] = [];
+  reverseOrder: Boolean = false;
+
   sub_categoryList: any[] = [];
   ingredentsList: any[] = [];
   disable:boolean=true;
@@ -24,8 +26,8 @@ export class RecipesComponent {
     private subcategories: SubcategoriesService,
     private ingredent: IngredientsService,
     private router: Router,
-    private  route: ActivatedRoute,
-    private  UserService:UsersService
+    private route: ActivatedRoute,
+    private UserService:UsersService
 
   ) {
     
@@ -36,6 +38,13 @@ export class RecipesComponent {
     this.getingredients();
     this.getFilterFromHome()
     this.getUser();
+
+    // All Recipe Button
+    this.route.queryParams.subscribe((params) => {
+      // Reverse if 'reverse=true' is passed
+      this.reverseOrder = params['reverse'] == 'true';
+      this.getreciepes();
+    })
     
   }
   getUser(){
@@ -70,15 +79,19 @@ export class RecipesComponent {
   }
   getreciepes() {
     this.recipes.getRecipes().subscribe({
-      next: (Response: any) => {
+      next: (Response: any) => {        
         this.recipeList = Response;
-        console.log(this.recipeList);
+
+        if(this.reverseOrder){
+          this.recipeList = this.recipeList.reverse();
+        }
       },
       error: (error: any) => {
         console.log(error);
       },
     });
   }
+
   getsubcategories() {
     this.subcategories.getSubCategories().subscribe({
       next: (Response: any) => {

@@ -2,8 +2,9 @@
 .navbar {
   padding: 20px 70px;
 }
-
-
+.logo{
+  cursor: pointer;
+}
 /* Search */
 li{
   cursor: pointer;
