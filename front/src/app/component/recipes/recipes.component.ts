@@ -114,11 +114,13 @@ export class RecipesComponent {
     });
   }
   time = [
-    { id: 1, name: '15 min >', selected: false },
-    { id: 2, name: '20 min >', selected: false },
-    { id: 3, name: '30 min >', selected: false },
-    { id: 4, name: '40 min >', selected: false },
-    { id: 5, name: 'more than 60 min ', selected: false },
+    { id: 1, name: '15 min ', selected: false },
+    { id: 2, name: '20 min ', selected: false },
+    { id: 3, name: '30 min ', selected: false },
+    { id: 4, name: '40 min ', selected: false },
+    { id: 5, name: 'less than 60 min ', selected: false },
+    { id: 6, name: 'more than 60 min ', selected: false },
+    
   ];
 
   dropdownOpen = false;
@@ -177,9 +179,15 @@ export class RecipesComponent {
   selectedCategories: string[] = [];
 
   toggleCategory(category: string) {
-    this.selectedCategories = [];
+    
+    if(this.selectedCategories[0]==category){
+      this.selectedCategories = [];
+    }
+    else{
+      this.selectedCategories = [];
+      this.selectedCategories.push(category);
+    }
 
-    this.selectedCategories.push(category);
   }
 
   isCategorySelected(category: string): boolean {
@@ -194,7 +202,7 @@ export class RecipesComponent {
     return this.recipeList.filter((recipe) => {
       const matchesCategory =
         this.selectedCategories.length === 0 ||
-        this.selectedCategories.includes(recipe.category.name);
+        this.selectedCategories.includes(recipe.category.name.toLowerCase());
       const matchesSubCategory =
         selectedSubCategories.length === 0 ||
         selectedSubCategories.includes(recipe.subcategory.name);
@@ -218,14 +226,16 @@ export class RecipesComponent {
   }
   timeMatches(recipeTime: number, selectedTimes: string[]): boolean {
     return selectedTimes.some((selected) => {
-      if (selected === '15 min >')
+      if (selected === '15 min ')
         return recipeTime == 15 || recipeTime < 15;
-      if (selected === '20 min >')
-        return recipeTime == 15 || recipeTime <= 20;
-      if (selected === '30 min >')
-        return recipeTime == 30 || recipeTime < 40;
-      if (selected === '40 min >')
-        return recipeTime == 40 || recipeTime < 60;
+      if (selected === '20 min ')
+        return recipeTime == 20 || recipeTime < 20;
+      if (selected === '30 min ')
+        return recipeTime == 30 || recipeTime < 30;
+      if (selected === '40 min ')
+        return recipeTime == 40 || recipeTime < 40;
+      if (selected === 'less than 60 min ')
+        return recipeTime == 60 || recipeTime < 60;
       if (selected === 'more than 60 min ')
          return recipeTime == 60 || recipeTime > 60;
       return false;
@@ -233,5 +243,8 @@ export class RecipesComponent {
   }
   SingleRecipePage(recipeId: number) {
     this.router.navigate(['/recipes', recipeId]);
+  }
+  premiumRecipeClick(){
+    
   }
 }
