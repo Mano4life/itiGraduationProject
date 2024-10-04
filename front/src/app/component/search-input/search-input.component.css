@@ -14,7 +14,6 @@
     font-weight: 300;
 }
 
-
 .search-bar i{
     position: absolute;
     font-size: 18px;
@@ -38,7 +37,7 @@ input::placeholder {
     border-color: var(--main-color);
     box-shadow: 0 0 10px 3px var(--main-color);
 }
-    
+
 .search-container .dropdown-list {
     position: absolute;
     top: 45px;
