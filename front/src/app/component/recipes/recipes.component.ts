@@ -5,7 +5,7 @@ import { IngredientsService } from '../../core/services/ingredients/ingredients.
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
 import { UsersService } from '../../core/services/users/users.service';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-recipes',
   standalone: true,
@@ -50,22 +50,22 @@ export class RecipesComponent {
   }
   getFilterFromHome() {
     this.route.queryParams.subscribe((res) => {
-      let filteredRecipes = this.recipeList; // Start with the original list
+      
   
       if (res['category']) {
-        filteredRecipes = filteredRecipes.filter((recipe) => {
-          return recipe.category.name === res['category'];
-        });
+        
+          this.selectedCategories.push(res['category']);
+        
       }
       
-      if (res['subcategory']) {
-        filteredRecipes = filteredRecipes.filter((recipe) => {
-          return recipe.subcategory.name === res['subcategory'];
-        });
-      }
+      // if (res['subcategory']) {
+      //   filteredRecipes = filteredRecipes.filter((recipe) => {
+      //     return recipe.subcategory.name === res['subcategory'];
+      //   });
+      // }
   
       // Update the original recipe list with filtered results
-      this.recipeList = filteredRecipes; // This modifies the original list
+       
     });
   }
   getreciepes() {
@@ -245,6 +245,14 @@ export class RecipesComponent {
     this.router.navigate(['/recipes', recipeId]);
   }
   premiumRecipeClick(){
-    
+    const logged=localStorage.getItem('auth_token')
+    if(logged){
+      this.router.navigate(['/payment']);
+    }
+    else{
+      const nextModalEl = document.getElementById('loginModal');
+          const nextModalInstance = new bootstrap.Modal(nextModalEl);
+          nextModalInstance.show();
+    }
   }
 }

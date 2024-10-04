@@ -31,8 +31,17 @@ export class UsersService {
 
   EditUser(Data: any) {
     const token = localStorage.getItem('auth_token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.patch(`http://127.0.0.1:8000/api/updateUser`,Data,{ headers });
+    const admin = localStorage.getItem('admin_token');
+    const premium = localStorage.getItem('premium_token');
+    
+    const authToken = token || admin || premium;
+      if (authToken) {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
+      return this.http.patch(`http://127.0.0.1:8000/api/updateUser`,Data,{ headers });
+    } else {
+    // Handle the case where neither token exists
+      throw new Error('No authorization token found');
+   }
   }
 
   deleteUser(id: any){

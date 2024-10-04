@@ -51,7 +51,7 @@ export class LoginComponent {
           if(res.user.role=='admin'){
             localStorage.setItem('admin_token', res.token); 
           }
-          this.router.navigate(['/']);
+          
           window.location.reload()
           },
           error: (err) => {

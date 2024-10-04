@@ -60,7 +60,7 @@
 </section>
 <section class="mt-3 m-auto">
   <div class="row m-auto">
-    <div class="col-lg-12 m-auto">
+    <div class="col-lg-8 m-auto">
       <div class="dropdown-content" *ngIf="dropdownOpen">
         <div class="checkbox-container">
           <div *ngFor="let option of sub_categoryList" class="background  m-1 px-2 ">
@@ -98,9 +98,9 @@
   <div class="container d-flex flex-column w-80">
     <div class="row gx-3 mt-3">
       <div class="col-lg-3 col-md-6 col-sm-12 white position-relative"  *ngFor="let item of getFilteredRecipes(); let i = index" 
-      (click)="item.user?.role === 'premium' &&  !isPremiumUser() ? $event.stopPropagation() : SingleRecipePage(item.id)"
+      (click)="item.user?.role === 'premium' &&  !isPremiumUser() ? premiumRecipeClick() : SingleRecipePage(item.id)"
       >
-        <div>
+        <div class="imagehover">
           <img class="rounded-image object-fit-cover" style="width: 100% !important; height: 330px !important;" [src]="item.image" alt="food">
           <span class="badge  position-absolute top-0 start-0 ms-3 mt-2" *ngIf="item.user?.role === 'premium'"><i class="fa-solid fa-crown pb-1" ></i></span>
         </div>

@@ -1,29 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component, Renderer2 } from '@angular/core';
-import {
-  FormArray,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { RecipesService } from '../../core/services/recipes/recipes.service';
-import { Router, ActivatedRoute, RouterLink } from '@angular/router';
-import { NgFor, NgIf } from '@angular/common';
-import { PendingRecipesService } from '../../core/services/pendinRecipes/pending-recipes.service';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
+import { RecipesService } from '../../../core/services/recipes/recipes.service';
+
 declare var bootstrap: any;
+
 @Component({
-  selector: 'app-add-recipe',
+  selector: 'app-admin-add-recipe',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, NgFor, NgIf],
-  templateUrl: './add-recipe.component.html',
-  styleUrl: './add-recipe.component.css',
+  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  templateUrl: './admin-add-recipe.component.html',
+  styleUrl: './admin-add-recipe.component.css'
 })
-export class AddRecipeComponent {
+export class AdminAddRecipeComponent {
   recipeForm!: FormGroup;
   recipe!: any;
   userId!: any;
   constructor(
-    private pendingService: PendingRecipesService,
+    private recipeService: RecipesService,
     private activatedRoute: ActivatedRoute,
     private renderer: Renderer2,
     private router: Router
@@ -70,7 +65,7 @@ export class AddRecipeComponent {
     const modalElement = document.getElementById('recipesuccess');
     if (modalElement) {
       this.renderer.listen(modalElement, 'hidden.bs.modal', () => {
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/admin']);
       });
     }
   }
@@ -105,7 +100,6 @@ export class AddRecipeComponent {
         description: this.recipeForm.value.description,
         directions: this.recipeForm.value.directions,
         image: this.recipeForm.value.image,
-        status: 'pending',
         category: this.recipeForm.value.category,
         subcategory: this.recipeForm.value.subcategory,
         user_id: this.userId,
@@ -122,7 +116,7 @@ export class AddRecipeComponent {
         ),
       };
 
-      this.pendingService.postPendingRecipes(recipeData).subscribe({
+      this.recipeService.postRecipe(recipeData).subscribe({
         next: (res) => {
           console.log('Recipe added successfully:', res);
           const nextModalEl = document.getElementById(modal);
@@ -135,24 +129,4 @@ export class AddRecipeComponent {
       });
     }
   }
-
-  // onSubmission() {
-  //   if (this.recipeForm.valid) {
-  //     const recipeData = this.recipeForm.value;
-
-  //     this.recipesService.postRecipe(recipeData).subscribe({
-  //       next: (res) => {
-  //         console.log("Recipe added successfully:", res);
-  //       },
-  //       error: (err) => {
-  //         console.error("Error creating recipe", err);
-  //       },
-  //       complete: () => {
-  //         console.log("Recipe creation request complete.");
-  //       }
-  //     });
-  //   } else {
-  //     console.error("Form is invalid!");
-  //   }
-  // }
 }

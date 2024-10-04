@@ -39,49 +39,53 @@ export class RecipesService {
   rateRecipe(id:any,rating:any){
     const token = localStorage.getItem('auth_token');
     const admin=localStorage.getItem('admin_token');
-    if(token){
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const premium=localStorage.getItem('premium_token');
+    const authToken = token || admin || premium;
+    if(authToken){
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
     return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/rate`,{rating},{ headers });
     }
     else{
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
-    return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/rate`,{rating},{ headers });
+      throw new Error('No authorization token found');
     }
   }
   saverecipe(id:any){
     const token = localStorage.getItem('auth_token');
     const admin=localStorage.getItem('admin_token');
-    if(token){
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const premium=localStorage.getItem('premium_token');
+    const authToken = token || admin || premium;
+    if(authToken){
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
     return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/save`,{},{ headers });
     }
     else{
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
-    return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/save`,{},{ headers });
+      throw new Error('No authorization token found');
     }
   }
   unsaverecipe(id:any){
     const token = localStorage.getItem('auth_token');
     const admin=localStorage.getItem('admin_token');
-    if(token){
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const premium=localStorage.getItem('premium_token');
+    const authToken = token || admin || premium;
+    if(authToken){
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
     return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/unsave`,{},{ headers });
     }
     else{
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
-      return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}/unsave`,{},{ headers });
+      throw new Error('No authorization token found');
     }
   }
   comment(recipe:any,comment:any){
     const token = localStorage.getItem('auth_token');
     const admin=localStorage.getItem('admin_token');
-    if(token){
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const premium=localStorage.getItem('premium_token');
+    const authToken = token || admin || premium;
+    if(authToken){
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
     return this.http.post(`http://127.0.0.1:8000/api/recipes/${recipe}/comment`,comment,{headers});
     }
     else{
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${admin}`);
-    return this.http.post(`http://127.0.0.1:8000/api/recipes/${recipe}/comment`,comment,{headers});
+      throw new Error('No authorization token found');
     }
   }
 

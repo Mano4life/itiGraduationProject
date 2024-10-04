@@ -148,37 +148,67 @@ class UserController extends Controller
 
     }
     //forget password
-    public function forgotPassword(Request $request){
-        $request->validate(['email' => 'required|email|exists:users,email']);
-
-        $token = Str::random(60);
+    public function forgotPassword(Request $request) {
+        // Validate the email format
+        $request->validate(['email' => 'required|email']);
+    
         $email = $request->email;
-
+    
+        // Check if the email exists in the users table
+        $userExists = User::where('email', $email)->exists();
+        if (!$userExists) {
+            return response()->json(['message' => 'Email does not exist.'], 404);
+        }
+    
+        // Generate the token
+        $token = rand(1000, 9999);
+    
+        // Create or update the password reset token
         PasswordResetToken::updateOrCreate(
             ['email' => $email],
             ['token' => $token, 'created_at' => now()]
         );
-       // Mail::to($email)->send(new ResetPasswordMail($token));
-
+    
+        // Send the reset password email
+        // Mail::to($email)->send(new ResetPasswordMail($token));
+    
         return response()->json(['message' => 'Reset password link sent!']);
     }
-    //RESET PASSWORD
-    public function resetPassword(Request $request){
-    $request->validate([
-        'token' => 'required',
-        'email' => 'required|email|exists:password_reset_tokens,email',
-        'password' => 'required|min:8',
-    ]);
-    $resetToken = PasswordResetToken::where('email', $request->email)->first();
-    if (!$resetToken || $resetToken->token !== $request->token) {
-        return response()->json(['message' => 'Invalid token.'], 400);
+    //VAILDATE CODE
+    public function validateCode(Request $request) {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email|exists:password_reset_tokens,email',
+        ]);
+    
+        $resetToken = PasswordResetToken::where('email', $request->email)->first();
+        if (!$resetToken || $resetToken->token !== $request->token) {
+            return response()->json(['message' => 'Invalid token.'], 400);
+        }
+    
+        return response()->json(['message' => 'Token is valid.']);
     }
-
-    // Update user password
-    $user = User::where('email', $request->email)->first();
-    $user->password = bcrypt($request->password);
-    $user->save();
-    PasswordResetToken::where('email', $request->email)->delete();
-    return response()->json(['message' => 'Password has been reset.']);
-}
+    //RESET PASSWORD
+    public function resetPassword(Request $request) {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email|exists:password_reset_tokens,email',
+            'password' => 'required|min:8',
+        ]);
+    
+        $resetToken = PasswordResetToken::where('email', $request->email)->first();
+        if (!$resetToken || $resetToken->token !== $request->token) {
+            return response()->json(['message' => 'Invalid token.'], 400);
+        }
+    
+        // Update user password
+        $user = User::where('email', $request->email)->first();
+        $user->password = bcrypt($request->password);
+        $user->save();
+        
+       
+        PasswordResetToken::where('email', $request->email)->delete();
+    
+        return response()->json(['message' => 'Password has been reset.']);
+    }
 }

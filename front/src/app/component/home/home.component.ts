@@ -20,12 +20,12 @@ export class HomeComponent {
   categories: any[] = [
     {
       id: 1,
-      name: 'Breakfast',
+      name: 'breakfast',
       img: 'https://images.pexels.com/photos/5589030/pexels-photo-5589030.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
     {
       id: 2,
-      name: 'Lunch',
+      name: 'lunch',
       img: 'https://pinchofyum.com/wp-content/uploads/Marry-Me-Chicken-6-840x1200.jpg',
     },
     {
@@ -109,6 +109,7 @@ export class HomeComponent {
             category: name
         }
     });
+
 }
   subcategoryClicked(name:string){
     this.router.navigate(['/recipes'],{
