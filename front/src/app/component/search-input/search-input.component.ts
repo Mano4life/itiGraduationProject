@@ -19,7 +19,6 @@ export class SearchInputComponent {
   private searchResultSource = new BehaviorSubject<any[]>([]);
   recipes: any[] = [];
 
-
   constructor(private recipesService: RecipesService,private router: Router) {
     this.recipesService.getRecipes().subscribe((res: any) => {
       this.recipes = res;
@@ -27,6 +26,7 @@ export class SearchInputComponent {
     });
   }
 
+  displayedResults: any[] = [];
   search(query: string) {
     if (query.trim() === '') {
       this.searchResultSource.next([]);
@@ -35,14 +35,16 @@ export class SearchInputComponent {
         recipe.name.toLowerCase().includes(query.toLowerCase())
       );
       this.searchResultSource.next(filteredResults);
+      this.displayedResults = filteredResults;
     }
-
   }
+
 
   onClear() {
     this.searchQuery = '';
     this.search(''); 
   }
+
   onSelect(id:number){
     this.router.navigate(['/recipes', id]);
     this.onClear()
