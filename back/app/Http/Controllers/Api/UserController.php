@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\PasswordResetToken;
 use App\Models\User;
+use App\Notifications\resetPasswordToken;
 use App\Notifications\TwoFactorCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -162,13 +163,15 @@ class UserController extends Controller
     
         // Generate the token
         $token = rand(1000, 9999);
-    
+        
         // Create or update the password reset token
-        PasswordResetToken::updateOrCreate(
+        $passwordToken = PasswordResetToken::updateOrCreate(
             ['email' => $email],
             ['token' => $token, 'created_at' => now()]
         );
-    
+        
+        // send token to mail
+        $passwordToken->notify(new resetPasswordToken());
         // Send the reset password email
         // Mail::to($email)->send(new ResetPasswordMail($token));
     
