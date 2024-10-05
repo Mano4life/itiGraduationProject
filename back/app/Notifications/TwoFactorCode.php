@@ -37,7 +37,6 @@ class TwoFactorCode extends Notification
         return (new MailMessage)
             ->subject('verification code message')
             ->line('your verification code is: ' . $notifiable->code)
-            // ->action('verify ->', route('verify.index'))
             ->line('Thank you for using our application!');
     }
 

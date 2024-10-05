@@ -46,10 +46,7 @@ export class AddRecipeComponent {
         Validators.required,
         Validators.minLength(2),
       ]),
-      image: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
+      image: new FormControl(null),
       category: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -75,6 +72,12 @@ export class AddRecipeComponent {
     }
   }
 
+  selectedFile: File | null = null;
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] as File;
+  }
+
   // Get the FormArray for ingredients
   get ingredients() {
     return this.recipeForm.get('ingredients') as FormArray;
@@ -98,31 +101,35 @@ export class AddRecipeComponent {
 
   onSubmission(modal:string) {
     if (this.recipeForm.valid) {
-      const recipeData = {
-        name: this.recipeForm.value.name,
-        time:this.recipeForm.value.time,
-        servings:this.recipeForm.value.Serving,
-        description: this.recipeForm.value.description,
-        directions: this.recipeForm.value.directions,
-        image: this.recipeForm.value.image,
-        status: 'pending',
-        category: this.recipeForm.value.category,
-        subcategory: this.recipeForm.value.subcategory,
-        user_id: this.userId,
-        ingredients: this.recipeForm.value.ingredients.map(
-          (ingredient: {
-            name: any;
-            quantity: any;
-            measurement_unit: any;
-          }) => ({
-            name: ingredient.name,
-            quantity: ingredient.quantity,
-            measurement_unit: ingredient.measurement_unit,
-          })
-        ),
-      };
+      const formData = new FormData();
 
-      this.pendingService.postPendingRecipes(recipeData).subscribe({
+      // Append each field from recipeData to FormData
+      formData.append('name', this.recipeForm.value.name);
+      formData.append('time', this.recipeForm.value.time);
+      formData.append('servings', this.recipeForm.value.Serving);
+      formData.append('description', this.recipeForm.value.description);
+      formData.append('directions', this.recipeForm.value.directions);
+      
+      // Check if selectedFile is not null before appending
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile); // Ensure selectedFile is the File object
+      } else {
+        console.error('No file selected');
+      }
+      
+      formData.append('status', 'pending');
+      formData.append('category', this.recipeForm.value.category);
+      formData.append('subcategory', this.recipeForm.value.subcategory);
+      formData.append('user_id', this.userId);
+      
+      // Append each ingredient to FormData
+      this.recipeForm.value.ingredients.forEach((ingredient: { name: any; quantity: any; measurement_unit: any; }, index: number) => {
+        formData.append(`ingredients[${index}][name]`, ingredient.name);
+        formData.append(`ingredients[${index}][quantity]`, ingredient.quantity);
+        formData.append(`ingredients[${index}][measurement_unit]`, ingredient.measurement_unit);
+      });
+
+      this.pendingService.postPendingRecipes(formData).subscribe({
         next: (res) => {
           console.log('Recipe added successfully:', res);
           const nextModalEl = document.getElementById(modal);
@@ -136,23 +143,4 @@ export class AddRecipeComponent {
     }
   }
 
-  // onSubmission() {
-  //   if (this.recipeForm.valid) {
-  //     const recipeData = this.recipeForm.value;
-
-  //     this.recipesService.postRecipe(recipeData).subscribe({
-  //       next: (res) => {
-  //         console.log("Recipe added successfully:", res);
-  //       },
-  //       error: (err) => {
-  //         console.error("Error creating recipe", err);
-  //       },
-  //       complete: () => {
-  //         console.log("Recipe creation request complete.");
-  //       }
-  //     });
-  //   } else {
-  //     console.error("Form is invalid!");
-  //   }
-  // }
 }
