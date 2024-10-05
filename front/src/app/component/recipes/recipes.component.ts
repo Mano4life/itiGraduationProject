@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { IngredientsService } from '../../core/services/ingredients/ingredients.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
-
+import { UsersService } from '../../core/services/users/users.service';
+declare var bootstrap: any;
 @Component({
   selector: 'app-recipes',
   standalone: true,
@@ -14,68 +15,119 @@ import { SubcategoriesService } from '../../core/services/subcategories/subcateg
 })
 export class RecipesComponent {
   recipeList: any[] = [];
+  reverseOrder: Boolean = false;
+
   sub_categoryList: any[] = [];
   ingredentsList: any[] = [];
-  
+  disable:boolean=true;
+  user:any;
   constructor(
     private recipes: RecipesService,
     private subcategories: SubcategoriesService,
     private ingredent: IngredientsService,
     private router: Router,
-    private  route: ActivatedRoute
+    private route: ActivatedRoute,
+    private UserService:UsersService
 
   ) {
     
   }
   ngOnInit(): void {
-    this.getreciepes();
+    // All Recipe Button
+    this.route.queryParams.subscribe((params) => {
+      // Check if reverse parameter is set
+      this.reverseOrder = params['reverse'] === 'true';
+      this.getreciepes();
+    });
+
     this.getsubcategories();
     this.getingredients();
     this.getFilterFromHome()
-    
+    this.getUser();
+
+  }
+  getUser(){
+    this.UserService.getUser().subscribe((res:any)=>{
+      this.user=res;
+      
+      })
+  }
+  isPremiumUser(): boolean {
+    return this.user && this.user.role === 'premium' ||  this.user && this.user.role === 'admin';
+
   }
   getFilterFromHome() {
     this.route.queryParams.subscribe((res) => {
-      let filteredRecipes = this.recipeList; // Start with the original list
+      
   
       if (res['category']) {
-        filteredRecipes = filteredRecipes.filter((recipe) => {
-          return recipe.category.name === res['category'];
-        });
+        
+          this.selectedCategories.push(res['category']);
+        
       }
       
-      if (res['subcategory']) {
-        filteredRecipes = filteredRecipes.filter((recipe) => {
-          return recipe.subcategory.name === res['subcategory'];
-        });
-      }
+      // if (res['subcategory']) {
+      //   filteredRecipes = filteredRecipes.filter((recipe) => {
+      //     return recipe.subcategory.name === res['subcategory'];
+      //   });
+      // }
   
       // Update the original recipe list with filtered results
-      this.recipeList = filteredRecipes; // This modifies the original list
+       
     });
   }
   getreciepes() {
     this.recipes.getRecipes().subscribe({
-      next: (Response: any) => {
-        this.recipeList = Response;
-        console.log(this.recipeList);
+      next: (Response: any) => {        
+        if(this.reverseOrder){
+          this.recipeList = [...Response].reverse();          
+        }else{
+          this.recipeList = Response;
+        }
       },
       error: (error: any) => {
         console.log(error);
       },
     });
   }
+
+  // getsubcategories() {
+  //   this.subcategories.getSubCategories().subscribe({
+  //     next: (Response: any) => {
+        
+  //       this.sub_categoryList = Response.data.map(
+  //         (sub: any, index: number) => ({
+  //           id: sub.id, 
+  //           name: sub.name,
+  //           selected: false, 
+  //         })
+  //       );
+  //       console.log(this.sub_categoryList);
+  //     },
+  //     error: (error: any) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
   getsubcategories() {
     this.subcategories.getSubCategories().subscribe({
-      next: (Response: any) => {
-        // Assuming Response.data is an array of subcategories
-        this.sub_categoryList = Response.data.map(
-          (sub: any, index: number) => ({
-            id: sub.id, // Adjust this based on your actual response structure
+      next: (response: any) => {
+        const uniqueSubCategories = new Map();
+  
+        this.sub_categoryList = response.data
+          .map((sub: any) => ({
+            id: sub.id, 
             name: sub.name,
-            selected: false, // Initialize selected as false
-          })
-        );
+            selected: false, 
+          }))
+          .filter((sub: any) => {
+            if (!uniqueSubCategories.has(sub.name)) {
+              uniqueSubCategories.set(sub.name, true);
+              return true; 
+            }
+            return false; 
+          });
+  
         console.log(this.sub_categoryList);
       },
       error: (error: any) => {
@@ -100,11 +152,13 @@ export class RecipesComponent {
     });
   }
   time = [
-    { id: 1, name: '15 min >', selected: false },
-    { id: 2, name: '20 min >', selected: false },
-    { id: 3, name: '30 min >', selected: false },
-    { id: 4, name: '40 min >', selected: false },
-    { id: 5, name: 'more than 60 min ', selected: false },
+    { id: 1, name: '15 min ', selected: false },
+    { id: 2, name: '20 min ', selected: false },
+    { id: 3, name: '30 min ', selected: false },
+    { id: 4, name: '40 min ', selected: false },
+    { id: 5, name: 'less than 60 min ', selected: false },
+    { id: 6, name: 'more than 60 min ', selected: false },
+    
   ];
 
   dropdownOpen = false;
@@ -163,9 +217,15 @@ export class RecipesComponent {
   selectedCategories: string[] = [];
 
   toggleCategory(category: string) {
-    this.selectedCategories = [];
+    
+    if(this.selectedCategories[0]==category){
+      this.selectedCategories = [];
+    }
+    else{
+      this.selectedCategories = [];
+      this.selectedCategories.push(category);
+    }
 
-    this.selectedCategories.push(category);
   }
 
   isCategorySelected(category: string): boolean {
@@ -180,7 +240,7 @@ export class RecipesComponent {
     return this.recipeList.filter((recipe) => {
       const matchesCategory =
         this.selectedCategories.length === 0 ||
-        this.selectedCategories.includes(recipe.category.name);
+        this.selectedCategories.includes(recipe.category.name.toLowerCase());
       const matchesSubCategory =
         selectedSubCategories.length === 0 ||
         selectedSubCategories.includes(recipe.subcategory.name);
@@ -204,14 +264,16 @@ export class RecipesComponent {
   }
   timeMatches(recipeTime: number, selectedTimes: string[]): boolean {
     return selectedTimes.some((selected) => {
-      if (selected === '15 min >')
+      if (selected === '15 min ')
         return recipeTime == 15 || recipeTime < 15;
-      if (selected === '20 min >')
-        return recipeTime == 15 || recipeTime <= 20;
-      if (selected === '30 min >')
-        return recipeTime == 30 || recipeTime < 40;
-      if (selected === '40 min >')
-        return recipeTime == 40 || recipeTime < 60;
+      if (selected === '20 min ')
+        return recipeTime == 20 || recipeTime < 20;
+      if (selected === '30 min ')
+        return recipeTime == 30 || recipeTime < 30;
+      if (selected === '40 min ')
+        return recipeTime == 40 || recipeTime < 40;
+      if (selected === 'less than 60 min ')
+        return recipeTime == 60 || recipeTime < 60;
       if (selected === 'more than 60 min ')
          return recipeTime == 60 || recipeTime > 60;
       return false;
@@ -219,5 +281,16 @@ export class RecipesComponent {
   }
   SingleRecipePage(recipeId: number) {
     this.router.navigate(['/recipes', recipeId]);
+  }
+  premiumRecipeClick(){
+    const logged=localStorage.getItem('auth_token')
+    if(logged){
+      this.router.navigate(['/payment']);
+    }
+    else{
+      const nextModalEl = document.getElementById('loginModal');
+          const nextModalInstance = new bootstrap.Modal(nextModalEl);
+          nextModalInstance.show();
+    }
   }
 }

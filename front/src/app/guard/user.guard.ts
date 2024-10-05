@@ -4,7 +4,9 @@ import { CanActivateFn, Router } from '@angular/router';
 export const userGuard: CanActivateFn = (route, state) => {
 
    const router=inject(Router);
-  const permission=localStorage.getItem('auth_token');
+   const user=localStorage.getItem('auth_token');
+   const premium=localStorage.getItem('premium_token');
+   const permission=user || premium ;
   if(permission !=null){
     return true;
   }

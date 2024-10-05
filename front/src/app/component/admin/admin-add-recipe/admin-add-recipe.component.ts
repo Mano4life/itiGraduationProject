@@ -1,8 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, Renderer2 } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormGroup,
+  FormControl,
+  Validators,
+  FormArray,
+} from '@angular/forms';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
-import { RecipesService } from '../../core/services/recipes/recipes.service';
+import { RecipesService } from '../../../core/services/recipes/recipes.service';
 declare var bootstrap: any;
 
 @Component({
@@ -10,7 +16,7 @@ declare var bootstrap: any;
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './admin-add-recipe.component.html',
-  styleUrl: './admin-add-recipe.component.css'
+  styleUrl: './admin-add-recipe.component.css',
 })
 export class AdminAddRecipeComponent {
   recipeForm!: FormGroup;
@@ -30,7 +36,10 @@ export class AdminAddRecipeComponent {
 
     this.recipeForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      Serving: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      Serving: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
       time: new FormControl('', [Validators.required, Validators.minLength(1)]),
       description: new FormControl('', [
         Validators.required,
@@ -40,10 +49,7 @@ export class AdminAddRecipeComponent {
         Validators.required,
         Validators.minLength(2),
       ]),
-      image: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
+      image: new FormControl(null),
       category: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -69,6 +75,12 @@ export class AdminAddRecipeComponent {
     }
   }
 
+  selectedFile: File | null = null;
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] as File;
+  }
+
   // Get the FormArray for ingredients
   get ingredients() {
     return this.recipeForm.get('ingredients') as FormArray;
@@ -90,32 +102,36 @@ export class AdminAddRecipeComponent {
     this.ingredients.removeAt(index);
   }
 
-  onSubmission(modal:string) {
+  onSubmission(modal: string) {
     if (this.recipeForm.valid) {
-      const recipeData = {
-        name: this.recipeForm.value.name,
-        time:this.recipeForm.value.time,
-        servings:this.recipeForm.value.Serving,
-        description: this.recipeForm.value.description,
-        directions: this.recipeForm.value.directions,
-        image: this.recipeForm.value.image,
-        category: this.recipeForm.value.category,
-        subcategory: this.recipeForm.value.subcategory,
-        user_id: this.userId,
-        ingredients: this.recipeForm.value.ingredients.map(
-          (ingredient: {
-            name: any;
-            quantity: any;
-            measurement_unit: any;
-          }) => ({
-            name: ingredient.name,
-            quantity: ingredient.quantity,
-            measurement_unit: ingredient.measurement_unit,
-          })
-        ),
-      };
+      const formData = new FormData();
 
-      this.recipeService.postRecipe(recipeData).subscribe({
+      // Append each field from recipeData to FormData
+      formData.append('name', this.recipeForm.value.name);
+      formData.append('time', this.recipeForm.value.time);
+      formData.append('servings', this.recipeForm.value.Serving);
+      formData.append('description', this.recipeForm.value.description);
+      formData.append('directions', this.recipeForm.value.directions);
+      
+      // Check if selectedFile is not null before appending
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile); // Ensure selectedFile is the File object
+      } else {
+        console.error('No file selected');
+      }
+      
+      formData.append('category', this.recipeForm.value.category);
+      formData.append('subcategory', this.recipeForm.value.subcategory);
+      formData.append('user_id', this.userId);
+      
+      // Append each ingredient to FormData
+      this.recipeForm.value.ingredients.forEach((ingredient: { name: any; quantity: any; measurement_unit: any; }, index: number) => {
+        formData.append(`ingredients[${index}][name]`, ingredient.name);
+        formData.append(`ingredients[${index}][quantity]`, ingredient.quantity);
+        formData.append(`ingredients[${index}][measurement_unit]`, ingredient.measurement_unit);
+      });
+
+      this.recipeService.postRecipe(formData).subscribe({
         next: (res) => {
           console.log('Recipe added successfully:', res);
           const nextModalEl = document.getElementById(modal);

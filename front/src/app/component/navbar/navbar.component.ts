@@ -22,17 +22,19 @@ export class NavbarComponent {
   Userinfo!:any;
   UserId!:any;
   admin:boolean=false;
+  premium:boolean=false;
   constructor(private serv:UsersService, private router: Router) { }
   ngOnInit() {
-    this.isLogged = localStorage.getItem('auth_token') !== null || localStorage.getItem('admin_token') !== null ;
+    this.isLogged = localStorage.getItem('auth_token') !== null || localStorage.getItem('admin_token') !== null ||  localStorage.getItem('premium_token') !== null ;
     this.admin=localStorage.getItem('admin_token') !== null;
-    console.log(this.admin)
+    this.premium=localStorage.getItem('premium_token') !==null;
   }
 
   logout(){
     this.serv.logout();
     localStorage.removeItem('auth_token');
     localStorage.removeItem('admin_token');
+    localStorage.removeItem('premium_token');
     this.isLogged = false;
     this.router.navigate(['/']);
   }
@@ -68,4 +70,5 @@ throw new Error('Method not implemented.');
     nextModalInstance.show();
   }
 
+  
 }

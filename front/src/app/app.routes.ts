@@ -4,7 +4,7 @@ import { HomeComponent } from './component/home/home.component';
 import { RecipesComponent } from './component/recipes/recipes.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { EditProfileComponent } from './component/profile/edit-profile/edit-profile.component';
-import { AddRecipeComponent } from './component/add-recipe/add-recipe.component';
+import { AddRecipeComponent } from './component/profile/add-recipe/add-recipe.component';
 import { AboutComponent } from './component/about/about.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { OtpValidatorComponent } from './component/otp-validator/otp-validator.component';
@@ -17,7 +17,12 @@ import { PaymentComponent } from './component/payment/payment.component';
 import { PaymentCancelComponent } from './component/payment/payment-cancel/payment-cancel.component';
 import { PaymentSuccessComponent } from './component/payment/payment-success/payment-success.component';
 import { adminGuard } from './guard/admin.guard';
-import { AdminAddRecipeComponent } from './component/admin-add-recipe/admin-add-recipe.component';
+import { AdminAddRecipeComponent } from './component/admin/admin-add-recipe/admin-add-recipe.component';
+import { premiumGuard } from './guard/premium.guard';
+import { ForgotPasswordComponent } from './component/forgot-password-components/forgot-password/forgot-password.component';
+import { EditRecipeComponent } from './component/profile/edit-recipe/edit-recipe.component';
+import { SendCodeComponent } from './component/forgot-password-components/send-code/send-code.component';
+import { ResetPasswordComponent } from './component/forgot-password-components/reset-password/reset-password.component';
 
 export const routes: Routes = [
   {
@@ -48,12 +53,30 @@ export const routes: Routes = [
     component: RecipesComponent,
   },
   {
+    path: 'edit-recipe/:id',
+    component:EditRecipeComponent,
+    canActivate: [premiumGuard]
+  },
+  
+  {
     path: 'recipes/:id',
     component: SingleRecipeComponent,
   },
   {
     path: 'otp',
     component: OtpValidatorComponent,
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'verify-code',
+    component: SendCodeComponent,
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
   },
   {
     path: 'admin',
@@ -75,10 +98,12 @@ export const routes: Routes = [
     
     path: 'payment',
     component: PaymentComponent,
+    canActivate: [userGuard],
   },
   {
     path: 'payment/success',
     component: PaymentSuccessComponent,
+    
   },
   {
     path: 'payment/cancel',

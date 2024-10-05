@@ -18,7 +18,13 @@
         <div class="showIcon" (click)="togglePasswordVisibility()">
             <i class="fa-solid" [class.fa-eye]="!isPasswordVisible" [class.fa-eye-slash]="isPasswordVisible"></i>
         </div>
+        
     </div>
+    <div>
+        <a routerLink="/forgot-password" data-bs-dismiss="modal">Forgot Password ?</a>
+    </div>
+   
+
     <small *ngIf="LoginForm.controls['password'].errors?.['required'] && LoginForm.controls['password'].touched" 
         class="form-text text-danger">Please add your password.
     </small>

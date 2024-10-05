@@ -15,8 +15,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ingredient_pending_recipe', function (Blueprint $table) {
-            $table->foreignIdFor(Ingredient::class)->cascadeOnDelete();
-            $table->foreignIdFor(PendingRecipe::class)->cascadeOnDelete();
+            $table->id();
+            $table->foreignIdFor(Ingredient::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(PendingRecipe::class)->constrained()->cascadeOnDelete();
 
             $table->float('quantity');
             $table->string('measurement_unit');

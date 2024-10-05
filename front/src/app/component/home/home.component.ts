@@ -20,12 +20,12 @@ export class HomeComponent {
   categories: any[] = [
     {
       id: 1,
-      name: 'Breakfast',
+      name: 'breakfast',
       img: 'https://images.pexels.com/photos/5589030/pexels-photo-5589030.jpeg?auto=compress&cs=tinysrgb&w=600',
     },
     {
       id: 2,
-      name: 'Lunch',
+      name: 'lunch',
       img: 'https://pinchofyum.com/wp-content/uploads/Marry-Me-Chicken-6-840x1200.jpg',
     },
     {
@@ -86,13 +86,19 @@ export class HomeComponent {
   constructor(private recipes: RecipesService,private router:Router) {}
 
   recipesArr!: any;
+  findRecipes!: any;
   randomRecipesArr!: any;
   shuffle!: any;
   ngOnInit() {
+    this.getNormalRecipes();
+  }
+
+  getNormalRecipes(){
     this.recipes.getRecipes().subscribe((res) => {
       this.recipesArr = res;
-      console.log(this.recipesArr);
-
+      this.findRecipes = this.recipesArr.filter( (recipe:any) => recipe.user.role != 'premium');
+      console.log(this.findRecipes);
+      
       this.randomRecipesArr = this.getRandomRecipes(4);
     });
   }
@@ -100,15 +106,18 @@ export class HomeComponent {
   // Display Random Recipes
   getRandomRecipes(count: number) {
     // [...]creates a shallow copy of recipesArr for shuffling. This way, the original array remains unchanged.
-    this.shuffle = [...this.recipesArr].sort(() => 0.5 - Math.random());
+    this.shuffle = [...this.findRecipes].sort(() => 0.5 - Math.random());
+    console.log(this.shuffle);
     return this.shuffle.slice(0, count);
   }
+
   categoryClicked(name: string) {
     this.router.navigate(['/recipes'], {
         queryParams: {
             category: name
         }
     });
+
 }
   subcategoryClicked(name:string){
     this.router.navigate(['/recipes'],{

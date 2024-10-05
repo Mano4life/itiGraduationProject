@@ -31,8 +31,9 @@ Route::post('/register', [UserController::class, 'register']);
 Route::get('users', [UserController::class, 'index']);
 Route::delete('/users/delete/{user}', [UserController::class, 'destroy']);
 Route::patch('/adminEditUser/{user}',[UserController::class,'updateUser']);
-
-
+Route::post('/forgot-password', [UserController::class, 'forgotPassword']);
+Route::post('/reset-password', [UserController::class, 'resetPassword']);
+Route::post('/validate-code', [UserController::class, 'validateCode']);
 // Recipe API resource route
 Route::apiResource('recipes', RecipeController::class);
 Route::post('/recipes/store-multiple', [RecipeController::class, 'storeMultiple']);

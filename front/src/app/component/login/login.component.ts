@@ -42,13 +42,16 @@ export class LoginComponent {
       this.serv.login(dataToStore).subscribe({
         next: (res:any) => {
           console.log("from login",res);
-          if(res.user.role=='premium' ||  res.user.role=='user'){
+          if(res.user.role=='premium'){
+            localStorage.setItem('premium_token', res.token); 
+          }
+          if( res.user.role=='user'){
           localStorage.setItem('auth_token', res.token); 
           }
           if(res.user.role=='admin'){
             localStorage.setItem('admin_token', res.token); 
           }
-          this.router.navigate(['/']);
+          
           window.location.reload()
           },
           error: (err) => {

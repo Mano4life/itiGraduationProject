@@ -43,4 +43,7 @@ export class ProfileComponent {
   onRecipeClick(id: number) {
     this.router.navigate(['/recipes', id]);
   }
+  editPendingRecipe(id:any){
+    this.router.navigate(['/edit-recipe',id]);
+  }
 }

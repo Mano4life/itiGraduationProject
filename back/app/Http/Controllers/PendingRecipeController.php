@@ -22,7 +22,7 @@ class PendingRecipeController extends Controller
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
-            'image' => ['required', 'active_url'],
+            'image' => ['required', 'file', 'mimes:jpg,jpeg,png,gif'],
             'servings' => ['required'],
             'time' => ['required'],
             'category' => ['required', 'string'],
@@ -36,10 +36,14 @@ class PendingRecipeController extends Controller
 
         ]);
 
-        // Fetch or create category by name
-        $category = Category::firstOrCreate(['name' => $data['category']]);
+        // Handle image upload to Cloudinary
+        if (request()->hasFile('image')) {
+            $image = request()->file('image')->storeOnCloudinary('recipies');
+            $url = $image->getSecurePath();
+        }
 
-        // Fetch or create subcategory by name
+        // Fetch or create category & subcategory by name
+        $category = Category::firstOrCreate(['name' => $data['category']]);
         $subcategory = Subcategory::firstOrCreate(['name' => $data['subcategory'], 'category_id' => $category->id]);
 
         // Create thePendingRecipe with the fetched category and subcategory IDs
@@ -47,7 +51,7 @@ class PendingRecipeController extends Controller
             'name' => $data['name'],
             'description' => $data['description'],
             'directions' => $data['directions'],
-            'image' => $data['image'],
+            'image' => $url,
             'servings' => $data['servings'],
             'time' => $data['time'],
             'category_id' => $category->id,
@@ -93,7 +97,7 @@ class PendingRecipeController extends Controller
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
-            'image' => ['required', 'active_url'],
+            'image' => ['required', 'file', 'mimes:jpg,jpeg,png,gif'],
             'servings' => ['required'],
             'time' => ['required'],
             'category' => ['required', 'string'],
@@ -105,11 +109,14 @@ class PendingRecipeController extends Controller
             'ingredients' => ['required', 'array'],
         ]);
 
-        // Fetch or update category by name
-        $category = Category::firstOrCreate(['name' => $data['category']]);
-        // dd($category);
+        // Handle image upload to Cloudinary
+        if (request()->hasFile('image')) {
+            $image = request()->file('image')->storeOnCloudinary('recipies');
+            $url = $image->getSecurePath();
+        }
 
-        // Fetch or update subcategory by name
+        // Fetch or create category & subcategory by name
+        $category = Category::firstOrCreate(['name' => $data['category']]);
         $subcategory = Subcategory::firstOrCreate(['name' => $data['subcategory'], 'category_id' => $category->id]);
 
         // update the recipe with the fetched category and subcategory IDs
@@ -117,7 +124,7 @@ class PendingRecipeController extends Controller
             'name' => $data['name'],
             'description' => $data['description'],
             'directions' => $data['directions'],
-            'image' => $data['image'],
+            'image' => $url,
             'servings' => $data['servings'],
             'time' => $data['time'],
             'status' => $data['status'],
