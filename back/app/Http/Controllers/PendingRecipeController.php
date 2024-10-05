@@ -97,7 +97,7 @@ class PendingRecipeController extends Controller
             'name' => ['required', 'min:3'],
             'description' => ['required', 'min:3'],
             'directions' => ['required', 'min:3'],
-            'image' => ['required', 'file', 'mimes:jpg,jpeg,png,gif'],
+            'image' => ['required'],
             'servings' => ['required'],
             'time' => ['required'],
             'category' => ['required', 'string'],
@@ -113,7 +113,9 @@ class PendingRecipeController extends Controller
         if (request()->hasFile('image')) {
             $image = request()->file('image')->storeOnCloudinary('recipies');
             $url = $image->getSecurePath();
-        }
+        }else if($data['image']){
+            $url = $data['image'];
+        };
 
         // Fetch or create category & subcategory by name
         $category = Category::firstOrCreate(['name' => $data['category']]);

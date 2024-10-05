@@ -49,7 +49,7 @@ export class AdminAddRecipeComponent {
         Validators.required,
         Validators.minLength(2),
       ]),
-      image: new FormControl(null),
+      image: new FormControl(null, [ Validators.required ]),
       category: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -76,7 +76,6 @@ export class AdminAddRecipeComponent {
   }
 
   selectedFile: File | null = null;
-
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
   }
