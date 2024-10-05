@@ -1,5 +1,14 @@
 /* Navbar styles */
+.logo img {
+  height: 80px !important;
+  width: 100px !important;
+}
+
 .navbar {
+  padding: 20px 70px;
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
+  background-color: #32373d;
   padding: 0 70px;
 }
 .logo{
@@ -45,7 +54,19 @@ li{
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--primary-text-color);
+
+}
+
+.nav-links i {
+  font-size: 20px;
   color: var(--main-color);
+}
+
+.nav-links a p{
+  margin-top: 4px;
+  color: var(--main-color);
+  font-weight: bold;
   font-size: 20px;
 }
 
@@ -63,36 +84,30 @@ li{
 .modal-header{
   border-bottom: none;
 }
-.modal-title{
+
+.modal-title {
   text-align: center;
   color: var(--main-color);
   font-size: 55px;
   margin: auto;
 }
-.modal-body{
+
+.modal-body {
   padding: 0;
 }
-.switch{
+
+.switch {
   color: var(--main-color);
   font-size: 20px;
   font-weight: 600;
   text-align: center;
 }
-.switch .switchCard{
+
+.switch .switchCard {
   color: var(--btn-color);
   cursor: pointer;
 }
 
-/* Premium */
-.active-premium i {
-  color:  #fcb900;
-}
-.active-premium span{
-  color: #fcb900;
-}
-.premium-hover:hover{
-  color: #FFAF45 !important;
-}
 
 /* Responsive */
 @media (max-width: 1255px) {

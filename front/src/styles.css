@@ -28,6 +28,94 @@ h1{
 p{
   font-family: var(--second-font);
 }
+body.dark-mode .team-section {
+  background-color: #4e5455!important;/* OUR TEAM FRAME*/
+  color: #fcf9f9 !important; /*OUR TEAM*/
+}
+.dark-mode .logoContent p{
+  font-size: 17px;
+  color: white !important;
+}
+
+body {
+  
+  --primary: #FFFFFF;
+}
+
+body.dark-mode .team-member {
+  background-color: #32373d!important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .member-info h3,
+body.dark-mode .member-info h4,
+body.dark-mode .member-info p {
+  color: #ffffff !important;
+}
+
+body.dark-mode .member-photo {
+  border-color: #ffffff !important;
+}
+
+body.dark-mode {
+  background-color: #4e5455 !important; /* most of the background pages*/
+  color: #ffffff;
+}
+
+body.dark-mode .footer {
+  background-color: #32373d !important; /* footer */
+}
+
+body.dark-mode .latest{
+  background-color: #4e5455 !important; /*LATEST RECIPES*/
+}
+.dark-mode .border{
+  background-color: #32373d!important;
+}
+
+.dark-mode .heading{
+  color: white !important;
+}
+.dark-mode .menu-column ul {
+  list-style-type: none;
+  padding-left: 0;
+  color: white !important;
+}
+.dark-mode .menu-column ul li a {
+  color: #FE735C;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 400;
+  color: white !important;
+}
+.dark-mode .home-banner .banner-left {
+  background: #4e5455 !important;
+  height: 100vh;
+  padding: 0 16%;
+}
+.dark-mode .smallBox .categoryName h5{
+  color: white !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: var(--second-font);
+  margin-top: 18px;
+  font-size: 18px;    
+}
+.dark-mode .borderSection{
+  border: 1px solid #fff;
+  padding: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #fff;
+  background-color: #32373d !important ;
+}
+
+/* Add other necessary component or container classes */
+
+
+
+
 
 /* Login & Register */
 .auth {
@@ -48,4 +136,32 @@ p{
   transform: translateY(-50%);
   cursor: pointer;
   font-size: 20px;
+}
+/* Global responsive text scaling */
+@media (max-width: 992px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 0.8rem;
+  }
+ 
 }

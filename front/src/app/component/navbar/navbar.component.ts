@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 import { LoginComponent } from "../login/login.component";
@@ -7,15 +7,24 @@ import { CommonModule } from '@angular/common';
 import { UsersService } from '../../core/services/users/users.service';
 import { SearchInputComponent } from "../search-input/search-input.component";
 
+
 declare var bootstrap: any;
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, TopDishAreaComponent, LoginComponent, RegisterComponent,CommonModule, RouterLinkActive, SearchInputComponent],
-
+  imports: [
+    RouterLinkActive,
+    TopDishAreaComponent,
+    CommonModule,  // Add CommonModule here
+    RouterLink,
+    SearchInputComponent,
+    LoginComponent,
+    RegisterComponent
+  ],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent {
   logo: string = 'assets/imgs/logo.png';
   isLogged:boolean=false;
@@ -23,7 +32,10 @@ export class NavbarComponent {
   UserId!:any;
   admin:boolean=false;
   premium:boolean=false;
+  darkMode: boolean = false; // Track dark mode state
+
   constructor(private serv:UsersService, private router: Router) { }
+  
   ngOnInit() {
     this.isLogged = localStorage.getItem('auth_token') !== null || localStorage.getItem('admin_token') !== null ||  localStorage.getItem('premium_token') !== null ;
     this.admin=localStorage.getItem('admin_token') !== null;
@@ -39,21 +51,15 @@ export class NavbarComponent {
     this.router.navigate(['/']);
   }
 
-  // Dannle
-toggleDarkMode() {
-throw new Error('Method not implemented.');
-}
-  menuOpen = false;
+  // Dannel
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-    const navLinks = document.querySelector('.nav-links');
-    if (this.menuOpen) {
-      navLinks?.classList.add('open');
-    } else {
-      navLinks?.classList.remove('open');
-    }
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    console.log(this.darkMode)
+    document.body.classList.toggle('dark-mode', this.darkMode);
   }
+  
+
   
   // This method switches modals using Bootstrap's modal instance
   switchModals(currentModalId: string, nextModalId: string) {
@@ -70,5 +76,5 @@ throw new Error('Method not implemented.');
     nextModalInstance.show();
   }
 
-  
+
 }
