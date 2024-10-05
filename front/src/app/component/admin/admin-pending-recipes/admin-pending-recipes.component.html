@@ -29,8 +29,8 @@
             <td>{{ data.user.name }}</td>
 
             <!-- Accept Button -->
-            <td class="text-center">
-                <i class="fa-solid fa-check" style="color: var(--main-color);" (click)="posttorecipe(data.id)"></i>
+            <td class="text-center" (click)="posttorecipe(data.id)">
+                <i class="fa-solid fa-check" style="color: var(--main-color);"></i>
             </td>
 
             <!-- Edit Button -->

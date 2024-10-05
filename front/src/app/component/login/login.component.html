@@ -21,9 +21,9 @@
         
     </div>
     <div>
-        <a routerLink="/forgot-password" data-bs-dismiss="modal">Forgot Password ?</a>
+        <a routerLink="/forgot-password" data-bs-dismiss="modal" style="color: var(--btn-color);">Forgot Password ?</a>
     </div>
-   
+
 
     <small *ngIf="LoginForm.controls['password'].errors?.['required'] && LoginForm.controls['password'].touched" 
         class="form-text text-danger">Please add your password.
