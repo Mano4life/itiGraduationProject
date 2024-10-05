@@ -1,0 +1,22 @@
+<div class="container row m-auto mb-5">
+    <div class=" col-12 col-lg-4 col-md-6 col-sm-10 co m-auto">
+        <div class="rounded shadow-sm p-3" style="background-color: var(--main-background);">
+            <div >
+                <h2 class="text-center" style="color: var(--footer-color);">Verification Code</h2>
+                <p class="text-center mt-3" >Please Enter Sent Code </p>
+                <form [formGroup]="CodeForm" (ngSubmit)="CodeConfirmation()" class=" m-4">
+    
+                    <!-- code -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="login-code" aria-describedby="codeHelp" 
+                            formControlName="code" placeholder="Enter verification code....">
+                    </div>
+                    @if(invalid){
+                        <div class="mb-2"><span class="text-danger fw-normal text-capitalize">{{invalid}}</span></div>
+                      } 
+                    <button type="submit" class="btn btn-auth mt-4 d-flex" [disabled]="CodeForm.invalid" >Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

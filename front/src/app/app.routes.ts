@@ -20,8 +20,10 @@ import { adminGuard } from './guard/admin.guard';
 import { AdminAddRecipeComponent } from './component/admin/admin-add-recipe/admin-add-recipe.component';
 
 import { premiumGuard } from './guard/premium.guard';
-import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from './component/forgot-password-components/forgot-password/forgot-password.component';
 import { EditRecipeComponent } from './component/profile/edit-recipe/edit-recipe.component';
+import { SendCodeComponent } from './component/forgot-password-components/send-code/send-code.component';
+import { ResetPasswordComponent } from './component/forgot-password-components/reset-password/reset-password.component';
 
 export const routes: Routes = [
   {
@@ -68,6 +70,14 @@ export const routes: Routes = [
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+  },
+  {
+    path: 'verify-code',
+    component: SendCodeComponent,
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
   },
   {
     path: 'admin',
