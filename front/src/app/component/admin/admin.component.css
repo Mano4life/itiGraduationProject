@@ -13,9 +13,11 @@
 
 .sidebar a{
     transition: all 0.3s;
+    text-decoration: none;
+
 }
-.sidebar a:hover{
-    color: var(--second-color);
+.sidebar a:hover, .sidebar a.active{
+    color: var(--btn-color);
 }
 
 .sidebar::after{
@@ -26,10 +28,6 @@
     height: 100%;
     content: "";
     background-color: var(--third-color);
-}
-
-.active{
-    background-color:#756f64;
 }
 
 @media (max-width: 992px) {

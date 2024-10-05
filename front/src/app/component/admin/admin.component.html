@@ -3,9 +3,9 @@
     <div class="row mb-5">
         <div class="col-md-4 col-12 text-center">
             <div class="sidebar p-3">
-                <a (click)="changeSection('users')">Users</a>
-                <a (click)="changeSection('recipes')">Recipes</a>
-                <a (click)="changeSection('pendingRecipes')">Pending Recipes</a>
+                <a [class.active]="activeSection === 'users'" (click)="changeSection('users')">Users</a>
+                <a [class.active]="activeSection === 'recipes'" (click)="changeSection('recipes')">Recipes</a>
+                <a [class.active]="activeSection === 'pendingRecipes'" (click)="changeSection('pendingRecipes')">Pending Recipes</a>
             </div>
         </div>
 
