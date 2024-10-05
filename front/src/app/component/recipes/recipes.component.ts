@@ -91,17 +91,43 @@ export class RecipesComponent {
     });
   }
 
+  // getsubcategories() {
+  //   this.subcategories.getSubCategories().subscribe({
+  //     next: (Response: any) => {
+        
+  //       this.sub_categoryList = Response.data.map(
+  //         (sub: any, index: number) => ({
+  //           id: sub.id, 
+  //           name: sub.name,
+  //           selected: false, 
+  //         })
+  //       );
+  //       console.log(this.sub_categoryList);
+  //     },
+  //     error: (error: any) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
   getsubcategories() {
     this.subcategories.getSubCategories().subscribe({
-      next: (Response: any) => {
-        // Assuming Response.data is an array of subcategories
-        this.sub_categoryList = Response.data.map(
-          (sub: any, index: number) => ({
-            id: sub.id, // Adjust this based on your actual response structure
+      next: (response: any) => {
+        const uniqueSubCategories = new Map();
+  
+        this.sub_categoryList = response.data
+          .map((sub: any) => ({
+            id: sub.id, 
             name: sub.name,
-            selected: false, // Initialize selected as false
-          })
-        );
+            selected: false, 
+          }))
+          .filter((sub: any) => {
+            if (!uniqueSubCategories.has(sub.name)) {
+              uniqueSubCategories.set(sub.name, true);
+              return true; 
+            }
+            return false; 
+          });
+  
         console.log(this.sub_categoryList);
       },
       error: (error: any) => {
