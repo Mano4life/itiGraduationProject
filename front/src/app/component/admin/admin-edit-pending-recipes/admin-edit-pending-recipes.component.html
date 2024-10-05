@@ -11,13 +11,13 @@
       </div>
 
       <div class="mb-2 col-lg-4">
-        <img [src]="imageUrl" alt="Recipe Image"  class="img-thumbnail" />
+        <img [src]="editForm.get('image')?.value" alt="Recipe Image"  class="img-thumbnail" />
       </div>
 
       <div class="col-lg-8 formEdit">
-            <form [formGroup]="editForm" (ngSubmit)="editRecipe()" enctype="multipart/form-data" >
+            <form [formGroup]="editForm" (ngSubmit)="editRecipe()" >
                 <label for="recipeId" class="form-label">image:</label>
-                <input type="file" class="form-control" id="recipeImage" accept="image/*" formControlName="image"/>
+                <input type="text" class="form-control" id="recipeImage" accept="image/*" formControlName="image"/>
                 
                 <div class="mb-3 mt-3">
                     <label for="recipeId" class="form-label">Id:</label>

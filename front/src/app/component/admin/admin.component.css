@@ -14,6 +14,7 @@
 .sidebar a{
     transition: all 0.3s;
     text-decoration: none;
+    color: var(--main-color);
 
 }
 .sidebar a:hover, .sidebar a.active{

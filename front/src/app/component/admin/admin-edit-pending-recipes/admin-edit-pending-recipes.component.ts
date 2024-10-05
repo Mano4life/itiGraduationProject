@@ -20,7 +20,6 @@ export class AdminEditPendingRecipesComponent {
 
   }
 
-  imageUrl: any;
   ngOnInit() {
     this.editForm = new FormGroup({
       id:new FormControl('',[Validators.required]),
@@ -36,7 +35,10 @@ export class AdminEditPendingRecipesComponent {
         Validators.required,
         Validators.minLength(2),
       ]),
-      image: new FormControl(null),
+      image: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
       category: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -47,16 +49,12 @@ export class AdminEditPendingRecipesComponent {
       ]),
       ingredients: new FormArray([])
     });
-
     this.pendingRecipeId = this.routerActive.snapshot.params['id']; 
 
     if (this.pendingRecipeId) {
       this.pendingRecipeService.getOnePendingRecipe(this.pendingRecipeId).subscribe((data:any) => {
         this.editPendingRecipe = data;
         console.log("output pending",this.editPendingRecipe)
-
-        this.imageUrl = this.editPendingRecipe.image;
-        
         // Patch the form with the basic recipe data
         this.editForm.patchValue({
           id: data.id,
@@ -66,6 +64,7 @@ export class AdminEditPendingRecipesComponent {
           Description: data.description,
           Direction: data.directions,
           Username: data.user.name,
+          image: data.image,
           category:data.category.name,
           subcategory:data.subcategory.name,
         });
@@ -84,14 +83,7 @@ export class AdminEditPendingRecipesComponent {
           ingredientsFormArray.push(ingredientGroup); // Add to FormArray
         });
       });
-    }
-  }
-
-  selectedFile: File | null = null;
-
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0] as File;
-  }
+  }}
 
   editRecipe(){
     if (!this.editForm.valid) {
@@ -104,37 +96,32 @@ export class AdminEditPendingRecipesComponent {
     }
     
     if (this.editForm.valid) {
-      const formData = new FormData();
+      const recipeData = {
+        name: this.editForm.value.name,
+        time:this.editForm.value.time,
+        servings:this.editForm.value.Servings,
+        description: this.editForm.value.Description,
+        directions: this.editForm.value.Direction,
+        image: this.editForm.value.image,
+        category: this.editForm.value.category,
+        subcategory: this.editForm.value.subcategory,
+        user_id: this.editPendingRecipe.user.id,
+        status:'pending',
+        ingredients: this.editForm.value.ingredients.map(
+          (ingredient: {
+            name: any;
+            quantity: any;
+            measurement_unit: any;
+          }) => ({
+            name: ingredient.name,
+            quantity: ingredient.quantity,
+            measurement_unit: ingredient.measurement_unit,
+          })
+        ),
+      };
+      console.log("data to be sent",recipeData);
 
-      // Append each field from recipeData to FormData
-      formData.append('name', this.editForm.value.name);
-      formData.append('time', this.editForm.value.time);
-      formData.append('servings', this.editForm.value.Servings);
-      formData.append('description', this.editForm.value.Description);
-      formData.append('directions', this.editForm.value.Direction);
-      
-      // Check if selectedFile is not null before appending
-      if (this.selectedFile) {
-        formData.append('image', this.selectedFile); // Ensure selectedFile is the File object
-      } else {
-        formData.append('image', this.imageUrl);
-      }
-      
-      formData.append('status', 'pending');
-      formData.append('category', this.editForm.value.category);
-      formData.append('subcategory', this.editForm.value.subcategory);
-      formData.append('user_id', this.editPendingRecipe.user.id);
-      
-      // Append each ingredient to FormData
-      this.editForm.value.ingredients.forEach((ingredient: { name: any; quantity: any; measurement_unit: any; }, index: number) => {
-        formData.append(`ingredients[${index}][name]`, ingredient.name);
-        formData.append(`ingredients[${index}][quantity]`, ingredient.quantity);
-        formData.append(`ingredients[${index}][measurement_unit]`, ingredient.measurement_unit);
-      });
-
-      console.log(formData);
-      
-      this.pendingRecipeService.updatePendingRecipe(this.pendingRecipeId,formData).subscribe({
+      this.pendingRecipeService.updatePendingRecipe(this.pendingRecipeId,recipeData).subscribe({
         next: (res) => {
           console.log('Recipe added successfully:', res);
           this.router.navigate(['/admin']);
@@ -145,4 +132,6 @@ export class AdminEditPendingRecipesComponent {
       });
     }
   }
+
+  
 }

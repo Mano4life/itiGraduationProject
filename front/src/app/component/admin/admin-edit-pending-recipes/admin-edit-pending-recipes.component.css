@@ -26,7 +26,7 @@ h1, form label{
     transition: all 0.3s;
 }
 .main:hover i{
-    transform: translateX(5px);
+    transform: translateX(3px);
 }
 .main:hover p{
     transform: translateX(-5px);
