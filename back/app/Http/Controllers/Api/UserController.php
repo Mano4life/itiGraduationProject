@@ -42,7 +42,7 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:3|max:10',
+            'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email|min:8',
             'password' => 'required|string|min:5',
             'role' => 'required|string',
@@ -103,7 +103,7 @@ class UserController extends Controller
         $user = $request->user(); // Get the authenticated user
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3|max:10',
+            'name' => 'required|string|min:3',
             'date_of_birth' => 'date',
             'gender' => 'nullable|string|in:male,female',
 
@@ -137,7 +137,7 @@ class UserController extends Controller
     }
     public function updateUser(User $user){
         $data = request()->validate([
-            'name' => 'required|string|min:3|max:10',
+            'name' => 'required|string|min:3',
             'date_of_birth' => 'date',
             'gender' => 'nullable|string|in:male,female',
             'role'=> 'required|string|in:admin,user,premium',

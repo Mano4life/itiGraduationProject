@@ -1,5 +1,5 @@
 <!-- Recipes Section -->
-<p-table [value]="recipes" [paginator]="true" [rows]="4">
+<p-table [value]="recipes" [paginator]="true" [rows]="3">
     <ng-template pTemplate="caption">
         <div class="fs-3 dataName">
             <h1>Recipes</h1>
@@ -22,7 +22,7 @@
         <tr class="dataTable">
             <td>{{ data.id }}</td>
             <td>
-                <img [src]="data.image" [alt]="data.name" width="100" class="shadow-4" />
+                <img [src]="data.image" [alt]="data.name" class="shadow-4 object-fit-cover" style="height: 70px; width: 90px;"/>
             </td>
             <td>{{ data.name }}</td>
             <td>{{ data.user.name }}</td>

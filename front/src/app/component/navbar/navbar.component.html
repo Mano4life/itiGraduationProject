@@ -1,89 +1,127 @@
 <nav class="navbar navbar-expand-xl">
   <div class="container-fluid">
-    <div class="logo w-25">
-      <img [src]="logo" alt="Logo" routerLink="" class="w-25">
-    </div>
-  
-    <!-- Search Bar -->
-    <app-search-input></app-search-input>
-    
-    <!-- navLinks -->
-    <ul class="nav-links">
-      <li>
-        <a routerLink="">
-          <i class="fa-solid fa-house-chimney"></i>
-          <p>home</p>
-        </a>
-      </li>
-      <li>
-        <a routerLink="/recipes">
-          <i class="fa-solid fa-utensils"></i>
-          <p>recipes</p>
-        </a>
-      </li>
-      <li>
-        <a routerLink="/about">
-          <i class="fa-solid fa-people-group"></i>
-          <p>about</p>
-        </a>
-      </li>
-      <li>
-        <a routerLink="/profile">
-          <i class="fa-solid fa-user"></i>
-          <p>profile</p>
-        </a>
-      </li>
-  
-      <!-- Login -->
-      <li>
-        <a data-bs-toggle="modal" data-bs-target="#loginModal">
-          <i class="fa-solid fa-right-to-bracket"></i>
-          <p>login</p>
-        </a>
-      </li>
-  
-      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title" id="exampleModalLabel">Sign In</h1>
-            </div>
-            <div class="modal-body">
-              <app-login></app-login>
-              <p class="mt-4 switch">Already have account!
-                <a class="switchCard" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div> 
-  
-      <!-- Register -->
-      <li>
-        <a data-bs-toggle="modal" data-bs-target="#registerModal">
-          <i class="fa-solid fa-right-to-bracket"></i>
-          <p>register</p>
-        </a>
-      </li>
-  
-      <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title" id="exampleModalLabel">Sign Up</h1>
-            </div>
-            <div class="modal-body">
-              <app-register></app-register>
-              <p class="mt-4 switch">Don't hava account!
-                <a class="switchCard" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-              </p>
-            </div>
-          </div>
+    <div class="row w-100 align-items-center justify-content-between">
+      
+      <!-- Logo Section -->
+      <div class="col-4 col-sm-4 col-md-3 col-lg-3">
+        <div class="navbar-brand logo">
+          <img [src]="logo" alt="Logo" routerLink="" />
         </div>
       </div>
-  
-    </ul>
+      
+      <!-- Search Bar -->
+      <div class="col-7 col-lg-4 col-md-6 col-sm-6 search">
+        <app-search-input></app-search-input>
+      </div>
+      
+      
+      <!-- Navbar Toggle Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <!-- Links Section -->
+      <div class="col-lg-4 links">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }"
+                [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid fa-house-chimney"></i>
+                <p>Home</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/recipes" [queryParams]="{ reverse: 'true' }" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid fa-utensils"></i>
+                <p>Recipes</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/about" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid fa-people-group"></i>
+                <p>About</p>
+              </a>
+            </li>
+
+            <li class="nav-item" *ngIf="isLogged && !admin">
+              <a class="nav-link" routerLinkActive="active" routerLink="/profile" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid fa-user"></i>
+                <p>Profile</p>
+              </a>
+            </li>
+
+            <li class="nav-item" *ngIf="isLogged && admin">
+              <a class="nav-link" routerLinkActive="active" routerLink="/admin" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid fa-user"></i>
+                <p>Admin</p>
+              </a>
+            </li>
+
+            <!-- Login -->
+            <li class="nav-item" *ngIf="!isLogged">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <p>Login</p>
+              </a>
+            </li>
+
+            <!-- Logout -->
+            <li class="nav-item" *ngIf="isLogged">
+              <a class="nav-link" (click)="logout()" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p>Logout</p>
+              </a>
+            </li>
+
+            <!-- DarkMode -->
+            <li class="nav-item" id="darkMode" (click)="toggleDarkMode()">
+              <a class="nav-link" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid" [ngClass]="{'fa-sun-o': darkMode, 'fa-moon-o': !darkMode}"></i>
+                <p *ngIf="darkMode">Light</p>
+                <p *ngIf="!darkMode">Dark</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- <app-top-dish-area [showTitle]="false"  [isNavbar]="true"></app-top-dish-area> -->
-  <!-- customClass=".main-title .round-planet .main-title .round-planet.planet2 .top-dish-area .main-title.round-plane .shape.shape1 "> -->
 </nav>
+
+<!-- Modals for Login and Register -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">Sign In</h1>
+      </div>
+      <div class="modal-body text-center">
+        <app-login></app-login>
+        <p class="mt-4 switch">Already have an account!
+          <a class="switchCard" (click)="switchModals('loginModal', 'registerModal')" data-bs-dismiss="modal">Register</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">Sign Up</h1>
+      </div>
+      <div class="modal-body text-center">
+        <app-register></app-register>
+        <p class="mt-4 switch">Don't have an account!
+          <a class="switchCard" (click)="switchModals('registerModal', 'loginModal')" data-bs-dismiss="modal">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

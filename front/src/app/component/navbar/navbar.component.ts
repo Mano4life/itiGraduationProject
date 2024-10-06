@@ -51,15 +51,12 @@ export class NavbarComponent {
     this.router.navigate(['/']);
   }
 
-  // Dannel
-
+  // DarkMode
   toggleDarkMode() {
     this.darkMode = !this.darkMode;
     console.log(this.darkMode)
     document.body.classList.toggle('dark-mode', this.darkMode);
   }
-  
-
   
   // This method switches modals using Bootstrap's modal instance
   switchModals(currentModalId: string, nextModalId: string) {

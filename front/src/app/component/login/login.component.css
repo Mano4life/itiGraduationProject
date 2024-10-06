@@ -36,3 +36,12 @@ form input:focus, form textarea:focus {
     box-shadow: 0 0 10px 3px var(--main-color);
 }
 
+.showIcon {
+    position: absolute;
+    right: 28%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+}
+

@@ -19,6 +19,8 @@
   --titleReciepe-font: "EB Garamond", serif;
   
   --footer-color: #395963;
+
+  --primary-text-color: white;
 }
 
 h1{
@@ -28,6 +30,7 @@ h1{
 p{
   font-family: var(--second-font);
 }
+
 body.dark-mode .team-section {
   background-color: #4e5455!important;/* OUR TEAM FRAME*/
   color: #fcf9f9 !important; /*OUR TEAM*/
@@ -38,7 +41,6 @@ body.dark-mode .team-section {
 }
 
 body {
-  
   --primary: #FFFFFF;
 }
 
@@ -129,14 +131,6 @@ body.dark-mode .latest{
   display: flex;
 }
 
-.showIcon {
-  position: absolute;
-  right: 28%;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 20px;
-}
 /* Global responsive text scaling */
 @media (max-width: 992px) {
   h1 {
