@@ -7,14 +7,14 @@ import {
   ActivatedRoute,
 } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { NgClass, NgFor } from '@angular/common';
+import { DatePipe, NgClass, NgFor } from '@angular/common';
 import { UsersService } from '../../core/services/users/users.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 declare var bootstrap: any;
 @Component({
   selector: 'app-single-recipe',
   standalone: true,
-  imports: [NgFor, RouterLink, NgClass,FormsModule, ReactiveFormsModule],
+  imports: [NgFor, RouterLink, NgClass,FormsModule, ReactiveFormsModule, DatePipe],
   templateUrl: './single-recipe.component.html',
   styleUrl: './single-recipe.component.css',
 })
