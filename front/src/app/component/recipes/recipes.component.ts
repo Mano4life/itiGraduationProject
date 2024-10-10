@@ -19,6 +19,8 @@ export class RecipesComponent {
 
   sub_categoryList: any[] = [];
   ingredentsList: any[] = [];
+  filteredIngredientsList: any[] = [];
+  filteredSubCategoryList: any[] = [];
   disable:boolean=true;
   user:any;
   constructor(
@@ -65,15 +67,7 @@ export class RecipesComponent {
           this.selectedCategories.push(res['category']);
         
       }
-      
-      // if (res['subcategory']) {
-      //   filteredRecipes = filteredRecipes.filter((recipe) => {
-      //     return recipe.subcategory.name === res['subcategory'];
-      //   });
-      // }
-  
-      // Update the original recipe list with filtered results
-       
+
     });
   }
   getreciepes() {
@@ -91,33 +85,18 @@ export class RecipesComponent {
     });
   }
 
-  // getsubcategories() {
-  //   this.subcategories.getSubCategories().subscribe({
-  //     next: (Response: any) => {
-        
-  //       this.sub_categoryList = Response.data.map(
-  //         (sub: any, index: number) => ({
-  //           id: sub.id, 
-  //           name: sub.name,
-  //           selected: false, 
-  //         })
-  //       );
-  //       console.log(this.sub_categoryList);
-  //     },
-  //     error: (error: any) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // }
+
   getsubcategories() {
     this.subcategories.getSubCategories().subscribe({
       next: (response: any) => {
+        console.log(response)
         const uniqueSubCategories = new Map();
   
-        this.sub_categoryList = response.data
+        this.sub_categoryList = response
           .map((sub: any) => ({
             id: sub.id, 
             name: sub.name,
+            category_name:sub.category.name,
             selected: false, 
           }))
           .filter((sub: any) => {
@@ -127,8 +106,8 @@ export class RecipesComponent {
             }
             return false; 
           });
-  
-        console.log(this.sub_categoryList);
+          this.filteredingredents();
+          
       },
       error: (error: any) => {
         console.log(error);
@@ -138,17 +117,36 @@ export class RecipesComponent {
   getingredients() {
     this.ingredent.getIngredients().subscribe({
       next: (Response: any) => {
-        // Assuming Response.data is an array of subcategories
+        console.log(Response)
         this.ingredentsList = Response.map((sub: any, index: number) => ({
-          id: sub.id, // Adjust this based on your actual response structure
+          id: sub.id, 
           name: sub.name,
-          selected: false, // Initialize selected as false
-        }));
-        console.log(this.ingredentsList);
+          sub_name:sub.recipes[0].subcategory.name,
+          category_name:sub.recipes[0].category.name,
+          selected: false, 
+        }))
+        
       },
       error: (error: any) => {
         console.log(error);
       },
+    });
+  }
+  filteredSubCategory(){
+    const selectedcategories = this.selectedCategories;
+    return this.filteredSubCategoryList = this.sub_categoryList.filter((sub: any) => {
+        return selectedcategories.length === 0 || selectedcategories.includes(sub.category_name.toLowerCase());
+    });
+  }
+  filteredingredents(){
+    const selectedSubcategories = this.getSelectedSub_category();
+    return this.filteredIngredientsList = this.ingredentsList.filter((sub: any) => {
+      return (
+        (selectedSubcategories.length === 0 || selectedSubcategories.includes(sub.sub_name)) &&
+        (this.selectedCategories.length === 0 || this.selectedCategories.includes(sub.category_name.toLowerCase()))
+    );
+
+
     });
   }
   time = [
@@ -183,6 +181,7 @@ export class RecipesComponent {
     this.sub_categoryList.forEach((opt) => {
       opt.selected = opt === option ? !opt.selected : false;
     });
+    this.filteredingredents()
   }
 
   getSelectedSub_category() {
@@ -225,7 +224,7 @@ export class RecipesComponent {
       this.selectedCategories = [];
       this.selectedCategories.push(category);
     }
-
+    this.filteredSubCategory()
   }
 
   isCategorySelected(category: string): boolean {

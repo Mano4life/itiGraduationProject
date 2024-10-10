@@ -12,7 +12,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $result = Ingredient::with('recipes')->get();
+        $result = Ingredient::with(['recipes.subcategory','recipes.category'])->get();
         return response()->json($result, 200);
     }
 

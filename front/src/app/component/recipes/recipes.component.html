@@ -63,7 +63,7 @@
     <div class="col-lg-8 m-auto">
       <div class="dropdown-content" *ngIf="dropdownOpen">
         <div class="checkbox-container">
-          <div *ngFor="let option of sub_categoryList" class="background  m-1 px-2 ">
+          <div *ngFor="let option of filteredSubCategory()" class="background  m-1 px-2 ">
             <label>
               <input type="checkbox" [checked]="option.selected" (change)="toggleOption(option)" />
               {{ option.name }}
@@ -83,7 +83,7 @@
       </div>
       <div class="dropdown-content" *ngIf="dropdown2Open">
         <div class="checkbox-container">
-          <div *ngFor="let option of ingredentsList" class="background  m-1 px-2 ">
+          <div *ngFor="let option of filteredingredents()" class="background  m-1 px-2 ">
             <label>
               <input type="checkbox" [checked]="option.selected" (change)="toggleOption2(option)" />
               {{ option.name }}
