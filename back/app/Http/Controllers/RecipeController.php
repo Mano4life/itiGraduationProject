@@ -133,7 +133,7 @@ class RecipeController extends Controller
 
     public function show(Recipe $recipe)
     {
-        $recipe->load(['ingredients', 'category', 'subcategory', 'comments', 'user']);
+        $recipe->load(['ingredients', 'category', 'subcategory', 'comments.user', 'user']);
         $averageRating = $recipe->users_ratings()->avg('rating');
 
         if (!$recipe) {
