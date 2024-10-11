@@ -13,9 +13,9 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  faceImg: string = 'assets/imgs/home-banner.png';
+  faceImg: any = 'assets/imgs/home-banner.png';
   videoUrl: string = 'https://max-themes.net/demos/recibo/upload/pizza.mp4';
-  userImg: string = 'assets/imgs/raspberries-7213407_640.jpg';
+  userImg: any = 'assets/imgs/raspberries.jpg';
 
   categories: any[] = [
     {
@@ -117,8 +117,8 @@ export class HomeComponent {
             category: name
         }
     });
+  }
 
-}
   subcategoryClicked(name:string){
     this.router.navigate(['/recipes'],{
       queryParams:{

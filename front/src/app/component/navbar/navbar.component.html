@@ -70,14 +70,6 @@
               </a>
             </li>
 
-            <!-- Logout -->
-            <li class="nav-item" *ngIf="isLogged">
-              <a class="nav-link" (click)="logout()" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <p>Logout</p>
-              </a>
-            </li>
-
             <!-- DarkMode -->
             <li class="nav-item" id="darkMode" (click)="toggleDarkMode()">
               <a class="nav-link" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
@@ -86,6 +78,15 @@
                 <p *ngIf="!darkMode">Dark</p>
               </a>
             </li>
+            
+            <!-- Logout -->
+            <li class="nav-item" *ngIf="isLogged">
+              <a class="nav-link" (click)="logout()" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p>Logout</p>
+              </a>
+            </li>
+
           </ul>
         </div>
       </div>
