@@ -55,5 +55,8 @@ class User extends Authenticatable
         $this->expires_at = null;
         $this->save();
     }
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
     
 }
