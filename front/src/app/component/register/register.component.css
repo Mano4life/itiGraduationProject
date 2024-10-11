@@ -74,3 +74,11 @@ form input:focus, form textarea:focus {
     color: var(--btn-color);
 }
 
+.showIcon {
+    position: absolute;
+    right: 28%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+}

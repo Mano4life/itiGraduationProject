@@ -83,8 +83,7 @@ export class AdminEditPendingRecipesComponent {
           ingredientsFormArray.push(ingredientGroup); // Add to FormArray
         });
       });
-    }}
-
+  }}
 
   editRecipe(){
     if (!this.editForm.valid) {
@@ -134,8 +133,5 @@ export class AdminEditPendingRecipesComponent {
     }
   }
 
-  onImageUpload(img:any){
-
-  }
-
+  
 }

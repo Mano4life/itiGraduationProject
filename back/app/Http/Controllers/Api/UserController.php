@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\PasswordResetToken;
 use App\Models\User;
+use App\Notifications\resetPasswordToken;
 use App\Notifications\TwoFactorCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -41,7 +42,7 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:3|max:10',
+            'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email|min:8',
             'password' => 'required|string|min:5',
             'role' => 'required|string',
@@ -102,7 +103,7 @@ class UserController extends Controller
         $user = $request->user(); // Get the authenticated user
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3|max:10',
+            'name' => 'required|string|min:3',
             'date_of_birth' => 'date',
             'gender' => 'nullable|string|in:male,female',
 
@@ -136,7 +137,7 @@ class UserController extends Controller
     }
     public function updateUser(User $user){
         $data = request()->validate([
-            'name' => 'required|string|min:3|max:10',
+            'name' => 'required|string|min:3',
             'date_of_birth' => 'date',
             'gender' => 'nullable|string|in:male,female',
             'role'=> 'required|string|in:admin,user,premium',
@@ -162,13 +163,15 @@ class UserController extends Controller
     
         // Generate the token
         $token = rand(1000, 9999);
-    
+        
         // Create or update the password reset token
-        PasswordResetToken::updateOrCreate(
+        $passwordToken = PasswordResetToken::updateOrCreate(
             ['email' => $email],
             ['token' => $token, 'created_at' => now()]
         );
-    
+        
+        // send token to mail
+        $passwordToken->notify(new resetPasswordToken());
         // Send the reset password email
         // Mail::to($email)->send(new ResetPasswordMail($token));
     

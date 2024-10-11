@@ -162,10 +162,6 @@ isBtnSelected(btn: string): boolean {
     //this.isSolid = !this.isSolid;
   }
 
- 
-  
-
-
   // Review Fav and Rating
   convertRatingToStars(rating: number) {
     const fullStars = Math.floor(rating);

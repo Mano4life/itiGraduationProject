@@ -16,45 +16,52 @@
 
       <div class="col-lg-8 formEdit">
             <form [formGroup]="editForm" (ngSubmit)="editRecipe()" >
-            
                 <label for="recipeId" class="form-label">image:</label>
-                <input type="text" class="form-control" id="recipeImage" (change)="onImageUpload($event)" accept="image/*" formControlName="image"/>
-                <div class="mb-3 ">
+                <input type="text" class="form-control" id="recipeImage" accept="image/*" formControlName="image"/>
+                
+                <div class="mb-3 mt-3">
                     <label for="recipeId" class="form-label">Id:</label>
                     <input type="number" class="form-control " id="recipeId" formControlName="id" readonly />
                 </div>
-                <div class="mb-3 ">
+                
+                <div class="mb-3">
                     <label for="recipeName" class="form-label">Name:</label>
                     <input type="text" class="form-control " id="recipeName" formControlName="name" />
                 </div>
-                <div class="mb-3 ">
+              
+                <div class="mb-3">
                     <label for="recipeUserName" class="form-label">Username:</label>
                     <input type="text" class="form-control " id="recipeUserName" formControlName="Username" />
                 </div>
-                <div class="mb-3 ">
+                
+                <div class="mb-3">
                     <label for="Servings" class="form-label">Servings:</label>
                     <input type="number" class="form-control " id="Servings" formControlName="Servings" />
                 </div>
-                <div class="mb-3 ">
+                
+                <div class="mb-3">
                     <label for="time" class="form-label">Time:</label>
-                    <input type="text" class="form-control " id="time" formControlName="time" />
+                    <input type="number" class="form-control " id="time" formControlName="time" />
                 </div>
-                <div class="mb-3 ">
+                
+                <div class="mb-3">
                   <label for="category" class="form-label">Category:</label>
                   <input type="text" class="form-control " id="category" formControlName="category" />
               </div>
-              <div class="mb-3 ">
+              <div class="mb-3">
                 <label for="subcategory" class="form-label">Sub Category:</label>
                 <input type="text" class="form-control " id="subcategory" formControlName="subcategory" />
-            </div>
-                <div class="mb-3 ">
-                    <label for="Description" class="form-label">Description:</label>
-                    <input type="text" class="form-control" id="Description" formControlName="Description" />
-                </div>
-                <div class="mb-3 ">
-                    <label for="Direction" class="form-label">Direction:</label>
-                    <input type="text" class="form-control " id="Direction" formControlName="Direction" />
-                </div>
+              </div>
+              
+              <div class="mb-3">
+                  <label for="Description" class="form-label">Description:</label>
+                  <input type="text" class="form-control" id="Description" formControlName="Description" />
+              </div>
+                
+              <div class="mb-3">
+                  <label for="Direction" class="form-label">Direction:</label>
+                  <input type="text" class="form-control " id="Direction" formControlName="Direction" />
+              </div>
                 <div formArrayName="ingredients">
                     <div
                       *ngFor="let ingredient of editPendingRecipe?.ingredients

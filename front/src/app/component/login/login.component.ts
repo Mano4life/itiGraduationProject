@@ -27,7 +27,7 @@ export class LoginComponent {
     })
   }
   ngOnInit(): void {
-   
+  
   }
 
 
@@ -51,7 +51,7 @@ export class LoginComponent {
           if(res.user.role=='admin'){
             localStorage.setItem('admin_token', res.token); 
           }
-          
+        
           window.location.reload()
           },
           error: (err) => {

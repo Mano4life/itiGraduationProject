@@ -121,14 +121,6 @@
             
           </div>
         </div>
-
-        <!-- <div class="make-comment mt-3">
-          <span class="h3 text-capitalize">say it! </span>
-          <i class="fa-solid fa-hand-point-right me-3 h3"></i>
-          <a href="recipes/1#user-comment-field" class="h2"
-            >click me <i class="fa-regular fa-comment"></i
-          ></a>
-        </div> -->
       </div>
     </div>
   </div>
@@ -177,13 +169,16 @@
       <div class="comments">
         <div *ngFor="let comment of recipe.comments">
           <div class="comment p-5 border-bottom ">
-        
-            <span class="mx-2 h3">{{ comment.content }}</span>
-        
+            <i class="fa-solid fa-quote-left" 
+              style="font-size: 13px; position: relative; top: -8px;">
+            </i>
+            <span class="mx-1 h3"> {{ comment.content }}</span>
+            <i class="fa-solid fa-quote-right"
+              style="font-size: 13px; position: relative; top: -8px;">
+            </i>
           </div>
         </div>
       </div>
-      
     </div>
   </div>
 </div>

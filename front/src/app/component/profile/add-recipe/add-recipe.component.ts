@@ -46,7 +46,7 @@ export class AddRecipeComponent {
         Validators.required,
         Validators.minLength(2),
       ]),
-      image: new FormControl(null),
+      image: new FormControl(null, [ Validators.required ]),
       category: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
