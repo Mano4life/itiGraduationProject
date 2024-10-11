@@ -41,6 +41,29 @@ p {
   text-transform: capitalize;
 }
 
+.recipe-author {
+  margin-top: 1rem;
+}
+
+.recipe-author span {
+  font-family: var(--main-font);
+  color: var(--second-color);
+}
+
+.recipe-author a{
+  font-family: var(--second-font);
+  font-size: 18px;
+  font-weight: normal;
+  color: var(--main-color);
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.recipe-author a:hover {
+  color: var(--btn-color);
+  text-decoration: underline;
+}
+
 .recipe-description {
   font-family: var(--second-font);
   color: var(--main-color);
