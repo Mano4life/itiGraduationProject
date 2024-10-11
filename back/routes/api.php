@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\PendingRecipeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\stripController;
 use App\Http\Controllers\SubcategoryController;
@@ -37,7 +38,7 @@ Route::post('/validate-code', [UserController::class, 'validateCode']);
 // Recipe API resource route
 Route::apiResource('recipes', RecipeController::class);
 Route::post('/recipes/store-multiple', [RecipeController::class, 'storeMultiple']);
-
+Route::apiResource('/profile',ProfileController::class);
 // Category API resource route
 Route::apiResource('categories', CategoryController::class);
 

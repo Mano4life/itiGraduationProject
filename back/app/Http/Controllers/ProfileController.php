@@ -14,16 +14,29 @@ class ProfileController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'user_id' => 'required',
-            'image'=>'',
-            'bio'=>'',
-            'tiktok_link'=>'',
-            'instagram_link'=>'',
-            'youtube_link'=>'',
+            'user_id' => 'required|integer', 
+            'image' => 'nullable|image|max:2048',
+            'bio' => 'nullable|string|min:5', 
+            'tiktok_link' => 'nullable|string|min:5',
+            'instagram_link' => 'nullable|string|min:5',
+            'youtube_link' => 'nullable|string|min:5',
         ]);
+        if (request()->hasFile('image')) {
+            $image = request()->file('image')->storeOnCloudinary('recipies');
+            $url = $image->getSecurePath();
+        }else if($data['image']){
+            $url = $data['image'];
+        }
 
-        $result = profile::create($data);
+        $result = profile::create([
+            'user_id' => $data['user_id'],
+            'image' => $url,
+            'bio' => $data['bio'],
+            'tiktok_link' => $data['tiktok_link'],
+            'instagram_link' => $data['instagram_link'],
+            'youtube_link' => $data['youtube_link'],
 
+        ]);
         return response()->json($result, 200);
         
     }
@@ -33,6 +46,8 @@ class ProfileController extends Controller
      */
     public function show(profile $profile)
     {
+        $profile->load(['user']);
+
         if(is_null($profile)){
             return response()->json(['message' => 'profile not found'], 404);
         }
@@ -46,17 +61,29 @@ class ProfileController extends Controller
     public function update(profile $profile)
     {
         $data = request()->validate([
-            'user_id' => 'required',
-            'image'=>'',
-            'bio'=>'',
-            'tiktok_link'=>'',
-            'instagram_link'=>'',
-            'youtube_link'=>'',
+            'user_id' => 'required|integer', 
+            'image' => 'nullable|image|max:2048',
+            'bio' => 'nullable|string|min:5', 
+            'tiktok_link' => 'nullable|string|min:5',
+            'instagram_link' => 'nullable|string|min:5',
+            'youtube_link' => 'nullable|string|min:5',
+        ]);
+        if (request()->hasFile('image')) {
+            $image = request()->file('image')->storeOnCloudinary('recipies');
+            $url = $image->getSecurePath();
+        }else if($data['image']){
+            $url = $data['image'];
+        }
+        $result = $profile->update([
+            'user_id' => $data['user_id'],
+            'image' => $url,
+            'bio' => $data['bio'],
+            'tiktok_link' => $data['tiktok_link'],
+            'instagram_link' => $data['instagram_link'],
+            'youtube_link' => $data['youtube_link'],
         ]);
 
-        $result = $profile->update($data);
-
-        return response()->json($result);
+        return response()->json($result,201);
     }
 
     /**
