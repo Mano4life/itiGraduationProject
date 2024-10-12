@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-xl">
+<nav class="navbar navbar-expand-xl sticky-top"  [ngClass]="{'scrolled': isScrolled}">
   <div class="container-fluid">
     <div class="row w-100 align-items-center justify-content-between">
       
@@ -62,14 +62,6 @@
               </a>
             </li>
 
-            <!-- Login -->
-            <li class="nav-item" *ngIf="!isLogged">
-              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                <i class="fa-solid fa-right-to-bracket"></i>
-                <p>Login</p>
-              </a>
-            </li>
-
             <!-- DarkMode -->
             <li class="nav-item" id="darkMode" (click)="toggleDarkMode()">
               <a class="nav-link" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
@@ -78,7 +70,16 @@
                 <p *ngIf="!darkMode">Dark</p>
               </a>
             </li>
-            
+
+            <!-- Login -->
+            <li class="nav-item" *ngIf="!isLogged">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <p>Login</p>
+              </a>
+            </li>
+
+
             <!-- Logout -->
             <li class="nav-item" *ngIf="isLogged">
               <a class="nav-link" (click)="logout()" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
