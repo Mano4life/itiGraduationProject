@@ -24,7 +24,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/comments/{comment}', [CommentController::class, 'update']);
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 });
-
+Route::apiResource('/profile',ProfileController::class);
 //otp handler and user api
 route::post('/verify-otp', [TwoFactorController::class, 'verifyOtp']);
 Route::post('/login', [UserController::class, 'login']);
@@ -38,7 +38,7 @@ Route::post('/validate-code', [UserController::class, 'validateCode']);
 // Recipe API resource route
 Route::apiResource('recipes', RecipeController::class);
 Route::post('/recipes/store-multiple', [RecipeController::class, 'storeMultiple']);
-Route::apiResource('/profile',ProfileController::class);
+
 // Category API resource route
 Route::apiResource('categories', CategoryController::class);
 

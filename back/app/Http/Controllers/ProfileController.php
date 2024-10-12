@@ -13,31 +13,36 @@ class ProfileController extends Controller
     }
     public function store()
     {
-        $data = request()->validate([
-            'user_id' => 'required|integer', 
-            'image' => 'nullable|image|max:2048',
-            'bio' => 'nullable|string|min:5', 
-            'tiktok_link' => 'nullable|string|min:5',
-            'instagram_link' => 'nullable|string|min:5',
-            'youtube_link' => 'nullable|string|min:5',
-        ]);
-        if (request()->hasFile('image')) {
-            $image = request()->file('image')->storeOnCloudinary('recipies');
-            $url = $image->getSecurePath();
-        }else if($data['image']){
-            $url = $data['image'];
+        try{
+            $data = request()->validate([
+                'user_id' => 'required|integer', 
+                'image' => 'nullable',
+                'bio' => 'nullable|string|min:5', 
+                'tiktok_link' => 'nullable|string|min:5',
+                'instagram_link' => 'nullable|string|min:5',
+                'youtube_link' => 'nullable|string|min:5',
+            ]);
+            if (request()->hasFile('image')) {
+                $image = request()->file('image')->storeOnCloudinary('recipies');
+                $url = $image->getSecurePath();
+            }else if($data['image']){
+                $url = $data['image'];
+            }
+    
+            $result = profile::create([
+                'user_id' => $data['user_id'],
+                'image' => !empty($url) ? $url : null,
+                'bio' => !empty($data['bio']) ? $data['bio'] : null,
+                'tiktok_link' => !empty($data['tiktok_link']) ? $data['tiktok_link'] : null,
+                'instagram_link' => !empty($data['instagram_link']) ? $data['instagram_link'] : null,
+                'youtube_link' => !empty($data['youtube_link']) ? $data['youtube_link'] : null,
+    
+            ]);
+            return response()->json($result, 200);
+        }catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-        $result = profile::create([
-            'user_id' => $data['user_id'],
-            'image' => $url,
-            'bio' => $data['bio'],
-            'tiktok_link' => $data['tiktok_link'],
-            'instagram_link' => $data['instagram_link'],
-            'youtube_link' => $data['youtube_link'],
-
-        ]);
-        return response()->json($result, 200);
+       
         
     }
 
@@ -62,7 +67,7 @@ class ProfileController extends Controller
     {
         $data = request()->validate([
             'user_id' => 'required|integer', 
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable',
             'bio' => 'nullable|string|min:5', 
             'tiktok_link' => 'nullable|string|min:5',
             'instagram_link' => 'nullable|string|min:5',
@@ -76,11 +81,11 @@ class ProfileController extends Controller
         }
         $result = $profile->update([
             'user_id' => $data['user_id'],
-            'image' => $url,
-            'bio' => $data['bio'],
-            'tiktok_link' => $data['tiktok_link'],
-            'instagram_link' => $data['instagram_link'],
-            'youtube_link' => $data['youtube_link'],
+            'image' => !empty($url) ? $url : null,
+            'bio' => !empty($data['bio']) ? $data['bio'] : null,
+            'tiktok_link' => !empty($data['tiktok_link']) ? $data['tiktok_link'] : null,
+            'instagram_link' => !empty($data['instagram_link']) ? $data['instagram_link'] : null,
+            'youtube_link' => !empty($data['youtube_link']) ? $data['youtube_link'] : null,
         ]);
 
         return response()->json($result,201);

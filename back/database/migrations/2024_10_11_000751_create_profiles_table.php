@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('image')->nullable();
             $table->string('bio')->nullable();
-            $table->string('youtube_link');
-            $table->string('instagram_link');
-            $table->string('tiktok_link');
+            $table->string('youtube_link')->nullable();
+            $table->string('instagram_link')->nullable();
+            $table->string('tiktok_link')->nullable();
             $table->timestamps();
         });
     }
