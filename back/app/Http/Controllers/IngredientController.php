@@ -36,7 +36,7 @@ class IngredientController extends Controller
      */
     public function show(Ingredient $Ingredient)
     {
-        $Ingredient->load(['recipes']);
+        $Ingredient->load(['recipes.category']);
         if(is_null($Ingredient)){
             return response()->json(['message' => 'Ingredient not found'], 404);
         }
