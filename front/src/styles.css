@@ -18,7 +18,7 @@
   --second-font: 'Nanum Gothic', sans-serif;
   --titleReciepe-font: "EB Garamond", serif;
   
-  --footer-color: #395963;
+  --footer-color: #191c24;
 
   --primary-text-color: white;
 }
@@ -32,7 +32,7 @@ p{
 }
 
 body.dark-mode .team-section {
-  background-color: #4e5455!important;/* OUR TEAM FRAME*/
+  background-color: #030303!important;/* OUR TEAM FRAME*/
   color: #fcf9f9 !important; /*OUR TEAM*/
 }
 .dark-mode .logoContent p{
@@ -45,10 +45,12 @@ body {
 }
 
 body.dark-mode .team-member {
-  background-color: #32373d!important;
+  background-color: #191c24!important;
   color: #ffffff !important;
 }
-
+.dark-mode .h1{
+  background-color: white !important;
+}
 body.dark-mode .member-info h3,
 body.dark-mode .member-info h4,
 body.dark-mode .member-info p {
@@ -60,19 +62,19 @@ body.dark-mode .member-photo {
 }
 
 body.dark-mode {
-  background-color: #4e5455 !important; /* most of the background pages*/
+  background-color: #000000 !important; /* most of the background pages*/
   color: #ffffff;
 }
 
 body.dark-mode .footer {
-  background-color: #32373d !important; /* footer */
+  background-color: #191c24 !important; /* footer */
 }
 
 body.dark-mode .latest{
-  background-color: #4e5455 !important; /*LATEST RECIPES*/
+  background-color: #000000 !important; /*LATEST RECIPES*/
 }
 .dark-mode .border{
-  background-color: #32373d!important;
+  background-color: #191c24!important;
 }
 
 .dark-mode .heading{
@@ -91,7 +93,7 @@ body.dark-mode .latest{
   color: white !important;
 }
 .dark-mode .home-banner .banner-left {
-  background: #4e5455 !important;
+  background: #000000 !important;
   height: 100vh;
   padding: 0 16%;
 }

@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-xl">
+<nav class="navbar navbar-expand-xl" [ngStyle]="{ backgroundColor: darkMode ? '#191c24' : 'var(--light-bg-color)'}">
   <div class="container-fluid">
     <div class="row w-100 align-items-center justify-content-between">
+      <a class="nav-link" routerLinkActive="active" routerLink="/about" [ngStyle]="{ color: darkMode ? '#191c24' : 'var(--main-color)'}"></a>
       
       <!-- Logo Section -->
       <div class="col-4 col-sm-4 col-md-3 col-lg-3">
@@ -14,49 +15,51 @@
         <app-search-input></app-search-input>
       </div>
       
-      
       <!-- Navbar Toggle Button -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-
       <!-- Links Section -->
       <div class="col-lg-4 links">
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }"
-                [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+              <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }" 
+                [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}">
                 <i class="fa-solid fa-house-chimney"></i>
                 <p>Home</p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/recipes" [queryParams]="{ reverse: 'true' }" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+              <a class="nav-link" routerLinkActive="active" routerLink="/recipes" [queryParams]="{ reverse: 'true' }" 
+                [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}">
                 <i class="fa-solid fa-utensils"></i>
                 <p>Recipes</p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/about" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+              <a class="nav-link" routerLinkActive="active" routerLink="/about" 
+                [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}">
                 <i class="fa-solid fa-people-group"></i>
                 <p>About</p>
               </a>
             </li>
 
             <li class="nav-item" *ngIf="isLogged && !admin">
-              <a class="nav-link" routerLinkActive="active" routerLink="/profile" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+              <a class="nav-link" routerLinkActive="active" routerLink="/profile" 
+                [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}">
                 <i class="fa-solid fa-user"></i>
                 <p>Profile</p>
               </a>
             </li>
 
             <li class="nav-item" *ngIf="isLogged && admin">
-              <a class="nav-link" routerLinkActive="active" routerLink="/admin" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+              <a class="nav-link" routerLinkActive="active" routerLink="/admin" 
+                [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}">
                 <i class="fa-solid fa-user"></i>
                 <p>Admin</p>
               </a>
@@ -64,7 +67,8 @@
 
             <!-- Login -->
             <li class="nav-item" *ngIf="!isLogged">
-              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" 
+                [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}">
                 <i class="fa-solid fa-right-to-bracket"></i>
                 <p>Login</p>
               </a>
@@ -72,7 +76,8 @@
 
             <!-- Logout -->
             <li class="nav-item" *ngIf="isLogged">
-              <a class="nav-link" (click)="logout()" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+              <a class="nav-link" (click)="logout()" 
+                [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <p>Logout</p>
               </a>
@@ -80,7 +85,7 @@
 
             <!-- DarkMode -->
             <li class="nav-item" id="darkMode" (click)="toggleDarkMode()">
-              <a class="nav-link" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+              <a class="nav-link" [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}">
                 <i class="fa-solid" [ngClass]="{'fa-sun-o': darkMode, 'fa-moon-o': !darkMode}"></i>
                 <p *ngIf="darkMode">Light</p>
                 <p *ngIf="!darkMode">Dark</p>

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [NgFor, CommonModule],
   templateUrl: './about.component.html',
-  styleUrl: './about.component.css'
+  styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
   teamMembers: any = [
@@ -27,17 +27,21 @@ export class AboutComponent {
       role: 'Frontend Developer',
       bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       imageUrl: 'https://i.pinimg.com/originals/35/c1/0e/35c10edc6ef5cfc52b6f76f9f9455b77.jpg'
-
-      
     },
     {
       name: 'Dannel',
       role: 'Frontend Developer And Data Gathering',
       bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       imageUrl: 'https://media.tenor.com/w3dtW9NFejcAAAAe/sleepy-cat.png'
-
-      
     }
+  ];
 
-];
+  // Dark Mode state
+  darkMode: boolean = false;
+
+  // Method to toggle dark mode
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode; // Toggle the state
+    document.body.classList.toggle('dark-mode', this.darkMode); // Apply the 'dark-mode' class to the body
+  }
 }
