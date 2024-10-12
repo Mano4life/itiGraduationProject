@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('socials', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('image')->nullable();
-            $table->string('bio')->nullable();
             $table->string('youtube_link')->nullable();
             $table->string('instagram_link')->nullable();
             $table->string('tiktok_link')->nullable();
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('socials');
     }
 };

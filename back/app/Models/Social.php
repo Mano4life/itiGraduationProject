@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class profile extends Model
+class Social extends Model
 {
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'image',
-        'bio',
         'tiktok_link',
         'instagram_link',
         'youtube_link',

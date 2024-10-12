@@ -105,12 +105,12 @@
           <span class="badge  position-absolute top-0 start-0 ms-3 mt-2" *ngIf="item.user?.role === 'premium'"><i class="fa-solid fa-crown pb-1" ></i></span>
         </div>
         <div class="d-flex justify-content-between mt-2">
-          <p class="red m-0">{{item.category.name}}</p>
-          <div class="d-flex  flex-row align-items-center mb-3">
+          <span class="red m-0">{{item.category.name}}</span>
+          <div class="d-flex  flex-row align-items-center ">
 
-            <i class="fa-regular fa-clock" style="font-size:20px; "></i>
+            <i class="fa-regular fa-clock" style="font-size:20px;"></i>
 
-            <p class="inline-block px-2 mb-0" style="color: #666;">{{item.time}} mins</p>
+            <span class="inline-block px-2 m-0" style="color: #666;">{{item.time}} mins</span>
           </div>
         </div>
         <div class="mb-3">
