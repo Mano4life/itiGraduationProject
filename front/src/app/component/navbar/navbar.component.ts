@@ -42,10 +42,22 @@ export class NavbarComponent {
     this.premium=localStorage.getItem('premium_token') !==null;
   }
 
-  isScrolled = false;
+  isScrolledUp = false;
+  lastScrollTop = 0;
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 50; 
+    let currentScrollTop = window.scrollY;
+
+    if (currentScrollTop > this.lastScrollTop || window.scrollY == 0) {
+      // User is scrolling down
+      this.isScrolledUp = false;
+    } else {
+      // User is scrolling up
+      this.isScrolledUp = true;
+    }
+
+    this.lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For mobile or negative scrolling
   }
 
   logout(){
