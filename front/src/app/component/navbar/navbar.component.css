@@ -63,16 +63,16 @@ li {
 }
 
 .dark-mode .links .navbar-nav .nav-item a {
-  color: white;
+  color: rgb(238, 11, 11);
 }
 
 .nav-links i {
   font-size: 20px;
   color: var(--main-color);
 }
-.nav-link{
+ /* .nav-link{ */
   /* padding-top: 28px; */
-}
+*/
 
 .nav-links a p {
   margin-top: 4px;
