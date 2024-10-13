@@ -69,15 +69,6 @@
               </a>
             </li>
 
-            <!-- DarkMode -->
-            <li class="nav-item" id="darkMode" (click)="toggleDarkMode()">
-              <a class="nav-link" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                <i class="fa-solid" [ngClass]="{'fa-sun-o': darkMode, 'fa-moon-o': !darkMode}"></i>
-                <p *ngIf="darkMode">Light</p>
-                <p *ngIf="!darkMode">Dark</p>
-              </a>
-            </li>
-
             <!-- Login -->
             <li class="nav-item" *ngIf="!isLogged">
               <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" 

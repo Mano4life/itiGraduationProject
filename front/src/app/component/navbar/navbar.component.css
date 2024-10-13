@@ -5,9 +5,6 @@
   background-color: var(--light-bg-color);
 }
 
-.dark-mode .navbar {
-  background-color: #191c24;
-}
 
 .logo {
   cursor: pointer;

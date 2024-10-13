@@ -32,7 +32,7 @@ p{
 }
 
 body.dark-mode .team-section {
-  background-color: #030303!important;/* OUR TEAM FRAME*/
+  background-color: #101218 !important;/* OUR TEAM FRAME*/
   color: #fcf9f9 !important; /*OUR TEAM*/
 }
 .dark-mode .logoContent p{
@@ -64,24 +64,32 @@ body.dark-mode .member-photo {
 }
 
 body.dark-mode {
-  background-color: #000000 !important; /* most of the background pages*/
+  background-color: #101218 !important; /* most of the background pages*/
   color: #ffffff;
+}
+
+.dark-mode .white {
+  background-color: transparent !important;
+}
+
+.dark-mode .navbar {
+  background-color: #101218 !important;
 }
 
 body.dark-mode .footer {
   background-color: #191c24 !important; /* footer */
 }
 .dark-mode .mydailyrecipes{
-background-color: #000000 !important;
+  background-color: #101218 !important;
 }
 body.dark-mode .latest{
-  background-color: #000000 !important; /*LATEST RECIPES*/
+  background-color: #101218 !important; /*LATEST RECIPES*/
 }
 .dark-mode .border{
   background-color: #191c24!important;
 }
 .dark-mode .overview-section{
- background-color: #000000 !important;
+ background-color: #101218 !important;
 }
 .dark-mode .all-recipes-title{
   color: #eee !important;
@@ -103,7 +111,7 @@ body.dark-mode .latest{
   color: white !important;
 }
 .dark-mode .home-banner .banner-left {
-  background: #000000 !important;
+  /* background: #101218 !important; */
   height: 100vh;
   padding: 0 16%;
 }
@@ -123,6 +131,15 @@ body.dark-mode .latest{
   justify-content: space-evenly;
   color: #fff;
   background-color: #191c24!important ;
+}
+
+.dark-mode .card {
+background-color: #101218 !important;
+  
+}
+
+.dark-mode h5, .dark-mode h1,.dark-mode .fa-cog, .dark-mode .time{
+  color: #fff !important;
 }
 
 
