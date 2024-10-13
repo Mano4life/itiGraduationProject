@@ -1,20 +1,10 @@
 /* Navbar styles */
 
 .navbar {
-  transition: background-color 0.3s ease, padding 0.3s ease;
   padding: 0 70px; 
   background-color: white;
-  transition: .3s all ease;
-  position: relative;
 }
-.navbar.scrolled {
-  position: sticky;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 0 10px 10px #ddd;
-  transform: translateY(-7px); /* Smooth transition effect */
-}
+
 
 .logo{
   cursor: pointer;
