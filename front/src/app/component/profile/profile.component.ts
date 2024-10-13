@@ -4,11 +4,12 @@ import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule, NgFor } from '@angular/common';
 import { UsersService } from '../../core/services/users/users.service';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { SocialsComponent } from './socials/socials.component';
 declare var bootstrap: any;
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, RouterLink,EditProfileComponent],
+  imports: [CommonModule, RouterLink,EditProfileComponent,SocialsComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
@@ -16,6 +17,7 @@ export class ProfileComponent {
   recipes!: any;
   user!: any;
   isPremium:boolean = false;
+  socials:boolean=true;
   constructor(
     private recipesService: RecipesService,
     private usersService: UsersService,

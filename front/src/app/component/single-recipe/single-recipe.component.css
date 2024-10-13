@@ -176,7 +176,7 @@ p {
   font-family: var(--main-font);
   color: var(--main-color);
   font-size: 32px;
-  font-weight: 800;
+  font-weight: 800 !important;
 }
 
 .related-recipes .card-title {

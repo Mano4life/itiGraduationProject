@@ -19,7 +19,10 @@ class User extends Authenticatable
         'password',
         'role',
         'date_of_birth',
-        'gender'
+        'gender',
+        'tiktok_link',
+        'instagram_link',
+        'youtube_link',
     ];
     
     function comments()
@@ -55,8 +58,6 @@ class User extends Authenticatable
         $this->expires_at = null;
         $this->save();
     }
-    public function social(){
-        return $this->hasOne(Social::class);
-    }
+    
     
 }

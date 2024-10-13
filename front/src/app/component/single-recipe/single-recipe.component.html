@@ -4,7 +4,7 @@
   >
     <div class="title-author">
       <h1 class="recipe-title">{{ recipe?.name }}</h1>
-      <div class="recipe-author"><span>made by <i class="fa-solid fa-hand-point-right me-2"></i> </span> <a href="#">{{ recipe?.user.name }}</a> </div>
+      <div class="recipe-author"><span>made by <i class="fa-solid fa-hand-point-right me-2"></i> </span> <a [href]="'public-profile/' + recipe?.user.id">{{ recipe?.user.name }}</a> </div>
     </div>
     <div class="rating-favorite d-flex align-items-baseline gap-3">
       <i

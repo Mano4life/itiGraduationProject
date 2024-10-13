@@ -6,7 +6,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\PendingRecipeController;
 use App\Http\Controllers\RecipeController;
-use App\Http\Controllers\SocialController;
 use App\Http\Controllers\stripController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\TwoFactorController;
@@ -23,8 +22,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/recipes/{recipe}/comment', [CommentController::class, 'store']);
     Route::put('/comments/{comment}', [CommentController::class, 'update']);
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
+    Route::put('/userLinks', [UserController::class, 'updateLinks']);
 });
-Route::apiResource('/socials',SocialController::class);
+Route::get('/publicProfile/{user}', [UserController::class, 'publicView']);
+
 //otp handler and user api
 route::post('/verify-otp', [TwoFactorController::class, 'verifyOtp']);
 Route::post('/login', [UserController::class, 'login']);

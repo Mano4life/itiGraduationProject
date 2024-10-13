@@ -69,6 +69,16 @@
   font-size: 21px;
   color: #eee;    
 }
+.link-img{
+  width: 40px;
+  padding-right: 10px;
+}
+.chef{
+  width: 50px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+
+}
 
 @media (max-width: 1024px) {
   .ad-banner h1 {

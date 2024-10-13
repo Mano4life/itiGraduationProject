@@ -1,0 +1,12 @@
+.link-img{
+    width: 30px;
+    padding-right: 10px;
+}
+.title{
+    color: var(--main-color);
+}
+.chef{
+    width: 50px;
+    padding-bottom: 15px;
+    padding-right: 5px;
+}
