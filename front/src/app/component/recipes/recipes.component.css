@@ -60,9 +60,7 @@ h6{
 
 .my-svg {
     color: white;
-    
-   
-  }
+}
 
 .green-div{
     background-color: #39535b;
@@ -85,8 +83,6 @@ h6{
 .rounded-image{
     border-radius: 5%;
 }
-
-
 
 h5{
     font-family: var(--titleReciepe-font);
@@ -156,17 +152,12 @@ h5{
         
         width: 50%;
         margin: auto;
-       
- 
-     }
+    }
 }
 @media screen and (max-width: 670px) {
     .smaller-div,.sm-div{
-       
-       width: 80%;
-       margin: auto;
-      
-
+        width: 80%;
+        margin: auto;
     }
     .img-fluid{
         width: 50px;
@@ -175,4 +166,31 @@ h5{
         font-size: 100% !important;
     }
 
+}
+
+/* Intro Category Section */
+.intro{
+    height: fit-content;
+    width: 100%;
+    background-color: var(--third-color);
+}
+.introImg img{
+        /* display: block; */
+    width: 305px;
+    height: 330px;
+    object-fit: cover;
+}
+.introContent {
+    padding: 50px 65px;
+}
+.introContent h1{
+    color: var(--btn-color);
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+.introContent p{
+    color: var(--second-color);
+    font-size: 20px;
 }

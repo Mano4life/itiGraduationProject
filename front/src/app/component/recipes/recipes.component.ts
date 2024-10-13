@@ -37,14 +37,16 @@ export class RecipesComponent {
     this.route.queryParams.subscribe((params) => {
       // Check if reverse parameter is set
       this.reverseOrder = params['reverse'] === 'true';
+
+      
       this.getreciepes();
     });
-
+    
     this.getsubcategories();
     this.getingredients();
     this.getFilterFromHome()
     this.getUser();
-
+    this.categoryData();
   }
   getUser(){
     this.UserService.getUser().subscribe((res:any)=>{
@@ -59,23 +61,14 @@ export class RecipesComponent {
   getFilterFromHome() {
     this.route.queryParams.subscribe((res) => {
       
-  
       if (res['category']) {
-        
-          this.selectedCategories.push(res['category']);
-        
+        this.selectedCategories.push(res['category']);
+        // category Selected From home
+        this.selected = true;
       }
-      
-      // if (res['subcategory']) {
-      //   filteredRecipes = filteredRecipes.filter((recipe) => {
-      //     return recipe.subcategory.name === res['subcategory'];
-      //   });
-      // }
-  
-      // Update the original recipe list with filtered results
-       
     });
   }
+
   getreciepes() {
     this.recipes.getRecipes().subscribe({
       next: (Response: any) => {        
@@ -84,6 +77,7 @@ export class RecipesComponent {
         }else{
           this.recipeList = Response;
         }
+        this.categoryData()
       },
       error: (error: any) => {
         console.log(error);
@@ -91,24 +85,6 @@ export class RecipesComponent {
     });
   }
 
-  // getsubcategories() {
-  //   this.subcategories.getSubCategories().subscribe({
-  //     next: (Response: any) => {
-        
-  //       this.sub_categoryList = Response.data.map(
-  //         (sub: any, index: number) => ({
-  //           id: sub.id, 
-  //           name: sub.name,
-  //           selected: false, 
-  //         })
-  //       );
-  //       console.log(this.sub_categoryList);
-  //     },
-  //     error: (error: any) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // }
   getsubcategories() {
     this.subcategories.getSubCategories().subscribe({
       next: (response: any) => {
@@ -248,12 +224,12 @@ export class RecipesComponent {
         selectedIngredients.length === 0 ||
         recipe.ingredients.some((ingredient: any) =>
           selectedIngredients.includes(ingredient.name)
-        );
-
+      );
+            
       const matchesTime =
-        selectedTimes.length === 0 ||
-        this.timeMatches(recipe.time, selectedTimes);
-
+      selectedTimes.length === 0 ||
+      this.timeMatches(recipe.time, selectedTimes);
+      
       return (
         matchesCategory &&
         matchesSubCategory &&
@@ -262,6 +238,7 @@ export class RecipesComponent {
       );
     });
   }
+
   timeMatches(recipeTime: number, selectedTimes: string[]): boolean {
     return selectedTimes.some((selected) => {
       if (selected === '15 min ')
@@ -275,7 +252,7 @@ export class RecipesComponent {
       if (selected === 'less than 60 min ')
         return recipeTime == 60 || recipeTime < 60;
       if (selected === 'more than 60 min ')
-         return recipeTime == 60 || recipeTime > 60;
+      return recipeTime == 60 || recipeTime > 60;
       return false;
     });
   }
@@ -291,6 +268,49 @@ export class RecipesComponent {
       const nextModalEl = document.getElementById('loginModal');
           const nextModalInstance = new bootstrap.Modal(nextModalEl);
           nextModalInstance.show();
+    }
+  }
+
+  // Intro Category
+  categoryName: string = '';
+  categoryDescription: string = '';
+  categoryArr: any[] = [];
+  shuffle!: number;
+  selected: boolean = false; 
+
+  categoryData(){
+    this.categoryArr = this.getFilteredRecipes();
+    
+    if (this.categoryArr.length > 0) {
+      this.shuffle = Math.floor(Math.random() * this.categoryArr.length);
+
+      const currentCategory = this.categoryArr[this.shuffle].category.name;
+      
+      const categoryInfo: { [key: string]: { name: string; description: string } } = {
+        Dessert: {
+          name: 'Dessert Recipes',
+          description: `Dessert time is the best time! Seriously, from rich and fudgy to light and fruity, 
+              desserts have a special way of making every moment better. Just one bite, and you're in bliss.`,
+        },
+        Dinner: {
+          name: 'Dinner Recipes',
+          description: `Dinner is the best! Honestly, there’s nothing like gathering around the table with a steaming plate of comfort food. 
+            Whether it’s a hearty casserole or a sizzling stir-fry, every bite brings joy.`,
+        },
+        Lunch: {
+          name: 'Lunch Recipes',
+          description: `Lunch is the best! Honestly, there’s nothing quite like a delicious midday meal to recharge and refuel. 
+            Whether it’s a fresh salad or a hearty sandwich, each bite brings a smile.`,
+        },
+        breakfast: {
+          name: 'Breakfast Recipes',
+          description: `Breakfast is the highlight of the morning! There’s something so satisfying about indulging in a tasty meal as the sun rises. 
+            From sweet smoothies to savory frittatas, every bite is pure bliss.`,
+        },
+      };
+
+      this.categoryName = categoryInfo[currentCategory].name;
+      this.categoryDescription = categoryInfo[currentCategory].description;
     }
   }
 }

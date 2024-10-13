@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 import { LoginComponent } from "../login/login.component";
@@ -40,6 +40,12 @@ export class NavbarComponent {
     this.isLogged = localStorage.getItem('auth_token') !== null || localStorage.getItem('admin_token') !== null ||  localStorage.getItem('premium_token') !== null ;
     this.admin=localStorage.getItem('admin_token') !== null;
     this.premium=localStorage.getItem('premium_token') !==null;
+  }
+
+  isScrolled = false;
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 50; 
   }
 
   logout(){
