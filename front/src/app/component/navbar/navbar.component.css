@@ -1,17 +1,14 @@
 /* Navbar styles */
 .navbar {
-  padding: 0 70px;
-  font-size: 18px;
-  background-color: var(--light-bg-color);
+  padding: 0 70px; 
+  background-color: white;
 }
-
 
 .logo {
   cursor: pointer;
 }
-
-.logo img {
-  width: 40%;
+.logo img{
+  width: 100px;
 }
 
 /* Search */
@@ -55,33 +52,20 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--main-color);
-}
-
-.dark-mode .links .navbar-nav .nav-item a {
-  color: white;
-}
-
-.nav-links i {
-  font-size: 20px;
-  color: var(--main-color);
-}
-.nav-link{
-  /* padding-top: 28px; */
-}
-
-.nav-links a p {
-  margin-top: 4px;
-  color: var(--main-color);
-  font-weight: bold;
-  font-size: 20px;
+  margin-top: 1rem;
 }
 
 .links .navbar-nav .nav-item a:hover,
 .links .navbar-nav .nav-item a.active {
   color: var(--btn-color) !important;
 }
+
+.links a p{
+  margin-top: 5px;
+}
+
 
 /* Login Style */
 .modal-header {

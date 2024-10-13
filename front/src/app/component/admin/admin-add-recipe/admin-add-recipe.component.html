@@ -213,6 +213,7 @@
               type="button"
               class="btn text-light me-4"
               (click)="removeIngredient(i)"
+              [hidden]="i == 0"
             >
               Remove Ingredient
             </button>
