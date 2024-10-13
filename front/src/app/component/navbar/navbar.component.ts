@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
   admin: boolean = false;
   premium: boolean = false;
   darkMode: boolean = false; // Track dark mode state
+isCollapsed: boolean = true;
 
   constructor(private serv: UsersService, private router: Router) { }
 
@@ -48,6 +49,7 @@ export class NavbarComponent implements OnInit {
     if (this.darkMode) {
       document.body.classList.add('dark-mode');
     }
+    
   }
 
   logout(): void {

@@ -56,7 +56,9 @@ body.dark-mode .member-info h4,
 body.dark-mode .member-info p {
   color: #ffffff !important;
 }
-
+body.dark-mode .hamburger{
+  border-color: white !important;
+}
 body.dark-mode .member-photo {
   border-color: #ffffff !important;
 }
@@ -69,12 +71,20 @@ body.dark-mode {
 body.dark-mode .footer {
   background-color: #191c24 !important; /* footer */
 }
-
+.dark-mode .mydailyrecipes{
+background-color: #000000 !important;
+}
 body.dark-mode .latest{
   background-color: #000000 !important; /*LATEST RECIPES*/
 }
 .dark-mode .border{
   background-color: #191c24!important;
+}
+.dark-mode .overview-section{
+ background-color: #000000 !important;
+}
+.dark-mode .all-recipes-title{
+  color: #eee !important;
 }
 
 .dark-mode .heading{
@@ -112,8 +122,9 @@ body.dark-mode .latest{
   align-items: center;
   justify-content: space-evenly;
   color: #fff;
-  background-color: #32373d !important ;
+  background-color: #191c24!important ;
 }
+
 
 /* Add other necessary component or container classes */
 

@@ -49,7 +49,7 @@ li {
   box-shadow: 0 0 10px 3px var(--main-color);
 }
 
-/* links */
+/* Links */
 .links .navbar-nav {
   gap: 30px;
 }
@@ -69,6 +69,9 @@ li {
 .nav-links i {
   font-size: 20px;
   color: var(--main-color);
+}
+.nav-link{
+  /* padding-top: 28px; */
 }
 
 .nav-links a p {
@@ -110,30 +113,82 @@ li {
   color: var(--btn-color);
   cursor: pointer;
 }
-
+.navbar-nav{
+  justify-content: flex-end;
+}
 /* Responsive */
-@media (max-width: 1255px) {
+@media (max-width: 1199px) {
+  .logo img {
+    width: 5rem;
+  }
+.logomarg{
+  padding-left: 0px;
+}
   .navbar {
     padding: 10px 20px;
   }
 
-  .logo img {
-    width: 80%;
+  /* Center the search bar on small screens */
+  .search {
+    padding: 0px;
+    /* display: flex;
+    justify-content: center;
+    width: 100%;  */
   }
 
   .navbar-toggler {
     border: none;
-    position: absolute;
     width: fit-content;
-    right: 3%;
+  }
+
+  /* Adjust the width of search input */
+  .search-bar input {
+    width: 100%;
+  }
+
+  /* Make sure the navbar collapse works well */
+  .collapse {
+    display: none !important;
+  }
+}
+
+/* Additional Responsive navbar styles */
+@media (max-width: 1199px) {
+  .navbar-toggler {
+    border: none;
+    width: fit-content;
+  }
+
+  .navbar-collapse {
+    display: none;
+  }
+
+  .collapse.show {
+    display: block !important; 
+  }
+
+ 
+
+  .search-bar {
+    width: 100%;
   }
 
   .links .navbar-nav {
-    justify-content: flex-end;
+    display: block;
+    text-align: center;
     gap: 20px;
   }
 
-  .search-bar input {
-    width: 100%;
+  .links .navbar-nav .nav-item {
+    margin-bottom: 10px;
+  }
+
+  .links .navbar-nav .nav-item a {
+    display: flex;
+    justify-content: center;
+    color: var(--main-color);
+  }
+  .hidelinks{
+    display: none;
   }
 }
