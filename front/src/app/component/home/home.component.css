@@ -306,10 +306,6 @@ body{
 }
 
 @media (max-width: 576px) {
-    .box .categoryName {
-        bottom: -2%;
-    }
-
     .box .categoryName h5 {
         font-size: 18px;
     }
@@ -326,9 +322,6 @@ body{
 @media (max-width: 480px) {
     .box{
         margin-bottom: 40px;
-    }
-    .box .categoryName {
-        bottom: -4%;
     }
 }
 /* Latest Section */

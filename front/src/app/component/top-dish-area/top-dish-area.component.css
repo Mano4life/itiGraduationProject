@@ -4,9 +4,9 @@
     padding: 135px 0 120px;
 }
 
-
 .main-title {
     text-align: center;
+    color: var(--main-color);
 }
 .main-title h1 {
     position: relative;
@@ -26,12 +26,10 @@
     border: 3px solid var(--third-color);
 }
 
-
 .main-title .round-planet.planet2 {
     width: 100px;
     height: 100px;
 }
-
 
 .main-title .round-planet .shape {
     border-radius: 50%;

@@ -1,8 +1,7 @@
 <div class="container my-5">
     <form enctype="multipart/form-data" [formGroup]="recipeForm" class="row" (submit)="onSubmission('recipesuccess')">
-      <h1 class="h3 text-center fw-bold text-uppercase mb-4 col-12">
-        add a new recipe boss
-      </h1>
+      <app-top-dish-area title="Add a new recipe boss"></app-top-dish-area>
+
       <div class="mb-3 col-12">
         <label for="name-field" class="text-capitalize mb-2">name:</label>
         <input

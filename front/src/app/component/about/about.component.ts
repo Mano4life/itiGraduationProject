@@ -1,10 +1,11 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { TopDishAreaComponent } from '../top-dish-area/top-dish-area.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [NgFor, CommonModule],
+  imports: [NgFor, CommonModule, TopDishAreaComponent],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
