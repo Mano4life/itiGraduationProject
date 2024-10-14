@@ -43,7 +43,7 @@
 }
 
 .red{
-    color: #d25c4c;
+    color: var(--btn-color);
     font-family: var(--second-font);
     font-weight: 600;
 }
@@ -85,10 +85,9 @@ h6{
 }
 
 h5{
-    font-family: var(--titleReciepe-font);
-    font-weight: 600;
-    font-size: 22px;
+    font-size: 23px !important;
     color: var(--main-color);
+    font-family: var(--main-font);
 }
 .latestContent p{
     font-family: var(--third-font);
