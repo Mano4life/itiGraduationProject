@@ -13,10 +13,10 @@
         />
         @if(recipeForm.controls['name'].invalid &&
         recipeForm.controls['name'].touched){
-        <p class="text-danger fw-bold ms-1">name is not valid</p>
+        <span class="text-danger fw-bold ms-1">name is not valid</span>
         }@else if (recipeForm.controls['name'].valid &&
         recipeForm.controls['name'].touched) {
-        <p class="text-success">name is valid</p>
+        <span class="text-success">name is valid</span>
         }
       </div>
       <div class="mb-3 col-6">
@@ -30,10 +30,10 @@
         />
         @if(recipeForm.controls['Serving'].invalid &&
         recipeForm.controls['Serving'].touched){
-        <p class="text-danger fw-bold ms-1">Serving is not valid</p>
+        <span class="text-danger fw-bold ms-1">Serving is not valid</span>
         }@else if (recipeForm.controls['Serving'].valid &&
         recipeForm.controls['Serving'].touched) {
-        <p class="text-success">Serving is valid</p>
+        <span class="text-success">Serving is valid</span>
         }
       </div>
       <div class="mb-3 col-6">
@@ -48,10 +48,10 @@
         />
         @if(recipeForm.controls['time'].invalid &&
         recipeForm.controls['time'].touched){
-        <p class="text-danger fw-bold ms-1">time is not valid</p>
+        <span class="text-danger fw-bold ms-1">time is not valid</span>
         }@else if (recipeForm.controls['time'].valid &&
         recipeForm.controls['time'].touched) {
-        <p class="text-success">time is valid</p>
+        <span class="text-success">time is valid</span>
         }
       </div>
       <div class="mb-3 col-lg-6">
@@ -67,10 +67,10 @@
         ></textarea>
         @if(recipeForm.controls['description'].invalid &&
         recipeForm.controls['description'].touched){
-        <p class="text-danger fw-bold ms-1">description is not valid</p>
+        <span class="text-danger fw-bold ms-1">description is not valid</span>
         }@else if (recipeForm.controls['description'].valid &&
         recipeForm.controls['description'].touched) {
-        <p class="text-success">description is valid</p>
+        <span class="text-success">description is valid</span>
         }
       </div>
       <div class="mb-3 col-lg-6">
@@ -86,10 +86,10 @@
         ></textarea>
         @if(recipeForm.controls['directions'].invalid &&
         recipeForm.controls['directions'].touched){
-        <p class="text-danger fw-bold ms-1">directions is not valid</p>
+        <span class="text-danger fw-bold ms-1">directions is not valid</span>
         }@else if (recipeForm.controls['directions'].valid &&
         recipeForm.controls['directions'].touched) {
-        <p class="text-success">directions is valid</p>
+        <span class="text-success">directions is valid</span>
         }
       </div>
       <div class="mb-3">
@@ -103,10 +103,10 @@
         />
         @if(recipeForm.controls['image'].invalid &&
         recipeForm.controls['image'].touched){
-        <p class="text-danger fw-bold ms-1">image is not valid</p>
+        <span class="text-danger fw-bold ms-1">image is not valid</span>
         }@else if (recipeForm.controls['image'].valid &&
         recipeForm.controls['image'].touched) {
-        <p class="text-success">image is valid</p>
+        <span class="text-success">image is valid</span>
         }
       </div>
       <div class="mb-3">
@@ -120,10 +120,10 @@
         />
         @if(recipeForm.controls['category'].invalid &&
         recipeForm.controls['category'].touched){
-        <p class="text-danger fw-bold ms-1">category is not valid</p>
+        <span class="text-danger fw-bold ms-1">category is not valid</span>
         }@else if (recipeForm.controls['category'].valid &&
         recipeForm.controls['category'].touched) {
-        <p class="text-success">category is valid</p>
+        <span class="text-success">category is valid</span>
         }
       </div>
       <div class="mb-3">
@@ -139,10 +139,10 @@
         />
         @if(recipeForm.controls['subcategory'].invalid &&
         recipeForm.controls['subcategory'].touched){
-        <p class="text-danger fw-bold ms-1">subcategory is not valid</p>
+        <span class="text-danger fw-bold ms-1">subcategory is not valid</span>
         }@else if (recipeForm.controls['subcategory'].valid &&
         recipeForm.controls['subcategory'].touched) {
-        <p class="text-success">subcategory is valid</p>
+        <span class="text-success">subcategory is valid</span>
         }
       </div>
       <div formArrayName="ingredients">
@@ -160,13 +160,13 @@
               placeholder="ingredient..."
               formControlName="name"
             />
-            <div
-              *ngIf="
-                ingredient.get('name')?.invalid && ingredient.get('name')?.touched
-              "
-            >
-              Ingredient name is required.
-            </div>
+            @if(ingredient.get('name')?.invalid &&
+            ingredient.get('name')?.touched){
+            <span class="text-danger fw-bold ms-1">Ingredient name is not valid</span>
+            }@else if (ingredient.get('name')?.valid &&
+            ingredient.get('name')?.touched) {
+            <span class="text-success fw-bold ms-1">Ingredient name is valid</span>
+            }
           </div>
   
           <div class="col-4">
@@ -178,14 +178,13 @@
               placeholder="quantity..."
               formControlName="quantity"
             />
-            <div
-              *ngIf="
-                ingredient.get('quantity')?.invalid &&
-                ingredient.get('quantity')?.touched
-              "
-            >
-              Quantity is required.
-            </div>
+            @if(ingredient.get('quantity')?.invalid &&
+            ingredient.get('quantity')?.touched){
+            <span class="text-danger fw-bold ms-1">Ingredient quantity is not valid</span>
+            }@else if (ingredient.get('quantity')?.valid &&
+            ingredient.get('quantity')?.touched) {
+            <span class="text-success fw-bold ms-1">Ingredient quantity is valid</span>
+            }
           </div>
   
           <div class="col-4">
@@ -197,14 +196,13 @@
               placeholder="measurement unit..."
               formControlName="measurement_unit"
             />
-            <div
-              *ngIf="
-                ingredient.get('measurement_unit')?.invalid &&
-                ingredient.get('measurement_unit')?.touched
-              "
-            >
-              Measurement unit is required.
-            </div>
+            @if(ingredient.get('measurement_unit')?.invalid &&
+            ingredient.get('measurement_unit')?.touched){
+            <span class="text-danger fw-bold ms-1">Ingredient measurement is not valid</span>
+            }@else if (ingredient.get('measurement_unit')?.valid &&
+            ingredient.get('measurement_unit')?.touched) {
+            <span class="text-success fw-bold ms-1">Ingredient measurement is valid</span>
+            }
           </div>
   
           <div class="ingredient-controls mt-3 d-flex">
@@ -250,7 +248,7 @@
                 <i class="far fa-check-circle check-icon" style="color: var(--btn-color); font-size: 50px;"></i>
               </div>
               <div>
-                <p class="text-center" style="color: var(--footer-color);">Recipe added Successfully!!</p>
+                <span class="text-center" style="color: var(--footer-color);">Recipe added Successfully!!</span>
               </div>
               
         </div>

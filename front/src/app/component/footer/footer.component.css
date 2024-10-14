@@ -13,7 +13,7 @@
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 12px;
-    color: var(--footer-color);
+    color: var(--main-color);
 }
 
 .menu-column ul {
