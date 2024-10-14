@@ -1,3 +1,13 @@
+/* Overview box styling */
+.overview-border {
+  border-color: #ffffff !important; /* Default light mode border color */
+}
+
+/* Dark mode styles */
+.dark-mode .overview-border {
+  border-color: #191c24 !important; /* Dark mode border color */
+}
+
 .team-section {
   text-align: center;
   color: black;
@@ -10,7 +20,6 @@
   display: flex;
   align-items: center;
   color: white;
-
   padding: 20px;
   border: none; /* Remove borders */
   box-shadow: none; /* Remove shadows */
