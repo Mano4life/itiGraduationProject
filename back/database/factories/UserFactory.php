@@ -24,13 +24,13 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'admin',
-            'email' => 'admin@mail.com',
-            'password' => '$2y$12$0rTxEJSe8YjErzUPp.I6LOvOR81hJtQNiCw9S23l8JxOeBqxh9sVm', //Admin@123
-            'role'=>'admin',
-            'gender'=> 'male',
-            'date_of_birth' => '1998-01-01' // :)
-           // 'remember_token' => Str::random(10),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'password' => bcrypt('password'), // password
+            'role' => 'user',
+            'gender' => $this->faker->randomElement(['male', 'female']),
+            'date_of_birth' => $this->faker->date(),
+            // 'remember_token' => Str::random(10),
         ];
     }
 
