@@ -3,8 +3,8 @@
   color: var(--main-color);
 }
 
-.recipes-wrapper .card-title{
-  color: red;
+.card-title{
+  color: #141414;
 }
 
 .btn {

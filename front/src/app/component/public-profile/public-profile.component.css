@@ -10,3 +10,17 @@
     padding-bottom: 15px;
     padding-right: 5px;
 }
+
+.recipes-wrapper .card-title{
+    font-size: 24px;
+    color: var(--main-color);
+    font-family: var(--main-font);
+}
+
+.related-recipe-category {
+    color: var(--btn-color) !important;
+}
+
+.related-recipes .time {
+    color: var(--main-color);
+}
