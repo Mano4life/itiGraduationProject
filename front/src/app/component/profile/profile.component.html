@@ -35,7 +35,6 @@
       <h1 class="fw-bold text-capitalize"><img src="assets/img/heart.png" alt="chef" class="chef">your favorite recipes</h1>
     </div>
     <div class="body mt-4 d-flex gap-3 overflow-x-auto"  *ngIf="user?.recipes_saves.length > 0">
-
       <div *ngFor="let recipe of user?.recipes_saves">
         <div
           class="card border-0"
@@ -49,7 +48,7 @@
             style="height: 330px;"
           />
           <div class="card-body">
-            <h1 class="card-title h4">{{ recipe?.name }}</h1>
+            <h1 class="card-title">{{ recipe?.name }}</h1>
           </div>
         </div>
       </div>
@@ -187,7 +186,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <app-socials ></app-socials>
+        <app-socials></app-socials>
       </div>
     </div>
   </div>
