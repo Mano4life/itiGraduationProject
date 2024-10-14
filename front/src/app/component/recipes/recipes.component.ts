@@ -39,14 +39,15 @@ export class RecipesComponent {
     this.route.queryParams.subscribe((params) => {
       // Check if reverse parameter is set
       this.reverseOrder = params['reverse'] === 'true';
+
+      
       this.getreciepes();
     });
-
+    
     this.getsubcategories();
     this.getingredients();
     this.getFilterFromHome()
     this.getUser();
-
   }
   getUser(){
     this.UserService.getUser().subscribe((res:any)=>{
@@ -61,15 +62,12 @@ export class RecipesComponent {
   getFilterFromHome() {
     this.route.queryParams.subscribe((res) => {
       
-  
       if (res['category']) {
-        
-          this.selectedCategories.push(res['category']);
-        
+        this.selectedCategories.push(res['category']);
       }
-
     });
   }
+
   getreciepes() {
     this.recipes.getRecipes().subscribe({
       next: (Response: any) => {        
@@ -84,7 +82,6 @@ export class RecipesComponent {
       },
     });
   }
-
 
   getsubcategories() {
     this.subcategories.getSubCategories().subscribe({
@@ -247,12 +244,12 @@ export class RecipesComponent {
         selectedIngredients.length === 0 ||
         recipe.ingredients.some((ingredient: any) =>
           selectedIngredients.includes(ingredient.name)
-        );
-
+      );
+            
       const matchesTime =
-        selectedTimes.length === 0 ||
-        this.timeMatches(recipe.time, selectedTimes);
-
+      selectedTimes.length === 0 ||
+      this.timeMatches(recipe.time, selectedTimes);
+      
       return (
         matchesCategory &&
         matchesSubCategory &&
@@ -261,6 +258,7 @@ export class RecipesComponent {
       );
     });
   }
+
   timeMatches(recipeTime: number, selectedTimes: string[]): boolean {
     return selectedTimes.some((selected) => {
       if (selected === '15 min ')
@@ -274,7 +272,7 @@ export class RecipesComponent {
       if (selected === 'less than 60 min ')
         return recipeTime == 60 || recipeTime < 60;
       if (selected === 'more than 60 min ')
-         return recipeTime == 60 || recipeTime > 60;
+      return recipeTime == 60 || recipeTime > 60;
       return false;
     });
   }
@@ -292,4 +290,5 @@ export class RecipesComponent {
           nextModalInstance.show();
     }
   }
+
 }

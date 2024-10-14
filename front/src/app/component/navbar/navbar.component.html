@@ -1,30 +1,33 @@
-<nav class="navbar navbar-expand-xl">
+<nav class="navbar navbar-expand-xl sticky-top shadow" [ngStyle]="{ backgroundColor: darkMode ? '#191c24' : 'white'}">
   <div class="container-fluid">
     <div class="row w-100 align-items-center justify-content-between">
-      
-      <!-- Logo Section -->
-      <div class="col-4 col-sm-4 col-md-3 col-lg-3">
-        <div class="navbar-brand logo">
-          <img [src]="logo" alt="Logo" routerLink="" />
-        </div>
-      </div>
-      
-      <!-- Search Bar -->
-      <div class="col-7 col-lg-4 col-md-6 col-sm-6 search">
-        <app-search-input></app-search-input>
-      </div>
-      
-      
-      <!-- Navbar Toggle Button -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="nav-link" routerLinkActive="active" routerLink="/about" [ngStyle]="{ color: darkMode ? '#191c24' : 'var(--main-color)'}"></a>
+     
+ <!-- Logo Section -->
+ <div class="col-4 logomarg col-sm-4 col-md-3 col-lg-3">
+  <div class="navbar-brand logo">
+    <img [src]="logo" alt="Logo" routerLink="" />
+  </div>
+</div>
 
+<!-- Search Bar -->
+<div class="col-7 col-xl-4 search">
+  <app-search-input></app-search-input>
+</div>
+
+<!-- Navbar Toggle Button -->
+<div class="col-lg-1 col-1 col-md-1 col-sm-1 justify-content-end">
+  <button class="navbar-toggler hamburger" type="button" (click)="isCollapsed = !isCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon " [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}"></span>
+  </button>
+</div>
+     
+     
 
       <!-- Links Section -->
-      <div class="col-lg-4 links">
-        <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="col-xl-4 links">
+        <div [ngClass]="{'hidelinks': isCollapsed}">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }"
@@ -70,6 +73,7 @@
               </a>
             </li>
 
+
             <!-- Logout -->
             <li class="nav-item" *ngIf="isLogged">
               <a class="nav-link" (click)="logout()" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
@@ -78,7 +82,7 @@
               </a>
             </li>
 
-            <!-- DarkMode -->
+            <!-- Dark Mode -->
             <li class="nav-item" id="darkMode" (click)="toggleDarkMode()">
               <a class="nav-link" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
                 <img src="assets/img/dark.png" alt="dark" class="chef" *ngIf="!darkMode" >

@@ -102,7 +102,7 @@
       >
         <div class="imagehover">
           <img class="rounded-image object-fit-cover" style="width: 100% !important; height: 330px !important;" [src]="item.image" alt="food">
-          <span class="badge  position-absolute top-0 start-0 ms-3 mt-2" *ngIf="item.user?.role === 'premium'"><i class="fa-solid fa-crown pb-1" ></i></span>
+          <span class="badge position-absolute top-0 start-0 ms-3 mt-2" *ngIf="item.user?.role === 'premium'"><i class="fa-solid fa-crown pb-1" ></i></span>
         </div>
         <div class="d-flex justify-content-between mt-2">
           <span class="red m-0">{{item.category.name}}</span>

@@ -18,7 +18,7 @@
   --second-font: 'Nanum Gothic', sans-serif;
   --titleReciepe-font: "EB Garamond", serif;
   
-  --footer-color: #395963;
+  --footer-color: #191c24;
 
   --primary-text-color: white;
 
@@ -34,7 +34,7 @@ p{
 }
 
 body.dark-mode .team-section {
-  background-color: #4e5455!important;/* OUR TEAM FRAME*/
+  background-color: #101218 !important;/* OUR TEAM FRAME*/
   color: #fcf9f9 !important; /*OUR TEAM*/
 }
 .dark-mode .logoContent p{
@@ -47,34 +47,54 @@ body {
 }
 
 body.dark-mode .team-member {
-  background-color: #32373d!important;
+  background-color: #191c24!important;
   color: #ffffff !important;
 }
-
+.dark-mode .h1{
+  background-color: white !important;
+}
 body.dark-mode .member-info h3,
 body.dark-mode .member-info h4,
 body.dark-mode .member-info p {
   color: #ffffff !important;
 }
-
+body.dark-mode .hamburger{
+  border-color: white !important;
+}
 body.dark-mode .member-photo {
   border-color: #ffffff !important;
 }
 
 body.dark-mode {
-  background-color: #4e5455 !important; /* most of the background pages*/
+  background-color: #101218 !important; /* most of the background pages*/
   color: #ffffff;
 }
 
-body.dark-mode .footer {
-  background-color: #32373d !important; /* footer */
+.dark-mode .white {
+  background-color: transparent !important;
 }
 
+.dark-mode .navbar {
+  background-color: #101218 !important;
+}
+
+body.dark-mode .footer {
+  background-color: #191c24 !important; /* footer */
+}
+.dark-mode .mydailyrecipes{
+  background-color: #101218 !important;
+}
 body.dark-mode .latest{
-  background-color: #4e5455 !important; /*LATEST RECIPES*/
+  background-color: #101218 !important; /*LATEST RECIPES*/
 }
 .dark-mode .border{
-  background-color: #32373d!important;
+  background-color: #191c24!important;
+}
+.dark-mode .overview-section{
+ background-color: #101218 !important;
+}
+.dark-mode .all-recipes-title{
+  color: #eee !important;
 }
 
 .dark-mode .heading{
@@ -93,7 +113,7 @@ body.dark-mode .latest{
   color: white !important;
 }
 .dark-mode .home-banner .banner-left {
-  background: #4e5455 !important;
+  /* background: #101218 !important; */
   height: 100vh;
   padding: 0 16%;
 }
@@ -112,8 +132,18 @@ body.dark-mode .latest{
   align-items: center;
   justify-content: space-evenly;
   color: #fff;
-  background-color: #32373d !important ;
+  background-color: #191c24!important ;
 }
+
+.dark-mode .card {
+background-color: #101218 !important;
+  
+}
+
+.dark-mode h5, .dark-mode h1,.dark-mode .fa-cog, .dark-mode .time{
+  color: #fff !important;
+}
+
 
 /* Add other necessary component or container classes */
 

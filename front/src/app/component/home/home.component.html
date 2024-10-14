@@ -42,7 +42,7 @@
     <div class="container">
         <div class="row">
             <div *ngFor="let category of categories; let i = index" class="col-lg-3 col-md-6 col-sm-12">
-                <div class="box position-relative" (click)="categoryClicked(category.name)">
+                <div class="box position-relative" (click)="categoryClicked(category.name)" >
                     <a >
                         <img class="img-fluid object-fit-cover" [src]="category.img" alt="">
                         <div class="categoryName">
@@ -103,15 +103,15 @@
     <video [src]="videoUrl" autoplay muted loop playsinline>
         <source [src]="videoUrl" type="video/mp4">
             Your browser does not support the video tag.
-        </video>
-        <div class="slide-layers">
-            <p class="layer1">
-                Best food comes with
-            </p>
-            <p class="layer2">
-                Best Technique
-            </p>
-        </div>
+    </video>
+    <div class="slide-layers">
+        <p class="layer1">
+            Best food comes with
+        </p>
+        <p class="layer2">
+            Best Technique
+        </p>
+    </div>
 </div>
 
 <!-- Top Dish Area Section -->
@@ -142,7 +142,7 @@
 <!-- users -->
 <section class="user">
     <div class="container" style="background-color: #395963;">
-        <div class="row p-4 align-items-center">
+        <div class="row p-4 align-items-center mydailyrecipes" >
             <div class="borderSection">
                 <!-- Image Section -->
                 <div class="col-lg-3 col-md-4 col-12 mb-3 mb-md-0 userImg">
