@@ -8,7 +8,7 @@
   cursor: pointer;
 }
 .logo img{
-  width: 100px;
+  width: 140px;
 }
 
 /* Search */
@@ -45,9 +45,9 @@ li {
 
 /* links */
 .chef{
-  width: 50px;
-  padding-bottom: 10px;
-  padding-right: 10px;
+  width: 30px;
+  padding-bottom: 2px;
+ 
 
 }
 

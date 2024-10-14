@@ -237,7 +237,8 @@ body{
     padding: 6px 25px;
     position: absolute;
     bottom: -5%;
-    left: 33%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .box .categoryName h5{
