@@ -9,12 +9,13 @@ import {
 } from '@angular/forms';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { RecipesService } from '../../../core/services/recipes/recipes.service';
+import { TopDishAreaComponent } from "../../top-dish-area/top-dish-area.component";
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-admin-add-recipe',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, TopDishAreaComponent],
   templateUrl: './admin-add-recipe.component.html',
   styleUrl: './admin-add-recipe.component.css',
 })

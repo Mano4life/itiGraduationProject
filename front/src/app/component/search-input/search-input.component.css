@@ -88,7 +88,8 @@ input::placeholder {
 }
 @media (max-width: 991px) {
     .search-bar .clear{
-        right: 5%;
+        right: 6%;
+        font-size: 14px;
     }
 }
 @media (max-width: 768px) {
@@ -115,7 +116,8 @@ input::placeholder {
 
 @media (max-width: 575px) {
     .search-bar .search {
-        left: 4%;
+        left: 5%;
+        font-size: 17px;
     }
     .dropdown-list li img {
         width: 40px;

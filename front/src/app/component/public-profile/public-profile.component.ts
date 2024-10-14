@@ -18,6 +18,7 @@ export class PublicProfileComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
+  
   ngOnInit() {
     this.profileId=this.activatedRoute.snapshot.params['id']
     this.usersService.publicProfile(this.profileId).subscribe((data:any)=>{

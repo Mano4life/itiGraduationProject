@@ -17,7 +17,7 @@ export class SocialsComponent {
   gender: any = ['female', 'male'];
   notvalid:boolean=false;
   success:boolean=false;
- 
+
   constructor(private routerActive:ActivatedRoute,private router:Router,private serv:UsersService ,private renderer: Renderer2) { 
 
     this.LinksForm=new FormGroup({

@@ -144,6 +144,10 @@ background-color: #101218 !important;
   color: #fff !important;
 }
 
+.dark-mode .fa-cog:hover {
+  color: var(--btn-color) !important;
+}
+
 
 /* Add other necessary component or container classes */
 
