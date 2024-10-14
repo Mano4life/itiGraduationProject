@@ -180,7 +180,7 @@ p {
 }
 
 .related-recipes .card-title {
-  font-size: 24px;
+  font-size: 23px;
   color: var(--main-color);
   font-family: var(--main-font);
 }
