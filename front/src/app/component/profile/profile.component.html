@@ -65,7 +65,8 @@
   <!-- premium ========================================================================================= -->
   <section class="recipes-wrapper mt-5" *ngIf="isPremium">
     <div class="title d-flex justify-content-between align-items-center">
-      <h1 class="fw-bold text-capitalize"><img src="assets/img/sand.png" alt="chef" class="chef">Waiting for Aproval</h1>
+      <h1 class="fw-bold text-capitalize">
+      <img src="assets/img/sand.png" alt="chef" class="chef">Waiting for Aproval</h1>
       
     </div>
     <div class="body mt-4 d-flex gap-3 overflow-x-auto" *ngIf="user.pending_recipes.length!=0">

@@ -10,7 +10,7 @@
   --third-color: #eee;
 
   --boxCategory-color: #F6E1D3;
-  --btn-color: #fe735c; 
+  --  -color: #fe735c; 
 
   --boxShadow-color: rgba(244, 47, 44, 0.32);
 
@@ -21,6 +21,8 @@
   --footer-color: #395963;
 
   --primary-text-color: white;
+
+  --bs-card-title-color:red;
 }
 
 h1{

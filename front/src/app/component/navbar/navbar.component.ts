@@ -27,6 +27,7 @@ declare var bootstrap: any;
 
 export class NavbarComponent {
   logo: string = 'assets/imgs/logo.png';
+
   isLogged:boolean=false;
   Userinfo!:any;
   UserId!:any;

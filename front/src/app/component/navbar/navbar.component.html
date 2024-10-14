@@ -29,14 +29,14 @@
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }"
                 [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                <i class="fa-solid fa-house-chimney"></i>
+                <img src="assets/img/home.png" alt="home" class="chef">
                 <p>Home</p>
               </a>
             </li>
 
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" routerLink="/recipes" [queryParams]="{ reverse: 'true' }" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                <i class="fa-solid fa-utensils"></i>
+                <img src="assets/img/recipes.png" alt="home" class="chef">
                 <p>Recipes</p>
               </a>
             </li>
