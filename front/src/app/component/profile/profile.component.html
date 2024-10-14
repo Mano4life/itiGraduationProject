@@ -1,55 +1,103 @@
-
-
 <div class="container my-5">
-  <section class="user-details d-flex justify-content-between align-items-center">
-    <h1 class="text-capitalize fw-bold" style="color: var(--main-color);"><img src="assets/img/chef.png" alt="chef" class="chef"> {{ user?.name }}</h1>
-    <a  data-bs-toggle="modal" data-bs-target="#Edit" style="color: var(--main-color); font-size: 24px;"><i class="fa fa-cog" aria-hidden="true"></i></a>
+  <section
+    class="user-details d-flex justify-content-between align-items-center"
+  >
+    <h1 class="text-capitalize fw-bold" style="color: var(--main-color)">
+      <img src="assets/img/chef.png" alt="chef" class="chef" /> {{ user?.name }}
+    </h1>
+    <a
+      data-bs-toggle="modal"
+      data-bs-target="#Edit"
+      style="color: var(--main-color); font-size: 24px"
+      ><i class="fa fa-cog" aria-hidden="true"></i
+    ></a>
   </section>
-  
+
   <section class="mt-5">
     <div class="title d-flex justify-content-between align-items-center">
-      <h1 class="fw-bold text-capitalize"><img src="assets/img/link.png" alt="link" class="chef">Links</h1>
-      <a  data-bs-toggle="modal" data-bs-target="#Socials" style="color: var(--main-color); font-size: 24px;"><i class="fa fa-cog" aria-hidden="true"></i>
+      <h1 class="fw-bold text-capitalize">
+        <img src="assets/img/link.png" alt="link" class="chef" />Links
+      </h1>
+      <a
+        data-bs-toggle="modal"
+        data-bs-target="#Socials"
+        style="color: var(--main-color); font-size: 24px"
+        ><i class="fa fa-cog" aria-hidden="true"></i>
       </a>
     </div>
-    <div class="row d-flex justify-content-center flex-column align-items-center" *ngIf="!user.youtube_link && !user.instagram_link && !user.tiktok_link" >
+    <div
+      class="row d-flex justify-content-center flex-column align-items-center"
+      *ngIf="!user.youtube_link && !user.instagram_link && !user.tiktok_link"
+    >
       <div class="p-3">
-        <h3 class="text-center text-secondary ">Add Social links to spread your Magic !!</h3>
+        <h3 class="text-center text-secondary">
+          Add Social links to spread your Magic !!
+        </h3>
       </div>
     </div>
-    <div class="d-flex ">
+    <div class="d-flex">
       <div *ngIf="user.youtube_link" class="me-4 shadow-sm p-3 rounded">
-        <a [href]="user.youtube_link" class="links "><img src="assets/img/youtube.png" alt="youtube" class="link-img">Youtube</a>
+        <a [href]="user.youtube_link" class="links"
+          ><img
+            src="assets/img/youtube.png"
+            alt="youtube"
+            class="link-img"
+          />Youtube</a
+        >
       </div>
       <div *ngIf="user.instagram_link" class="me-4 shadow-sm p-3 rounded">
-        <a [href]="user.instagram_link" class="links "><img src="assets/img/instagram.png" alt="instagram" class="link-img">Instagram</a>
+        <a [href]="user.instagram_link" class="links"
+          ><img
+            src="assets/img/instagram.png"
+            alt="instagram"
+            class="link-img"
+          />Instagram</a
+        >
       </div>
       <div *ngIf="user.tiktok_link" class="me-4 shadow-sm p-3 rounded">
-        <a [href]="user.tiktok_link" class="links "><img src="assets/img/tiktok.png" alt="tiktok" class="link-img">TikTok</a>
+        <a [href]="user.tiktok_link" class="links"
+          ><img
+            src="assets/img/tiktok.png"
+            alt="tiktok"
+            class="link-img"
+          />TikTok</a
+        >
       </div>
     </div>
   </section>
-  
+
   <section class="recipes-wrapper mt-5">
     <div class="title">
-      <h1 class="fw-bold text-capitalize"><img src="assets/img/heart.png" alt="chef" class="chef">your favorite recipes</h1>
+      <h1 class="fw-bold text-capitalize">
+        <img src="assets/img/heart.png" alt="chef" class="chef" />your favorite
+        recipes
+      </h1>
     </div>
-    <div class="body mt-4 d-flex gap-3 overflow-x-auto"  *ngIf="user?.recipes_saves.length > 0">
+    <div
+      class="body mt-4 d-flex gap-3 overflow-x-auto"
+      *ngIf="user?.recipes_saves.length > 0"
+    >
       <div *ngFor="let recipe of user?.recipes_saves">
         <div
           class="card border-0"
           style="width: 300px; cursor: pointer"
           (click)="onRecipeClick(recipe.id)"
         >
-          <img
-            class="rounded card-img-top w-100 object-fit-cover"
-            src="{{ recipe?.image }}"
-            alt="Title"
-            style="height: 330px;"
-          />
+          <div class="image-wrapper overflow-hidden rounded">
+            <img
+              class="rounded card-img-top w-100 object-fit-cover"
+              src="{{ recipe?.image }}"
+              alt="Title"
+              style="height: 330px"
+            />
+          </div>
           <div class="card-body px-0">
-            <div class="category-time d-flex align-items-baseline justify-content-between">
-              <span class="h6 related-recipe-category">{{ recipe?.category.name }}</span>
+            <div
+              class="category-time d-flex align-items-baseline justify-content-between"
+            >
+              <span class="h6 related-recipe-category">{{
+                recipe?.category.name
+              }}</span>
               <div class="time">
                 <span class="h6 me-2"><i class="fa-regular fa-clock"></i></span>
                 <span class="h6">{{ recipe?.time }} mins</span>
@@ -60,10 +108,14 @@
         </div>
       </div>
     </div>
-    <div class="row d-flex justify-content-center flex-column align-items-center" *ngIf="user.recipes_saves.length==0 " >
-
+    <div
+      class="row d-flex justify-content-center flex-column align-items-center"
+      *ngIf="user.recipes_saves.length == 0"
+    >
       <div class="p-5">
-        <h3 class="text-center text-secondary p-5">Your Favorite List is Empty Fill it with recipes to come back to !!</h3>
+        <h3 class="text-center text-secondary p-5">
+          Your Favorite List is Empty Fill it with recipes to come back to !!
+        </h3>
       </div>
     </div>
   </section>
@@ -72,30 +124,58 @@
   <section class="recipes-wrapper mt-5" *ngIf="isPremium">
     <div class="title d-flex justify-content-between align-items-center">
       <h1 class="fw-bold text-capitalize">
-      <img src="assets/img/sand.png" alt="chef" class="chef">Waiting for Aproval</h1>
-      
+        <img src="assets/img/sand.png" alt="chef" class="chef" />Waiting for
+        Aproval
+      </h1>
     </div>
-    <div class="body mt-4 d-flex gap-3 overflow-x-auto" *ngIf="user.pending_recipes.length!=0">
-      <div *ngFor="let recipe of user?.pending_recipes"  class="position-relative">
+    <div
+      class="body mt-4 d-flex gap-3 overflow-x-auto"
+      *ngIf="user.pending_recipes.length != 0"
+    >
+      <div
+        *ngFor="let recipe of user?.pending_recipes"
+        class="position-relative"
+      >
         <div
           class="card border-0"
           style="width: 300px; cursor: pointer"
           (click)="onRecipeClick(recipe.id)"
         >
-          <img
-            class="rounded card-img-top w-100 object-fit-cover"
-            src="{{ recipe?.image }}"
-            alt="Title"
-            style="height: 330px;"
-          />
-          <span class="badge bg-secondary position-absolute top-0 start-0 m-2" *ngIf="recipe.status=='pending'">{{recipe.status}}</span>
-          <span class="badge bg-danger position-absolute top-0 start-0 m-2"*ngIf="recipe.status=='denied'">{{recipe.status}}</span>
-          <span class="text-center position-absolute top-0 end-0 m-2" *ngIf="recipe.status=='denied'" (click)="editPendingRecipe(recipe?.id)">
-            <i class="fa-solid fa-pen-to-square" style="color: var(--main-color); font-size: 20px;" ></i>
+          <div class="image-wrapper overflow-hidden rounded">
+            <img
+              class="rounded card-img-top w-100 object-fit-cover"
+              src="{{ recipe?.image }}"
+              alt="Title"
+              style="height: 330px"
+            />
+          </div>
+          <span
+            class="badge bg-secondary position-absolute top-0 start-0 m-2"
+            *ngIf="recipe.status == 'pending'"
+            >{{ recipe.status }}</span
+          >
+          <span
+            class="badge bg-danger position-absolute top-0 start-0 m-2"
+            *ngIf="recipe.status == 'denied'"
+            >{{ recipe.status }}</span
+          >
+          <span
+            class="text-center position-absolute top-0 end-0 m-2"
+            *ngIf="recipe.status == 'denied'"
+            (click)="editPendingRecipe(recipe?.id)"
+          >
+            <i
+              class="fa-solid fa-pen-to-square"
+              style="color: var(--main-color); font-size: 20px"
+            ></i>
           </span>
           <div class="card-body px-0">
-            <div class="category-time d-flex align-items-baseline justify-content-between">
-              <span class="h6 related-recipe-category">{{ recipe?.category.name }}</span>
+            <div
+              class="category-time d-flex align-items-baseline justify-content-between"
+            >
+              <span class="h6 related-recipe-category">{{
+                recipe?.category.name
+              }}</span>
               <div class="time">
                 <span class="h6 me-2"><i class="fa-regular fa-clock"></i></span>
                 <span class="h6">{{ recipe?.time }} mins</span>
@@ -111,35 +191,52 @@
       
         <img src="assets/img/empty-box_4826310.png" alt="empty" class="w-100">
       </div> -->
-      <div class="p-5"  *ngIf="user.pending_recipes.length==0">
-
-        <h3 class="text-center text-secondary p-5">No Submitted Recipes yet!!</h3>
+      <div class="p-5" *ngIf="user.pending_recipes.length == 0">
+        <h3 class="text-center text-secondary p-5">
+          No Submitted Recipes yet!!
+        </h3>
       </div>
     </div>
-    
   </section>
   <section class="recipes-wrapper mt-5" *ngIf="isPremium">
     <div class="title d-flex justify-content-between align-items-center">
-      <h1 class="fw-bold text-capitalize"><img src="assets/img/magic.png" alt="chef" class="chef">your magic</h1>
-      <a routerLink="/add-recipe/{{ user.id }}" class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2">add recipe</a>
+      <h1 class="fw-bold text-capitalize">
+        <img src="assets/img/magic.png" alt="chef" class="chef" />your magic
+      </h1>
+      <a
+        routerLink="/add-recipe/{{ user.id }}"
+        class="text-capitalize text-bold text-decoration-none btn btn-dark btn-sm px-lg-3 py-lg-2"
+        >add recipe</a
+      >
     </div>
-    <div class="body mt-4 d-flex gap-3 overflow-x-auto" *ngIf="user.recipes.length!=0">
+    <div
+      class="body mt-4 d-flex gap-3 overflow-x-auto"
+      *ngIf="user.recipes.length != 0"
+    >
       <div *ngFor="let recipe of user?.recipes" class="position-relative">
         <div
           class="card border-0"
           style="width: 300px; cursor: pointer"
           (click)="onRecipeClick(recipe.id)"
         >
-          <img
-            class="rounded card-img-top w-100 object-fit-cover"
-            src="{{ recipe?.image }}"
-            alt="Title"
-            style="height: 330px;"
-          />
-          <span class="badge bg-success position-absolute top-0 start-0 m-2">Accepted</span>
+          <div class="image-wrapper overflow-hidden rounded">
+            <img
+              class="rounded card-img-top w-100 object-fit-cover"
+              src="{{ recipe?.image }}"
+              alt="Title"
+              style="height: 330px"
+            />
+          </div>
+          <span class="badge bg-success position-absolute top-0 start-0 m-2"
+            >Accepted</span
+          >
           <div class="card-body px-0">
-            <div class="category-time d-flex align-items-baseline justify-content-between">
-              <span class="h6 related-recipe-category">{{ recipe?.category.name }}</span>
+            <div
+              class="category-time d-flex align-items-baseline justify-content-between"
+            >
+              <span class="h6 related-recipe-category">{{
+                recipe?.category.name
+              }}</span>
               <div class="time">
                 <span class="h6 me-2"><i class="fa-regular fa-clock"></i></span>
                 <span class="h6">{{ recipe?.time }} mins</span>
@@ -155,12 +252,13 @@
       
         <img src="assets/img/empty-box_4826310.png" alt="empty" class="w-100">
       </div> -->
-      <div class="p-5"  *ngIf="user.recipes.length==0">
-
-        <h3 class="text-center text-secondary p-5">Share your culinary magic with us and get featured on our website! Send your favorite recipe  !!</h3>
+      <div class="p-5" *ngIf="user.recipes.length == 0">
+        <h3 class="text-center text-secondary p-5">
+          Share your culinary magic with us and get featured on our website!
+          Send your favorite recipe !!
+        </h3>
       </div>
     </div>
-    
   </section>
   <!-- regular ========================================================================================= -->
   <!-- <section class="mt-5 bg-body-secondary px-5 py-3 rounded d-flex justify-content-between">
@@ -168,30 +266,42 @@
     <button class="btn btn-success fw-bold text-uppercase">go!</button>
   </section> -->
   <!-- premium banner -->
-<section class="ad-banner mt-5"  *ngIf="!isPremium">
-
-  <div class="container" style="background-color: #395963;">
+  <section class="ad-banner mt-5" *ngIf="!isPremium">
+    <div class="container" style="background-color: #395963">
       <div class="row p-4 align-items-center">
-          <div class="borderSection">
-              <!-- Content Section -->
-              <div class="col-12 userContent">
-                  <h1 class="text-white text-uppercase">get premium</h1>
-                  <p class="mb-5 mt-3 text-white w-75">
-                      support us and get more, add you're own recipies to our webiste, let the world see your magic with our premium one time payment!
-                  </p>
-                  <a class="main-btn shadow-none fw-bold" routerLink="/payment">check it</a>
-              </div>
+        <div class="borderSection">
+          <!-- Content Section -->
+          <div class="col-12 userContent">
+            <h1 class="text-white text-uppercase">get premium</h1>
+            <p class="mb-5 mt-3 text-white w-75">
+              support us and get more, add you're own recipies to our webiste,
+              let the world see your magic with our premium one time payment!
+            </p>
+            <a class="main-btn shadow-none fw-bold" routerLink="/payment"
+              >check it</a
+            >
           </div>
+        </div>
       </div>
-  </div>
-</section>
+    </div>
+  </section>
 </div>
-<div class="modal fade" id="Edit" tabindex="-1" aria-labelledby="Edit" aria-hidden="true">
+<div
+  class="modal fade"
+  id="Edit"
+  tabindex="-1"
+  aria-labelledby="Edit"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <app-edit-profile></app-edit-profile>
@@ -199,12 +309,22 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="Socials" tabindex="-1" aria-labelledby="Socials" aria-hidden="true">
+<div
+  class="modal fade"
+  id="Socials"
+  tabindex="-1"
+  aria-labelledby="Socials"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <app-socials></app-socials>

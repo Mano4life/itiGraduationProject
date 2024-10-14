@@ -3,6 +3,14 @@
   color: var(--main-color);
 }
 
+.image-wrapper img {
+  transition: all 0.3s ease;
+}
+
+.image-wrapper img:hover {
+  transform: scale(1.1);
+}
+
 .card-title {
   font-size: 23px;
   color: var(--main-color);
