@@ -1,15 +1,10 @@
 /* Navbar styles */
-
 .navbar {
   /* background-color: #32373d; */
   /* color: var(--main-color); */
   font-size: 18px;
-  transition: background-color 0.3s ease, padding 0.3s ease;
   padding: 10px 70px; 
-}
-.navbar.scrolled {
   background-color: white; 
-  padding: 5px 70px;
 }
 
 .logo{

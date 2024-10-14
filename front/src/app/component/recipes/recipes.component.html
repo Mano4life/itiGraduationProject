@@ -1,21 +1,4 @@
 
-@if(selected){
-  <section class="intro pt-2 mt-5">
-    <div class="container p-5">
-      <div class="row text-end">
-        <div class="col-3 introImg ">
-            <img *ngIf="categoryArr[shuffle]" [src]="categoryArr[shuffle].image" alt="">
-        </div>
-        <div class="col-9 text-start introContent">
-            <h1>{{ categoryName }}</h1>
-            <p class="w-100 mt-2">
-              {{ categoryDescription }}
-            </p>
-        </div>
-      </div>
-    </div>
-  </section>
-}
 
 <section class="mt-5">
     <h1 class="text-center" style="color: var(--main-color); font-size: 50px;">All Recipes</h1>

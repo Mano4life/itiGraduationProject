@@ -46,7 +46,6 @@ export class RecipesComponent {
     this.getingredients();
     this.getFilterFromHome()
     this.getUser();
-    this.categoryData();
   }
   getUser(){
     this.UserService.getUser().subscribe((res:any)=>{
@@ -63,8 +62,6 @@ export class RecipesComponent {
       
       if (res['category']) {
         this.selectedCategories.push(res['category']);
-        // category Selected From home
-        this.selected = true;
       }
     });
   }
@@ -77,7 +74,6 @@ export class RecipesComponent {
         }else{
           this.recipeList = Response;
         }
-        this.categoryData()
       },
       error: (error: any) => {
         console.log(error);
@@ -271,46 +267,4 @@ export class RecipesComponent {
     }
   }
 
-  // Intro Category
-  categoryName: string = '';
-  categoryDescription: string = '';
-  categoryArr: any[] = [];
-  shuffle!: number;
-  selected: boolean = false; 
-
-  categoryData(){
-    this.categoryArr = this.getFilteredRecipes();
-    
-    if (this.categoryArr.length > 0) {
-      this.shuffle = Math.floor(Math.random() * this.categoryArr.length);
-
-      const currentCategory = this.categoryArr[this.shuffle].category.name;
-      
-      const categoryInfo: { [key: string]: { name: string; description: string } } = {
-        Dessert: {
-          name: 'Dessert Recipes',
-          description: `Dessert time is the best time! Seriously, from rich and fudgy to light and fruity, 
-              desserts have a special way of making every moment better. Just one bite, and you're in bliss.`,
-        },
-        Dinner: {
-          name: 'Dinner Recipes',
-          description: `Dinner is the best! Honestly, there’s nothing like gathering around the table with a steaming plate of comfort food. 
-            Whether it’s a hearty casserole or a sizzling stir-fry, every bite brings joy.`,
-        },
-        Lunch: {
-          name: 'Lunch Recipes',
-          description: `Lunch is the best! Honestly, there’s nothing quite like a delicious midday meal to recharge and refuel. 
-            Whether it’s a fresh salad or a hearty sandwich, each bite brings a smile.`,
-        },
-        breakfast: {
-          name: 'Breakfast Recipes',
-          description: `Breakfast is the highlight of the morning! There’s something so satisfying about indulging in a tasty meal as the sun rises. 
-            From sweet smoothies to savory frittatas, every bite is pure bliss.`,
-        },
-      };
-
-      this.categoryName = categoryInfo[currentCategory].name;
-      this.categoryDescription = categoryInfo[currentCategory].description;
-    }
-  }
 }
