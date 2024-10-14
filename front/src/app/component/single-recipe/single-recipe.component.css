@@ -39,6 +39,7 @@ p {
   font-weight: bolder;
   color: var(--main-color);
   text-transform: capitalize;
+  margin-bottom: -10px;
 }
 
 .recipe-author {
@@ -48,12 +49,14 @@ p {
 .recipe-author span {
   font-family: var(--main-font);
   color: var(--second-color);
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .recipe-author a{
   font-family: var(--second-font);
-  font-size: 18px;
-  font-weight: normal;
+  font-size: 20px;
+  font-weight: 500;
   color: var(--main-color);
   text-transform: capitalize;
   text-decoration: none;

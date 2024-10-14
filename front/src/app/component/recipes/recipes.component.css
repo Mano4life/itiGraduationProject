@@ -24,7 +24,7 @@
 .white img {
     transition: transform 0.3s ease; /* Smooth transition for the image */
 }
-  
+
 .white:hover img {
     transform: scale(1.1); /* Scale up the image on hover */
 }
@@ -157,12 +157,8 @@ h5{
     }
 }
 @media screen and (max-width: 670px) {
-    .smaller-div,.sm-div{
-       
-       
-       margin: auto;
-      
-
+    .smaller-div,.sm-div{   
+        margin: auto;
     }
     .img-fluid{
         width: 50px;
@@ -170,7 +166,6 @@ h5{
     .color{
         font-size: 100% !important;
     }
-
 }
 
 /* Intro Category Section */
