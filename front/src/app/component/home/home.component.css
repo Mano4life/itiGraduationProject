@@ -269,10 +269,6 @@ body{
         height: 430px;
     }
 
-    .box .categoryName {
-        left: 24%;
-    }
-
     .box .categoryName h5 {
         font-size: 18px; 
     }
@@ -293,7 +289,6 @@ body{
         margin-bottom: 35px;
     }
     .box .categoryName {
-        left: 35%;
         bottom: -4%;
     }
     .box .categoryName h5 {
@@ -312,7 +307,6 @@ body{
 
 @media (max-width: 576px) {
     .box .categoryName {
-        left: 40%;
         bottom: -2%;
     }
 
@@ -334,7 +328,6 @@ body{
         margin-bottom: 40px;
     }
     .box .categoryName {
-        left: 40%;
         bottom: -4%;
     }
 }
