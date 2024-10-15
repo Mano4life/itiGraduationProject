@@ -1,19 +1,24 @@
-/* Overview box styling */
 .overview-border {
-  border-color: #ffffff !important; /* Default light mode border color */
+  border-color: #ffffff !important;
 }
 
-/* Dark mode styles */
 .dark-mode .overview-border {
-  border-color: #191c24 !important; /* Dark mode border color */
+  border-color: #191c24 !important; 
 }
 
 .team-section {
-  text-align: center;
-  color: black;
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+}
+
+.title {
+  color: var(--main-color);
+  font-size: 62px;
+}
+
+.subtitle {
+  color: var(--second-color);
 }
 
 .team-member {
@@ -21,10 +26,10 @@
   align-items: center;
   color: white;
   padding: 20px;
-  border: none; /* Remove borders */
-  box-shadow: none; /* Remove shadows */
-  margin: 0; /* Remove any margins between rectangles */
-  border-radius: 0; /* Ensure no border radius */
+  border: none; 
+  box-shadow: none; 
+  margin: 0; 
+  border-radius: 0;
 }
 
 .member-photo {
@@ -32,27 +37,25 @@
   height: 150px;
   border-radius: 50%;
   margin-right: 20px;
-  border: 2px solid var(--main-color); /* Keeps the border for the photo */
+  border: 2px solid var(--btn-color);
+}
+
+.member-info h1 {
+  text-align: left;
+  color: var(--main-color);
 }
 
 .member-info h3 {
   text-align: left;
-  margin: 0;
+  color: #333;
   font-size: 20px;
-  color: var(--main-color);
-}
-
-.member-info h4 {
-  text-align: left;
-  margin: 0;
-  color: var(--second-color);
-  font-size: 16px;
 }
 
 .member-info p {
   text-align: left;
-  font-size: 14px;
-  color: black;
+  font-size: 16px;
+  color: var(--second-color);
+  font-weight: 600;
 }
 
 @media (orientation: landscape) {
