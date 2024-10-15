@@ -6,11 +6,12 @@ import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
 import { UsersService } from '../../core/services/users/users.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TopDishAreaComponent } from '../top-dish-area/top-dish-area.component';
 declare var bootstrap: any;
 @Component({
   selector: 'app-recipes',
   standalone: true,
-  imports: [CommonModule, NgxPaginationModule],
+  imports: [CommonModule, NgxPaginationModule, TopDishAreaComponent],
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css',
 })
