@@ -10,7 +10,7 @@ import {
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
-import { TopDishAreaComponent } from "../../top-dish-area/top-dish-area.component";
+import { TopDishAreaComponent } from '../../top-dish-area/top-dish-area.component';
 declare var bootstrap: any;
 @Component({
   selector: 'app-add-recipe',
@@ -36,31 +36,33 @@ export class AddRecipeComponent {
     });
 
     this.recipeForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      Serving: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      time: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(150),
+        Validators.pattern(/^[A-Za-z0-9\s,.'-]+$/),
+      ]),
+      Serving: new FormControl('', [Validators.required, Validators.min(1)]),
+      time: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(1440),
+      ]),
       description: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.maxLength(1000),
       ]),
       directions: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.maxLength(2000),
       ]),
-      image: new FormControl(null, [ Validators.required ]),
-      category: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
-      subcategory: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
+      image: new FormControl(null, [Validators.required]),
+      category: new FormControl('', [Validators.required]),
+      subcategory: new FormControl('', [Validators.required]),
       ingredients: new FormArray([
         new FormGroup({
-          name: new FormControl('', Validators.required),
-          quantity: new FormControl('', Validators.required),
-          measurement_unit: new FormControl('', Validators.required),
+          name: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]),
+          quantity: new FormControl('', [Validators.required, Validators.min(1)]),
+          measurement_unit: new FormControl('', [Validators.required]),
         }),
       ]),
     });
@@ -87,9 +89,9 @@ export class AddRecipeComponent {
   // Add a new ingredient form group to the FormArray
   addIngredient() {
     const ingredientGroup = new FormGroup({
-      name: new FormControl('', Validators.required),
-      quantity: new FormControl('', Validators.required),
-      measurement_unit: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]),
+      quantity: new FormControl('', [Validators.required, Validators.min(1)]),
+      measurement_unit: new FormControl('', [Validators.required]),
     });
 
     this.ingredients.push(ingredientGroup);
@@ -100,7 +102,7 @@ export class AddRecipeComponent {
     this.ingredients.removeAt(index);
   }
 
-  onSubmission(modal:string) {
+  onSubmission(modal: string) {
     if (this.recipeForm.valid) {
       const formData = new FormData();
 
@@ -110,25 +112,36 @@ export class AddRecipeComponent {
       formData.append('servings', this.recipeForm.value.Serving);
       formData.append('description', this.recipeForm.value.description);
       formData.append('directions', this.recipeForm.value.directions);
-      
+
       // Check if selectedFile is not null before appending
       if (this.selectedFile) {
         formData.append('image', this.selectedFile); // Ensure selectedFile is the File object
       } else {
         console.error('No file selected');
       }
-      
+
       formData.append('status', 'pending');
       formData.append('category', this.recipeForm.value.category);
       formData.append('subcategory', this.recipeForm.value.subcategory);
       formData.append('user_id', this.userId);
-      
+
       // Append each ingredient to FormData
-      this.recipeForm.value.ingredients.forEach((ingredient: { name: any; quantity: any; measurement_unit: any; }, index: number) => {
-        formData.append(`ingredients[${index}][name]`, ingredient.name);
-        formData.append(`ingredients[${index}][quantity]`, ingredient.quantity);
-        formData.append(`ingredients[${index}][measurement_unit]`, ingredient.measurement_unit);
-      });
+      this.recipeForm.value.ingredients.forEach(
+        (
+          ingredient: { name: any; quantity: any; measurement_unit: any },
+          index: number
+        ) => {
+          formData.append(`ingredients[${index}][name]`, ingredient.name);
+          formData.append(
+            `ingredients[${index}][quantity]`,
+            ingredient.quantity
+          );
+          formData.append(
+            `ingredients[${index}][measurement_unit]`,
+            ingredient.measurement_unit
+          );
+        }
+      );
 
       this.pendingService.postPendingRecipes(formData).subscribe({
         next: (res) => {
@@ -143,5 +156,4 @@ export class AddRecipeComponent {
       });
     }
   }
-
 }
