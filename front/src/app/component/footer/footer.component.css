@@ -29,8 +29,6 @@
     font-size: 20px;
     font-weight: 400;
     color: var(--second-color);
-
-    
 }
 
 .footer-bottom{
@@ -83,13 +81,18 @@
 
 @media (max-width: 991px) {
     .menus{
-        display: flex;
         justify-content: start;
         gap: 80px;
         margin-top: 20px;
     }
     .footer .heading {
-        font-size: 36px;
+        font-size: 25px;
+    }
+    .logoContent p{
+        font-size: 15px;
+    }
+    .menus span{
+        font-size: 15px;
     }
 }
 
