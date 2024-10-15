@@ -22,6 +22,16 @@ h1, form label{
     margin: 0;
 }
 
+.main p,.main i{
+    transition: all 0.3s;
+}
+.main:hover i{
+    transform: translateX(5px);
+}
+.main:hover p{
+    transform: translateX(-5px);
+}
+
 @media (max-width: 1200px) {
     .col-lg-4,
     .col-lg-8 {

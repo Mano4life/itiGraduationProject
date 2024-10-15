@@ -19,7 +19,6 @@
           enctype="multipart/form-data"
         >
           <label for="recipeId" class="form-label">image:</label>
-          <!-- <input type="text" class="form-control" id="recipeImage" accept="image/*" formControlName="image"/> -->
           <input
             type="file"
             class="form-control"
@@ -27,17 +26,8 @@
             formControlName="image"
             (change)="onFileSelected($event)"
           />
-          <div class="mb-3">
-            <label for="recipeId" class="form-label">Id:</label>
-            <input
-              type="number"
-              class="form-control"
-              id="recipeId"
-              formControlName="id"
-              readonly
-            />
-          </div>
-          <div class="mb-3">
+        
+          <div class="mb-3 mt-3">
             <label for="recipeName" class="form-label">Name:</label>
             <input
               type="text"
@@ -46,10 +36,7 @@
               formControlName="name"
             />
           </div>
-          <!-- <div class="mb-3 ">
-                    <label for="recipeUserName" class="form-label">Username:</label>
-                    <input type="text" class="form-control " id="recipeUserName" formControlName="Username" />
-                </div> -->
+        
           <div class="mb-3">
             <label for="servings" class="form-label">servings:</label>
             <input
@@ -113,7 +100,7 @@
               [formGroupName]="i"
               class="row"
             >
-              <div class="col-4">
+              <div class="col-4 mt-3">
                 <label for="ingredientName">Ingredient Name:</label>
                 <input
                   type="text"

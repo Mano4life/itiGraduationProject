@@ -3,7 +3,7 @@
     class="user-details d-flex justify-content-between align-items-center"
   >
     <h1 class="text-capitalize fw-bold" style="color: var(--main-color)">
-      <img src="assets/imgs/chef.png" alt="chef" class="chef" /> {{ user?.name }}
+      <img src="s/imgs/chef.png" alt="chef" class="chef" /> {{ user?.name }}
     </h1>
     <a
       data-bs-toggle="modal"
@@ -12,6 +12,7 @@
       ><i class="fa fa-cog" aria-hidden="true"></i
     ></a>
   </section>
+
   <section class="mt-5">
     <div class="title d-flex justify-content-between align-items-center">
       <h1 class="text-capitalize m-0 fw-bold" style="color: var(--main-color);"><img src="assets/imgs/bio.png" alt="chef" class="chef"> Bio</h1>
@@ -31,13 +32,13 @@
     </div>
     <div class="d-flex  " style="margin-left: 65px;">
       <div *ngIf="user.youtube_link" class="me-4  rounded">
-        <a [href]="user.youtube_link" class="links "><img src="assets/img/youtube.png" alt="youtube" class="link-img">Youtube</a>
+        <a [href]="user.youtube_link" class="links "><img src="assets/imgs/youtube.png" alt="youtube" class="link-img">Youtube</a>
       </div>
       <div *ngIf="user.instagram_link" class="me-4   rounded">
-        <a [href]="user.instagram_link" class="links "><img src="assets/img/instagram.png" alt="instagram" class="link-img">Instagram</a>
+        <a [href]="user.instagram_link" class="links "><img src="assets/imgs/instagram.png" alt="instagram" class="link-img">Instagram</a>
       </div>
       <div *ngIf="user.tiktok_link" class="me-4   rounded">
-        <a [href]="user.tiktok_link" class="links "><img src="assets/img/tiktok.png" alt="tiktok" class="link-img">Tiktok</a>
+        <a [href]="user.tiktok_link" class="links "><img src="assets/imgs/tiktok.png" alt="tiktok" class="link-img">Tiktok</a>
       </div>
     </div>
   </section>
