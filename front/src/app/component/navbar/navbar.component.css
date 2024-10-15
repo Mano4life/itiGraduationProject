@@ -62,6 +62,25 @@ li {
   align-items: center;
   font-size: 16px;
   color: var(--main-color);
+}
+
+.dark-mode .links .navbar-nav .nav-item a {
+  color: rgb(238, 11, 11);
+}
+
+.nav-links i {
+  font-size: 20px;
+  color: var(--main-color);
+}
+ /* .nav-link{ */
+  /* padding-top: 28px; */
+*/
+
+.nav-links a p {
+  margin-top: 4px;
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 20px;
   margin-top: 1rem;
 }
 
