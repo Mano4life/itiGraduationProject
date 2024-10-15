@@ -5,20 +5,24 @@ import { IngredientsService } from '../../core/services/ingredients/ingredients.
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
 import { UsersService } from '../../core/services/users/users.service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { TopDishAreaComponent } from '../top-dish-area/top-dish-area.component';
 declare var bootstrap: any;
 @Component({
   selector: 'app-recipes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxPaginationModule, TopDishAreaComponent],
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css',
 })
 export class RecipesComponent {
   recipeList: any[] = [];
   reverseOrder: Boolean = false;
-
+  p=1
   sub_categoryList: any[] = [];
   ingredentsList: any[] = [];
+  filteredIngredientsList: any[] = [];
+  filteredSubCategoryList: any[] = [];
   disable:boolean=true;
   user:any;
   constructor(
@@ -37,14 +41,15 @@ export class RecipesComponent {
     this.route.queryParams.subscribe((params) => {
       // Check if reverse parameter is set
       this.reverseOrder = params['reverse'] === 'true';
+
+      
       this.getreciepes();
     });
-
+    
     this.getsubcategories();
     this.getingredients();
     this.getFilterFromHome()
     this.getUser();
-
   }
   getUser(){
     this.UserService.getUser().subscribe((res:any)=>{
@@ -59,26 +64,16 @@ export class RecipesComponent {
   getFilterFromHome() {
     this.route.queryParams.subscribe((res) => {
       
-  
       if (res['category']) {
-        
-          this.selectedCategories.push(res['category']);
-        
+        this.selectedCategories.push(res['category']);
       }
-      
-      // if (res['subcategory']) {
-      //   filteredRecipes = filteredRecipes.filter((recipe) => {
-      //     return recipe.subcategory.name === res['subcategory'];
-      //   });
-      // }
-  
-      // Update the original recipe list with filtered results
-       
     });
   }
+
   getreciepes() {
     this.recipes.getRecipes().subscribe({
-      next: (Response: any) => {        
+      next: (Response: any) => {  
+        console.log(Response)      
         if(this.reverseOrder){
           this.recipeList = [...Response].reverse();          
         }else{
@@ -91,33 +86,17 @@ export class RecipesComponent {
     });
   }
 
-  // getsubcategories() {
-  //   this.subcategories.getSubCategories().subscribe({
-  //     next: (Response: any) => {
-        
-  //       this.sub_categoryList = Response.data.map(
-  //         (sub: any, index: number) => ({
-  //           id: sub.id, 
-  //           name: sub.name,
-  //           selected: false, 
-  //         })
-  //       );
-  //       console.log(this.sub_categoryList);
-  //     },
-  //     error: (error: any) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // }
   getsubcategories() {
     this.subcategories.getSubCategories().subscribe({
       next: (response: any) => {
+        console.log(response)
         const uniqueSubCategories = new Map();
   
-        this.sub_categoryList = response.data
+        this.sub_categoryList = response
           .map((sub: any) => ({
             id: sub.id, 
             name: sub.name,
+            category_name:sub.category.name,
             selected: false, 
           }))
           .filter((sub: any) => {
@@ -127,8 +106,8 @@ export class RecipesComponent {
             }
             return false; 
           });
-  
-        console.log(this.sub_categoryList);
+          this.filteredingredents();
+          
       },
       error: (error: any) => {
         console.log(error);
@@ -138,17 +117,36 @@ export class RecipesComponent {
   getingredients() {
     this.ingredent.getIngredients().subscribe({
       next: (Response: any) => {
-        // Assuming Response.data is an array of subcategories
+        console.log(Response)
         this.ingredentsList = Response.map((sub: any, index: number) => ({
-          id: sub.id, // Adjust this based on your actual response structure
+          id: sub.id, 
           name: sub.name,
-          selected: false, // Initialize selected as false
-        }));
-        console.log(this.ingredentsList);
+          sub_name:sub.recipes[0].subcategory.name,
+          category_name:sub.recipes[0].category.name,
+          selected: false, 
+        }))
+        
       },
       error: (error: any) => {
         console.log(error);
       },
+    });
+  }
+  filteredSubCategory(){
+    const selectedcategories = this.selectedCategories;
+    return this.filteredSubCategoryList = this.sub_categoryList.filter((sub: any) => {
+        return selectedcategories.length === 0 || selectedcategories.includes(sub.category_name.toLowerCase());
+    });
+  }
+  filteredingredents(){
+    const selectedSubcategories = this.getSelectedSub_category();
+    return this.filteredIngredientsList = this.ingredentsList.filter((sub: any) => {
+      return (
+        (selectedSubcategories.length === 0 || selectedSubcategories.includes(sub.sub_name)) &&
+        (this.selectedCategories.length === 0 || this.selectedCategories.includes(sub.category_name.toLowerCase()))
+    );
+
+
     });
   }
   time = [
@@ -183,6 +181,7 @@ export class RecipesComponent {
     this.sub_categoryList.forEach((opt) => {
       opt.selected = opt === option ? !opt.selected : false;
     });
+    this.filteredingredents()
   }
 
   getSelectedSub_category() {
@@ -225,7 +224,7 @@ export class RecipesComponent {
       this.selectedCategories = [];
       this.selectedCategories.push(category);
     }
-
+    this.filteredSubCategory()
   }
 
   isCategorySelected(category: string): boolean {
@@ -248,12 +247,12 @@ export class RecipesComponent {
         selectedIngredients.length === 0 ||
         recipe.ingredients.some((ingredient: any) =>
           selectedIngredients.includes(ingredient.name)
-        );
-
+      );
+            
       const matchesTime =
-        selectedTimes.length === 0 ||
-        this.timeMatches(recipe.time, selectedTimes);
-
+      selectedTimes.length === 0 ||
+      this.timeMatches(recipe.time, selectedTimes);
+      
       return (
         matchesCategory &&
         matchesSubCategory &&
@@ -262,6 +261,7 @@ export class RecipesComponent {
       );
     });
   }
+
   timeMatches(recipeTime: number, selectedTimes: string[]): boolean {
     return selectedTimes.some((selected) => {
       if (selected === '15 min ')
@@ -275,7 +275,7 @@ export class RecipesComponent {
       if (selected === 'less than 60 min ')
         return recipeTime == 60 || recipeTime < 60;
       if (selected === 'more than 60 min ')
-         return recipeTime == 60 || recipeTime > 60;
+      return recipeTime == 60 || recipeTime > 60;
       return false;
     });
   }
@@ -293,4 +293,5 @@ export class RecipesComponent {
           nextModalInstance.show();
     }
   }
+
 }

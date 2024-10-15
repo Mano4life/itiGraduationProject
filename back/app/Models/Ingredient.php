@@ -14,4 +14,8 @@ class Ingredient extends Model
     public function recipes(){
         return $this->belongsToMany(Recipe::class);
     }
+    public function subcategory()
+    {
+        return $this->hasManyThrough(Subcategory::class, Recipe::class);
+    }
 }

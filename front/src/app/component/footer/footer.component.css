@@ -2,6 +2,7 @@
     background-color: var(--main-background);
 }
 
+
 .logoContent p{
     font-size: 17px;
     color: var(--second-color);
@@ -12,7 +13,7 @@
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 12px;
-    color: var(--footer-color);
+    color: var(--main-color);
 }
 
 .menu-column ul {
@@ -46,7 +47,7 @@
 
 .footer-bottom .footer-social a {
     font-size: 18px;
-    color: #eee;
+    color: #f9f4f4;
     margin-left: 10px;
     background: #395963;
     height: 40px;

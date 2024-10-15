@@ -21,13 +21,13 @@ export class LoginComponent {
       email: new FormControl('', [Validators.required, Validators.email,
         Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
       ]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8),
+      password: new FormControl('', [Validators.required, Validators.minLength(6),
         // Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$#%]).{6,}$/)
       ]),
     })
   }
   ngOnInit(): void {
-   
+  
   }
 
 
@@ -51,7 +51,7 @@ export class LoginComponent {
           if(res.user.role=='admin'){
             localStorage.setItem('admin_token', res.token); 
           }
-          
+        
           window.location.reload()
           },
           error: (err) => {

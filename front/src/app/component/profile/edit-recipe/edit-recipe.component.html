@@ -11,29 +11,27 @@
         </div>
   
         <div class="mb-2 col-lg-4">
-          <img [src]="editForm.get('image')?.value" alt="Recipe Image"  class="img-thumbnail" />
+          <img [src]="imageLink" alt="Recipe Image"  class="img-thumbnail" />
         </div>
   
         <div class="col-lg-8 formEdit">
-              <form [formGroup]="editForm" (ngSubmit)="editRecipe()" >
+              <form [formGroup]="editForm" (ngSubmit)="editRecipe()" enctype="multipart/form-data" >
               
                   <label for="recipeId" class="form-label">image:</label>
-                  <input type="text" class="form-control" id="recipeImage" (change)="onImageUpload($event)" accept="image/*" formControlName="image"/>
-                  <div class="mb-3 ">
-                      <label for="recipeId" class="form-label">Id:</label>
-                      <input type="number" class="form-control " id="recipeId" formControlName="id" readonly />
-                  </div>
+                  <input
+                  type="file"
+                  class="form-control"
+                  id="recipeImage"
+                  formControlName="image"
+                  (change)="onFileSelected($event)"
+                />
                   <div class="mb-3 ">
                       <label for="recipeName" class="form-label">Name:</label>
                       <input type="text" class="form-control " id="recipeName" formControlName="name" />
                   </div>
                   <div class="mb-3 ">
-                      <label for="recipeUserName" class="form-label">Username:</label>
-                      <input type="text" class="form-control " id="recipeUserName" formControlName="Username" />
-                  </div>
-                  <div class="mb-3 ">
                       <label for="Servings" class="form-label">Servings:</label>
-                      <input type="number" class="form-control " id="Servings" formControlName="Servings" />
+                      <input type="number" class="form-control " id="Servings" formControlName="servings" />
                   </div>
                   <div class="mb-3 ">
                       <label for="time" class="form-label">Time:</label>
@@ -49,11 +47,11 @@
               </div>
                   <div class="mb-3 ">
                       <label for="Description" class="form-label">Description:</label>
-                      <input type="text" class="form-control" id="Description" formControlName="Description" />
+                      <input type="text" class="form-control" id="Description" formControlName="description" />
                   </div>
                   <div class="mb-3 ">
                       <label for="Direction" class="form-label">Direction:</label>
-                      <input type="text" class="form-control " id="Direction" formControlName="Direction" />
+                      <input type="text" class="form-control " id="Direction" formControlName="directions" />
                   </div>
                   <div formArrayName="ingredients">
                       <div

@@ -6,12 +6,14 @@ import { ButtonModule } from 'primeng/button';
 import { AdminUserComponent } from "./admin-user/admin-user.component";
 import { AdminRecipesComponent } from "./admin-recipes/admin-recipes.component";
 import { AdminPendingRecipesComponent } from "./admin-pending-recipes/admin-pending-recipes.component";
+import { RouterLinkActive } from '@angular/router';
+import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 
 @Component({
   selector: 'app-admin',
   standalone: true,
   imports: [TableModule, CommonModule, PaginatorModule, ButtonModule, AdminUserComponent,
-      AdminRecipesComponent, AdminPendingRecipesComponent],
+    AdminRecipesComponent, AdminPendingRecipesComponent, RouterLinkActive, TopDishAreaComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })

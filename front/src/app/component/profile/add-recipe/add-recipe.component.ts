@@ -10,11 +10,12 @@ import {
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
+import { TopDishAreaComponent } from "../../top-dish-area/top-dish-area.component";
 declare var bootstrap: any;
 @Component({
   selector: 'app-add-recipe',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, NgFor, NgIf],
+  imports: [ReactiveFormsModule, RouterLink, NgFor, NgIf, TopDishAreaComponent],
   templateUrl: './add-recipe.component.html',
   styleUrl: './add-recipe.component.css',
 })
@@ -46,7 +47,7 @@ export class AddRecipeComponent {
         Validators.required,
         Validators.minLength(2),
       ]),
-      image: new FormControl(null),
+      image: new FormControl(null, [ Validators.required ]),
       category: new FormControl('', [
         Validators.required,
         Validators.minLength(2),

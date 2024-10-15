@@ -2,7 +2,10 @@
   <div
     class="title-wrapper d-flex justify-content-between align-items-baseline"
   >
-    <h1 class="recipe-title">{{ recipe?.name }}</h1>
+    <div class="title-author">
+      <h1 class="recipe-title">{{ recipe?.name }}</h1>
+      <div class="recipe-author"><span>made by <i class="fa-solid fa-hand-point-right me-2"></i> </span> <a [href]="'public-profile/' + recipe?.user.id">{{ recipe?.user.name }}</a> </div>
+    </div>
     <div class="rating-favorite d-flex align-items-baseline gap-3">
       <i
         class="fa-heart favorite"
@@ -121,37 +124,34 @@
             
           </div>
         </div>
-
-        <!-- <div class="make-comment mt-3">
-          <span class="h3 text-capitalize">say it! </span>
-          <i class="fa-solid fa-hand-point-right me-3 h3"></i>
-          <a href="recipes/1#user-comment-field" class="h2"
-            >click me <i class="fa-regular fa-comment"></i
-          ></a>
-        </div> -->
       </div>
     </div>
   </div>
 
-  <div class="related-recipes mt-5">
+  <div class="related-recipes mt-5" *ngIf="ingredient?.recipes !== null">
     <h3 class="title text-uppercase">related recipes</h3>
     <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
-      <div *ngFor="let recipe of ingredient?.recipes">
+      <div *ngFor="let recipe of relatedRecipes">
         <div
           class="card border-0"
           style="width: 300px; cursor: pointer"
           (click)="onRecipeClick(recipe.id)"
         >
-          <img
-            class="rounded card-img-top w-100 object-fit-cover"
-            src="{{ recipe?.image }}"
-            alt="Title"
-            style="height: 330px"
-          />
-          <div class="card-body">
-            <div class="time">
-              <span class="h6 me-2"><i class="fa-regular fa-clock"></i></span>
-              <span class="h6">{{ recipe.time }} mins</span>
+          <div class="image-wrapper overflow-hidden rounded">
+            <img
+              class="rounded card-img-top w-100 object-fit-cover"
+              src="{{ recipe?.image }}"
+              alt="Title"
+              style="height: 330px"
+            />
+          </div>
+          <div class="card-body px-0">
+            <div class="category-time d-flex align-items-baseline justify-content-between">
+              <span class="h6 related-recipe-category">{{ recipe?.category.name }}</span>
+              <div class="time">
+                <span class="h6 me-2"><i class="fa-regular fa-clock"></i></span>
+                <span class="h6">{{ recipe?.time }} mins</span>
+              </div>
             </div>
             <h4 class="card-title">{{ recipe?.name }}</h4>
           </div>
@@ -163,27 +163,36 @@
   <div class="comments-wrapper mt-5">
     <h3 class="title text-uppercase">comments</h3>
     <div class="body mt-3 border-top ">
-      <form  class="user-comment mt-5 text-start " [formGroup]="commentForm" (ngSubmit)="comment('loginModal')">
+      <form  class="user-comment mt-5 text-start  pb-5" [formGroup]="commentForm" (ngSubmit)="comment('loginModal')">
         <textarea
         class="form-control"
         name="user-comment-field"
         id="user-comment-field"
-        rows="2"
+        rows="3"
         placeholder="place a comment.."
         formControlName="content"
         ></textarea>
         <button type="submit" class="btn btn-auth mt-3" >Comment</button>
       </form>
       <div class="comments">
-        <div *ngFor="let comment of recipe.comments">
-          <div class="comment p-5 border-bottom ">
-        
-            <span class="mx-2 h3">{{ comment.content }}</span>
-        
+        <div *ngFor="let comment of recipe.comments" class="comment py-5">
+          <div>
+            <div class="title text-capitalize"><span>{{ comment.user.name }}</span></div>
+            <div class="body">
+              <i class="text-secondary fa-solid fa-quote-left"
+                style="font-size: 13px; position: relative; top: -10px;">
+              </i>
+              <span class="mx-2"> {{ comment.content }}</span>
+              <i class="text-secondary fa-solid fa-quote-right"
+                style="font-size: 13px; position: relative; top: -10px;">
+              </i>
+            </div>
+            <div class="comment-date float-end">
+              <span>{{ comment.created_at | date:"medium" }}</span>
+            </div>
           </div>
         </div>
       </div>
-      
     </div>
   </div>
 </div>

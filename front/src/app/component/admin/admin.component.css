@@ -13,23 +13,22 @@
 
 .sidebar a{
     transition: all 0.3s;
+    text-decoration: none;
+    color: var(--main-color);
+
 }
-.sidebar a:hover{
-    color: var(--second-color);
+.sidebar a:hover, .sidebar a.active{
+    color: var(--btn-color);
 }
 
 .sidebar::after{
     position: absolute;
-    top: -5%;
+    top: -3px;
     left: 25%;
     width: 5px;
     height: 100%;
     content: "";
     background-color: var(--third-color);
-}
-
-.active{
-    background-color:#756f64;
 }
 
 @media (max-width: 992px) {

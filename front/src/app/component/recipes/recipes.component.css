@@ -24,7 +24,7 @@
 .white img {
     transition: transform 0.3s ease; /* Smooth transition for the image */
 }
-  
+
 .white:hover img {
     transform: scale(1.1); /* Scale up the image on hover */
 }
@@ -43,7 +43,7 @@
 }
 
 .red{
-    color: #d25c4c;
+    color: var(--btn-color);
     font-family: var(--second-font);
     font-weight: 600;
 }
@@ -60,9 +60,7 @@ h6{
 
 .my-svg {
     color: white;
-    
-   
-  }
+}
 
 .green-div{
     background-color: #39535b;
@@ -86,13 +84,10 @@ h6{
     border-radius: 5%;
 }
 
-
-
 h5{
-    font-family: var(--titleReciepe-font);
-    font-weight: 600;
-    font-size: 22px;
+    font-size: 23px !important;
     color: var(--main-color);
+    font-family: var(--main-font);
 }
 .latestContent p{
     font-family: var(--third-font);
@@ -110,7 +105,9 @@ h5{
     justify-content: center;
 }
 
-
+.smaller-div{
+    width: 100%;
+}
 
 @media screen and (max-width: 450px) {
     .media{
@@ -121,7 +118,7 @@ h5{
 @media (min-width: 981px) and (max-width: 1500px) {
     .small-div {
         width: 15%;
-        margin: 1%;
+        
     }
     .smaller-div{
         width: 100%;
@@ -144,7 +141,7 @@ h5{
 }
 @media screen and (max-width: 760px) {
     .img-fluid{
-        width: 25%;
+        width: 50px;
     }
     .color{
         font-size: 80% !important;
@@ -154,19 +151,13 @@ h5{
     }
     .smaller-div ,.sm-div{
         
-        width: 50%;
+        
         margin: auto;
-       
- 
-     }
+    }
 }
 @media screen and (max-width: 670px) {
-    .smaller-div,.sm-div{
-       
-       width: 80%;
-       margin: auto;
-      
-
+    .smaller-div,.sm-div{   
+        margin: auto;
     }
     .img-fluid{
         width: 50px;
@@ -174,5 +165,31 @@ h5{
     .color{
         font-size: 100% !important;
     }
+}
 
+/* Intro Category Section */
+.intro{
+    height: fit-content;
+    width: 100%;
+    background-color: var(--third-color);
+}
+.introImg img{
+        /* display: block; */
+    width: 305px;
+    height: 330px;
+    object-fit: cover;
+}
+.introContent {
+    padding: 50px 65px;
+}
+.introContent h1{
+    color: var(--btn-color);
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+.introContent p{
+    color: var(--second-color);
+    font-size: 20px;
 }

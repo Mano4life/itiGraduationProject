@@ -1,79 +1,92 @@
-<nav class="navbar navbar-expand-xl">
+<nav class="navbar navbar-expand-xl sticky-top shadow-sm" [ngStyle]="{ backgroundColor: darkMode ? '#191c24' : 'white'}">
   <div class="container-fluid">
     <div class="row w-100 align-items-center justify-content-between">
-      
+      <a class="nav-link" routerLinkActive="active" routerLink="/about" [ngStyle]="{ color: darkMode ? '#191c24' : 'var(--main-color)'}"></a>
+    
       <!-- Logo Section -->
-      <div class="col-4 col-sm-4 col-md-3 col-lg-3">
+      <div class="col-4 logomarg col-sm-4 col-md-3 col-lg-3">
         <div class="navbar-brand logo">
           <img [src]="logo" alt="Logo" routerLink="" />
         </div>
       </div>
-      
+
       <!-- Search Bar -->
-      <div class="col-7 col-lg-4 col-md-6 col-sm-6 search">
+      <div class="col-7 col-xl-4 search">
         <app-search-input></app-search-input>
       </div>
-      
-      
-      <!-- Navbar Toggle Button -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
+      <!-- Navbar Toggle Button -->
+      <div class="col-lg-1 col-1 col-md-1 col-sm-1 justify-content-end">
+        <button class="navbar-toggler hamburger" type="button" (click)="isCollapsed = !isCollapsed" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon " [ngStyle]="{ color: darkMode ? 'white' : 'var(--main-color)'}"></span>
+        </button>
+      </div>
 
       <!-- Links Section -->
-      <div class="col-lg-4 links">
-        <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="col-xl-4 links">
+        <div [ngClass]="{'hidelinks': isCollapsed}">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }">
-                <i class="fa-solid fa-house-chimney"></i>
+              <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }"
+                [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/home.png" alt="home" class="chef">
                 <p>Home</p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/recipes" [queryParams]="{ reverse: 'true' }">
-                <i class="fa-solid fa-utensils"></i>
+              <a class="nav-link" routerLinkActive="active" routerLink="/recipes" [queryParams]="{ reverse: 'true' }" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/recipes.png" alt="recipes" class="chef">
                 <p>Recipes</p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/about">
-                <i class="fa-solid fa-people-group"></i>
+              <a class="nav-link" routerLinkActive="active" routerLink="/about" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/about.png" alt="about" class="chef">
                 <p>About</p>
               </a>
             </li>
 
             <li class="nav-item" *ngIf="isLogged && !admin">
-              <a class="nav-link" routerLinkActive="active" routerLink="/profile">
-                <i class="fa-solid fa-user"></i>
+              <a class="nav-link" routerLinkActive="active" routerLink="/profile" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/chef.png" alt="person" class="chef">
                 <p>Profile</p>
               </a>
             </li>
 
             <li class="nav-item" *ngIf="isLogged && admin">
-              <a class="nav-link" routerLinkActive="active" routerLink="/admin">
-                <i class="fa-solid fa-user"></i>
+              <a class="nav-link" routerLinkActive="active" routerLink="/admin" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/chef.png" alt="person" class="chef">
                 <p>Admin</p>
               </a>
             </li>
 
             <!-- Login -->
             <li class="nav-item" *ngIf="!isLogged">
-              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
-                <i class="fa-solid fa-right-to-bracket"></i>
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/login.png" alt="login" class="chef">
                 <p>Login</p>
               </a>
             </li>
 
+
             <!-- Logout -->
             <li class="nav-item" *ngIf="isLogged">
-              <a class="nav-link" (click)="logout()">
-                <i class="fa-solid fa-right-from-bracket"></i>
+              <a class="nav-link" (click)="logout()" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/logout.png" alt="logout" class="chef">
                 <p>Logout</p>
+              </a>
+            </li>
+
+            <!-- Dark Mode -->
+            <li class="nav-item" id="darkMode" (click)="toggleDarkMode()">
+              <a class="nav-link" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/dark.png" alt="dark" class="chef" *ngIf="!darkMode" >
+                <img src="assets/imgs/light.png" alt="light" class="chef" *ngIf="darkMode">
+                <p *ngIf="darkMode">Light</p>
+                <p *ngIf="!darkMode">Dark</p>
               </a>
             </li>
           </ul>

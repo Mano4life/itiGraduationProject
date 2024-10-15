@@ -3,8 +3,26 @@
   color: var(--main-color);
 }
 
-.card-title{
-  color: #141414;
+.image-wrapper img {
+  transition: all 0.3s ease;
+}
+
+.image-wrapper img:hover {
+  transform: scale(1.1);
+}
+
+.card-title {
+  font-size: 23px;
+  color: var(--main-color);
+  font-family: var(--main-font);
+}
+
+.related-recipe-category {
+  color: var(--btn-color) !important;
+}
+
+.time {
+  color: var(--main-color);
 }
 
 .btn {
@@ -12,10 +30,17 @@
 }
 
 .btn:hover {
-  background-color: #141414;
+  background-color: var(--btn-color);
+  border-color: var(--btn-color);
 }
 .fa-cog{
   cursor: pointer;
+  transition: .3s all ease;
+}
+
+.fa-cog:hover {
+  transform: rotate(180deg);
+  color: var(--btn-color);
 }
 
 .main-btn {
@@ -69,7 +94,29 @@
   font-size: 21px;
   color: #eee;    
 }
+.link-img{
+  width: 35px;
+  padding-right: 10px;
+}
+.chef{
+  width: 50px;
+  padding-bottom: 10px;
+  padding-right: 10px;
 
+}
+.links{
+  color: rgb(109 118 126);
+  text-decoration: none;
+}
+.links:hover{
+  color: var(--btn-color);
+  text-decoration: underline;
+}
+.bio{
+  display: inline-block; 
+  max-width: 100%; 
+  word-wrap: break-word;
+}
 @media (max-width: 1024px) {
   .ad-banner h1 {
       font-size: 35px;

@@ -22,7 +22,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/recipes/{recipe}/comment', [CommentController::class, 'store']);
     Route::put('/comments/{comment}', [CommentController::class, 'update']);
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
+    Route::put('/userLinks', [UserController::class, 'updateLinks']);
+    Route::put('/updateBio',[UserController::class, 'updateBio']);
 });
+Route::get('/publicProfile/{user}', [UserController::class, 'publicView']);
 
 //otp handler and user api
 route::post('/verify-otp', [TwoFactorController::class, 'verifyOtp']);

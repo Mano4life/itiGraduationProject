@@ -1,5 +1,5 @@
 <!-- Hero Section -->
-<section class="home-banner relative">
+<section class="home-banner relative mb-5">
     <div class="container-fluid pl-0">
         <div class="row justify-content-center align-items-center full-height">
             <div class="col-lg-6 p-0">
@@ -38,15 +38,15 @@
 <app-top-dish-area title="Where every dish tells a story."></app-top-dish-area>
 
 <!-- Categories Section -->
-<section class="categories">
+<section class="categories mt-5">
     <div class="container">
         <div class="row">
             <div *ngFor="let category of categories; let i = index" class="col-lg-3 col-md-6 col-sm-12">
-                <div class="box position-relative" (click)="categoryClicked(category.name)">
+                <div class="box position-relative" (click)="categoryClicked(category.name)" >
                     <a >
                         <img class="img-fluid object-fit-cover" [src]="category.img" alt="">
                         <div class="categoryName">
-                            <h5>{{ category.name }}</h5>
+                            <h5 >{{ category.name }}</h5>
                         </div>
                     </a>
                 </div>
@@ -87,7 +87,7 @@
                             <img class="img-fluid rounded-3 object-fit-cover w-100" [src]="latestRecipe.image" alt="" style="height:330px;">
                             <div class="mt-3">
                                 <p>{{latestRecipe.category.name}}</p>
-                                <h5>{{latestRecipe.name}}</h5>
+                                <h4>{{latestRecipe.name}}</h4>
                             </div>
                         </a>
                     </div>
@@ -99,19 +99,19 @@
 </section>
 
 <!-- Video Section -->
-<div class="video-container position-relative">
+<div class="video-container position-relative mb-5">
     <video [src]="videoUrl" autoplay muted loop playsinline>
         <source [src]="videoUrl" type="video/mp4">
             Your browser does not support the video tag.
-        </video>
-        <div class="slide-layers">
-            <p class="layer1">
-                Best food comes with
-            </p>
-            <p class="layer2">
-                Best Technique
-            </p>
-        </div>
+    </video>
+    <div class="slide-layers">
+        <p class="layer1">
+            Best food comes with
+        </p>
+        <p class="layer2">
+            Best Technique
+        </p>
+    </div>
 </div>
 
 <!-- Top Dish Area Section -->
@@ -128,7 +128,7 @@
                             <img class="img-fluid rounded-3 object-fit-cover w-100" [src]="recipe.image" alt="" style="height: 330px;">
                             <div class="mt-3">
                                 <p>{{recipe.category.name}}</p>
-                                <h5>{{recipe.name}}</h5>
+                                <h4>{{recipe.name}}</h4>
                             </div>
                         </a>
                     </div>
@@ -142,7 +142,7 @@
 <!-- users -->
 <section class="user">
     <div class="container" style="background-color: #395963;">
-        <div class="row p-4 align-items-center">
+        <div class="row p-4 align-items-center mydailyrecipes" >
             <div class="borderSection">
                 <!-- Image Section -->
                 <div class="col-lg-3 col-md-4 col-12 mb-3 mb-md-0 userImg">

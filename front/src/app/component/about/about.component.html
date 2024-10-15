@@ -1,35 +1,49 @@
-<h1 class="text-center mt-5">Welcome to My Daily Recipes, where culinary creativity meets simplicity!</h1>
-<section class="container mt-5 mb-5" >
-  <div class="d-flex flex-column  " >
-    
-    <div style="background-color: var(--main-color);"  class="text-light p-4">
-      <div class="border border-light p-2 d-flex align-items-center">
-        <div class="text-center m-4 " >
+
+<section class="container my-5 px-5">
+  <div class="topDish my-5">
+    <app-top-dish-area title="Welcome to My Daily Recipes!!"></app-top-dish-area>
+  </div>
+
+  <div
+    style="background-color: var(--main-color)"
+    class="text-light p-4 overview-section"
+  >
+    <div class="overview-border border p-2 row text-center">
+      <div class="col-lg-9">
+        <div class="my-3 text-start">
           <h1>Overview</h1>
         </div>
-        <h4 style="font-family: var(--second-font);" class=" p-4 w-75">
-          Our platform allows users to easily browse a wide array of delicious recipes and share their own culinary creations with others. We aim to make recipe searching comfortable and efficient, ensuring that anyone can find what they're looking for with ease. Whether you're a novice cook or a seasoned chef, our straightforward navigation and clear recipe directions will guide you every step of the way. Join us in exploring the joy of cooking and sharing delicious meals!
+        <h4 style="font-family: var(--second-font)" class="py-2 text-start">
+          Our platform allows users to easily browse a wide array of delicious
+          recipes and share their own culinary creations with others. We aim to
+          make recipe searching comfortable and efficient, ensuring that anyone
+          can find what they're looking for with ease. Whether you're a novice
+          cook or a seasoned chef, our straightforward navigation and clear
+          recipe directions will guide you every step of the way. Join us in
+          exploring the joy of cooking and sharing delicious meals!
         </h4>
-        <div class="w-25">
-          <img class="w-100" src="https://plus.unsplash.com/premium_photo-1672153937750-9ea567e94026?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-        </div>
-        </div>
+      </div>
+      <div class="col-lg-3 img-orientation">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1672153937750-9ea567e94026?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Overview Image"
+        />
+      </div>
     </div>
   </div>
 </section>
-<section style="background-color: var(--main-background);">
-  <div class="team-section">
-    <h1>Our Team</h1>
-    <p>The team that made My Daily Recipes happen .</p>
-    <div class="team-member" *ngFor="let member of teamMembers">
-      <img [src]="member.imageUrl" [alt]="member.name" class="member-photo">
-      <div class="member-info">
-        <h3 class="text-dark">{{ member.name }}</h3>
-        <h4>{{ member.role }}</h4>
-        <p>{{ member.bio }}</p>
-      </div>
-   </div>
+
+<section class="team-section mb-5">
+  <h1 class="text-center title">Our Team</h1>
+  <h5 class="text-center subtitle">
+    The team that made My Daily Recipes happen.
+  </h5>
+  <div class="team-member" *ngFor="let member of teamMembers">
+    <img [src]="member.imageUrl" [alt]="member.name" class="member-photo" />
+    <div class="member-info">
+      <h1 class="text-start">{{ member.name }}</h1>
+      <h3 class="my-1">{{ member.role }}</h3>
+      <p>{{ member.bio }}</p>
+    </div>
   </div>
 </section>
-
-

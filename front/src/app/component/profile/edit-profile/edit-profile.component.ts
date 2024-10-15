@@ -67,15 +67,13 @@ export class EditProfileComponent {
       this.serv.EditUser(data).subscribe({
         next:(res:any)=>{
           this.success=true;
-          this.router.navigate(['/profile',this.UserId]);
-
+          window.location.reload()
+          //this.router.navigate(['/profile',this.UserId]);
         },
         error:(err:any)=>{
           console.log(err)
         }
       })
-      
-      
       
     }
     else{

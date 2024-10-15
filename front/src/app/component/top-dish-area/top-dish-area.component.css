@@ -1,12 +1,14 @@
 
 /* top-dish-area Section*/
 .top-dish-area {
-    padding: 135px 0 120px;
+    height: 200px;
+    display: flex;
+    align-items: center;
 }
-
 
 .main-title {
     text-align: center;
+    color: var(--main-color);
 }
 .main-title h1 {
     position: relative;
@@ -14,6 +16,7 @@
     font-size: 48px;
     
 }
+
 .main-title .round-planet {
     width: 180px;
     height: 180px;
@@ -26,12 +29,10 @@
     border: 3px solid var(--third-color);
 }
 
-
 .main-title .round-planet.planet2 {
     width: 100px;
     height: 100px;
 }
-
 
 .main-title .round-planet .shape {
     border-radius: 50%;

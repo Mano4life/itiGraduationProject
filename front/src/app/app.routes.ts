@@ -23,6 +23,8 @@ import { ForgotPasswordComponent } from './component/forgot-password-components/
 import { EditRecipeComponent } from './component/profile/edit-recipe/edit-recipe.component';
 import { SendCodeComponent } from './component/forgot-password-components/send-code/send-code.component';
 import { ResetPasswordComponent } from './component/forgot-password-components/reset-password/reset-password.component';
+import { otpGuard } from './guard/otp.guard';
+import { PublicProfileComponent } from './component/public-profile/public-profile.component';
 
 export const routes: Routes = [
   {
@@ -38,6 +40,11 @@ export const routes: Routes = [
     component: ProfileComponent,
     canActivate: [userGuard],
   },
+  {
+    path: 'public-profile/:id',
+    component: PublicProfileComponent
+  },
+
   {
     path: 'edit-profile/:id',
     component: EditProfileComponent,
@@ -65,6 +72,7 @@ export const routes: Routes = [
   {
     path: 'otp',
     component: OtpValidatorComponent,
+    canActivate:[otpGuard]
   },
   {
     path: 'forgot-password',

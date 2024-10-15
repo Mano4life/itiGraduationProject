@@ -22,6 +22,10 @@ return new class extends Migration
             $table->dateTime('expires_at')->nullable();
             $table->date('date_of_birth');
             $table->string('gender');
+            $table->string('youtube_link')->nullable();
+            $table->string('instagram_link')->nullable();
+            $table->string('tiktok_link')->nullable();
+            $table->string('bio')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

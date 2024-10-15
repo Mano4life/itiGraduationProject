@@ -42,12 +42,16 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:3|max:10',
+            'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email|min:8',
             'password' => 'required|string|min:5',
             'role' => 'required|string',
             'date_of_birth' => 'date',
-            'gender' => 'nullable|string|in:male,female'
+            'gender' => 'nullable|string|in:male,female',
+            'tiktok_link' => 'nullable|string|min:5',
+            'instagram_link' => 'nullable|string|min:5',
+            'youtube_link' => 'nullable|string|min:5',
+            'bio'=>'nullable|string'
         ]);
         $User = User::create([
             'name' => $request->name,
@@ -56,6 +60,10 @@ class UserController extends Controller
             'role' => $request->role,
             'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,
+            'tiktok_link' => !empty($request['tiktok_link']) ? $request['tiktok_link'] : null,
+            'instagram_link' => !empty($request['instagram_link']) ? $request['instagram_link'] : null,
+            'youtube_link' => !empty($request['youtube_link']) ? $request['youtube_link'] : null,
+            'bio' => !empty($request['bio']) ? $request['bio'] : null
         ]);
 
         $User->generateCode();
@@ -84,7 +92,7 @@ class UserController extends Controller
     public function user(Request $request)
     {
         $user = $request->user();
-        $user->load('recipes_saves', 'recipes', 'recipes_ratings','pendingRecipes');
+        $user->load('recipes_saves.category', 'recipes.category', 'recipes_ratings','pendingRecipes.category'); 
 
         $userData = $user->toArray();
 
@@ -103,7 +111,7 @@ class UserController extends Controller
         $user = $request->user(); // Get the authenticated user
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3|max:10',
+            'name' => 'required|string|min:3',
             'date_of_birth' => 'date',
             'gender' => 'nullable|string|in:male,female',
 
@@ -123,27 +131,97 @@ class UserController extends Controller
         return response()->json(['message' => 'Record updated in database', 'data' => new UserResource($user)], 200);
     }
 
+/////update links
+    public function updateLinks(Request $request)
+{
+    $user = $request->user();
+    
+    
+    $validator = Validator::make($request->all(), [
+        'tiktok_link' => 'nullable|string|min:5',
+        'instagram_link' => 'nullable|string|min:5',
+        'youtube_link' => 'nullable|string|min:5',
+    ]);
 
-    // public function destroy(Request $request)
-    // {
-    //     $user = $request->user(); // Get the authenticated user
-    //     $user->delete();
-    //     return response()->json(['message' => ' record  is deleted from database'], 200);
-    // }
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 422);
+    }
 
+    try {
+        $user->update([
+            'tiktok_link' => $request['tiktok_link'] === '' ? null : $request['tiktok_link'],
+            'instagram_link' => $request['instagram_link'] === '' ? null : $request['instagram_link'],
+            'youtube_link' => $request['youtube_link'] === '' ? null : $request['youtube_link'],
+        ]);
+
+        return response()->json($user, 201); 
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+///update bio
+public function updateBio(Request $request){
+    $user = $request->user();
+    $validator = Validator::make($request->all(), [
+        'bio' => 'required|string|min:5',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+            }
+        try {
+            $user->update([
+                'bio' => $request['bio'],
+                ]);
+            return response()->json(['message' => 'Bio updated successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+            }
+}
+///public profile
+public function publicView(User $user)
+{
+    
+    $user->load(['recipes' => function ($query) {
+        $query->select('id', 'name', 'image', 'user_id', 'category_id','time'); // Make sure to include the category_id
+    }, 'recipes.category' => function ($query) {
+        $query->select('id', 'name');
+    }]);
+
+    // Transform the recipes to include the category
+    $recipesWithCategories = $user->recipes->map(function ($recipe) {
+        return [
+            'id' => $recipe->id,
+            'name' => $recipe->name,
+            'image' => $recipe->image,
+            'time'=>$recipe->time,
+            'category' => $recipe->category, 
+            
+        ];
+    });
+
+    return response()->json([
+        'name' => $user->name,
+        'tiktok_link' => $user->tiktok_link,
+        'instagram_link' => $user->instagram_link,
+        'youtube_link' => $user->youtube_link,
+        'bio'=>$user->bio,
+        'recipes' => $recipesWithCategories,
+    ], 200);
+}
     public function destroy(User $user){
         $user->delete();
         return response()->json(['message' => 'deleted succesfully'], 200);
     }
+    ////update user
     public function updateUser(User $user){
-        $data = request()->validate([
-            'name' => 'required|string|min:3|max:10',
+        $request = request()->validate([
+            'name' => 'required|string|min:3',
             'date_of_birth' => 'date',
             'gender' => 'nullable|string|in:male,female',
             'role'=> 'required|string|in:admin,user,premium',
             'email' => 'required|email|unique:users,email,' . $user->id . '|min:8',
             ]);
-            $user->update($data);
+            $user->update($request);
             return response()->json(['message' => 'user updated succesfully'], 200);
             
 

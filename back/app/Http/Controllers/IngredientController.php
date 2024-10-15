@@ -12,7 +12,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $result = Ingredient::with('recipes')->get();
+        $result = Ingredient::with(['recipes.subcategory','recipes.category'])->get();
         return response()->json($result, 200);
     }
 
@@ -36,7 +36,7 @@ class IngredientController extends Controller
      */
     public function show(Ingredient $Ingredient)
     {
-        $Ingredient->load(['recipes']);
+        $Ingredient->load(['recipes.category']);
         if(is_null($Ingredient)){
             return response()->json(['message' => 'Ingredient not found'], 404);
         }
