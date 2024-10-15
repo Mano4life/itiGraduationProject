@@ -7,7 +7,7 @@ import { TopDishAreaComponent } from '../top-dish-area/top-dish-area.component';
   standalone: true,
   imports: [NgFor, CommonModule, TopDishAreaComponent],
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+  styleUrls: ['./about.component.css'],
 })
 export class AboutComponent {
   teamMembers: any = [

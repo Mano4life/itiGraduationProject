@@ -15,6 +15,7 @@ export class EditRecipeComponent {
   editForm!:FormGroup;
   pendingRecipeId!:number;
   editPendingRecipe!: any;
+  imageLink:any;
 
   constructor(private routerActive:ActivatedRoute, private pendingRecipeService: PendingRecipesService,private router:Router) {
 
@@ -22,23 +23,18 @@ export class EditRecipeComponent {
 
   ngOnInit() {
     this.editForm = new FormGroup({
-      id:new FormControl('',[Validators.required]),
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      Username:new FormControl('',[Validators.required]),
-      Servings: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      servings: new FormControl('', [Validators.required, Validators.minLength(1)]),
       time: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      Description: new FormControl('', [
+      description: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
       ]),
-      Direction: new FormControl('', [
+      directions: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
       ]),
-      image: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
+      image: new FormControl(null),
       category: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -54,17 +50,15 @@ export class EditRecipeComponent {
     if (this.pendingRecipeId) {
       this.pendingRecipeService.getOnePendingRecipe(this.pendingRecipeId).subscribe((data:any) => {
         this.editPendingRecipe = data;
+        this.imageLink = data.image;
         console.log("output pending",this.editPendingRecipe)
         // Patch the form with the basic recipe data
         this.editForm.patchValue({
-          id: data.id,
           name: data.name,
-          Servings: data.servings,
+          servings: data.servings,
           time: data.time,
-          Description: data.description,
-          Direction: data.directions,
-          Username: data.user.name,
-          image: data.image,
+          description: data.description,
+          directions: data.directions,
           category:data.category.name,
           subcategory:data.subcategory.name,
         });
@@ -85,6 +79,10 @@ export class EditRecipeComponent {
       });
     }}
 
+    selectedFile: File | null = null;
+    onFileSelected(event: any) {
+      this.selectedFile = event.target.files[0] as File;
+    }
 
   editRecipe(){
     if (!this.editForm.valid) {
@@ -97,32 +95,47 @@ export class EditRecipeComponent {
     }
     
     if (this.editForm.valid) {
-      const recipeData = {
-        name: this.editForm.value.name,
-        time:this.editForm.value.time,
-        servings:this.editForm.value.Servings,
-        description: this.editForm.value.Description,
-        directions: this.editForm.value.Direction,
-        image: this.editForm.value.image,
-        category: this.editForm.value.category,
-        subcategory: this.editForm.value.subcategory,
-        user_id: this.editPendingRecipe.user.id,
-        status:'pending',
-        ingredients: this.editForm.value.ingredients.map(
-          (ingredient: {
-            name: any;
-            quantity: any;
-            measurement_unit: any;
-          }) => ({
-            name: ingredient.name,
-            quantity: ingredient.quantity,
-            measurement_unit: ingredient.measurement_unit,
-          })
-        ),
-      };
-      console.log("data to be sent",recipeData);
+      const formData = new FormData();
 
-      this.pendingRecipeService.updatePendingRecipe(this.pendingRecipeId,recipeData).subscribe({
+      // Append each field from recipeData to FormData
+      formData.append('name', this.editForm.value.name);
+      formData.append('time', this.editForm.value.time);
+      formData.append('servings', this.editForm.value.servings);
+      formData.append('description', this.editForm.value.description);
+      formData.append('directions', this.editForm.value.directions);
+
+      // Check if selectedFile is not null before appending
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile); // Ensure selectedFile is the File object
+      } else {
+        formData.append('image', this.imageLink);
+      }
+
+      formData.append('category', this.editForm.value.category);
+      formData.append('subcategory', this.editForm.value.subcategory);
+      formData.append('user_id', this.editPendingRecipe.user.id);
+      formData.append('status', 'pending')
+
+      // Append each ingredient to FormData
+      this.editForm.value.ingredients.forEach(
+        (
+          ingredient: { name: any; quantity: any; measurement_unit: any },
+          index: number
+        ) => {
+          formData.append(`ingredients[${index}][name]`, ingredient.name);
+          formData.append(
+            `ingredients[${index}][quantity]`,
+            ingredient.quantity
+          );
+          formData.append(
+            `ingredients[${index}][measurement_unit]`,
+            ingredient.measurement_unit
+          );
+        }
+      );
+      console.log('data to be sent', formData);
+
+      this.pendingRecipeService.updatePendingRecipe(this.pendingRecipeId, formData).subscribe({
         next: (res) => {
           console.log('Recipe edited successfully:', res);
           this.router.navigate(['/profile']);
