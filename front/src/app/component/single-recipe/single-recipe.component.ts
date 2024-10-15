@@ -135,7 +135,7 @@ export class SingleRecipeComponent {
     this.scaledIngredients = this.recipe.ingredients.map((ingredient: any) => {
       return {
         ...ingredient,
-        quantity: (ingredient.quantity * scaleFactor).toFixed(), // Update quantity
+        quantity: (ingredient.quantity * scaleFactor).toFixed(), 
       };
     });
   }
@@ -168,33 +168,37 @@ export class SingleRecipeComponent {
 
   isSolid = false;
   onFavorite(modal: string) {
-    if (this.isSolid) {
-      this.recipesService.unsaverecipe(this.recipe.id).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.isSolid = false;
-          this.isFavorite = false;
-        },
-        error: (error) => {
-          console.error(error);
-        },
-      });
-    } else {
-      this.recipesService.saverecipe(this.recipe.id).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.isSolid = true;
-          this.isFavorite = true;
-        },
-        error: (error) => {
-          console.error(error);
-          const nextModalEl = document.getElementById(modal);
-          const nextModalInstance = new bootstrap.Modal(nextModalEl);
-          nextModalInstance.show();
-        },
-      });
+    if(localStorage.getItem('auth_token') || localStorage.getItem('premium_token') ||  localStorage.getItem('admin_token')) {
+
+      if (this.isSolid) {
+        this.recipesService.unsaverecipe(this.recipe.id).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.isSolid = false;
+            this.isFavorite = false;
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        });
+      } else {
+        this.recipesService.saverecipe(this.recipe.id).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.isSolid = true;
+            this.isFavorite = true;
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        });
+      }
+    }else{
+      const nextModalEl = document.getElementById(modal);
+      const nextModalInstance = new bootstrap.Modal(nextModalEl);
+      nextModalInstance.show();
     }
-    //this.isSolid = !this.isSolid;
+    
   }
 
   // Review Fav and Rating
@@ -227,45 +231,46 @@ export class SingleRecipeComponent {
   }
 
   onStarClick(starValue: number, modal: string) {
-    this.starRate = starValue;
-    this.recipesService.rateRecipe(this.recipe.id, this.starRate).subscribe({
+    if(localStorage.getItem('admin_token') ||  localStorage.getItem('user_token') ||  localStorage.getItem('premium_token')) {
+      this.starRate = starValue;
+      this.recipesService.rateRecipe(this.recipe.id, this.starRate).subscribe({
       next: (response) => {
         console.log(response);
       },
       error: (error) => {
         console.error(error);
+        
+      },
+    });
+    }
+    else{
         const nextModalEl = document.getElementById(modal);
         const nextModalInstance = new bootstrap.Modal(nextModalEl);
         nextModalInstance.show();
-      },
-    });
+    }
   }
   comment(modal: string) {
-    if (this.commentForm.valid) {
-      console.log(this.commentForm.value);
-      this.recipesService
-        .comment(this.recipe.id, this.commentForm.value)
-        .subscribe({
-          next: (response) => {
-            window.location.reload();
-          },
-          error: (error) => {
-            console.error(error);
-            const nextModalEl = document.getElementById(modal);
-            const nextModalInstance = new bootstrap.Modal(nextModalEl);
-            nextModalInstance.show();
-          },
-        });
+    if(localStorage.getItem('admin_token') ||  localStorage.getItem('user_token') ||  localStorage.getItem('premium_token')) {
+      if (this.commentForm.valid) {
+        console.log(this.commentForm.value);
+        this.recipesService
+          .comment(this.recipe.id, this.commentForm.value)
+          .subscribe({
+            next: (response) => {
+              window.location.reload();
+            },
+            error: (error) => {
+              console.error(error);
+              
+            },
+          });
+      }
+    }
+    else{
+        const nextModalEl = document.getElementById(modal);
+        const nextModalInstance = new bootstrap.Modal(nextModalEl);
+        nextModalInstance.show();
     }
   }
 
-  // convertRatingToStars(rating: any) {
-  //   const fullStars = Math.floor(rating);
-  //   // 4.5, rating % 1 would be 0.5.
-  //   const halfStar = rating % 1 >= 0.5 ? 1 : 0;
-  //   // 4.5, full = 4, half = 1 because 0.5 = 0.5 return 1
-  //   const emptyStars = 5 - fullStars - halfStar;
-
-  //   return '★'.repeat(fullStars) +  '☆'.repeat(halfStar) + '☆'.repeat(emptyStars);
-  // }
 }
