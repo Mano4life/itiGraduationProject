@@ -6,28 +6,28 @@
             <h1>Users</h1>
         </div>
     </ng-template>
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" class="col-sm-2">
         <tr class="titleTable">
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th class="text-center">Edit</th>
-            <th class="text-center">Delete</th>
+            <th class="col-id">Id</th>
+            <th class="col-name">Name</th>
+            <th class="col-email">Email</th>
+            <th class="col-role">Role</th>
+            <th class="col-edit text-center">Edit</th>
+            <th class="col-delete text-center">Delete</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
-        <tr class="dataTable">
-            <td>{{ data.id }}</td>
-            <td>{{ data.name }}</td>
-            <td>{{ data.email }}</td>
-            <td>{{ data.role }}</td>
-            <td class="text-center" (click)="routeToEdit(data.id)" style="cursor: pointer;">
-                <i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);" ></i>
+        <tr class="dataTable" class="col-sm-2">
+            <td class="col-id">{{ data.id }}</td>
+            <td class="col-name">{{ data.name }}</td>
+            <td class="col-email">{{ data.email }}</td>
+            <td class="col-role">{{ data.role }}</td>
+            <td class="col-edit text-center" (click)="routeToEdit(data.id)" style="cursor: pointer;">
+                <i class="fa-solid fa-pen-to-square" style="color: var(--btn-color);"></i>
             </td>
 
             <!-- Delete Button -->
-            <td class="text-center delete">
+            <td class="col-delete text-center">
                 <a data-bs-toggle="modal" [attr.data-bs-target]="'#deleteUserModal-' + data.id" style="cursor: pointer;">
                     <i class="fa-solid fa-trash text-danger"></i>
                 </a>
@@ -50,3 +50,4 @@
         </tr>
     </ng-template>
 </p-table>
+

@@ -7,7 +7,7 @@
     </ng-template>
 
     <ng-template pTemplate="header">
-        <tr class="titleTable">
+        <tr class="titleTable col-sm-2">
             <th>Id</th>
             <th>Image</th>
             <th>Name</th>
@@ -20,7 +20,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-data>
-        <tr class="dataTable" [ngStyle]="{ 'background-color': data.status === 'denied' ? '#ffe0e0' : 'white' }">
+        <tr class="dataTable col-sm-2" [ngStyle]="{ 'background-color': data.status === 'denied' ? '#ffe0e0' : 'white' }">
             <td>{{ data.id }}</td>
             <td>
                 <img [src]="data.image" [alt]="data.name" class="shadow-4 object-fit-cover" style="height: 70px; width: 90px;" />

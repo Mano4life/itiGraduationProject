@@ -9,7 +9,7 @@
         </div>
     </ng-template>
     <ng-template pTemplate="header">
-        <tr class="titleTable">
+        <tr class="titleTable" class="col-sm-2">
             <th>Id</th>
             <th>Image</th>
             <th>Name</th>
@@ -19,7 +19,7 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
-        <tr class="dataTable">
+        <tr class="dataTable" class="col-sm-2">
             <td>{{ data.id }}</td>
             <td>
                 <img [src]="data.image" [alt]="data.name" class="shadow-4 object-fit-cover" style="height: 70px; width: 90px;"/>
