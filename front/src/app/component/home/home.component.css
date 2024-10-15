@@ -277,6 +277,14 @@ body{
         font-size: 16px;
     }
 }
+@media(max-width: 991px){
+    .categories .row .col-md-6{
+        margin-bottom: 40px;
+    }
+    .latest .col-md-6, .recipes .col-md-6{
+        margin-bottom: 10px;
+    }
+}
 
 @media (max-width: 768px) {
     .categories .row .col-lg-3:nth-child(3) img{
