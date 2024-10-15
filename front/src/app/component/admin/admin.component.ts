@@ -25,10 +25,10 @@ export class AdminComponent {
     
   }
 
-  activeSection: string = 'pendingRecipes';
-  // Method to switch sections
+  adminActiveSection: string = localStorage.getItem('adminActiveSection') || 'pendingRecipes';
   changeSection(section: string) {
-    this.activeSection = section;
+    this.adminActiveSection = section;
+    localStorage.setItem('adminActiveSection', section);
   }
 
 }

@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
   admin:boolean=false;
   premium:boolean=false;
   darkMode: boolean = false; // Track dark mode state
-isCollapsed: boolean = true;
+  isCollapsed: boolean = true;
 
   constructor(private serv:UsersService, private router: Router) { }
   
@@ -91,6 +91,11 @@ isCollapsed: boolean = true;
     localStorage.removeItem('admin_token');
     localStorage.removeItem('premium_token');
     this.isLogged = false;
+
+    // AdminActiveSection
+    if(localStorage.getItem('adminActiveSection')){
+      localStorage.removeItem('adminActiveSection');
+    }
 
     // Navigate back to the home page after logout
     this.router.navigate(['/']);

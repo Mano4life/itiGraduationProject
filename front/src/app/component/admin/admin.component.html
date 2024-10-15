@@ -3,24 +3,24 @@
     <div class="row mb-5 mt-5">
         <div class="col-md-4 col-12 text-center">
             <div class="sidebar p-3">
-                <a [class.active]="activeSection === 'users'" (click)="changeSection('users')">Users</a>
-                <a [class.active]="activeSection === 'recipes'" (click)="changeSection('recipes')">Recipes</a>
-                <a [class.active]="activeSection === 'pendingRecipes'" (click)="changeSection('pendingRecipes')">Pending Recipes</a>
+                <a [class.active]="adminActiveSection === 'users'" (click)="changeSection('users')">Users</a>
+                <a [class.active]="adminActiveSection === 'recipes'" (click)="changeSection('recipes')">Recipes</a>
+                <a [class.active]="adminActiveSection === 'pendingRecipes'" (click)="changeSection('pendingRecipes')">Pending Recipes</a>
             </div>
         </div>
 
         <!-- User Section -->
-        <div class="col-md-12 col-lg-8 sections " *ngIf="activeSection === 'users'">
+        <div class="col-md-12 col-lg-8 sections " *ngIf="adminActiveSection === 'users'">
             <app-admin-user></app-admin-user>
         </div>
         
         <!-- Recipes Section -->
-        <div class="col-md-12 col-lg-8 sections" *ngIf="activeSection === 'recipes'">
+        <div class="col-md-12 col-lg-8 sections" *ngIf="adminActiveSection === 'recipes'">
             <app-admin-recipes></app-admin-recipes>
         </div>
 
         <!-- Pending Recipes Section -->
-        <div class="col-md-12 col-lg-8 sections" *ngIf="activeSection === 'pendingRecipes'">
+        <div class="col-md-12 col-lg-8 sections" *ngIf="adminActiveSection === 'pendingRecipes'">
             <app-admin-pending-recipes></app-admin-pending-recipes>
         </div>
     </div>
