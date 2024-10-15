@@ -1,5 +1,5 @@
 <!-- Hero Section -->
-<section class="home-banner relative">
+<section class="home-banner relative mb-5">
     <div class="container-fluid pl-0">
         <div class="row justify-content-center align-items-center full-height">
             <div class="col-lg-6 p-0">
@@ -38,7 +38,7 @@
 <app-top-dish-area title="Where every dish tells a story."></app-top-dish-area>
 
 <!-- Categories Section -->
-<section class="categories">
+<section class="categories mt-5">
     <div class="container">
         <div class="row">
             <div *ngFor="let category of categories; let i = index" class="col-lg-3 col-md-6 col-sm-12">
@@ -99,7 +99,7 @@
 </section>
 
 <!-- Video Section -->
-<div class="video-container position-relative">
+<div class="video-container position-relative mb-5">
     <video [src]="videoUrl" autoplay muted loop playsinline>
         <source [src]="videoUrl" type="video/mp4">
             Your browser does not support the video tag.

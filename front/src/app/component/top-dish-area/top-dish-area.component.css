@@ -1,7 +1,9 @@
 
 /* top-dish-area Section*/
 .top-dish-area {
-    padding: 135px 0 120px;
+    height: 200px;
+    display: flex;
+    align-items: center;
 }
 
 .main-title {
@@ -14,6 +16,7 @@
     font-size: 48px;
     
 }
+
 .main-title .round-planet {
     width: 180px;
     height: 180px;
