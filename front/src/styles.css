@@ -1,3 +1,4 @@
+
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
@@ -32,7 +33,7 @@ p{
 }
 
 body.dark-mode .team-section {
-  background-color: #030303!important;/* OUR TEAM FRAME*/
+  background-color: #101218 !important;/* OUR TEAM FRAME*/
   color: #fcf9f9 !important; /*OUR TEAM*/
 }
 .dark-mode .logoContent p{
@@ -64,24 +65,32 @@ body.dark-mode .member-photo {
 }
 
 body.dark-mode {
-  background-color: #000000 !important; /* most of the background pages*/
+  background-color: #101218 !important; /* most of the background pages*/
   color: #ffffff;
+}
+
+.dark-mode .white {
+  background-color: transparent !important;
+}
+
+.dark-mode .navbar {
+  background-color: #101218 !important;
 }
 
 body.dark-mode .footer {
   background-color: #191c24 !important; /* footer */
 }
 .dark-mode .mydailyrecipes{
-background-color: #000000 !important;
+  background-color: #101218 !important;
 }
 body.dark-mode .latest{
-  background-color: #000000 !important; /*LATEST RECIPES*/
+  background-color: #101218 !important; /*LATEST RECIPES*/
 }
 .dark-mode .border{
   background-color: #191c24!important;
 }
 .dark-mode .overview-section{
- background-color: #000000 !important;
+ background-color: #101218 !important;
 }
 .dark-mode .all-recipes-title{
   color: #eee !important;
@@ -103,7 +112,7 @@ body.dark-mode .latest{
   color: white !important;
 }
 .dark-mode .home-banner .banner-left {
-  background: #000000 !important;
+  /* background: #101218 !important; */
   height: 100vh;
   padding: 0 16%;
 }
@@ -115,6 +124,9 @@ body.dark-mode .latest{
   margin-top: 18px;
   font-size: 18px;    
 }
+.dark-mode .converter{
+filter:invert(1);
+}
 .dark-mode .borderSection{
   border: 1px solid #fff;
   padding: 26px;
@@ -123,6 +135,19 @@ body.dark-mode .latest{
   justify-content: space-evenly;
   color: #fff;
   background-color: #191c24!important ;
+}
+
+.dark-mode .card {
+background-color: #101218 !important;
+  
+}
+
+.dark-mode h5, .dark-mode h1,.dark-mode .fa-cog, .dark-mode .time{
+  color: #fff !important;
+}
+
+.dark-mode .fa-cog:hover {
+  color: var(--btn-color) !important;
 }
 
 

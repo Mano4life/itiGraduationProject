@@ -11,7 +11,7 @@ export class IngredientsService {
 
   getIngredients(){
     return this.http.get('http://127.0.0.1:8000/api/ingredients');
-    // return {'name': 'hello'};
+    
   }
 
   getSingleIngredient(id:any): Observable<any>{

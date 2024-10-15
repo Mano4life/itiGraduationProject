@@ -68,7 +68,7 @@ export class EditProfileComponent {
         next:(res:any)=>{
           this.success=true;
           window.location.reload()
-          this.router.navigate(['/profile',this.UserId]);
+          //this.router.navigate(['/profile',this.UserId]);
         },
         error:(err:any)=>{
           console.log(err)

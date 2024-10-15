@@ -66,6 +66,9 @@ export class RegisterComponent {
         role: 'user',
         date_of_birth: formattedDob,
         gender: userData.gender,
+        tiktok_link:'',
+        youtube_link:'',
+        instagram_link:'',
       };
       this.notvalid = false;
       this.usersService.register(dataToStore).subscribe({

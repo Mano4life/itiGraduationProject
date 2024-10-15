@@ -11,7 +11,7 @@ export class RecipesService {
 
   getRecipes(){
     return this.http.get('http://127.0.0.1:8000/api/recipes');
-    // return {'name': 'hello'};
+    
   }
 
   getSingleRecipe(id:any): Observable<any>{
@@ -26,7 +26,7 @@ export class RecipesService {
     return this.http.delete(`http://127.0.0.1:8000/api/recipes/${id}`)
   }
   updateRecipe(id:any,data:any){
-    return this.http.put(`http://127.0.0.1:8000/api/recipes/${id}`,data)
+    return this.http.post(`http://127.0.0.1:8000/api/recipes/${id}?_method=PATCH`,data)
   }
 
   getIngredients(){

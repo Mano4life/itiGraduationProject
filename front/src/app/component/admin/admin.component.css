@@ -23,7 +23,7 @@
 
 .sidebar::after{
     position: absolute;
-    top: -5%;
+    top: -3px;
     left: 25%;
     width: 5px;
     height: 100%;

@@ -2,6 +2,16 @@
   color: var(--main-color);
 }
 
+button {
+  padding: 14px 1rem;
+  background-color: var(--main-color);
+}
+
+button:hover {
+  background-color: var(--btn-color);
+  border-color: var(--btn-color);
+}
+
 /* .content-wrapper .title {
   border-color: red;
 } */

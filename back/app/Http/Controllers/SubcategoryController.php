@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        $subcat = Subcategory::latest()->paginate(8);
+        $subcat = Subcategory::with(['category'])->get();
         return response()->json($subcat, 200);
     }
 

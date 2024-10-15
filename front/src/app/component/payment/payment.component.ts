@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { PaymentService } from '../../core/services/payment/payment.service';
 import { Observable } from 'rxjs';
+import { TopDishAreaComponent } from "../top-dish-area/top-dish-area.component";
 
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [],
+  imports: [TopDishAreaComponent],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css',
 })

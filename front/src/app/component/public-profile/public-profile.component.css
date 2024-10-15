@@ -1,0 +1,56 @@
+.title {
+  color: var(--main-color);
+}
+.chef {
+  width: 50px;
+  padding-bottom: 15px;
+  padding-right: 5px;
+}
+
+.image-wrapper img {
+  transition: all 0.3s ease;
+}
+
+.image-wrapper img:hover {
+  transform: scale(1.1);
+}
+
+.recipes-wrapper .card-title {
+  font-size: 24px;
+  color: var(--main-color);
+  font-family: var(--main-font);
+}
+
+.related-recipe-category {
+  color: var(--btn-color) !important;
+}
+
+.time {
+  color: var(--main-color);
+}
+
+/* Links */
+.links {
+  color: rgb(109 118 126);
+  text-decoration: none;
+  font-weight: 500;
+}
+.links:hover {
+  color: var(--btn-color);
+  text-decoration: underline;
+}
+.link-img {
+  width: 40px;
+  padding-right: 10px;
+}
+.link-img{
+    width: 45px;
+    padding-right: 10px;
+}
+.bio{
+    margin:0px 40px 5px 27px;
+}
+.bio p{
+    max-width: 100%; 
+    word-wrap: break-word; 
+}
