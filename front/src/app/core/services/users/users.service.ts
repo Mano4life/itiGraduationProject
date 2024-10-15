@@ -83,6 +83,20 @@ export class UsersService {
         throw new Error('No authorization token found');
      }
   }
+  putBio(data:any){
+    const token = localStorage.getItem('auth_token');
+    const admin = localStorage.getItem('admin_token');
+    const premium = localStorage.getItem('premium_token');
+    
+    const authToken = token || admin || premium;
+      if (authToken) {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
+      return this.http.put('http://127.0.0.1:8000/api/updateBio',data,{ headers });
+    } else {
+      // Handle the case where neither token exists
+        throw new Error('No authorization token found');
+     }
+  }
   publicProfile(id:any){
     return this.http.get(`http://127.0.0.1:8000/api/publicProfile/${id}`);
   }

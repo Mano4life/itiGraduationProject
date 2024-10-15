@@ -87,7 +87,7 @@
   color: #eee;    
 }
 .link-img{
-  width: 40px;
+  width: 35px;
   padding-right: 10px;
 }
 .chef{
@@ -99,11 +99,15 @@
 .links{
   color: rgb(109 118 126);
   text-decoration: none;
-  font-weight: 500;
 }
 .links:hover{
   color: var(--btn-color);
   text-decoration: underline;
+}
+.bio{
+  display: inline-block; 
+  max-width: 100%; 
+  word-wrap: break-word;
 }
 @media (max-width: 1024px) {
   .ad-banner h1 {

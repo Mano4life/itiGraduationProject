@@ -23,6 +23,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/comments/{comment}', [CommentController::class, 'update']);
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
     Route::put('/userLinks', [UserController::class, 'updateLinks']);
+    Route::put('/updateBio',[UserController::class, 'updateBio']);
 });
 Route::get('/publicProfile/{user}', [UserController::class, 'publicView']);
 

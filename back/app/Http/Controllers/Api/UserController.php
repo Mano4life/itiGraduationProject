@@ -51,6 +51,7 @@ class UserController extends Controller
             'tiktok_link' => 'nullable|string|min:5',
             'instagram_link' => 'nullable|string|min:5',
             'youtube_link' => 'nullable|string|min:5',
+            'bio'=>'nullable|string'
         ]);
         $User = User::create([
             'name' => $request->name,
@@ -62,6 +63,7 @@ class UserController extends Controller
             'tiktok_link' => !empty($request['tiktok_link']) ? $request['tiktok_link'] : null,
             'instagram_link' => !empty($request['instagram_link']) ? $request['instagram_link'] : null,
             'youtube_link' => !empty($request['youtube_link']) ? $request['youtube_link'] : null,
+            'bio' => !empty($request['bio']) ? $request['bio'] : null
         ]);
 
         $User->generateCode();
@@ -157,6 +159,24 @@ class UserController extends Controller
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+///update bio
+public function updateBio(Request $request){
+    $user = $request->user();
+    $validator = Validator::make($request->all(), [
+        'bio' => 'required|string|min:5',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+            }
+        try {
+            $user->update([
+                'bio' => $request['bio'],
+                ]);
+            return response()->json(['message' => 'Bio updated successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+            }
+}
 ///public profile
 public function publicView(User $user)
 {
@@ -174,7 +194,8 @@ public function publicView(User $user)
             'name' => $recipe->name,
             'image' => $recipe->image,
             'time'=>$recipe->time,
-            'category' => $recipe->category, // Include the category here
+            'category' => $recipe->category, 
+            
         ];
     });
 
@@ -183,6 +204,7 @@ public function publicView(User $user)
         'tiktok_link' => $user->tiktok_link,
         'instagram_link' => $user->instagram_link,
         'youtube_link' => $user->youtube_link,
+        'bio'=>$user->bio,
         'recipes' => $recipesWithCategories,
     ], 200);
 }

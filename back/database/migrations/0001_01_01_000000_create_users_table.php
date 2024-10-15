@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('youtube_link')->nullable();
             $table->string('instagram_link')->nullable();
             $table->string('tiktok_link')->nullable();
+            $table->string('bio')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

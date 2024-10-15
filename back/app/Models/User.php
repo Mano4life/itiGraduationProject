@@ -23,6 +23,7 @@ class User extends Authenticatable
         'tiktok_link',
         'instagram_link',
         'youtube_link',
+        'bio'
     ];
     
     function comments()

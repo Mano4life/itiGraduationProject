@@ -24,6 +24,7 @@ export class SocialsComponent {
       youtube_link: new FormControl(''),
       instagram_link: new FormControl(''),
       tiktok_link: new FormControl(''),
+      bio:new FormControl(''),
       
     })
   }
@@ -50,7 +51,8 @@ export class SocialsComponent {
     this.LinksForm.patchValue({
       youtube_link: this.LinksList.youtube_link,
       instagram_link: this.LinksList.instagram_link,
-      tiktok_link: this.LinksList.tiktok_link
+      tiktok_link: this.LinksList.tiktok_link,
+      bio:this.LinksList.bio
       
     });
 
@@ -62,6 +64,10 @@ export class SocialsComponent {
       youtube_link: this.LinksForm.value.youtube_link,
       instagram_link: this.LinksForm.value.instagram_link,
       tiktok_link: this.LinksForm.value.tiktok_link,
+      
+    }
+    var bio={
+      bio:this.LinksForm.value.bio
     }
     if(this.LinksForm.valid){
       this.notvalid=false;
@@ -80,7 +86,13 @@ export class SocialsComponent {
     else{
       this.notvalid=true;
     }
-    
+    this.serv.putBio(bio).subscribe({
+      next: (res) => {
+      },
+      error: (err) => {
+        console.error(err);
+        }
+    })
   }
 
 }
