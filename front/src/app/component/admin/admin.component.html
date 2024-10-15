@@ -1,6 +1,6 @@
 
 <div class="container position-relative mt-5 p-2" style="min-height: 80vh;">
-    <div class="row mb-5">
+    <div class="row mb-5 mt-5">
         <div class="col-md-4 col-12 text-center">
             <div class="sidebar p-3">
                 <a [class.active]="activeSection === 'users'" (click)="changeSection('users')">Users</a>
@@ -9,18 +9,19 @@
             </div>
         </div>
 
-    <!-- User Section -->
-    <div class="col-md-12 col-lg-8 sections " *ngIf="activeSection === 'users'">
-        <app-admin-user></app-admin-user>
-    </div>
-    
-    <!-- Recipes Section -->
-    <div class="col-md-12 col-lg-8 sections" *ngIf="activeSection === 'recipes'">
-        <app-admin-recipes></app-admin-recipes>
-    </div>
+        <!-- User Section -->
+        <div class="col-md-12 col-lg-8 sections " *ngIf="activeSection === 'users'">
+            <app-admin-user></app-admin-user>
+        </div>
+        
+        <!-- Recipes Section -->
+        <div class="col-md-12 col-lg-8 sections" *ngIf="activeSection === 'recipes'">
+            <app-admin-recipes></app-admin-recipes>
+        </div>
 
-    <!-- Pending Recipes Section -->
-    <div class="col-md-12 col-lg-8 sections" *ngIf="activeSection === 'pendingRecipes'">
-        <app-admin-pending-recipes></app-admin-pending-recipes>
+        <!-- Pending Recipes Section -->
+        <div class="col-md-12 col-lg-8 sections" *ngIf="activeSection === 'pendingRecipes'">
+            <app-admin-pending-recipes></app-admin-pending-recipes>
+        </div>
     </div>
 </div>
