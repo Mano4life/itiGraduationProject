@@ -1,11 +1,11 @@
 <section class="container">
     <section class="publicProfile-details  my-5">
         <h1 class="fw-bold text-capitalize title">
-        <img src="assets/img/chef.png" alt="chef" class="chef">{{ publicProfile?.name }}</h1>
+        <img src="assets/imgs/chef.png" alt="chef" class="chef">{{ publicProfile?.name }}</h1>
         <div class="d-flex flex-column" *ngIf="publicProfile.bio">
           <div class="title px-3  d-flex align-items-center">
               <p class="fw-bold text-capitalize fs-4 mb-0">
-                <img src="assets/img/bio.png" alt="link" class="link-img">
+                <img src="assets/imgs/bio.png" alt="link" class="link-img">
                 Bio
               </p>
             </div>
@@ -16,25 +16,58 @@
         <div class="d-flex" *ngIf="publicProfile.youtube_link || publicProfile.instagram_link || publicProfile.tiktok_link">
             <div class="title px-3 me-4 d-flex align-items-center">
                 <p class="fw-bold text-capitalize fs-4 mb-0">
-                  <img src="assets/img/link.png" alt="link" class="link-img">
+                  <img src="assets/imgs/link.png" alt="link" class="link-img">
                   Links
                 </p>
               </div>
             <div *ngIf="publicProfile.youtube_link" class="me-4 shadow-sm px-4 py-2 rounded">
               <a [href]="publicProfile.youtube_link" class="links">
-              <img src="assets/img/youtube.png" alt="youtube" class="link-img">Youtube </a>
+              <img src="assets/imgs/youtube.png" alt="youtube" class="link-img">Youtube </a>
             </div>
             <div *ngIf="publicProfile.instagram_link" class="me-4 shadow-sm px-4 py-2 rounded">
               <a [href]="publicProfile.instagram_link" class="links">
-              <img src="assets/img/instagram.png" alt="instagram" class="link-img">Instagram</a>
+              <img src="assets/imgs/instagram.png" alt="instagram" class="link-img">Instagram</a>
             </div>
             <div *ngIf="publicProfile.tiktok_link" class="me-4 shadow-sm px-4 py-2 rounded">
               <a [href]="publicProfile.tiktok_link" class="links">
-              <img src="assets/img/tiktok.png" alt="tiktok" class="link-img">TikTok</a>
+              <img src="assets/imgs/tiktok.png" alt="tiktok" class="link-img">TikTok</a>
             </div>
           </div>
     </section>
 
+      <section class="recipes-wrapper my-5" >
+        <div class="title d-flex justify-content-between align-items-center">
+          <h1 class="fw-bold text-capitalize"><img src="assets/imgs/recipe.png" alt="recipe" class="chef">Other Recipes of this User</h1>
+        </div>
+        <div class="body mt-3 d-flex gap-3 overflow-x-scroll">
+            <div *ngFor="let recipe of publicProfile?.recipes">
+              <div
+                class="card border-0"
+                style="width: 300px; cursor: pointer"
+                (click)="onRecipeClick(recipe.id)"
+              >
+                <div class="image-wrapper overflow-hidden rounded">
+                  <img
+                    class="rounded card-img-top w-100 object-fit-cover"
+                    src="{{ recipe?.image }}"
+                    alt="Title"
+                    style="height: 330px"
+                  />
+                </div>
+                <div class="card-body px-0">
+                  <div class="category-time d-flex align-items-baseline justify-content-between">
+                    <span class="h6 related-recipe-category">{{ recipe?.category.name }}</span>
+                    <div class="time">
+                      <span class="h6 me-2"><i class="fa-regular fa-clock"></i></span>
+                      <span class="h6">{{ recipe?.time }} mins</span>
+                    </div>
+                  </div>
+                  <h4 class="card-title">{{ recipe?.name }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
     <div
       class="d-flex my-4"
       *ngIf="
@@ -45,7 +78,7 @@
     >
       <div class="title me-4 d-flex align-items-center">
         <h1 class="fw-bold text-capitalize fs-3 mb-0">
-          <img src="assets/img/link.png" alt="link" class="link-img" />
+          <img src="assets/imgs/link.png" alt="link" class="link-img" />
           Links
         </h1>
       </div>
@@ -55,7 +88,7 @@
       >
         <a [href]="publicProfile.youtube_link" class="links">
           <img
-            src="assets/img/youtube.png"
+            src="assets/imgs/youtube.png"
             alt="youtube"
             class="link-img"
           />Youtube

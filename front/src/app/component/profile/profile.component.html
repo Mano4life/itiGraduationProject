@@ -3,7 +3,7 @@
     class="user-details d-flex justify-content-between align-items-center"
   >
     <h1 class="text-capitalize fw-bold" style="color: var(--main-color)">
-      <img src="assets/img/chef.png" alt="chef" class="chef" /> {{ user?.name }}
+      <img src="assets/imgs/chef.png" alt="chef" class="chef" /> {{ user?.name }}
     </h1>
     <a
       data-bs-toggle="modal"
@@ -14,7 +14,7 @@
   </section>
   <section class="mt-5">
     <div class="title d-flex justify-content-between align-items-center">
-      <h1 class="text-capitalize m-0 fw-bold" style="color: var(--main-color);"><img src="assets/img/bio.png" alt="chef" class="chef"> Bio</h1>
+      <h1 class="text-capitalize m-0 fw-bold" style="color: var(--main-color);"><img src="assets/imgs/bio.png" alt="chef" class="chef"> Bio</h1>
       <a  data-bs-toggle="modal" data-bs-target="#Socials" style="color: var(--main-color); font-size: 24px;"><i class="fa fa-cog" aria-hidden="true"></i>
       </a>
     </div>
@@ -45,7 +45,7 @@
   <section class="recipes-wrapper mt-5">
     <div class="title">
       <h1 class="fw-bold text-capitalize">
-        <img src="assets/img/heart.png" alt="chef" class="chef" />your favorite
+        <img src="assets/imgs/heart.png" alt="chef" class="chef" />your favorite
         recipes
       </h1>
     </div>
@@ -100,7 +100,7 @@
   <section class="recipes-wrapper mt-5" *ngIf="isPremium">
     <div class="title d-flex justify-content-between align-items-center">
       <h1 class="fw-bold text-capitalize">
-        <img src="assets/img/sand.png" alt="chef" class="chef" />Waiting for
+        <img src="assets/imgs/sand.png" alt="chef" class="chef" />Waiting for
         Aproval
       </h1>
     </div>
@@ -177,7 +177,7 @@
   <section class="recipes-wrapper mt-5" *ngIf="isPremium">
     <div class="title d-flex justify-content-between align-items-center">
       <h1 class="fw-bold text-capitalize">
-        <img src="assets/img/magic.png" alt="chef" class="chef" />your magic
+        <img src="assets/imgs/magic.png" alt="chef" class="chef" />your magic
       </h1>
       <a
         routerLink="/add-recipe/{{ user.id }}"
