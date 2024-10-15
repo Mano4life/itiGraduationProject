@@ -1,105 +1,144 @@
 <div class="container-fluid p-5">
-    <div class="form d-flex justify-content-center">
-      <div class="row">
-        <div class="main">
-          <h1 class="fw-bold mb-4">Edit Pending Recipe</h1>
-  
-          <div class="back" routerLink="/admin">
-            <i class="fa-solid fa-chevron-left"></i>
-            <p>Go Back</p>
+  <div class="form d-flex justify-content-center">
+    <div class="row">
+      <div class="main">
+        <h1 class="fw-bold mb-4">Edit Pending Recipe</h1>
+
+        <div class="back" routerLink="/admin">
+          <i class="fa-solid fa-chevron-left"></i>
+          <p>Go Back</p>
+        </div>
+      </div>
+
+      <div class="mb-2 col-lg-4">
+        <img [src]="imageLink" alt="Recipe Image" class="img-thumbnail" />
+      </div>
+
+      <div class="col-lg-8 formEdit">
+        <form
+          [formGroup]="editForm"
+          (ngSubmit)="editRecipe()"
+          enctype="multipart/form-data"
+        >
+          <label for="recipeId" class="form-label">image:</label>
+          <input
+            type="file"
+            class="form-control"
+            id="recipeImage"
+            formControlName="image"
+            (change)="onFileSelected($event)"
+          />
+          <div class="mb-3">
+            <label for="recipeName" class="form-label">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="recipeName"
+              formControlName="name"
+            />
           </div>
-        </div>
-  
-        <div class="mb-2 col-lg-4">
-          <img [src]="imageLink" alt="Recipe Image"  class="img-thumbnail" />
-        </div>
-  
-        <div class="col-lg-8 formEdit">
-              <form [formGroup]="editForm" (ngSubmit)="editRecipe()" enctype="multipart/form-data" >
-              
-                  <label for="recipeId" class="form-label">image:</label>
-                  <input
-                  type="file"
+          <div class="mb-3">
+            <label for="Servings" class="form-label">Servings:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="Servings"
+              formControlName="servings"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="time" class="form-label">Time:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="time"
+              formControlName="time"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="category"
+              formControlName="category"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="subcategory" class="form-label">Sub Category:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="subcategory"
+              formControlName="subcategory"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="Description" class="form-label">Description:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="Description"
+              formControlName="description"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="Direction" class="form-label">Direction:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="Direction"
+              formControlName="directions"
+            />
+          </div>
+          <div formArrayName="ingredients">
+            <div
+              *ngFor="
+                let ingredient of editPendingRecipe?.ingredients;
+                let i = index
+              "
+              [formGroupName]="i"
+              class="row"
+            >
+              <div class="col-4">
+                <label for="ingredientName">Ingredient Name:</label>
+                <input
+                  type="text"
                   class="form-control"
-                  id="recipeImage"
-                  formControlName="image"
-                  (change)="onFileSelected($event)"
+                  id="ingredientName"
+                  placeholder="ingredient..."
+                  formControlName="name"
                 />
-                  <div class="mb-3 ">
-                      <label for="recipeName" class="form-label">Name:</label>
-                      <input type="text" class="form-control " id="recipeName" formControlName="name" />
-                  </div>
-                  <div class="mb-3 ">
-                      <label for="Servings" class="form-label">Servings:</label>
-                      <input type="number" class="form-control " id="Servings" formControlName="servings" />
-                  </div>
-                  <div class="mb-3 ">
-                      <label for="time" class="form-label">Time:</label>
-                      <input type="text" class="form-control " id="time" formControlName="time" />
-                  </div>
-                  <div class="mb-3 ">
-                    <label for="category" class="form-label">Category:</label>
-                    <input type="text" class="form-control " id="category" formControlName="category" />
-                </div>
-                <div class="mb-3 ">
-                  <label for="subcategory" class="form-label">Sub Category:</label>
-                  <input type="text" class="form-control " id="subcategory" formControlName="subcategory" />
               </div>
-                  <div class="mb-3 ">
-                      <label for="Description" class="form-label">Description:</label>
-                      <input type="text" class="form-control" id="Description" formControlName="description" />
-                  </div>
-                  <div class="mb-3 ">
-                      <label for="Direction" class="form-label">Direction:</label>
-                      <input type="text" class="form-control " id="Direction" formControlName="directions" />
-                  </div>
-                  <div formArrayName="ingredients">
-                      <div
-                        *ngFor="let ingredient of editPendingRecipe?.ingredients
-                        ; let i = index"
-                        [formGroupName]="i"
-                        class="row"
-                      >
-                        <div class="col-4">
-                          <label for="ingredientName">Ingredient Name:</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="ingredientName"
-                            placeholder="ingredient..."
-                            formControlName="name"
-                          />
-                          
-                        </div>
-                
-                        <div class="col-4">
-                          <label for="quantity">Quantity:</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="quantity"
-                            placeholder="quantity..."
-                            formControlName="quantity"
-                          />
-                          
-                        </div>
-                
-                        <div class="col-4">
-                          <label for="measurementUnit">Measurement Unit:</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="measurementUnit"
-                            placeholder="measurement unit..."
-                            formControlName="measurement_unit"
-                          />
-                          
-                        </div>
-                      </div>
-                    </div>
-                  <button type="submit" class="btn text-light mt-4 mb-5">Save Changes</button>
-              </form>
-        </div>
+
+              <div class="col-4">
+                <label for="quantity">Quantity:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="quantity"
+                  placeholder="quantity..."
+                  formControlName="quantity"
+                />
+              </div>
+
+              <div class="col-4">
+                <label for="measurementUnit">Units:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="measurementUnit"
+                  placeholder="measurement unit..."
+                  formControlName="measurement_unit"
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn text-light mt-4 mb-5">
+            Save Changes
+          </button>
+        </form>
       </div>
     </div>
   </div>
+</div>

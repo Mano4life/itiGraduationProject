@@ -1,9 +1,12 @@
-
-
 <div class="container my-5">
-  <form enctype="multipart/form-data" [formGroup]="recipeForm" class="row" (submit)="onSubmission('recipesuccess')">
+  <form
+    enctype="multipart/form-data"
+    [formGroup]="recipeForm"
+    class="row"
+    (submit)="onSubmission('recipesuccess')"
+  >
     <app-top-dish-area title="Add a new recipe"></app-top-dish-area>
-    
+
     <div class="mb-3 col-12">
       <label for="name-field" class="text-capitalize mb-2">name:</label>
       <input
@@ -45,7 +48,6 @@
         class="form-control"
         id="time-field"
         placeholder="Enter time in minutes"
-
         formControlName="time"
       />
       @if(recipeForm.controls['time'].invalid &&
@@ -97,11 +99,11 @@
     <div class="mb-3">
       <label for="image-field" class="text-capitalize mb-2">image:</label>
       <input
-      type="file"
-      class="form-control"
-      id="image-field"
-      formControlName="image"
-      (change)="onFileSelected($event)"
+        type="file"
+        class="form-control"
+        id="image-field"
+        formControlName="image"
+        (change)="onFileSelected($event)"
       />
       @if(recipeForm.controls['image'].invalid &&
       recipeForm.controls['image'].touched){
@@ -164,10 +166,14 @@
           />
           @if(ingredient.get('name')?.invalid &&
           ingredient.get('name')?.touched){
-          <span class="text-danger fw-bold ms-1">Ingredient name is not valid</span>
+          <span class="text-danger fw-bold ms-1"
+            >Ingredient name is not valid</span
+          >
           }@else if (ingredient.get('name')?.valid &&
           ingredient.get('name')?.touched) {
-          <span class="text-success fw-bold ms-1">Ingredient name is valid</span>
+          <span class="text-success fw-bold ms-1"
+            >Ingredient name is valid</span
+          >
           }
         </div>
 
@@ -182,15 +188,19 @@
           />
           @if(ingredient.get('quantity')?.invalid &&
           ingredient.get('quantity')?.touched){
-          <span class="text-danger fw-bold ms-1">Ingredient quantity is not valid</span>
+          <span class="text-danger fw-bold ms-1"
+            >Ingredient quantity is not valid</span
+          >
           }@else if (ingredient.get('quantity')?.valid &&
           ingredient.get('quantity')?.touched) {
-          <span class="text-success fw-bold ms-1">Ingredient quantity is valid</span>
+          <span class="text-success fw-bold ms-1"
+            >Ingredient quantity is valid</span
+          >
           }
         </div>
 
         <div class="col-4">
-          <label for="measurementUnit">Measurement Unit:</label>
+          <label for="measurementUnit">Units:</label>
           <input
             type="text"
             class="form-control"
@@ -200,10 +210,14 @@
           />
           @if(ingredient.get('measurement_unit')?.invalid &&
           ingredient.get('measurement_unit')?.touched){
-          <span class="text-danger fw-bold ms-1">Ingredient measurement is not valid</span>
+          <span class="text-danger fw-bold ms-1"
+            >Ingredient measurement is not valid</span
+          >
           }@else if (ingredient.get('measurement_unit')?.valid &&
           ingredient.get('measurement_unit')?.touched) {
-          <span class="text-success fw-bold ms-1">Ingredient measurement is valid</span>
+          <span class="text-success fw-bold ms-1"
+            >Ingredient measurement is valid</span
+          >
           }
         </div>
 
@@ -242,17 +256,28 @@
     </div>
   </form>
 </div>
-<div class="modal fade " id="recipesuccess" tabindex="-1" role="dialog" aria-labelledby="recipesuccess" aria-hidden="true">
+<div
+  class="modal fade"
+  id="recipesuccess"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="recipesuccess"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
-            <div class="text-center mb-4">
-              <i class="far fa-check-circle check-icon" style="color: var(--btn-color); font-size: 50px;"></i>
-            </div>
-            <div>
-              <p class="text-center" style="color: var(--footer-color);">Recipe added Successfully!!</p>
-            </div>
-            
+        <div class="text-center mb-4">
+          <i
+            class="far fa-check-circle check-icon"
+            style="color: var(--btn-color); font-size: 50px"
+          ></i>
+        </div>
+        <div>
+          <p class="text-center" style="color: var(--footer-color)">
+            Recipe added Successfully!!
+          </p>
+        </div>
       </div>
     </div>
   </div>
