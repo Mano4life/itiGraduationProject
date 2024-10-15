@@ -5,18 +5,19 @@ import { IngredientsService } from '../../core/services/ingredients/ingredients.
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { SubcategoriesService } from '../../core/services/subcategories/subcategories.service';
 import { UsersService } from '../../core/services/users/users.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 declare var bootstrap: any;
 @Component({
   selector: 'app-recipes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxPaginationModule],
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css',
 })
 export class RecipesComponent {
   recipeList: any[] = [];
   reverseOrder: Boolean = false;
-
+  p=1
   sub_categoryList: any[] = [];
   ingredentsList: any[] = [];
   filteredIngredientsList: any[] = [];
@@ -70,7 +71,8 @@ export class RecipesComponent {
 
   getreciepes() {
     this.recipes.getRecipes().subscribe({
-      next: (Response: any) => {        
+      next: (Response: any) => {  
+        console.log(Response)      
         if(this.reverseOrder){
           this.recipeList = [...Response].reverse();          
         }else{
