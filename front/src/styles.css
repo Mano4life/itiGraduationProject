@@ -271,21 +271,6 @@ p-table .p-paginator-page{
 /* Add other necessary component or container classes */
 
 
-
-
-
-/* Login & Register */
-.auth {
-  text-align: center;
-  padding: 0 30px;
-}
-
-.form-group {
-  position: relative;
-  color: #828487;
-  display: flex;
-}
-
 /* Global responsive text scaling */
 @media (max-width: 992px) {
   h1 {
