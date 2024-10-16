@@ -143,7 +143,7 @@ body.dark-mode .latest{
   color: #F2F3F4 !important;
 }
 .dark-mode .home-banner .banner-left {
-  /* background: #101218 !important; */
+  background: #3959636e !important;
   height: 100vh;
   padding: 0 16%;
 }
