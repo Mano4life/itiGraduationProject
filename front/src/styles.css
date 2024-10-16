@@ -144,6 +144,7 @@ body.dark-mode .latest{
   color: #F2F3F4 !important;
 }
 .dark-mode .home-banner .banner-left {
+  background: #3959636e !important;
   height: 100vh;
   padding: 0 16%;
 }
@@ -202,10 +203,7 @@ background-color: #101218 !important;
 p-table tr[data-status="denied"] {
   background-color: #ffe0e0 !important;
 }
-/* public profile */
-.dark-mode .bio.text-secondary{
-  color: white !important;
-}
+
 /*  */
 p-table .p-paginator {
 .dark-mode p-table .p-paginator {
