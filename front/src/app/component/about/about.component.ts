@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { TopDishAreaComponent } from '../top-dish-area/top-dish-area.component';
@@ -22,18 +23,16 @@ export class AboutComponent {
       Additionally,developed a public user profile and implemented user editing capabilities in the admin dashboard,
       assisting in the design of personal profiles.`,
 
-      imageUrl: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg'
+      imageUrl:
+        'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
     },
     {
       name: 'Momen',
       role: 'Full stack Developer',
-      bio: `In Laravel, developed the schemas, models, controllers, and services for recipes, categories, subcategories, and ingredients. 
-      integrated Laravel with Mailgun to enable sending real emails and
-      connected Cloudinary for image uploads. 
-      Additionally, implemented an OTP system for email verification.
-      In Angular, I created a personal profile, an "Add Recipe" page, and a "Single Recipe" page with "rating" ,"save","comment","change serving number",
-      ensuring full functionality, design, and backend connectivity. `,
-      imageUrl: 'https://preview.redd.it/6q7k7hfumj471.jpg?width=640&crop=smart&auto=webp&s=3411f42389cdb97c6968da623d074697bde3cbdc'
+      bio: `In the backend, I developed the schemas, models, controllers, and services in Laravel for managing recipes, categories, subcategories, and ingredients. I integrated Mailgun for real email functionality and connected Cloudinary for seamless image uploads. I also implemented a subscription system using Stripe to enable premium service purchases for users and configured CORS to ensure secure cross-origin resource sharing. Additionally, I developed an OTP system for email verification.
+      On the frontend, using Angular, I built key features like the personal profile page, the "Add Recipe" page, and the "Single Recipe" page. These include functionalities for rating, saving, commenting, and adjusting the number of servings, all while maintaining full integration with the backend and ensuring a responsive, user-friendly design.`,
+      imageUrl:
+        'https://preview.redd.it/6q7k7hfumj471.jpg?width=640&crop=smart&auto=webp&s=3411f42389cdb97c6968da623d074697bde3cbdc',
     },
     {
       name: 'Mariam',
@@ -41,14 +40,15 @@ export class AboutComponent {
       bio: `In Angular, developed the Landing Page with complete functionality,
        design, and backend integration. also created and designed admin add/edit recipe page and admin dashboard with CRUD operations for users, recipes, and pending recipes,
       and assisted with implementing search functionality and the navigation bar. `,
-      imageUrl: 'https://i.pinimg.com/originals/35/c1/0e/35c10edc6ef5cfc52b6f76f9f9455b77.jpg'
+      imageUrl:
+        'https://i.pinimg.com/originals/35/c1/0e/35c10edc6ef5cfc52b6f76f9f9455b77.jpg',
     },
     {
       name: 'Dannel',
       role: 'Frontend Developer And Data Gathering',
       bio: `In Angular designed About page and navbar, developed search functionality,dark mode for all of the website,and data collecting.`,
-      imageUrl: 'https://media.tenor.com/w3dtW9NFejcAAAAe/sleepy-cat.png'
-    }
+      imageUrl: 'https://media.tenor.com/w3dtW9NFejcAAAAe/sleepy-cat.png',
+    },
   ];
 
   // Dark Mode state
