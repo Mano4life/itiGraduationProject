@@ -1,8 +1,9 @@
-.background, .pink-btn{
+.background{
     background-color: #e9e9e8;
     margin-top: 10px;
     border-radius: 5%;
     cursor: pointer;
+    color: #39535b; 
 }
 .background:hover, .pink-btn:hover{
     background-color: #ffe0e0;
@@ -11,7 +12,7 @@
 .border-bottom{
     border-color: var(--main-color) !important;
 }
-.color, .pink-btn{
+.color{
     color: #d25c4c;
     font-family: var(--second-font);
     font-weight: 600;
@@ -68,20 +69,18 @@ h6{
     color: white;
 }
 .pink-btn{
-    /* background-color: var(--main-btn-bg);  */
+    background-color: var(--main-btn-bg); 
     letter-spacing: 0.09em;
-    /* color: white; */
+    color: white;
 }
 .pink-btn:hover {
-    /* background-color: white;  */
-    /* color: var(--main-color); 
-    border-color:var(--main-color) ; */
+    background-color: white; 
+    color: #39535b; 
+    border-color: #39535b ;
 }
-.pink-btn img{
-    filter: invert(70%);
-}
+
 .pink-btn:hover img{
-    filter: invert(92%);
+    filter: invert(100%);
 }
 .rounded-image{
     border-radius: 5%;
