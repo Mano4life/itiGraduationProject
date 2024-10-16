@@ -1,6 +1,6 @@
 <form [formGroup]="LoginForm" (ngSubmit)="loginSender()" class="auth">
     <!-- Email -->
-    <div class="form-group">
+    <div class="form-group ">
         <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp" 
             formControlName="email" placeholder="Email">
     </div>
@@ -13,7 +13,7 @@
 
     <!-- Password -->
     <div class="form-group">
-        <input type="password" class="form-control" id="exampleInputPassword1"
+        <input type="password" class="form-control " id="exampleInputPassword1"
             formControlName="password" placeholder="Password" [type]="isPasswordVisible ? 'text' : 'password'">
         <div class="showIcon" (click)="togglePasswordVisibility()">
             <i class="fa-solid" [class.fa-eye]="!isPasswordVisible" [class.fa-eye-slash]="isPasswordVisible"></i>
