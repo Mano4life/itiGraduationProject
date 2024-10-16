@@ -1,9 +1,9 @@
-body{
+body {
     background-color: #eee;
 }
 
 /* Hero Section */
-.toggle-icon i{
+.toggle-icon i {
     position: absolute;
     right: 15%;
     top: 5%;
@@ -12,10 +12,11 @@ body{
 }
 
 .home-banner .banner-left {
-    background: var(--main-color);
+    background: var(--main-btn-bg);
     height: 100vh;
     padding: 0 16%;
 }
+
 
 .home-banner .banner-left h1 {
     font-size: 60px;
@@ -29,6 +30,8 @@ body{
 .home-banner .banner-left p {
     max-width: 510px;
     color: var(--third-color);
+    color: #f9f9ff;
+    z-index: 2;
     font-size: 15px;
 }
 
@@ -50,12 +53,12 @@ body{
     text-decoration: none;
 }
 
-.main-btn:hover{
+.main-btn:hover {
     background-color: white;
     color: var(--btn-color);
 }
 
-.main-btn.hero{
+.main-btn.hero {
     margin: 30px 0;
 }
 
@@ -89,7 +92,8 @@ body{
     position: absolute;
 }
 
-.home-banner .banner-right .round-planet .shape.shape1,.main-title .round-planet .shape.shape1 {
+.home-banner .banner-right .round-planet .shape.shape1,
+.main-title .round-planet .shape.shape1 {
     margin-top: -15px;
     margin-left: -15px;
     width: 100px;
@@ -101,7 +105,8 @@ body{
     animation: glow 1s infinite alternate;
 }
 
-.home-banner .banner-right .round-planet .shape.shape2,.main-title .round-planet .shape.shape2 {
+.home-banner .banner-right .round-planet .shape.shape2,
+.main-title .round-planet .shape.shape2 {
     margin-top: -15px;
     margin-left: -15px;
     width: 80px;
@@ -160,11 +165,13 @@ body{
     bottom: -58%;
     animation: glow 1s infinite alternate;
 }
+
 /* animation */
 @keyframes glow {
     0% {
         opacity: .1;
     }
+
     50% {
         opacity: .5;
     }
@@ -183,27 +190,34 @@ body{
     .home-banner .banner-right .round-planet {
         display: none;
     }
+
     .home-banner .face-img {
         display: none;
     }
 }
+
 @media (max-width: 991px) {
     .home-banner .banner-left{
-        height: 60vh;
+        height: 30vh;
     }
+
     .home-banner .banner-left h1 {
         font-size: 40px;
     }
+
     .home-banner .banner-right .round-planet {
         display: none;
     }
+
     .home-banner .face-img {
         display: none;
     }
-    .home-banner .main-btn{
+
+    .home-banner .main-btn {
         margin: 20px 0;
     }
 }
+
 @media (max-width: 480px) {
     .home-banner .banner-left h1 {
         font-size: 36px;
@@ -215,24 +229,31 @@ body{
     height: 430px;
     width: 100%;
 }
-.categories .row .col-lg-3:nth-child(3) img, .categories .row .col-lg-3:nth-child(4) img {
+
+.categories .row .col-lg-3:nth-child(3) img,
+.categories .row .col-lg-3:nth-child(4) img {
     height: 430px;
     width: 100%;
 }
 
-.box{
+.box {
     cursor: pointer;
 }
-.box,.smallBox,.latestContent{
+
+.box,
+.smallBox,
+.latestContent {
     transition: all 0.3s;
 }
 
-.box:hover,.latestContent:hover{
+.box:hover,
+.latestContent:hover {
     opacity: 0.6;
 }
 
-.box .categoryName{
-    background-color: var(--main-color);
+.box .categoryName {
+    border-radius: 4px;
+    background-color: var(--main-btn-bg);
     width: fit-content;
     padding: 6px 25px;
     position: absolute;
@@ -241,36 +262,36 @@ body{
     transform: translateX(-50%);
 }
 
-.box .categoryName h5{
+.box .categoryName h5 {
     font-size: 20px;
-    color: var(--third-color);
+    color: #f9f9ff;
     font-family: var(--main-font);
     text-transform: uppercase;
 }
 
-.smallBox img{
+.smallBox img {
     border-radius: 50%;
     width: 6rem;
     height: 6rem;
     object-fit: cover;
 }
 
-.smallBox .categoryName h5{
+.smallBox .categoryName h5 {
     color: var(--main-color);
     text-transform: uppercase;
     font-weight: 600;
     font-family: var(--second-font);
     margin-top: 18px;
-    font-size: 18px;    
+    font-size: 18px;
 }
 
 @media (max-width: 1024px) {
-    .categories .row .col-lg-3:nth-child(3) img{
+    .categories .row .col-lg-3:nth-child(3) img {
         height: 430px;
     }
 
     .box .categoryName h5 {
-        font-size: 18px; 
+        font-size: 18px;
     }
 
     .smallBox .categoryName h5 {
@@ -287,18 +308,22 @@ body{
 }
 
 @media (max-width: 768px) {
-    .categories .row .col-lg-3:nth-child(3) img{
+    .categories .row .col-lg-3:nth-child(3) img {
         height: 480px;
     }
+
     .categories .row .col-lg-3:nth-child(4) img {
         height: 480px;
     }
-    .box{
+
+    .box {
         margin-bottom: 35px;
     }
+
     .box .categoryName {
         bottom: -4%;
     }
+
     .box .categoryName h5 {
         font-size: 18px;
     }
@@ -328,59 +353,66 @@ body{
 }
 
 @media (max-width: 480px) {
-    .box{
+    .box {
         margin-bottom: 40px;
     }
 }
+
 /* Latest Section */
-.latest{
+.latest {
     background-color: var(--main-background);
 }
-.allLatest p{
+
+.allLatest p {
     transition: all 0.3s;
 }
-.allLatest i{
+
+.allLatest i {
     position: relative;
     bottom: 20px;
     transition: all 0.3s;
 }
-.allLatest:hover i{
+
+.allLatest:hover i {
     transform: translateX(5px);
 }
-.allLatest:hover p{
+
+.allLatest:hover p {
     transform: translateX(-5px);
 }
 
-.latestContent a{
+.latestContent a {
     text-decoration: none;
 }
 
-.latestContent h4{
+.latestContent h4 {
     font-size: 22px;
     color: var(--main-color);
     font-family: var(--main-font);
     font-weight: 600;
 }
-.latestContent p{
+
+.latestContent p {
     font-family: var(--titleReciepe-font);
     font-size: 17px;
     margin-bottom: 2px;
     color: var(--btn-color) !important;
 }
 
-.main-btn.recipe{
+.main-btn.recipe {
     display: flex;
     justify-content: center;
 }
+
 @media (max-width: 1024px) {
-    .main-btn.recipe{
+    .main-btn.recipe {
         display: flex;
         justify-content: center;
     }
 }
 
 @media (max-width: 767px) {
-    .main-btn{
+    .main-btn {
         margin: 10px 0;
     }
 }
@@ -390,19 +422,24 @@ video {
     width: 100%;
     height: auto;
 }
-.slide-layers{
+
+.slide-layers {
     position: absolute;
     top: 30%;
     left: 20%;
 }
-.slide-layers .layer1,.slide-layers .layer2{
+
+.slide-layers .layer1,
+.slide-layers .layer2 {
     line-height: normal;
-    color: var(--main-color);;
+    color: var(--main-color);
+    ;
     font-size: 60px;
     font-family: var(--titleReciepe-font);
     font-weight: bold;
 }
-.slide-layers .layer2{
+
+.slide-layers .layer2 {
     font-size: 115px;
     color: #ffffff;
     margin-top: -20px;
@@ -415,9 +452,11 @@ video {
         top: 25%;
         left: 15%;
     }
+
     .slide-layers .layer1 {
         font-size: 50px;
     }
+
     .slide-layers .layer2 {
         font-size: 100px;
         margin-left: -20px;
@@ -429,9 +468,11 @@ video {
         top: 20%;
         left: 10%;
     }
+
     .slide-layers .layer1 {
         font-size: 40px;
     }
+
     .slide-layers .layer2 {
         font-size: 80px;
         margin-left: -15px;
@@ -442,9 +483,11 @@ video {
     .slide-layers {
         left: 12%;
     }
+
     .slide-layers .layer1 {
         font-size: 30px;
     }
+
     .slide-layers .layer2 {
         font-size: 60px;
         margin-left: -10px;
@@ -455,20 +498,22 @@ video {
     .slide-layers {
         left: 14%;
     }
+
     .slide-layers .layer1 {
         font-size: 25px;
     }
+
     .slide-layers .layer2 {
         font-size: 45px;
     }
 }
 
 /* users */
-.user{
+.user {
     margin-bottom: 40px;
 }
 
-.borderSection{
+.borderSection {
     border: 1px solid #fff;
     padding: 26px;
     display: flex;
@@ -477,20 +522,21 @@ video {
     color: #fff;
 }
 
-.userImg{
+.userImg {
     margin-left: 40px;
 }
 
-.userContent{
+.userContent {
     margin-left: 25px;
 }
 
-.user h1{
+.user h1 {
     font-size: 40px;
 }
-.user p{
+
+.user p {
     font-size: 21px;
-    color: #eee;    
+    color: #eee;
 }
 
 @media (max-width: 1024px) {
@@ -507,9 +553,11 @@ video {
     .user h1 {
         font-size: 35px;
     }
+
     .user p {
         font-size: 18px;
     }
+
     .borderSection {
         padding: 20px;
     }
@@ -521,16 +569,20 @@ video {
         display: block;
         padding: 15px;
     }
+
     .userImg {
         margin-left: 0;
     }
+
     .userContent {
         margin-left: 0;
         margin-bottom: 20px;
     }
+
     .user h1 {
         font-size: 35px;
     }
+
     .user p {
         font-size: 18px;
     }
@@ -540,12 +592,15 @@ video {
     .user {
         margin-bottom: 20px;
     }
+
     .user h1 {
         font-size: 30px;
     }
+
     .user p {
         font-size: 16px;
     }
+
     .borderSection {
         padding: 15px;
     }

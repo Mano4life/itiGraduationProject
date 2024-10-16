@@ -37,11 +37,12 @@ export class AboutComponent {
     {
       name: 'Mariam',
       role: 'Frontend Developer',
-      bio: `In Angular, developed the Landing Page with complete functionality,
-       design, and backend integration. also created and designed admin add/edit recipe page and admin dashboard with CRUD operations for users, recipes, and pending recipes,
-      and assisted with implementing search functionality and the navigation bar. `,
-      imageUrl:
-        'https://i.pinimg.com/originals/35/c1/0e/35c10edc6ef5cfc52b6f76f9f9455b77.jpg',
+      bio: `In Angular, I developed the Landing Page with complete functionality, design, and backend integration. 
+        I also created and designed the admin add/edit recipe page and admin dashboard, including CRUD operations for users, recipes, and pending recipes. 
+        Additionally, I assisted in implementing search functionality and the navigation bar. I developed the footer and the invalid route error page. 
+        Furthermore, I designed login and registration popup cards, implemented a function to toggle password visibility, 
+        and formatted the date of birth to yyyy-mm-dd. Finally, all components are fully responsive.`,
+      imageUrl: 'https://i.pinimg.com/originals/35/c1/0e/35c10edc6ef5cfc52b6f76f9f9455b77.jpg'
     },
     {
       name: 'Dannel',

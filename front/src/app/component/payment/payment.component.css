@@ -4,7 +4,7 @@
 
 button {
   padding: 14px 1rem;
-  background-color: var(--main-color);
+  background-color: var(--main-btn-bg);
 }
 
 button:hover {

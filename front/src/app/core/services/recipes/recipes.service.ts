@@ -14,8 +14,8 @@ export class RecipesService {
     
   }
 
-  getSingleRecipe(id:any): Observable<any>{
-    return this.http.get<any>(`http://127.0.0.1:8000/api/recipes/${id}`)
+  getSingleRecipe(id: any): Observable<any> {
+    return this.http.get<any>(`http://127.0.0.1:8000/api/recipes/${id}`);
   }
 
   postRecipe(data: any){
@@ -88,6 +88,7 @@ export class RecipesService {
       throw new Error('No authorization token found');
     }
   }
+  
 
 
 }

@@ -1,6 +1,6 @@
 <div class="container">
   <div *ngIf="!success" class="w-100">
-    <p class="fw-bold mb-4 col-12">Personal Information</p>
+    <p class="fw-bold mb-4 col-12" style="font-size: 25px;">Personal Information</p>
     <form [formGroup]="EditForm" (ngSubmit)="EditUser()">
       <div class="mb-3">
         <label for="Username" class="form-label fs-5">Name</label>
@@ -11,20 +11,21 @@
         <input type="date" id="DOB" formControlName="DOB" class="form-control">
       </div>
       <label for="gender" class="form-label fs-5">Gender</label>
-      <div class="d-flex mb-3">
+
+      <div class="d-flex">
         <div class="form-check me-3" *ngFor="let option of gender; let i = index">
           <input class="form-check-input" type="radio" [value]="option" formControlName="gender" id="gender{{i}}">
           <label class="form-check-label" for="gender{{i}}">{{option}}</label>
         </div>
       </div>
 
-      <button type="submit" class="btn text-light px-4 mt-4">Edit</button>
+      <button type="submit" class="btn text-light px-4 mt-4 mb-2">Edit</button>
     </form>
   </div>
 
-  <div *ngIf="success" class="text-center mb-4">
+  <div *ngIf="success" class="text-center mb-3 pt-4">
     <i class="far fa-check-circle check-icon" style="color: var(--btn-color); font-size: 50px;"></i>
-    <p class="text-center" style="color: var(--footer-color);">Your Personal information has been edited successfully!</p>
+    <p class="text-center" style="color: var(--primary-text-color);">Your Personal information has been edited successfully!</p>
   </div>
 </div>
 

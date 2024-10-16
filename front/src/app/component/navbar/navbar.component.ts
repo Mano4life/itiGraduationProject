@@ -33,7 +33,6 @@ export class NavbarComponent implements OnInit {
   admin:boolean=false;
   premium:boolean=false;
   darkMode: boolean = false; // Track dark mode state
-  isCollapsed: boolean = true;
 
   constructor(private serv:UsersService, private router: Router) { }
   
@@ -41,36 +40,39 @@ export class NavbarComponent implements OnInit {
     console.log('dar', this.darkMode)
     if (this.darkMode) {
       document.body.classList.add('dark-mode');
-      document.documentElement.style.setProperty('--main-background', "#f9f9ff")
-      document.documentElement.style.setProperty('--main-color', "white")
-      document.documentElement.style.setProperty('--second-color', "offwhite")
-      document.documentElement.style.setProperty('--third-color', "#eee")
+      document.documentElement.style.setProperty('--main-background', "#222")
+      document.documentElement.style.setProperty('--main-btn-bg', "#395963")
+      document.documentElement.style.setProperty('--second-color', "#4E4F50")
+      document.documentElement.style.setProperty('--third-color', "#4E4F50")
       document.documentElement.style.setProperty('--boxCategory-color', "#F6E1D3")
       document.documentElement.style.setProperty('--btn-color', "#fe735c")
-      document.documentElement.style.setProperty('--boxShadow-color', "rgba(244, 47, 44, 0.32)")
+      document.documentElement.style.setProperty('--boxShadow-color', "#4a4d55")
       document.documentElement.style.setProperty('--footer-color', "#191c24")
-      document.documentElement.style.setProperty('--primary-text-color', "white")
       document.documentElement.style.setProperty('--bs-card-title-color', "red")
-      document.documentElement.style.setProperty('--main-color', "#191c24")
-
-      // document.documentElement.style.setProperty('--second-color', "white")
-      // document.documentElement.style.setProperty('--main-color', "#ff0000")
-      // document.documentElement.style.setProperty('--main-color', "#ff0000")
-      // document.documentElement.style.setProperty('--main-color', "white")
-      // document.documentElement.style.setProperty('--main-color', "#e9e9e8")
+      document.documentElement.style.setProperty('--main-color', "#F2F3F4")
+      document.documentElement.style.setProperty('--primary-text-color', "#F2F3F4")
+      document.documentElement.style.setProperty('--admin-table', "#262a36")
+      document.documentElement.style.setProperty('--admin-secondary', "#1E212B")
+      document.documentElement.style.setProperty('--input-bg', "#4E4F50")
+      document.documentElement.style.setProperty('--btn-outline-color', "#eee")
     } else {
       document.documentElement.style.setProperty('--main-background', "#f9f9ff")
       document.documentElement.style.setProperty('--main-color', "#395963")
+      document.documentElement.style.setProperty('--main-btn-bg', "#395963")
       document.documentElement.style.setProperty('--second-color', "#777")
       document.documentElement.style.setProperty('--third-color', "#eee")
       document.documentElement.style.setProperty('--boxCategory-color', "#F6E1D3")
       document.documentElement.style.setProperty('--btn-color', "#fe735c")
       document.documentElement.style.setProperty('--boxShadow-color', "rgba(244, 47, 44, 0.32)")
       document.documentElement.style.setProperty('--footer-color', "#191c24")
-      document.documentElement.style.setProperty('--primary-text-color', "white")
+      document.documentElement.style.setProperty('--primary-text-color', "--main-color")
       document.documentElement.style.setProperty('--bs-card-title-color', "red")
-      
-
+      document.documentElement.style.setProperty('--admin-table', "white")
+      document.documentElement.style.setProperty('--admin-secondary', "#f9fafb")
+      document.documentElement.style.setProperty('--input-bg', "#f9f9ff")
+      document.documentElement.style.setProperty('--bs-body-color', "red")
+      document.documentElement.style.setProperty('--btn-outline-color', "#212121")
+    
     }
   }
 
@@ -122,5 +124,27 @@ export class NavbarComponent implements OnInit {
     const nextModalEl = document.getElementById(nextModalId);
     const nextModalInstance = new bootstrap.Modal(nextModalEl);
     nextModalInstance.show();
+  }
+
+  // Toggle Navbar
+  isCollapsed: boolean = true;
+  toggleNavbar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+  closeNavbar() {
+    this.isCollapsed = true;
+  }
+
+  // Close the navbar when clicking outside
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: Event) {
+    const clickedElement = event.target as HTMLElement;
+    const navbar = document.getElementById('navbarNav');
+
+    // Check if the clicked element is not inside the navbar or the toggle button
+    if ( navbar && !navbar.contains(clickedElement) && !clickedElement.closest('.navbar-toggler')) {
+      this.isCollapsed = true;
+    }
   }
 }

@@ -8,8 +8,8 @@ form input:focus, form textarea:focus {
 }
 
 form button {
-  background-color: var(--main-color);
-  border-color: var(--main-color);
+  background-color: var(--main-btn-bg);
+  border-color: var(--main-btn-bg);
 }
 
 form button:hover{

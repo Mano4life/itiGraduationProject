@@ -29,7 +29,7 @@ class CommentController extends Controller
     public function store(Request $request ,Recipe $recipe)
     {
         $validator = Validator::make($request->all(), [
-            'content' => 'required|string|min:5',
+            'content' => 'required|string|min:2',
             
         ]);
     
@@ -51,7 +51,7 @@ class CommentController extends Controller
    public function update(Request $request, Comment $comment)
    {
      $validator = Validator::make($request->all(), [
-        'content' => 'required|string|min:5',
+        'content' => 'required|string|min:2',
         'recipe_id' => 'required|exists:recipes,id', 
      ]);
 

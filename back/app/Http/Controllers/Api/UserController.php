@@ -141,6 +141,7 @@ class UserController extends Controller
         'tiktok_link' => 'nullable|string|min:5',
         'instagram_link' => 'nullable|string|min:5',
         'youtube_link' => 'nullable|string|min:5',
+        'bio' => 'nullable|string'
     ]);
 
     if ($validator->fails()) {
@@ -152,6 +153,7 @@ class UserController extends Controller
             'tiktok_link' => $request['tiktok_link'] === '' ? null : $request['tiktok_link'],
             'instagram_link' => $request['instagram_link'] === '' ? null : $request['instagram_link'],
             'youtube_link' => $request['youtube_link'] === '' ? null : $request['youtube_link'],
+            'bio' => $request['bio'] === '' ? null : $request['bio'],
         ]);
 
         return response()->json($user, 201); 
@@ -159,24 +161,7 @@ class UserController extends Controller
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
-///update bio
-public function updateBio(Request $request){
-    $user = $request->user();
-    $validator = Validator::make($request->all(), [
-        'bio' => 'required|string|min:5',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
-            }
-        try {
-            $user->update([
-                'bio' => $request['bio'],
-                ]);
-            return response()->json(['message' => 'Bio updated successfully'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-            }
-}
+
 ///public profile
 public function publicView(User $user)
 {

@@ -22,18 +22,18 @@
                   Links
               </p>
             </div>
-            <div *ngIf="publicProfile.youtube_link" class="me-4 shadow-sm px-4 py-2 rounded">
-              <a [href]="publicProfile.youtube_link" class="links">
-              <img src="assets/imgs/youtube.png" alt="youtube" class="link-img">Youtube </a>
-            </div>
-            <div *ngIf="publicProfile.instagram_link" class="me-4 shadow-sm px-4 py-2 rounded">
-              <a [href]="publicProfile.instagram_link" class="links">
-              <img src="assets/imgs/instagram.png" alt="instagram" class="link-img">Instagram</a>
-            </div>
-            <div *ngIf="publicProfile.tiktok_link" class="me-4 shadow-sm px-4 py-2 rounded">
-              <a [href]="publicProfile.tiktok_link" class="links">
-              <img src="assets/imgs/tiktok.png" alt="tiktok" class="link-img">TikTok</a>
-            </div>
+            <a *ngIf="publicProfile.youtube_link" [href]="publicProfile.youtube_link" target="_blank" class="me-4 shadow-sm px-4 py-2 rounded links">
+              <img src="assets/imgs/youtube.png" alt="youtube" class="link-img">
+              Youtube
+            </a>
+            <a *ngIf="publicProfile.instagram_link" [href]="publicProfile.instagram_link" target="_blank" class="me-4 shadow-sm px-4 py-2 rounded links">
+              <img src="assets/imgs/instagram.png" alt="instagram" class="link-img">
+              Instagram
+            </a>
+            <a *ngIf="publicProfile.tiktok_link" [href]="publicProfile.tiktok_link" target="_blank" class="me-4 shadow-sm px-4 py-2 rounded links">
+              <img src="assets/imgs/darkTiktok.png" alt="tiktok" class="link-img">
+              TikTok
+            </a>
           </div>
     </section>
 

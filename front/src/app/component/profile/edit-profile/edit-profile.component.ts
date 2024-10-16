@@ -30,18 +30,22 @@ export class EditProfileComponent {
   ngOnInit() {
     console.log(this.EditForm);
     this.UserId=this.routerActive.snapshot.params['id']
+    this.getUser();
+    const modalElement = document.getElementById('Edit');
+    if (modalElement) {
+      this.renderer.listen(modalElement, 'hidden.bs.modal', () => {
+        this.success = false; // Reset the success flag
+        this.getUser()
+      });
+    }
+    
+  }
+  getUser(){
     this.serv.getUser().subscribe((response:any)=>{
       this.UserList=response;
       this.populateForm();
       
     })
-    const modalElement = document.getElementById('Edit');
-    if (modalElement) {
-      this.renderer.listen(modalElement, 'hidden.bs.modal', () => {
-        this.success = false; // Reset the success flag
-      });
-    }
-    
   }
   populateForm() {
     this.EditForm.patchValue({
@@ -67,8 +71,10 @@ export class EditProfileComponent {
       this.serv.EditUser(data).subscribe({
         next:(res:any)=>{
           this.success=true;
-          window.location.reload()
-          //this.router.navigate(['/profile',this.UserId]);
+          const modalHeader = document.getElementById('ProfileHeader');
+          if (modalHeader) {
+            modalHeader.style.display = 'none'; // Hide the header
+          }
         },
         error:(err:any)=>{
           console.log(err)
