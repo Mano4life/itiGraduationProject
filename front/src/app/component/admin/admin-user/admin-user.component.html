@@ -1,7 +1,7 @@
 
 <!-- User Section -->
 <p-table [value]="users" [paginator]="true" [rows]="4">
-    <ng-template pTemplate="caption">
+    <ng-template  pTemplate="caption ">
         <div class="fs-3 dataName">
             <h1>Users</h1>
         </div>
@@ -9,15 +9,15 @@
     <ng-template pTemplate="header">
         <tr class="titleTable">
             <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th class="text-center">Edit</th>
-            <th class="text-center">Delete</th>
+            <th >Name</th>
+            <th >Email</th>
+            <th >Role</th>
+            <th  class="text-center">Edit</th>
+            <th  class="text-center">Delete</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
-        <tr class="dataTable">
+        <tr class="dataTable" >
             <td>{{ data.id }}</td>
             <td>{{ data.name }}</td>
             <td>{{ data.email }}</td>

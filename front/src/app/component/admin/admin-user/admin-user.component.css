@@ -16,3 +16,6 @@
 .dataTable td{
     font-size: 18px;
 }
+.p-datatable-table .p-datatable-tbody > tr {
+    background-color:#191c24 !important;
+}
