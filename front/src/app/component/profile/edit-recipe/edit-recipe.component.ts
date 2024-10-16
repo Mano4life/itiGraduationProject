@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormArray,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PendingRecipesService } from '../../../core/services/pendinRecipes/pending-recipes.service';
 import { CommonModule } from '@angular/common';
@@ -9,17 +15,19 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './edit-recipe.component.html',
-  styleUrl: './edit-recipe.component.css'
+  styleUrl: './edit-recipe.component.css',
 })
 export class EditRecipeComponent {
-  editForm!:FormGroup;
-  pendingRecipeId!:number;
+  editForm!: FormGroup;
+  pendingRecipeId!: number;
   editPendingRecipe!: any;
-  imageLink:any;
+  imageLink: any;
 
-  constructor(private routerActive:ActivatedRoute, private pendingRecipeService: PendingRecipesService,private router:Router) {
-
-  }
+  constructor(
+    private routerActive: ActivatedRoute,
+    private pendingRecipeService: PendingRecipesService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.editForm = new FormGroup({
@@ -43,65 +51,101 @@ export class EditRecipeComponent {
         Validators.maxLength(2000),
       ]),
       image: new FormControl(null, [Validators.required]),
-      category: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
-      subcategory: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
+      category: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[A-Za-z]+$/),
+      ]),
+      subcategory: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[A-Za-z]+$/),
+      ]),
       ingredients: new FormArray([
         new FormGroup({
-          name: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]),
-          quantity: new FormControl('', [Validators.required, Validators.min(1)]),
+          name: new FormControl('', [
+            Validators.required,
+            Validators.maxLength(100),
+            Validators.pattern(/^[A-Za-z\s]+$/),
+          ]),
+          quantity: new FormControl('', [
+            Validators.required,
+            Validators.min(1),
+          ]),
           measurement_unit: new FormControl('', [Validators.required]),
         }),
-      ])
+      ]),
     });
-    this.pendingRecipeId = this.routerActive.snapshot.params['id']; 
+    this.pendingRecipeId = this.routerActive.snapshot.params['id'];
 
     if (this.pendingRecipeId) {
-      this.pendingRecipeService.getOnePendingRecipe(this.pendingRecipeId).subscribe((data:any) => {
-        this.editPendingRecipe = data;
-        this.imageLink = data.image;
-        console.log("output pending",this.editPendingRecipe)
-        // Patch the form with the basic recipe data
-        this.editForm.patchValue({
-          name: data.name,
-          servings: data.servings,
-          time: data.time,
-          description: data.description,
-          directions: data.directions,
-          category:data.category.name,
-          subcategory:data.subcategory.name,
-        });
-        console.log(this.editForm)
-    
-        // Clear existing ingredients and add new ones
-        const ingredientsFormArray = this.editForm.get('ingredients') as FormArray;
-        ingredientsFormArray.clear(); // Clear the existing FormArray
-    
-        data.ingredients.forEach((ingredient: { name: string; pivot:{quantity: string; measurement_unit: string }}) => {
-          const ingredientGroup = new FormGroup({
-            name: new FormControl(ingredient.name, [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]),
-            quantity: new FormControl(ingredient.pivot.quantity, [Validators.required, Validators.min(1)]),
-            measurement_unit: new FormControl(ingredient.pivot.measurement_unit, Validators.required),
+      this.pendingRecipeService
+        .getOnePendingRecipe(this.pendingRecipeId)
+        .subscribe((data: any) => {
+          this.editPendingRecipe = data;
+          this.imageLink = data.image;
+          console.log('output pending', this.editPendingRecipe);
+          // Patch the form with the basic recipe data
+          this.editForm.patchValue({
+            name: data.name,
+            servings: data.servings,
+            time: data.time,
+            description: data.description,
+            directions: data.directions,
+            category: data.category.name,
+            subcategory: data.subcategory.name,
           });
-          ingredientsFormArray.push(ingredientGroup); // Add to FormArray
+          console.log(this.editForm);
+
+          // Clear existing ingredients and add new ones
+          const ingredientsFormArray = this.editForm.get(
+            'ingredients'
+          ) as FormArray;
+          ingredientsFormArray.clear(); // Clear the existing FormArray
+
+          data.ingredients.forEach(
+            (ingredient: {
+              name: string;
+              pivot: { quantity: string; measurement_unit: string };
+            }) => {
+              const ingredientGroup = new FormGroup({
+                name: new FormControl(ingredient.name, [
+                  Validators.required,
+                  Validators.maxLength(100),
+                  Validators.pattern(/^[A-Za-z\s]+$/),
+                ]),
+                quantity: new FormControl(ingredient.pivot.quantity, [
+                  Validators.required,
+                  Validators.min(1),
+                ]),
+                measurement_unit: new FormControl(
+                  ingredient.pivot.measurement_unit,
+                  Validators.required
+                ),
+              });
+              ingredientsFormArray.push(ingredientGroup); // Add to FormArray
+            }
+          );
         });
-      });
-    }}
-
-    selectedFile: File | null = null;
-    onFileSelected(event: any) {
-      this.selectedFile = event.target.files[0] as File;
     }
+  }
 
-  editRecipe(){
+  selectedFile: File | null = null;
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] as File;
+  }
+
+  editRecipe() {
     if (!this.editForm.valid) {
       console.log('Form is invalid');
       for (const control in this.editForm.controls) {
         if (this.editForm.controls[control].invalid) {
-          console.log(`${control} is invalid:`, this.editForm.controls[control].errors);
+          console.log(
+            `${control} is invalid:`,
+            this.editForm.controls[control].errors
+          );
         }
       }
     }
-    
+
     if (this.editForm.valid) {
       const formData = new FormData();
 
@@ -122,7 +166,7 @@ export class EditRecipeComponent {
       formData.append('category', this.editForm.value.category);
       formData.append('subcategory', this.editForm.value.subcategory);
       formData.append('user_id', this.editPendingRecipe.user.id);
-      formData.append('status', 'pending')
+      formData.append('status', 'pending');
 
       // Append each ingredient to FormData
       this.editForm.value.ingredients.forEach(
@@ -143,20 +187,19 @@ export class EditRecipeComponent {
       );
       console.log('data to be sent', formData);
 
-      this.pendingRecipeService.updatePendingRecipe(this.pendingRecipeId, formData).subscribe({
-        next: (res) => {
-          console.log('Recipe edited successfully:', res);
-          this.router.navigate(['/profile']);
-        },
-        error: (err) => {
-          console.error('Error creating recipe', err);
-        },
-      });
+      this.pendingRecipeService
+        .updatePendingRecipe(this.pendingRecipeId, formData)
+        .subscribe({
+          next: (res) => {
+            console.log('Recipe edited successfully:', res);
+            this.router.navigate(['/profile']);
+          },
+          error: (err) => {
+            console.error('Error creating recipe', err);
+          },
+        });
     }
   }
 
-  onImageUpload(img:any){
-
-  }
-
+  onImageUpload(img: any) {}
 }

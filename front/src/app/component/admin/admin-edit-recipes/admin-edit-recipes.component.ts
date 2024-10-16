@@ -32,32 +32,48 @@ export class AdminEditRecipesComponent {
 
   ngOnInit() {
     this.editForm = new FormGroup({
-      id: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      // Username:new FormControl('',[Validators.required]),
-      servings: new FormControl('', [
+      name: new FormControl('', [
         Validators.required,
-        Validators.minLength(1),
+        Validators.maxLength(150),
+        Validators.pattern(/^[A-Za-z0-9\s,.'-]+$/),
       ]),
-      time: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      servings: new FormControl('', [Validators.required, Validators.min(1)]),
+      time: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(1440),
+      ]),
       description: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.maxLength(1000),
       ]),
       directions: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.maxLength(2000),
       ]),
-      image: new FormControl(null),
+      image: new FormControl(null, [Validators.required]),
       category: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.pattern(/^[A-Za-z]+$/),
       ]),
       subcategory: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.pattern(/^[A-Za-z]+$/),
       ]),
-      ingredients: new FormArray([]),
+      ingredients: new FormArray([
+        new FormGroup({
+          name: new FormControl('', [
+            Validators.required,
+            Validators.maxLength(100),
+            Validators.pattern(/^[A-Za-z\s]+$/),
+          ]),
+          quantity: new FormControl('', [
+            Validators.required,
+            Validators.min(1),
+          ]),
+          measurement_unit: new FormControl('', [Validators.required]),
+        }),
+      ]),
     });
     this.editRecipeId = this.routerActive.snapshot.params['id'];
 
@@ -77,8 +93,6 @@ export class AdminEditRecipesComponent {
             time: data.time,
             description: data.description,
             directions: data.directions,
-            // Username: data.user.name,
-            // image: this.imageLink,
             category: data.category.name,
             subcategory: data.subcategory.name,
           });
@@ -97,11 +111,15 @@ export class AdminEditRecipesComponent {
               measurement_unit: string;
             }) => {
               const ingredientGroup = new FormGroup({
-                name: new FormControl(ingredient.name, Validators.required),
-                quantity: new FormControl(
-                  ingredient.quantity,
-                  Validators.required
-                ),
+                name: new FormControl(ingredient.name, [
+                  Validators.required,
+                  Validators.maxLength(100),
+                  Validators.pattern(/^[A-Za-z\s]+$/),
+                ]),
+                quantity: new FormControl(ingredient.quantity, [
+                  Validators.required,
+                  Validators.min(1),
+                ]),
                 measurement_unit: new FormControl(
                   ingredient.measurement_unit,
                   Validators.required
