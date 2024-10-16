@@ -26,7 +26,10 @@
 }
 
 .btn {
-  background-color: var(--main-color);
+  background-color: var(--main-btn-bg);
+}
+.text-secondary{
+  color:var(--main-color) !important ;
 }
 
 .btn:hover {
@@ -105,7 +108,7 @@
 
 }
 .links{
-  color: rgb(109 118 126);
+  color:var(--main-color) !important;
   text-decoration: none;
 }
 .links:hover{
@@ -117,6 +120,9 @@
   max-width: 100%; 
   word-wrap: break-word;
 }
+
+
+
 @media (max-width: 1024px) {
   .ad-banner h1 {
       font-size: 35px;

@@ -67,6 +67,10 @@ p {
   text-decoration: underline;
 }
 
+.recipe-desc-container {
+  background-color: var(--third-color);
+}
+
 .recipe-description {
   font-family: var(--second-font);
   color: var(--main-color);
