@@ -68,6 +68,12 @@ body.dark-mode .team-section {
   font-size: 17px;
   color: #F2F3F4 !important;
 }
+.dark-mode .modal-content{
+  background-color: #191c24;
+}
+.dark-mode .showIcon{
+  color: #191c24;
+}
 
 body {
   --primary: #FFFFFF;
