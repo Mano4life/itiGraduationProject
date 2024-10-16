@@ -203,8 +203,6 @@ p-table tr[data-status="denied"] {
   background-color: #ffe0e0 !important;
 }
 
-/*  */
-p-table .p-paginator {
 .dark-mode p-table .p-paginator {
   background: var(--admin-table) !important;
   color:var(--primary-text-color);
