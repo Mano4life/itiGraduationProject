@@ -19,11 +19,16 @@ export class SocialsComponent {
   success:boolean=false;
 
   constructor(private routerActive:ActivatedRoute,private router:Router,private serv:UsersService ,private renderer: Renderer2) { 
-
     this.LinksForm=new FormGroup({
-      youtube_link: new FormControl(''),
-      instagram_link: new FormControl(''),
-      tiktok_link: new FormControl(''),
+      youtube_link:  new FormControl('', [ 
+        Validators.pattern(/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=|embed\/|v\/|.+\?v=)?([^&\n?#]+)$/)
+      ]),
+      instagram_link: new FormControl('', [
+        Validators.pattern(/^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9._-]+\/?$/)
+      ]),
+      tiktok_link: new FormControl('', [
+        Validators.pattern(/^(https?:\/\/)?(www\.)?tiktok\.com\/(@[a-zA-Z0-9._-]+\/video\/[0-9]+|@[a-zA-Z0-9._-]+\/?)$/)
+      ]),
       bio:new FormControl(''),
       
     })
@@ -45,7 +50,6 @@ export class SocialsComponent {
         this.success = false; 
       });
     }
-    
   }
   populateForm() {
     this.LinksForm.patchValue({
