@@ -121,10 +121,12 @@ export class RecipesComponent {
         this.ingredentsList = Response.map((sub: any, index: number) => ({
           id: sub.id, 
           name: sub.name,
-          sub_name:sub.recipes[0].subcategory.name,
-          category_name:sub.recipes[0].category.name,
+          sub_name: sub.recipes?.[0]?.subcategory?.name,
+          category_name: sub.recipes?.[0]?.category?.name,
           selected: false, 
+          
         }))
+        console.log("list", this.ingredentsList);
         
       },
       error: (error: any) => {
@@ -145,8 +147,6 @@ export class RecipesComponent {
         (selectedSubcategories.length === 0 || selectedSubcategories.includes(sub.sub_name)) &&
         (this.selectedCategories.length === 0 || this.selectedCategories.includes(sub.category_name.toLowerCase()))
     );
-
-
     });
   }
   time = [

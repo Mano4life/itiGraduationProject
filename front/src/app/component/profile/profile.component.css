@@ -94,26 +94,33 @@
   font-size: 21px;
   color: #eee;    
 }
-.link-img{
-  width: 35px;
+/* Links */
+.links {
+  color: rgb(109 118 126);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+.links:hover {
+  color: var(--btn-color);
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+.shadow-sm:hover {
+  box-shadow: 0px 0px 30px var(--boxShadow-color) !important;
+}
+.link-img {
+  width: 40px;
   padding-right: 10px;
 }
+
 .chef{
   width: 50px;
   padding-bottom: 10px;
   padding-right: 10px;
 
 }
-.links{
-  color: rgb(109 118 126);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 20px;
-}
-.links:hover{
-  color: var(--btn-color);
-  text-decoration: underline;
-}
+
 .bio{
   display: inline-block; 
   max-width: 100%; 

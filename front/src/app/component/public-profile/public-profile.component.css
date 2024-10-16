@@ -34,19 +34,22 @@
   color: rgb(109 118 126);
   text-decoration: none;
   font-weight: 500;
+  transition: all 0.3s;
 }
 .links:hover {
   color: var(--btn-color);
   text-decoration: underline;
+  transform: scale(1.05);
+}
+.shadow-sm:hover {
+  box-shadow: 0px 0px 30px var(--boxShadow-color) !important;
 }
 .link-img {
   width: 40px;
   padding-right: 10px;
 }
-.link-img{
-    width: 45px;
-    padding-right: 10px;
-}
+
+/* Bio */
 .bio{
     margin:0px 40px 5px 27px;
 }

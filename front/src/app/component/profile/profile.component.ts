@@ -18,6 +18,8 @@ export class ProfileComponent {
   user!: any;
   isPremium:boolean = false;
   socials:boolean=true;
+  darkMode: boolean = false;
+
   constructor(
     private recipesService: RecipesService,
     private usersService: UsersService,
@@ -44,7 +46,21 @@ export class ProfileComponent {
       });
     }
 
+    // const darkModeSetting = localStorage.getItem('darkMode');
+    // this.darkMode = darkModeSetting === 'true';
+    // this.setImageSource();
+    
+    const darkModeSetting = localStorage.getItem('darkMode');
+    this.darkMode = darkModeSetting === 'true';
+    if(this.darkMode){
+      this.imgSrc = 'assets/imgs/darkTiktok.png'
+    }else{
+      this.imgSrc = 'assets/imgs/tiktok.png'
+    }
   }
+  // DarkMode
+  imgSrc: string = '';
+
   getUser(){
     this.usersService.getUser().subscribe((res) => {
       this.user = res;
