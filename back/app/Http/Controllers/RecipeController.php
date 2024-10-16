@@ -249,7 +249,7 @@ class RecipeController extends Controller
         ]);
         $userId = $request->user()->id;
 
-        $recipe->users_ratings()->sync([
+        $recipe->users_ratings()->syncWithoutDetaching([
             $userId => ['rating' => $request->rating]
         ]);
 

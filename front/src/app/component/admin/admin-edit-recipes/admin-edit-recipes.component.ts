@@ -51,7 +51,7 @@ export class AdminEditRecipesComponent {
         Validators.required,
         Validators.maxLength(2000),
       ]),
-      image: new FormControl(null, [Validators.required]),
+      image: new FormControl(null),
       category: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[A-Za-z]+$/),

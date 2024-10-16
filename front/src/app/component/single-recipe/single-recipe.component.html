@@ -135,7 +135,8 @@
         <div
           class="card border-0"
           style="width: 300px; cursor: pointer"
-          (click)="onRecipeClick(recipe.id)"
+          (click)="recipe.user_id !==1  &&  token !=='premium' ? premiumRecipeClick() : onRecipeClick(recipe.id)"
+          
         >
           <div class="image-wrapper overflow-hidden rounded">
             <img
@@ -144,6 +145,7 @@
               alt="Title"
               style="height: 330px"
             />
+            <span class="badge position-absolute top-0 start-0 ms-3 mt-2" *ngIf="recipe.user_id !==1"><i class="fa-solid fa-crown pb-1" ></i></span>
           </div>
           <div class="card-body px-0">
             <div class="category-time d-flex align-items-baseline justify-content-between">

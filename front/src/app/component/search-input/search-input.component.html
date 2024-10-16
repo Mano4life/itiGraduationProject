@@ -12,9 +12,10 @@
 
     <div *ngIf="(searchResults$ | async)?.length as resultsLength" class="dropdown-list overflow-y-auto w-100" style="max-height: 300px;">
       <ul *ngIf="resultsLength > 0">
-        <li *ngFor="let result of displayedResults" class="dropdown-item" (click)="onSelect(result.id)">
+        <li *ngFor="let result of displayedResults" class="dropdown-item"  (click)="result.user?.role === 'premium' &&  token !=='premium' ? premiumRecipeClick() : onSelect(result.id)">
             <img [src]="result.image" alt="{{ result.name }}" />
-            <p>{{ result.name }}</p>
+            
+            <p>{{ result.name }} <span class="badge " *ngIf="result.user?.role === 'premium'"><i class="fa-solid fa-crown pb-1" ></i></span></p>
             <!-- <p>{{ result.ingerdiants.name }}</p> -->
         </li>
         </ul>
