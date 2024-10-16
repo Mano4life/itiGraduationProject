@@ -75,12 +75,6 @@ export class AddRecipeComponent {
     }
   }
 
-  selectedFile: File | null = null;
-
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0] as File;
-  }
-
   // Get the FormArray for ingredients
   get ingredients() {
     return this.recipeForm.get('ingredients') as FormArray;
@@ -100,6 +94,11 @@ export class AddRecipeComponent {
   // Remove an ingredient form group from the FormArray
   removeIngredient(index: number) {
     this.ingredients.removeAt(index);
+  }
+
+  selectedFile: File | null = null;
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] as File;
   }
 
   onSubmission(modal: string) {

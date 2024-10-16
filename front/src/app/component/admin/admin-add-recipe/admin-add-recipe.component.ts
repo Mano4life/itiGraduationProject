@@ -41,34 +41,33 @@ export class AdminAddRecipeComponent {
     });
 
     this.recipeForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      Serving: new FormControl('', [
+      name: new FormControl('', [
         Validators.required,
-        Validators.minLength(1),
+        Validators.maxLength(150),
+        Validators.pattern(/^[A-Za-z0-9\s,.'-]+$/),
       ]),
-      time: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      Serving: new FormControl('', [Validators.required, Validators.min(1)]),
+      time: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(1440),
+      ]),
       description: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.maxLength(1000),
       ]),
       directions: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.maxLength(2000),
       ]),
       image: new FormControl(null, [Validators.required]),
-      category: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
-      subcategory: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
+      subcategory: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
       ingredients: new FormArray([
         new FormGroup({
-          name: new FormControl('', Validators.required),
-          quantity: new FormControl('', Validators.required),
-          measurement_unit: new FormControl('', Validators.required),
+          name: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]),
+          quantity: new FormControl('', [Validators.required, Validators.min(1)]),
+          measurement_unit: new FormControl('', [Validators.required]),
         }),
       ]),
     });
@@ -81,11 +80,6 @@ export class AdminAddRecipeComponent {
     }
   }
 
-  selectedFile: File | null = null;
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0] as File;
-  }
-
   // Get the FormArray for ingredients
   get ingredients() {
     return this.recipeForm.get('ingredients') as FormArray;
@@ -94,9 +88,9 @@ export class AdminAddRecipeComponent {
   // Add a new ingredient form group to the FormArray
   addIngredient() {
     const ingredientGroup = new FormGroup({
-      name: new FormControl('', Validators.required),
-      quantity: new FormControl('', Validators.required),
-      measurement_unit: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]),
+      quantity: new FormControl('', [Validators.required, Validators.min(1)]),
+      measurement_unit: new FormControl('', [Validators.required]),
     });
 
     this.ingredients.push(ingredientGroup);
@@ -105,6 +99,11 @@ export class AdminAddRecipeComponent {
   // Remove an ingredient form group from the FormArray
   removeIngredient(index: number) {
     this.ingredients.removeAt(index);
+  }
+
+  selectedFile: File | null = null;
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] as File;
   }
 
   onSubmission(modal: string) {
