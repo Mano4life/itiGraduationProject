@@ -41,6 +41,8 @@ p{
   font-family: var(--second-font);
 }
 
+
+/* Dark Mode */
 body.dark-mode .team-section {
   background-color: #101218 !important;/* OUR TEAM FRAME*/
   color: #fcf9f9 !important; /*OUR TEAM*/
@@ -99,7 +101,7 @@ body.dark-mode .latest{
   background-color: #191c24!important;
 }
 .dark-mode .overview-section{
- background-color: #101218 !important;
+  background-color: #101218 !important;
 }
 .dark-mode .all-recipes-title{
   color: #eee !important;
@@ -162,10 +164,25 @@ p-table th {
   background-color: var(--admin-table)  !important ;
   color:var(--primary-text-color) !important;
 }
-p-table tr {
-  background-color: var(--admin-table) !important ;
-  color:var(--primary-text-color);
+
+
+/* Admin Section */
+.dark-mode p-table tr {
+  background-color: var(--admin-table-dark) !important;
+  color: var(--primary-text-color-dark) !important;
 }
+.dark-mode p-table tr.dark-mode-pending  {
+  background-color: #ffe0e0 !important;
+  color: black !important;
+}
+.dark-mode p-table tr.dark-mode-pending .fa-check {
+  color: black !important;
+}
+p-table tr[data-status="denied"] {
+  background-color: #ffe0e0 !important;
+}
+
+/*  */
 p-table .p-paginator {
   background: var(--admin-table) !important;
   color:var(--primary-text-color);

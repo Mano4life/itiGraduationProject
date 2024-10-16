@@ -30,6 +30,7 @@ export class AdminRecipesComponent {
     })
   }
 
+  // Get all recipes
   getAllRecipes(){
     this.recipesServices.getRecipes().subscribe((res) => {
       this.recipes = res;
