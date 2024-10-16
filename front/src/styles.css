@@ -59,9 +59,10 @@ p{
 
 
 /* dark mode */
+/*OUR TEAM Section*/
 body.dark-mode .team-section {
-  background-color: #101218 !important;/* OUR TEAM FRAME*/
-  color: #fcf9f9 !important; /*OUR TEAM*/
+  background-color: #101218 !important;
+  color: #fcf9f9 !important; 
 }
 .dark-mode .logoContent p{
   font-size: 17px;
@@ -95,27 +96,27 @@ body.dark-mode .member-photo {
   border-color: #ffffff !important;
 }
 
+/* most of the background pages*/
 body.dark-mode {
-  background-color: #101218 !important; /* most of the background pages*/
+  background-color: #101218 !important; 
   color: #ffffff;
 }
-/* 
-.dark-mode .white {
-  background-color: transparent !important;
-} */
 
 .dark-mode .navbar {
   background-color: #101218 !important;
 }
 
+/* footer */
 body.dark-mode .footer {
-  background-color: #191c24 !important; /* footer */
+  background-color: #191c24 !important; 
 }
 .dark-mode .mydailyrecipes{
   background-color: #101218 !important;
 }
+
+/*LATEST RECIPES*/
 body.dark-mode .latest{
-  background-color: #101218 !important; /*LATEST RECIPES*/
+  background-color: #101218 !important;
 }
 .dark-mode .border{
   background-color: #191c24!important;
@@ -143,7 +144,6 @@ body.dark-mode .latest{
   color: #F2F3F4 !important;
 }
 .dark-mode .home-banner .banner-left {
-  /* background: #101218 !important; */
   height: 100vh;
   padding: 0 16%;
 }
@@ -202,7 +202,10 @@ background-color: #101218 !important;
 p-table tr[data-status="denied"] {
   background-color: #ffe0e0 !important;
 }
-
+/* public profile */
+.dark-mode .bio.text-secondary{
+  color: white !important;
+}
 /*  */
 p-table .p-paginator {
 .dark-mode p-table .p-paginator {
@@ -244,7 +247,6 @@ p-table .p-paginator-page{
 }
 
 .dark-mode .p-datatable-header {
-  /* background-color: green; */
   background: var(--admin-secondary) !important;
   border-color: var(--third-color) !important;
   color:var(--primary-text-color);
@@ -260,7 +262,7 @@ p-table .p-paginator-page{
 }
 
 .dark-mode .modal-content {
-background-color: var(--main-background) !important;
+  background-color: var(--main-background) !important;
 }
 
 .dark-mode input[type="file"]::-webkit-file-upload-button {
@@ -312,5 +314,5 @@ background-color: var(--main-background) !important;
   p {
     font-size: 0.8rem;
   }
- 
+}
 }
