@@ -23,75 +23,75 @@
         </button>
       </div>
 
-        <!-- Links Section -->
-        <div class="col-xl-4 links">
-          <div [ngClass]="{'hidelinks': isCollapsed}">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }"
-                  [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                  <img src="assets/imgs/home.png" alt="home" class="chef">
-                  <p>Home</p>
-                </a>
-              </li>
+      <!-- Links Section -->
+      <div class="col-xl-4 links">
+        <div [ngClass]="{'hidelinks': isCollapsed}">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="" [routerLinkActiveOptions]="{ exact: true }"
+                [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/home.png" alt="home" class="chef">
+                <p>Home</p>
+              </a>
+            </li>
 
-              <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="/recipes" [queryParams]="{ reverse: 'true' }" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                  <img src="assets/imgs/recipes.png" alt="recipes" class="chef">
-                  <p>Recipes</p>
-                </a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/recipes" [queryParams]="{ reverse: 'true' }" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/recipes.png" alt="recipes" class="chef">
+                <p>Recipes</p>
+              </a>
+            </li>
 
-              <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="/about" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                  <img src="assets/imgs/about.png" alt="about" class="chef">
-                  <p>About</p>
-                </a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/about" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/about.png" alt="about" class="chef">
+                <p>About</p>
+              </a>
+            </li>
 
-              <li class="nav-item" *ngIf="isLogged && !admin">
-                <a class="nav-link" routerLinkActive="active" routerLink="/profile" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                  <img src="assets/imgs/chef.png" alt="person" class="chef">
-                  <p>Profile</p>
-                </a>
-              </li>
+            <li class="nav-item" *ngIf="isLogged && !admin">
+              <a class="nav-link" routerLinkActive="active" routerLink="/profile" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/chef.png" alt="person" class="chef">
+                <p>Profile</p>
+              </a>
+            </li>
 
-              <li class="nav-item" *ngIf="isLogged && admin">
-                <a class="nav-link" routerLinkActive="active" routerLink="/admin" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                  <img src="assets/imgs/chef.png" alt="person" class="chef">
-                  <p>Admin</p>
-                </a>
-              </li>
+            <li class="nav-item" *ngIf="isLogged && admin">
+              <a class="nav-link" routerLinkActive="active" routerLink="/admin" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/chef.png" alt="person" class="chef">
+                <p>Admin</p>
+              </a>
+            </li>
 
-              <!-- Login -->
-              <li class="nav-item" *ngIf="!isLogged">
-                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                  <img src="assets/imgs/login.png" alt="login" class="chef">
-                  <p>Login</p>
-                </a>
-              </li>
+            <!-- Login -->
+            <li class="nav-item" *ngIf="!isLogged">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/login.png" alt="login" class="chef">
+                <p>Login</p>
+              </a>
+            </li>
 
 
-              <!-- Logout -->
-              <li class="nav-item" *ngIf="isLogged">
-                <a class="nav-link" (click)="logout()" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                  <img src="assets/imgs/logout.png" alt="logout" class="chef">
-                  <p>Logout</p>
-                </a>
-              </li>
+            <!-- Logout -->
+            <li class="nav-item" *ngIf="isLogged">
+              <a class="nav-link" (click)="logout()" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/logout.png" alt="logout" class="chef">
+                <p>Logout</p>
+              </a>
+            </li>
 
-              <!-- Dark Mode -->
-              <li class="nav-item" id="darkMode" (click)="toggleDarkMode()">
-                <a class="nav-link" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
-                  <img src="assets/imgs/dark.png" alt="dark" class="chef" *ngIf="!darkMode" >
-                  <img src="assets/imgs/light.png" alt="dark" class="chef" *ngIf="darkMode">
-                  <p *ngIf="darkMode">Light</p>
-                  <p *ngIf="!darkMode">Dark</p>
-                </a>
-              </li>
-            </ul>
-          </div>
+            <!-- Dark Mode -->
+            <li class="nav-item" id="darkMode" (click)="toggleDarkMode()">
+              <a class="nav-link" [ngStyle]="{ color: darkMode == true? 'white' : 'var(--main-color)'}">
+                <img src="assets/imgs/dark.png" alt="dark" class="chef" *ngIf="!darkMode" >
+                <img src="assets/imgs/light.png" alt="dark" class="chef" *ngIf="darkMode">
+                <p *ngIf="darkMode">Light</p>
+                <p *ngIf="!darkMode">Dark</p>
+              </a>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
   </div>
 </nav>

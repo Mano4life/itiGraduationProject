@@ -22,6 +22,7 @@
   --footer-color: #191c24;
 
   --primary-text-color: white;
+  --admin-table :#262a36;
 }
 
 h1{
@@ -143,14 +144,45 @@ background-color: #101218 !important;
 }
 
 .dark-mode h5, .dark-mode h1,.dark-mode .fa-cog, .dark-mode .time{
-  color: #fff !important;
+  color: var(--primary-text-color);
 }
 
 .dark-mode .fa-cog:hover {
   color: var(--btn-color) !important;
 }
+p-table th {
+  background-color: var(--admin-table)  !important ;
+  color:var(--primary-text-color);
+}
+p-table tr {
+  background-color: var(--admin-table) !important ;
+  color:var(--primary-text-color);
+}
+p-table .p-paginator {
+  background: var(--admin-table) !important;
+  color:var(--primary-text-color);
+}
+p-table .p-paginator-page:not(.p-highlight):hover {
+  background: --boxShadow-color !important;
+}
 
+p-table .p-paginator-next:not(.p-disabled):not(.p-highlight):hover {
+  background:--boxShadow-color !important;
+}
 
+p-table .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
+  background: --boxShadow-color!important;
+}
+p-table .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover {
+  background: --boxShadow-color !important;
+}
+
+p-table .p-paginator-first:not(.p-disabled):not(.p-highlight):hover {
+  background: --boxShadow-color!important;
+}
+p-table .p-highlight {
+  background: --boxShadow-color !important;
+}
 /* Add other necessary component or container classes */
 
 
