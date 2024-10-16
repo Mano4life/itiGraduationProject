@@ -105,7 +105,7 @@
   transition: all 0.3s;
 }
 .links:hover {
-  color: var(--btn-color);
+  color: var(--btn-color) !important;
   text-decoration: underline;
   transform: scale(1.05);
 }
