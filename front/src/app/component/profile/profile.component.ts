@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -22,23 +22,38 @@ export class ProfileComponent {
     private recipesService: RecipesService,
     private usersService: UsersService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
     this.recipesService.getRecipes().subscribe((res) => {
       this.recipes = res;
-    });
-
-      this.usersService.getUser().subscribe((res) => {
-        this.user = res;
-        if(this.user.role == 'premium' || this.user.role == 'admin'){
-          this.isPremium = true;
-        }
-        console.log("output",this.user)
+    });      
+    this.getUser();
+    const modalElement = document.getElementById('Edit')  ;
+    if (modalElement) {
+      this.renderer.listen(modalElement, 'hidden.bs.modal', () => {
+        this.getUser();
       });
-  }
+    }
+    const Socialmodal = document.getElementById('Socials')  ;
+    if (Socialmodal) {
+      this.renderer.listen(Socialmodal, 'hidden.bs.modal', () => {
+        this.getUser();
+      });
+    }
 
+  }
+  getUser(){
+    this.usersService.getUser().subscribe((res) => {
+      this.user = res;
+      if(this.user.role == 'premium' || this.user.role == 'admin'){
+        this.isPremium = true;
+      }
+      console.log("output",this.user)
+    });
+  }
   onRecipeClick(id: number) {
     this.router.navigate(['/recipes', id]);
   }

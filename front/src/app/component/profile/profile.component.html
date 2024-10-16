@@ -13,7 +13,7 @@
     ></a>
   </section>
 
-  <section class="mt-5">
+  <section class="mt-5" *ngIf="isPremium">
     <div class="title d-flex justify-content-between align-items-center">
       <h1 class="text-capitalize m-0 fw-bold" style="color: var(--main-color);">
         <img src="assets/imgs/bio.png" alt="chef" class="chef"> Bio</h1>
@@ -100,7 +100,7 @@
     </div>
     <div
       class="row d-flex justify-content-center flex-column align-items-center"
-      *ngIf="user.recipes_saves.length == 0"
+      *ngIf="user?.recipes_saves.length == 0"
     >
       <div class="p-5">
         <h3 class="text-center text-secondary p-5">
@@ -120,7 +120,7 @@
     </div>
     <div
       class="body mt-4 d-flex gap-3 overflow-x-auto"
-      *ngIf="user.pending_recipes.length != 0"
+      *ngIf="user?.pending_recipes.length != 0"
     >
       <div
         *ngFor="let recipe of user?.pending_recipes"
@@ -142,12 +142,12 @@
           <span
             class="badge bg-secondary position-absolute top-0 start-0 m-2"
             *ngIf="recipe.status == 'pending'"
-            >{{ recipe.status }}</span
+            >{{ recipe?.status }}</span
           >
           <span
             class="badge bg-danger position-absolute top-0 start-0 m-2"
             *ngIf="recipe.status == 'denied'"
-            >{{ recipe.status }}</span
+            >{{ recipe?.status }}</span
           >
           <span
             class="text-center position-absolute top-0 end-0 m-2"
@@ -181,7 +181,7 @@
       
         <img src="assets/img/empty-box_4826310.png" alt="empty" class="w-100">
       </div> -->
-      <div class="p-5" *ngIf="user.pending_recipes.length == 0">
+      <div class="p-5" *ngIf="user?.pending_recipes.length == 0">
         <h3 class="text-center text-secondary p-5">
           No Submitted Recipes yet!!
         </h3>
@@ -285,7 +285,7 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" id="ProfileHeader">
         <button
           type="button"
           class="btn-close"
@@ -308,7 +308,7 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" id="SocialsHeader" >
         <button
           type="button"
           class="btn-close"

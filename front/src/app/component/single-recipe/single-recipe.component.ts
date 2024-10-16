@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import {
   Router,
@@ -32,7 +32,7 @@ declare var bootstrap: any;
   templateUrl: './single-recipe.component.html',
   styleUrl: './single-recipe.component.css',
 })
-export class SingleRecipeComponent {
+export class SingleRecipeComponent implements OnInit  {
   commentForm!: FormGroup;
   recipe: any;
   ingredient: any;
@@ -61,41 +61,9 @@ export class SingleRecipeComponent {
     this.activatedRoute.paramMap.subscribe((params) => {
       const recipeId = params.get('id');
       // Fetch the recipe based on recipe ID
-      if (recipeId) {
-        this.recipesService.getSingleRecipe(recipeId).subscribe((res) => {
-          console.log('single recipe', res);
-          this.recipe = res;
-          this.currentRecipeId = this.recipe.id;
-          this.originalServings = this.recipe.servings; // Store original servings
-          this.scaledIngredients = [...this.recipe.ingredients]; // Copy ingredients for scaling
-
-          // Initialize an array to collect all related recipes
-          let allRelatedRecipes: any[] = [];
-
-          // Fetch ingredients related to the recipe and gather related recipes
-          this.recipe.ingredients.forEach((ingredient:any) => {
-            this.recipesService
-              .getIngredient(ingredient.id)
-              .subscribe((res) => {
-                this.ingredient = res;
-
-                // Collect related recipes from each ingredient
-                this.ingredient.recipes.forEach((relatedRecipe: any) => {
-                  // Add the related recipe only if it's not the current recipe
-                  if (relatedRecipe.id !== this.currentRecipeId) {
-                    allRelatedRecipes.push(relatedRecipe);
-                  }
-                });
-
-                // Remove duplicate recipes
-                this.relatedRecipes = allRelatedRecipes.filter(
-                  (recipe, index, self) =>
-                    index === self.findIndex((r) => r.id === recipe.id)
-                );
-              });
-          });
-        });
-      }
+     this.getSingleRecipe(recipeId) 
+        
+      
     });
     this.user.getUser().subscribe({
       next: (res) => {
@@ -124,10 +92,45 @@ export class SingleRecipeComponent {
 
   onRecipeClick(id: number) {
     this.router.navigate(['/recipes', id]);
+    
   }
 
   selectedBtn: string[] = ['one'];
+  getSingleRecipe(recipeId:any){
+    this.recipesService.getSingleRecipe(recipeId).subscribe((res) => {
+      console.log('single recipe', res);
+      this.recipe = res;
+      this.currentRecipeId = this.recipe.id;
+      this.originalServings = this.recipe.servings; // Store original servings
+      this.scaledIngredients = [...this.recipe.ingredients]; // Copy ingredients for scaling
 
+      // Initialize an array to collect all related recipes
+      let allRelatedRecipes: any[] = [];
+
+      // Fetch ingredients related to the recipe and gather related recipes
+      this.recipe.ingredients.forEach((ingredient:any) => {
+        this.recipesService
+          .getIngredient(ingredient.id)
+          .subscribe((res) => {
+            this.ingredient = res;
+
+            // Collect related recipes from each ingredient
+            this.ingredient.recipes.forEach((relatedRecipe: any) => {
+              // Add the related recipe only if it's not the current recipe
+              if (relatedRecipe.id !== this.currentRecipeId) {
+                allRelatedRecipes.push(relatedRecipe);
+              }
+            });
+
+            // Remove duplicate recipes
+            this.relatedRecipes = allRelatedRecipes.filter(
+              (recipe, index, self) =>
+                index === self.findIndex((r) => r.id === recipe.id)
+            );
+          });
+      });
+    });
+  }
   // Method to scale the ingredients
   scaleIngredients(scaleFactor: number) {
     this.recipe.servings = Math.trunc(this.originalServings * scaleFactor);
@@ -231,11 +234,11 @@ export class SingleRecipeComponent {
   }
 
   onStarClick(starValue: number, modal: string) {
-    if(localStorage.getItem('admin_token') ||  localStorage.getItem('user_token') ||  localStorage.getItem('premium_token')) {
+    if(localStorage.getItem('admin_token') ||  localStorage.getItem('auth_token') ||  localStorage.getItem('premium_token')) {
       this.starRate = starValue;
       this.recipesService.rateRecipe(this.recipe.id, this.starRate).subscribe({
       next: (response) => {
-        console.log(response);
+        this.getSingleRecipe(this.recipe.id)
       },
       error: (error) => {
         console.error(error);
@@ -250,14 +253,16 @@ export class SingleRecipeComponent {
     }
   }
   comment(modal: string) {
-    if(localStorage.getItem('admin_token') ||  localStorage.getItem('user_token') ||  localStorage.getItem('premium_token')) {
+    if(localStorage.getItem('admin_token') ||  localStorage.getItem('auth_token') ||  localStorage.getItem('premium_token')) {
       if (this.commentForm.valid) {
         console.log(this.commentForm.value);
         this.recipesService
           .comment(this.recipe.id, this.commentForm.value)
           .subscribe({
             next: (response) => {
-              window.location.reload();
+              //window.location.reload();
+              this.commentForm.reset();
+              this.getSingleRecipe(this.recipe.id)
             },
             error: (error) => {
               console.error(error);

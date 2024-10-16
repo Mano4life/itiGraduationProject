@@ -30,6 +30,17 @@ export class SocialsComponent {
   }
   ngOnInit() {
     console.log(this.LinksForm);
+    this.getUser()
+    const modalElement = document.getElementById('Socials');
+    if (modalElement) {
+      this.renderer.listen(modalElement, 'hidden.bs.modal', () => {
+        this.success = false; 
+        this.getUser()
+      });
+    }
+    
+  }
+  getUser(){
     this.serv.getUser().subscribe({
       next: (res) => {
         this.LinksList=res
@@ -39,13 +50,6 @@ export class SocialsComponent {
           console.error(err);
           }
     })
-    const modalElement = document.getElementById('Socials');
-    if (modalElement) {
-      this.renderer.listen(modalElement, 'hidden.bs.modal', () => {
-        this.success = false; 
-      });
-    }
-    
   }
   populateForm() {
     this.LinksForm.patchValue({
@@ -64,17 +68,19 @@ export class SocialsComponent {
       youtube_link: this.LinksForm.value.youtube_link,
       instagram_link: this.LinksForm.value.instagram_link,
       tiktok_link: this.LinksForm.value.tiktok_link,
+      bio:this.LinksForm.value.bio
       
     }
-    var bio={
-      bio:this.LinksForm.value.bio
-    }
+    
     if(this.LinksForm.valid){
       this.notvalid=false;
       this.serv.putSocialMedia(data).subscribe({
         next: (res) => {
           this.success = true;
-          window.location.reload()
+          const modalHeader = document.getElementById('SocialsHeader');
+          if (modalHeader) {
+            modalHeader.style.display = 'none'; 
+          }
         },
         error: (err) => {
           console.error(err);
@@ -86,13 +92,7 @@ export class SocialsComponent {
     else{
       this.notvalid=true;
     }
-    this.serv.putBio(bio).subscribe({
-      next: (res) => {
-      },
-      error: (err) => {
-        console.error(err);
-        }
-    })
+    
   }
 
 }
