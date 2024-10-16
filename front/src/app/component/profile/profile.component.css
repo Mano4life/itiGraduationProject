@@ -107,6 +107,8 @@
 .links{
   color: rgb(109 118 126);
   text-decoration: none;
+  font-weight: 500;
+  font-size: 20px;
 }
 .links:hover{
   color: var(--btn-color);

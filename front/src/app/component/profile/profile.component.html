@@ -36,19 +36,19 @@
 
     <div class="d-flex  " style="margin-left: 65px;">
       <div *ngIf="user.youtube_link" class="me-4 rounded">
-        <a [href]="user.youtube_link" class="links">
+        <a [href]="user.youtube_link" target="_blank" class="links">
           <img src="assets/imgs/youtube.png" alt="youtube" class="link-img">
           Youtube
         </a>
       </div>
       <div *ngIf="user.instagram_link" class="me-4 rounded">
-        <a [href]="user.instagram_link" class="links">
+        <a [href]="user.instagram_link" target="_blank" class="links">
           <img src="assets/imgs/instagram.png" alt="instagram" class="link-img">
           Instagram
         </a>
       </div>
       <div *ngIf="user.tiktok_link" class="me-4 rounded">
-        <a [href]="user.tiktok_link" class="links">
+        <a [href]="user.tiktok_link" target="_blank" class="links">
           <img src="assets/imgs/tiktok.png" alt="tiktok" class="link-img">
           Tiktok
         </a>
@@ -285,7 +285,7 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header" id="ProfileHeader">
+      <div class="modal-header" id="ProfileHeader" style="border-bottom: none;">
         <button
           type="button"
           class="btn-close"
@@ -293,7 +293,7 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding-top: 0;">
         <app-edit-profile></app-edit-profile>
       </div>
     </div>
@@ -308,7 +308,7 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header" id="SocialsHeader" >
+      <div class="modal-header" id="SocialsHeader" style="border-bottom: none;">
         <button
           type="button"
           class="btn-close"
@@ -316,7 +316,7 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding-top: 0;">
         <app-socials></app-socials>
       </div>
     </div>

@@ -23,15 +23,15 @@
               </p>
             </div>
             <div *ngIf="publicProfile.youtube_link" class="me-4 shadow-sm px-4 py-2 rounded">
-              <a [href]="publicProfile.youtube_link" class="links">
+              <a [href]="publicProfile.youtube_link" target="_blank" class="links">
               <img src="assets/imgs/youtube.png" alt="youtube" class="link-img">Youtube </a>
             </div>
             <div *ngIf="publicProfile.instagram_link" class="me-4 shadow-sm px-4 py-2 rounded">
-              <a [href]="publicProfile.instagram_link" class="links">
+              <a [href]="publicProfile.instagram_link" target="_blank" class="links">
               <img src="assets/imgs/instagram.png" alt="instagram" class="link-img">Instagram</a>
             </div>
             <div *ngIf="publicProfile.tiktok_link" class="me-4 shadow-sm px-4 py-2 rounded">
-              <a [href]="publicProfile.tiktok_link" class="links">
+              <a [href]="publicProfile.tiktok_link" target="_blank" class="links">
               <img src="assets/imgs/tiktok.png" alt="tiktok" class="link-img">TikTok</a>
             </div>
           </div>

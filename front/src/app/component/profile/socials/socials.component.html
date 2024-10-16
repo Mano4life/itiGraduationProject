@@ -1,25 +1,47 @@
 <div class="container">
     <div *ngIf="!success" class="w-100">
-      <p class="fw-bold mb-4 col-12">Links</p>
+      <p class="fw-bold mb-4 col-12" style="font-size: 25px;">Links</p>
+
       <form [formGroup]="LinksForm" (ngSubmit)="Link()">
         <div class="mb-3">
-          <label for="youtube_link" class="form-label fs-5"><img src="assets/imgs/youtube.png" alt="youtube" >Youtube</label>
+          <label for="youtube_link" class="form-label fs-5">
+            <img src="assets/imgs/youtube.png" alt="youtube" >
+            Youtube
+          </label>
           <input type="text" id="youtube_link" formControlName="youtube_link" class="form-control" placeholder="https://www.youtube.com/">
+          <small *ngIf="LinksForm.controls['youtube_link'].errors?.['pattern']" 
+              class="form-text text-danger">Invalid Link format.
+          </small>
         </div>
+        
         <div class="mb-3">
-            <label for="instagram_link" class="form-label fs-5"><img src="assets/imgs/instagram.png" alt="instagram" >Instagram</label>
+            <label for="instagram_link" class="form-label fs-5">
+              <img src="assets/imgs/instagram.png" alt="instagram" >
+              Instagram
+            </label>
             <input type="text" id="instagram_link" formControlName="instagram_link" class="form-control" placeholder="https://www.instagram.com/">
+            <small *ngIf="LinksForm.controls['instagram_link'].errors?.['pattern']" 
+              class="form-text text-danger">Invalid Link format.
+            </small>
         </div>
+        
         <div class="mb-3">
-            <label for="tiktok_link" class="form-label fs-5"><img src="assets/imgs/tiktok.png" alt="tiktok" >TikTok</label>
+            <label for="tiktok_link" class="form-label fs-5">
+              <img src="assets/imgs/tiktok.png" alt="tiktok" >
+              TikTok
+            </label>
             <input type="text" id="tiktok_link" formControlName="tiktok_link" class="form-control" placeholder="https://www.tiktok.com/">
+            <small *ngIf="LinksForm.controls['tiktok_link'].errors?.['pattern']" 
+              class="form-text text-danger">Invalid Link format.
+            </small>
         </div>
-        <div class="mb-3">
+        
+        <div>
           <label for="bio" class="form-label fs-5">Bio</label>
           <textarea id="bio" formControlName="bio" class="form-control" placeholder="Add your Bio"></textarea>
+        </div>
 
-      </div>
-        <button type="submit" class="btn text-light px-4 mt-4">Save</button>
+        <button type="submit" class="btn text-light px-4 mt-4 mb-2" [disabled]="LinksForm.invalid">Save</button>
       </form>
     </div>
   

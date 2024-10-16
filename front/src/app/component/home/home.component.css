@@ -189,7 +189,7 @@ body{
 }
 @media (max-width: 991px) {
     .home-banner .banner-left{
-        height: 60vh;
+        height: 30vh;
     }
     .home-banner .banner-left h1 {
         font-size: 40px;

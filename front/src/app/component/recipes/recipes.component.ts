@@ -117,7 +117,7 @@ export class RecipesComponent {
   getingredients() {
     this.ingredent.getIngredients().subscribe({
       next: (Response: any) => {
-        console.log(Response)
+        console.log("Recipes Filter",Response)
         this.ingredentsList = Response.map((sub: any, index: number) => ({
           id: sub.id, 
           name: sub.name,

@@ -33,7 +33,6 @@ export class NavbarComponent implements OnInit {
   admin:boolean=false;
   premium:boolean=false;
   darkMode: boolean = false; // Track dark mode state
-  isCollapsed: boolean = true;
 
   constructor(private serv:UsersService, private router: Router) { }
   
@@ -52,6 +51,9 @@ export class NavbarComponent implements OnInit {
       document.documentElement.style.setProperty('--primary-text-color', "white")
       document.documentElement.style.setProperty('--bs-card-title-color', "red")
       document.documentElement.style.setProperty('--main-color', "#191c24")
+      document.documentElement.style.setProperty('--main-color', "white")
+      document.documentElement.style.setProperty('--primary-text-color', "white")
+      document.documentElement.style.setProperty('--admin-table', "#262a36")
 
       // document.documentElement.style.setProperty('--second-color', "white")
       // document.documentElement.style.setProperty('--main-color', "#ff0000")
@@ -67,10 +69,10 @@ export class NavbarComponent implements OnInit {
       document.documentElement.style.setProperty('--btn-color', "#fe735c")
       document.documentElement.style.setProperty('--boxShadow-color', "rgba(244, 47, 44, 0.32)")
       document.documentElement.style.setProperty('--footer-color', "#191c24")
-      document.documentElement.style.setProperty('--primary-text-color', "white")
+      document.documentElement.style.setProperty('--primary-text-color', "--main-color")
       document.documentElement.style.setProperty('--bs-card-title-color', "red")
-      
-
+      document.documentElement.style.setProperty('--admin-table', "white")
+    
     }
   }
 
@@ -122,5 +124,27 @@ export class NavbarComponent implements OnInit {
     const nextModalEl = document.getElementById(nextModalId);
     const nextModalInstance = new bootstrap.Modal(nextModalEl);
     nextModalInstance.show();
+  }
+
+  // Toggle Navbar
+  isCollapsed: boolean = true;
+  toggleNavbar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+  closeNavbar() {
+    this.isCollapsed = true;
+  }
+
+  // Close the navbar when clicking outside
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: Event) {
+    const clickedElement = event.target as HTMLElement;
+    const navbar = document.getElementById('navbarNav');
+
+    // Check if the clicked element is not inside the navbar or the toggle button
+    if ( navbar && !navbar.contains(clickedElement) && !clickedElement.closest('.navbar-toggler')) {
+      this.isCollapsed = true;
+    }
   }
 }
