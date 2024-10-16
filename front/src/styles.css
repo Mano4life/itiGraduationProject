@@ -7,11 +7,15 @@
   --main-background: #f9f9ff;
 
   --main-color: #395963;
+  --main-btn-bg: #395963;
   --second-color: #777;
   --third-color: #eee;
+  --bs-modal-bg: var(--main-background) !important;
 
   --boxCategory-color: #F6E1D3;
+  --input-bg: var(--main-background); 
   --btn-color: #fe735c; 
+  --btn-outline-color: #212121; 
 
   --boxShadow-color: rgba(244, 47, 44, 0.32);
 
@@ -21,8 +25,12 @@
   
   --footer-color: #191c24;
 
-  --primary-text-color: white;
+  --primary-text-color: #F2F3F4;
+  --admin-secondary: #f9fafb;
   --admin-table :#262a36;
+  /* --bs-body-bg: var(--main-background) !important; */
+  --bs-body-color: var(--primary-text-color) !important;
+  --bs-border-color: var(--second-color) !important;
 }
 
 h1{
@@ -39,7 +47,7 @@ body.dark-mode .team-section {
 }
 .dark-mode .logoContent p{
   font-size: 17px;
-  color: white !important;
+  color: #F2F3F4 !important;
 }
 
 body {
@@ -51,7 +59,7 @@ body.dark-mode .team-member {
   color: #ffffff !important;
 }
 .dark-mode .h1{
-  background-color: white !important;
+  background-color: #F2F3F4 !important;
 }
 body.dark-mode .member-info h3,
 body.dark-mode .member-info h4,
@@ -59,7 +67,7 @@ body.dark-mode .member-info p {
   color: #ffffff !important;
 }
 body.dark-mode .hamburger{
-  border-color: white !important;
+  border-color: #F2F3F4 !important;
 }
 body.dark-mode .member-photo {
   border-color: #ffffff !important;
@@ -69,10 +77,10 @@ body.dark-mode {
   background-color: #101218 !important; /* most of the background pages*/
   color: #ffffff;
 }
-
+/* 
 .dark-mode .white {
   background-color: transparent !important;
-}
+} */
 
 .dark-mode .navbar {
   background-color: #101218 !important;
@@ -98,19 +106,19 @@ body.dark-mode .latest{
 }
 
 .dark-mode .heading{
-  color: white !important;
+  color: #F2F3F4 !important;
 }
 .dark-mode .menu-column ul {
   list-style-type: none;
   padding-left: 0;
-  color: white !important;
+  color: #F2F3F4 !important;
 }
 .dark-mode .menu-column ul li a {
   color: #FE735C;
   text-decoration: none;
   font-size: 20px;
   font-weight: 400;
-  color: white !important;
+  color: #F2F3F4 !important;
 }
 .dark-mode .home-banner .banner-left {
   /* background: #101218 !important; */
@@ -118,7 +126,7 @@ body.dark-mode .latest{
   padding: 0 16%;
 }
 .dark-mode .smallBox .categoryName h5{
-  color: white !important;
+  color: #F2F3F4 !important;
   text-transform: uppercase;
   font-weight: 600;
   font-family: var(--second-font);
@@ -152,7 +160,7 @@ background-color: #101218 !important;
 }
 p-table th {
   background-color: var(--admin-table)  !important ;
-  color:var(--primary-text-color);
+  color:var(--primary-text-color) !important;
 }
 p-table tr {
   background-color: var(--admin-table) !important ;
@@ -161,27 +169,59 @@ p-table tr {
 p-table .p-paginator {
   background: var(--admin-table) !important;
   color:var(--primary-text-color);
+  border-color: var(--third-color);
 }
+p-table .p-paginator-page {
+  border-radius: 100%;
+  color: var(--primary-text-color)
+}
+
 p-table .p-paginator-page:not(.p-highlight):hover {
-  background: --boxShadow-color !important;
+  border-radius: 100%;
+  background: var(--boxShadow-color) !important;
 }
 
 p-table .p-paginator-next:not(.p-disabled):not(.p-highlight):hover {
-  background:--boxShadow-color !important;
+  background:var(--boxShadow-color) !important;
 }
 
 p-table .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
-  background: --boxShadow-color!important;
+  background: var(--boxShadow-color)!important;
 }
 p-table .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover {
-  background: --boxShadow-color !important;
+  background: var(--boxShadow-color) !important;
 }
 
 p-table .p-paginator-first:not(.p-disabled):not(.p-highlight):hover {
-  background: --boxShadow-color!important;
+  background: var(--boxShadow-color)!important;
 }
 p-table .p-highlight {
-  background: --boxShadow-color !important;
+  background: var(--boxShadow-color) !important;
+}
+
+.p-datatable-header {
+  /* background-color: green; */
+  background: var(--admin-secondary) !important;
+  border-color: var(--third-color) !important;
+  color:var(--primary-text-color);
+}
+
+.form-control {
+  background-color: var(--input-bg) !important;
+  color: var(--primary-text-color) !important
+}
+.form-control::placeholder {
+  color: var(--primary-text-color) !important;
+  opacity: 0.8;
+}
+
+.modal-content {
+  background-color: var(--main-background) !important;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  color: var(--primary-text-color) !important;
+  background-color: var(--main-background) !important;
 }
 /* Add other necessary component or container classes */
 

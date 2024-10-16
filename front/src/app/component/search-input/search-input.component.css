@@ -72,7 +72,8 @@ input::placeholder {
 }
 
 .dropdown-list li:hover {
-    background-color: white;
+    /* background-color: var(--footer-color); */
+    opacity: 50%;
 }
 
 .dropdown-list li img {

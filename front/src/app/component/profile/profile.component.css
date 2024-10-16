@@ -26,7 +26,10 @@
 }
 
 .btn {
-  background-color: var(--main-color);
+  background-color: var(--main-btn-bg);
+}
+.text-secondary{
+  color:var(--main-color) !important ;
 }
 
 .btn:hover {
@@ -120,12 +123,22 @@
   padding-right: 10px;
 
 }
-
+.links{
+  color:var(--main-color) !important;
+  text-decoration: none;
+}
+.links:hover{
+  color: var(--btn-color);
+  text-decoration: underline;
+}
 .bio{
   display: inline-block; 
   max-width: 100%; 
   word-wrap: break-word;
 }
+
+
+
 @media (max-width: 1024px) {
   .ad-banner h1 {
       font-size: 35px;

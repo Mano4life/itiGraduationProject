@@ -97,7 +97,7 @@
 <section>
   <div class="container d-flex flex-column w-80">
     <div class="row gx-3 mt-3">
-      <div class="col-lg-3 col-md-6 col-sm-12 white position-relative"  *ngFor="let item of getFilteredRecipes() | paginate: { itemsPerPage: 20, currentPage: p } ; let i = index" 
+      <div class="col-lg-3 col-md-6 col-sm-12 position-relative"  *ngFor="let item of getFilteredRecipes() | paginate: { itemsPerPage: 20, currentPage: p } ; let i = index" 
       (click)="item.user?.role === 'premium' &&  !isPremiumUser() ? premiumRecipeClick() : SingleRecipePage(item.id)"
       
       >
