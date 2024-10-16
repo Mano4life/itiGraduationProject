@@ -23,27 +23,35 @@ export class EditRecipeComponent {
 
   ngOnInit() {
     this.editForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      servings: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      time: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(150),
+        Validators.pattern(/^[A-Za-z0-9\s,.'-]+$/),
+      ]),
+      servings: new FormControl('', [Validators.required, Validators.min(1)]),
+      time: new FormControl('', [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(1440),
+      ]),
       description: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.maxLength(1000),
       ]),
       directions: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
+        Validators.maxLength(2000),
       ]),
-      image: new FormControl(null),
-      category: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
-      subcategory: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
-      ingredients: new FormArray([])
+      image: new FormControl(null, [Validators.required]),
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
+      subcategory: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
+      ingredients: new FormArray([
+        new FormGroup({
+          name: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]),
+          quantity: new FormControl('', [Validators.required, Validators.min(1)]),
+          measurement_unit: new FormControl('', [Validators.required]),
+        }),
+      ])
     });
     this.pendingRecipeId = this.routerActive.snapshot.params['id']; 
 
@@ -70,8 +78,8 @@ export class EditRecipeComponent {
     
         data.ingredients.forEach((ingredient: { name: string; pivot:{quantity: string; measurement_unit: string }}) => {
           const ingredientGroup = new FormGroup({
-            name: new FormControl(ingredient.name, Validators.required),
-            quantity: new FormControl(ingredient.pivot.quantity, Validators.required),
+            name: new FormControl(ingredient.name, [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]),
+            quantity: new FormControl(ingredient.pivot.quantity, [Validators.required, Validators.min(1)]),
             measurement_unit: new FormControl(ingredient.pivot.measurement_unit, Validators.required),
           });
           ingredientsFormArray.push(ingredientGroup); // Add to FormArray
