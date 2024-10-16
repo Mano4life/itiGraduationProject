@@ -31,7 +31,7 @@
   <div class="servings mt-4 row p-2">
     <div class="servings col-lg-4">
       <span class="h5">number of servings: </span
-      ><span class="h2 fw-bold ms-2">{{ recipe.servings }} </span>
+      ><span class="h2 fw-bold ms-2">{{ recipe?.servings }} </span>
     </div>
     <div class="scale col-lg-4 my-3 my-lg-0">
       <span class="me-2 h5">scale:</span>
@@ -59,7 +59,7 @@
     </div>
     <div class="time col-lg-4">
       <span class="h5 me-2"><i class="fa fa-clock-o"></i></span>
-      <span class="h5">{{ recipe.time }} mins</span>
+      <span class="h5">{{ recipe?.time }} mins</span>
     </div>
   </div>
   <div class="how-to row mt-3 p-2">
@@ -175,7 +175,7 @@
         <button type="submit" class="btn btn-auth mt-3" >Comment</button>
       </form>
       <div class="comments">
-        <div *ngFor="let comment of recipe.comments" class="comment py-5">
+        <div *ngFor="let comment of recipe?.comments" class="comment py-5">
           <div>
             <div class="title text-capitalize"><span>{{ comment.user.name }}</span></div>
             <div class="body">

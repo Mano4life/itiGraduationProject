@@ -62,37 +62,37 @@ export class SingleRecipeComponent implements OnInit  {
       const recipeId = params.get('id');
       // Fetch the recipe based on recipe ID
      this.getSingleRecipe(recipeId) 
-        
-      
     });
-    this.user.getUser().subscribe({
-      next: (res) => {
-        this.userlist = res.recipes_saves;
-        this.isFavorite = this.userlist.some(
-          (userRecipe: { id: any }) => userRecipe.id === this.recipe.id
-        );
-        this.isSolid = this.userlist.some(
-          (userRecipe: { id: any }) => userRecipe.id === this.recipe.id
-        );
-
-        const val = res.ratings;
-        console.log(val);
-
-        const ratingUser = val.find(
-          (userrating: { recipe_id: any }) =>
-            userrating.recipe_id === this.recipe.id
-        );
-        this.starRate = ratingUser ? ratingUser.rating : 0;
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
+    this.getUser()
   }
+getUser(){
+  this.user.getUser().subscribe({
+    next: (res) => {
+      this.userlist = res.recipes_saves;
+      this.isFavorite = this.userlist.some(
+        (userRecipe: { id: any }) => userRecipe.id === this.recipe.id
+      );
+      this.isSolid = this.userlist.some(
+        (userRecipe: { id: any }) => userRecipe.id === this.recipe.id
+      );
 
+      const val = res.ratings;
+      console.log(val);
+
+      const ratingUser = val.find(
+        (userrating: { recipe_id: any }) =>
+          userrating.recipe_id === this.recipe.id
+      );
+      this.starRate = ratingUser ? ratingUser.rating : 0;
+    },
+    error: (err) => {
+      console.error(err);
+    },
+  });
+}
   onRecipeClick(id: number) {
     this.router.navigate(['/recipes', id]);
-    
+    this.getUser();
   }
 
   selectedBtn: string[] = ['one'];

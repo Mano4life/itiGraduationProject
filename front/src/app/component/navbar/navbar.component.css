@@ -122,6 +122,18 @@ li {
 .navbar-nav{
   justify-content: flex-end;
 }
+.navbar-toggler{
+  color: transparent !important;
+}
+.notnavbar-toggler-icon{
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: url('/assets/imgs/close.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
 
 /* Responsive */
 @media(max-width: 2000px){
