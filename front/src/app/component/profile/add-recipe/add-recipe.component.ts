@@ -56,8 +56,8 @@ export class AddRecipeComponent {
         Validators.maxLength(2000),
       ]),
       image: new FormControl(null, [Validators.required]),
-      category: new FormControl('', [Validators.required]),
-      subcategory: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
+      subcategory: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
       ingredients: new FormArray([
         new FormGroup({
           name: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern(/^[A-Za-z\s]+$/)]),
