@@ -36,6 +36,13 @@
               id="recipeName"
               formControlName="name"
             />
+            @if(editForm.controls['name'].invalid &&
+            editForm.controls['name'].touched){
+            <span class="text-danger fw-bold ms-1">name is not valid</span>
+            }@else if (editForm.controls['name'].valid &&
+            editForm.controls['name'].touched) {
+            <span class="text-success fw-bold ms-1">name is valid</span>
+            }
           </div>
           <div class="mb-3">
             <label for="Servings" class="form-label">Servings:</label>
@@ -45,6 +52,13 @@
               id="Servings"
               formControlName="servings"
             />
+            @if(editForm.controls['servings'].invalid &&
+            editForm.controls['servings'].touched){
+            <span class="text-danger fw-bold ms-1">Serving is not valid</span>
+            }@else if (editForm.controls['servings'].valid &&
+            editForm.controls['servings'].touched) {
+            <span class="text-success fw-bold ms-1">Serving is valid</span>
+            }
           </div>
           <div class="mb-3">
             <label for="time" class="form-label">Time:</label>
@@ -54,6 +68,13 @@
               id="time"
               formControlName="time"
             />
+            @if(editForm.controls['time'].invalid &&
+            editForm.controls['time'].touched){
+            <span class="text-danger fw-bold ms-1">time is not valid</span>
+            }@else if (editForm.controls['time'].valid &&
+            editForm.controls['time'].touched) {
+            <span class="text-success fw-bold ms-1">time is valid</span>
+            }
           </div>
           <div class="mb-3">
             <label for="category" class="form-label">Category:</label>
@@ -63,6 +84,13 @@
               id="category"
               formControlName="category"
             />
+            @if(editForm.controls['category'].invalid &&
+            editForm.controls['category'].touched){
+            <span class="text-danger fw-bold ms-1">category is not valid</span>
+            }@else if (editForm.controls['category'].valid &&
+            editForm.controls['category'].touched) {
+            <span class="text-success fw-bold ms-1">category is valid</span>
+            }
           </div>
           <div class="mb-3">
             <label for="subcategory" class="form-label">Sub Category:</label>
@@ -72,6 +100,13 @@
               id="subcategory"
               formControlName="subcategory"
             />
+            @if(editForm.controls['subcategory'].invalid &&
+            editForm.controls['subcategory'].touched){
+            <span class="text-danger fw-bold ms-1">subcategory is not valid</span>
+            }@else if (editForm.controls['subcategory'].valid &&
+            editForm.controls['subcategory'].touched) {
+            <span class="text-success fw-bold ms-1">subcategory is valid</span>
+            }
           </div>
           <div class="mb-3">
             <label for="Description" class="form-label">Description:</label>
@@ -81,6 +116,13 @@
               id="Description"
               formControlName="description"
             />
+            @if(editForm.controls['description'].invalid &&
+            editForm.controls['description'].touched){
+            <span class="text-danger fw-bold ms-1">description is not valid</span>
+            }@else if (editForm.controls['description'].valid &&
+            editForm.controls['description'].touched) {
+            <span class="text-success fw-bold ms-1">description is valid</span>
+            }
           </div>
           <div class="mb-3">
             <label for="Direction" class="form-label">Direction:</label>
@@ -90,6 +132,13 @@
               id="Direction"
               formControlName="directions"
             />
+            @if(editForm.controls['directions'].invalid &&
+            editForm.controls['directions'].touched){
+            <span class="text-danger fw-bold ms-1">directions is not valid</span>
+            }@else if (editForm.controls['directions'].valid &&
+            editForm.controls['directions'].touched) {
+            <span class="text-success fw-bold ms-1">directions is valid</span>
+            }
           </div>
           <div formArrayName="ingredients">
             <div
@@ -106,18 +155,17 @@
                   type="text"
                   class="form-control"
                   id="ingredientName"
-                  placeholder="ingredient..."
+                  placeholder="ex: flour, Olive Oil, shrimp..."
                   formControlName="name"
                 />
               </div>
-
               <div class="col-4">
                 <label for="quantity">Quantity:</label>
                 <input
                   type="text"
                   class="form-control"
                   id="quantity"
-                  placeholder="quantity..."
+                  placeholder="ex: 3.."
                   formControlName="quantity"
                 />
               </div>
@@ -128,13 +176,17 @@
                   type="text"
                   class="form-control"
                   id="measurementUnit"
-                  placeholder="measurement unit..."
+                  placeholder="ex: kg, gm, ltr, tbsp..."
                   formControlName="measurement_unit"
                 />
               </div>
             </div>
           </div>
-          <button type="submit" class="btn text-light mt-4 mb-5">
+          <button
+            type="submit"
+            class="btn text-light mt-4 mb-5"
+            [disabled]="!editForm.valid"
+          >
             Save Changes
           </button>
         </form>
