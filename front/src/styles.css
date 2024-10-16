@@ -41,6 +41,14 @@ p{
   font-family: var(--second-font);
 }
 
+.main-btn {
+  box-shadow: 0 0 40px var(--boxShadow-color) !important;
+}
+
+.dark-mode .round-planet {
+  border-color: #ddd !important;
+}
+
 body.dark-mode .team-section {
   background-color: #101218 !important;/* OUR TEAM FRAME*/
   color: #fcf9f9 !important; /*OUR TEAM*/
@@ -52,6 +60,10 @@ body.dark-mode .team-section {
 
 body {
   --primary: #FFFFFF;
+}
+
+.dark-mode .team-section .subtitle {
+  color: #ddd !important;
 }
 
 body.dark-mode .team-member {
@@ -158,71 +170,78 @@ background-color: #101218 !important;
 .dark-mode .fa-cog:hover {
   color: var(--btn-color) !important;
 }
-p-table th {
+
+.dark-mode p-table th {
   background-color: var(--admin-table)  !important ;
   color:var(--primary-text-color) !important;
 }
-p-table tr {
+.dark-mode p-table tr {
   background-color: var(--admin-table) !important ;
   color:var(--primary-text-color);
 }
-p-table .p-paginator {
+.dark-mode p-table .p-paginator {
   background: var(--admin-table) !important;
   color:var(--primary-text-color);
   border-color: var(--third-color);
 }
-p-table .p-paginator-page {
+
+p-table .p-paginator-page{
+  border-radius: 50%;
+}
+
+.dark-mode p-table .p-paginator-page {
   border-radius: 100%;
   color: var(--primary-text-color)
 }
 
-p-table .p-paginator-page:not(.p-highlight):hover {
+.dark-mode p-table .p-paginator-page:not(.p-highlight):hover {
   border-radius: 100%;
   background: var(--boxShadow-color) !important;
 }
 
-p-table .p-paginator-next:not(.p-disabled):not(.p-highlight):hover {
+.dark-mode p-table .p-paginator-next:not(.p-disabled):not(.p-highlight):hover {
   background:var(--boxShadow-color) !important;
 }
 
-p-table .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
+.dark-mode p-table .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
   background: var(--boxShadow-color)!important;
 }
-p-table .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover {
+.dark-mode p-table .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover {
   background: var(--boxShadow-color) !important;
 }
 
-p-table .p-paginator-first:not(.p-disabled):not(.p-highlight):hover {
+.dark-mode p-table .p-paginator-first:not(.p-disabled):not(.p-highlight):hover {
   background: var(--boxShadow-color)!important;
 }
-p-table .p-highlight {
+.dark-mode p-table .p-highlight {
   background: var(--boxShadow-color) !important;
 }
 
-.p-datatable-header {
+.dark-mode .p-datatable-header {
   /* background-color: green; */
   background: var(--admin-secondary) !important;
   border-color: var(--third-color) !important;
   color:var(--primary-text-color);
 }
 
-.form-control {
+.dark-mode .form-control {
   background-color: var(--input-bg) !important;
   color: var(--primary-text-color) !important
 }
-.form-control::placeholder {
+.dark-mode .form-control::placeholder {
   color: var(--primary-text-color) !important;
   opacity: 0.8;
 }
 
-.modal-content {
-  background-color: var(--main-background) !important;
+.dark-mode .modal-content {
+background-color: var(--main-background) !important;
 }
 
-input[type="file"]::-webkit-file-upload-button {
+.dark-mode input[type="file"]::-webkit-file-upload-button {
   color: var(--primary-text-color) !important;
   background-color: var(--main-background) !important;
 }
+
 /* Add other necessary component or container classes */
 
 

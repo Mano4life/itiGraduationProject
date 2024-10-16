@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
       document.documentElement.style.setProperty('--third-color', "#4E4F50")
       document.documentElement.style.setProperty('--boxCategory-color', "#F6E1D3")
       document.documentElement.style.setProperty('--btn-color', "#fe735c")
-      document.documentElement.style.setProperty('--boxShadow-color', "#4a4d55")
+      // document.documentElement.style.setProperty('--boxShadow-color', "#4a4d55")
       document.documentElement.style.setProperty('--footer-color', "#191c24")
       document.documentElement.style.setProperty('--bs-card-title-color', "red")
       document.documentElement.style.setProperty('--main-color', "#F2F3F4")

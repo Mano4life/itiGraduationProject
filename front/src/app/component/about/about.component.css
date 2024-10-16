@@ -22,6 +22,11 @@
   color: var(--second-color);
 }
 
+.dark-mode.subtitle {
+  color: var(--second-color);
+  color: red !important;
+}
+
 .team-member {
   display: flex;
   align-items: center;
