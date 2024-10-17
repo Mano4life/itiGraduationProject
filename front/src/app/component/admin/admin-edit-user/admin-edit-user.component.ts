@@ -36,7 +36,6 @@ export class AdminEditUserComponent {
       this.SingleUserEdit=res;
        const singleUser = this.SingleUserEdit.find( (user:any) => user.id == this.UserId);
       this.UserList=singleUser;
-      console.log("user list",this.SingleUserEdit)
       this.populateForm();
       
       
@@ -62,7 +61,6 @@ export class AdminEditUserComponent {
       email:this.EditForm.value.Email,
       role:this.EditForm.value.role
     }
-    console.log(data)
     if(this.EditForm.valid){
       this.notvalid=false;
       this.serv.adminEditUser(this.UserId,data).subscribe({

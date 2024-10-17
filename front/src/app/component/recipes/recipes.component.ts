@@ -73,7 +73,6 @@ export class RecipesComponent {
   getreciepes() {
     this.recipes.getRecipes().subscribe({
       next: (Response: any) => {  
-        console.log(Response)      
         if(this.reverseOrder){
           this.recipeList = [...Response].reverse();          
         }else{
@@ -81,7 +80,6 @@ export class RecipesComponent {
         }
       },
       error: (error: any) => {
-        console.log(error);
       },
     });
   }
@@ -89,7 +87,6 @@ export class RecipesComponent {
   getsubcategories() {
     this.subcategories.getSubCategories().subscribe({
       next: (response: any) => {
-        console.log(response)
         const uniqueSubCategories = new Map();
   
         this.sub_categoryList = response
@@ -110,14 +107,12 @@ export class RecipesComponent {
           
       },
       error: (error: any) => {
-        console.log(error);
       },
     });
   }
   getingredients() {
     this.ingredent.getIngredients().subscribe({
       next: (Response: any) => {
-        console.log("Recipes Filter",Response)
         this.ingredentsList = Response.map((sub: any, index: number) => ({
           id: sub.id, 
           name: sub.name,
@@ -126,7 +121,6 @@ export class RecipesComponent {
           selected: false, 
           
         }))
-        console.log("list", this.ingredentsList);
         
       },
       error: (error: any) => {

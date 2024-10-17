@@ -67,7 +67,6 @@ export class ProfileComponent {
       if(this.user.role == 'premium' || this.user.role == 'admin'){
         this.isPremium = true;
       }
-      console.log("output",this.user)
     });
   }
   onRecipeClick(id: number) {

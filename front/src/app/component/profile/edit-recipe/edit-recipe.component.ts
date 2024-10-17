@@ -82,7 +82,6 @@ export class EditRecipeComponent {
         .subscribe((data: any) => {
           this.editPendingRecipe = data;
           this.imageLink = data.image;
-          console.log('output pending', this.editPendingRecipe);
           // Patch the form with the basic recipe data
           this.editForm.patchValue({
             name: data.name,
@@ -93,7 +92,6 @@ export class EditRecipeComponent {
             category: data.category.name,
             subcategory: data.subcategory.name,
           });
-          console.log(this.editForm);
 
           // Clear existing ingredients and add new ones
           const ingredientsFormArray = this.editForm.get(
@@ -135,7 +133,6 @@ export class EditRecipeComponent {
 
   editRecipe() {
     if (!this.editForm.valid) {
-      console.log('Form is invalid');
       for (const control in this.editForm.controls) {
         if (this.editForm.controls[control].invalid) {
           console.log(
@@ -185,13 +182,11 @@ export class EditRecipeComponent {
           );
         }
       );
-      console.log('data to be sent', formData);
 
       this.pendingRecipeService
         .updatePendingRecipe(this.pendingRecipeId, formData)
         .subscribe({
           next: (res) => {
-            console.log('Recipe edited successfully:', res);
             this.router.navigate(['/profile']);
           },
           error: (err) => {

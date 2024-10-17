@@ -144,7 +144,6 @@ export class AddRecipeComponent {
 
       this.pendingService.postPendingRecipes(formData).subscribe({
         next: (res) => {
-          console.log('Recipe added successfully:', res);
           const nextModalEl = document.getElementById(modal);
           const nextModalInstance = new bootstrap.Modal(nextModalEl);
           nextModalInstance.show();

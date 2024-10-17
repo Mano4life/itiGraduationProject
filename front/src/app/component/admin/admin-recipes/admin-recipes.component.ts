@@ -25,7 +25,6 @@ export class AdminRecipesComponent {
 
     this.adminService.getUser().subscribe((res) => {
       this.admin = res;
-      console.log(res);
       
     })
   }

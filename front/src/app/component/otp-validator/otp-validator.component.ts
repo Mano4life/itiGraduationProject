@@ -27,7 +27,6 @@ export class OtpValidatorComponent {
             email:email
 
           }
-          console.log(data)
           this.serv.otp(data).subscribe({
             next: (res) => {
               

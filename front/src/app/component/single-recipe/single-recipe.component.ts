@@ -95,7 +95,6 @@ getUser(){
       );
 
       const val = res.ratings;
-      console.log(val);
 
       const ratingUser = val.find(
         (userrating: { recipe_id: any }) =>
@@ -116,7 +115,6 @@ getUser(){
   selectedBtn: string[] = ['one'];
   getSingleRecipe(recipeId:any){
     this.recipesService.getSingleRecipe(recipeId).subscribe((res) => {
-      console.log('single recipe', res);
       this.recipe = res;
       this.currentRecipeId = this.recipe.id;
       this.originalServings = this.recipe.servings; // Store original servings
@@ -194,7 +192,6 @@ getUser(){
       if (this.isSolid) {
         this.recipesService.unsaverecipe(this.recipe.id).subscribe({
           next: (res) => {
-            console.log(res);
             this.isSolid = false;
             this.isFavorite = false;
           },
@@ -205,7 +202,6 @@ getUser(){
       } else {
         this.recipesService.saverecipe(this.recipe.id).subscribe({
           next: (res) => {
-            console.log(res);
             this.isSolid = true;
             this.isFavorite = true;
           },
@@ -273,7 +269,6 @@ getUser(){
   comment(modal: string) {
     if(localStorage.getItem('admin_token') ||  localStorage.getItem('auth_token') ||  localStorage.getItem('premium_token')) {
       if (this.commentForm.valid) {
-        console.log(this.commentForm.value);
         this.recipesService
           .comment(this.recipe.id, this.commentForm.value)
           .subscribe({

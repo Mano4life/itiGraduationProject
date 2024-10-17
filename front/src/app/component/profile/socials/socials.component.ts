@@ -34,7 +34,6 @@ export class SocialsComponent {
     })
   }
   ngOnInit() {
-    console.log(this.LinksForm);
     this.getUser()
     const modalElement = document.getElementById('Socials');
     if (modalElement) {

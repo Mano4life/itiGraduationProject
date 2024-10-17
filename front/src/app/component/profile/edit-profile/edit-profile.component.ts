@@ -28,7 +28,6 @@ export class EditProfileComponent {
     })
   }
   ngOnInit() {
-    console.log(this.EditForm);
     this.UserId=this.routerActive.snapshot.params['id']
     this.getUser();
     const modalElement = document.getElementById('Edit');
@@ -65,7 +64,6 @@ export class EditProfileComponent {
       gender:this.EditForm.value.gender,
       role:this.UserList.role
     }
-    console.log(data)
     if(this.EditForm.valid){
       this.notvalid=false;
       this.serv.EditUser(data).subscribe({

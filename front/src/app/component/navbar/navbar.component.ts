@@ -37,7 +37,6 @@ export class NavbarComponent implements OnInit {
   constructor(private serv:UsersService, private router: Router) { }
   
   ahmed() {
-    console.log('dar', this.darkMode)
     if (this.darkMode) {
       document.body.classList.add('dark-mode');
       document.documentElement.style.setProperty('--main-background', "#222")

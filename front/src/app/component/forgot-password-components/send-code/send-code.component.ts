@@ -30,7 +30,6 @@ export class SendCodeComponent {
  
     CodeConfirmation(){
       if(this.CodeForm.valid){
-        console.log("This is shared:", this.email); 
         const Store = this.CodeForm.value;
         const dataToStore = {
           token: Store.code,
@@ -38,7 +37,6 @@ export class SendCodeComponent {
           };
           this.forgotPasswordService.validateCode(dataToStore).subscribe({
             next: (res) => {
-              console.log(res);
               localStorage.setItem('forgotPasswordCode',dataToStore.token);
               this.router.navigate(['/reset-password']);
             },

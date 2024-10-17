@@ -18,19 +18,16 @@ export class PaymentSuccessComponent {
   ngOnInit() {
     // Call backend to handle success logic
     this.paymentService.handleSuccess().subscribe((response: any) => {
-      console.log(response.message); // You can also show this message to the user
     });
 
     this.usersService.getUser().subscribe((res)=>{
       this.user = res;
-      console.log(res)
       this.usersService.EditUser({
         "name": this.user.name,
         "gender": this.user.gender,
         "date_of_birth": this.user.date_of_birth,
         "role": 'premium'
       }).subscribe((res)=>{
-        console.log(res)
       })
     })
   }

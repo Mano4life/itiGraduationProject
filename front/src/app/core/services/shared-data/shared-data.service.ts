@@ -8,7 +8,6 @@ export class SharedDataService {
   code:string='';
   constructor() { }
   setemail(data:string){
-    console.log("Setting email:", data);
     this.email=data;
   }
   getemail(){

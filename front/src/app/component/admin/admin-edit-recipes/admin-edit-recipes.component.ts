@@ -83,8 +83,6 @@ export class AdminEditRecipesComponent {
         .subscribe((data) => {
           this.editSingleRecipe = data;
           this.imageLink = data.image;
-          console.log('recipe output', this.editSingleRecipe);
-          console.log('image link is: ', this.imageLink);
           // Patch the form with the basic recipe data
           this.editForm.patchValue({
             id: data.id,
@@ -96,7 +94,6 @@ export class AdminEditRecipesComponent {
             category: data.category.name,
             subcategory: data.subcategory.name,
           });
-          console.log(this.editForm);
 
           // Clear existing ingredients and add new ones
           const ingredientsFormArray = this.editForm.get(
@@ -139,7 +136,6 @@ export class AdminEditRecipesComponent {
 
   editRecipe() {
     if (!this.editForm.valid) {
-      console.log('Form is invalid');
       for (const control in this.editForm.controls) {
         if (this.editForm.controls[control].invalid) {
           console.log(
@@ -188,11 +184,9 @@ export class AdminEditRecipesComponent {
           );
         }
       );
-      console.log('data to be sent', formData);
 
       this.recipeService.updateRecipe(this.editRecipeId, formData).subscribe({
         next: (res) => {
-          console.log('Recipe added successfully:', res);
           this.router.navigate(['/admin']);
         },
         error: (err) => {

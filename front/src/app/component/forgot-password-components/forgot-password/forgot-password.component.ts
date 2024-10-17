@@ -30,7 +30,6 @@ export class ForgotPasswordComponent {
       const dataToStore = {
         email: Store.email
       };
-      console.log("Email submitted:", dataToStore.email);
       this.forgotPasswordService.forgotPassword(dataToStore).subscribe({
         next: (res) => {
             localStorage.setItem('forgotPasswordEmail',dataToStore.email)

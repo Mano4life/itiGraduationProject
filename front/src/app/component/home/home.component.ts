@@ -97,7 +97,6 @@ export class HomeComponent {
     this.recipes.getRecipes().subscribe((res) => {
       this.recipesArr = res;
       this.findRecipes = this.recipesArr.filter( (recipe:any) => recipe.user.role != 'premium');
-      console.log(this.findRecipes);
       
       this.randomRecipesArr = this.getRandomRecipes(4);
     });
@@ -107,7 +106,6 @@ export class HomeComponent {
   getRandomRecipes(count: number) {
     // [...]creates a shallow copy of recipesArr for shuffling. This way, the original array remains unchanged.
     this.shuffle = [...this.findRecipes].sort(() => 0.5 - Math.random());
-    console.log(this.shuffle);
     return this.shuffle.slice(0, count);
   }
 

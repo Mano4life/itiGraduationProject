@@ -41,7 +41,6 @@ export class LoginComponent {
 
       this.serv.login(dataToStore).subscribe({
         next: (res:any) => {
-          console.log("from login",res);
           if(res.user.role=='premium'){
             localStorage.setItem('premium_token', res.token); 
           }

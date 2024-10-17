@@ -148,10 +148,10 @@ export class AdminAddRecipeComponent {
 
       this.recipeService.postRecipe(formData).subscribe({
         next: (res) => {
-          console.log('Recipe added successfully:', res);
           const nextModalEl = document.getElementById(modal);
           const nextModalInstance = new bootstrap.Modal(nextModalEl);
           nextModalInstance.show();
+          this.router.navigate(['/admin']);
         },
         error: (err) => {
           console.error('Error creating recipe', err);

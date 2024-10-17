@@ -23,7 +23,6 @@ export class PublicProfileComponent {
     this.profileId=this.activatedRoute.snapshot.params['id']
     this.usersService.publicProfile(this.profileId).subscribe((data:any)=>{
       this.publicProfile=data;
-      console.log(this.publicProfile)
       })
 
   }
