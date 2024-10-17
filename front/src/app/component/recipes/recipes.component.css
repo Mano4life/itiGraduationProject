@@ -18,15 +18,15 @@
     font-weight: 600;
     /* font-family: "Oswald", sans-serif; */
 }
-.white{
+.imagehover{
     cursor: pointer;
     
 }
-.white img {
+.imagehover img {
     transition: transform 0.3s ease; /* Smooth transition for the image */
 }
 
-.white:hover img {
+.imagehover:hover img {
     transform: scale(1.1); /* Scale up the image on hover */
 }
 .imagehover{

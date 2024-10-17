@@ -137,6 +137,12 @@
   word-wrap: break-word;
 }
 
+.close-btn {
+  background-color: transparent;
+  border: none;
+  color: var(--primary-text-color);
+  margin-left: auto;
+}
 
 
 @media (max-width: 1024px) {

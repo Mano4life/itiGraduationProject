@@ -121,8 +121,8 @@ export class RecipesComponent {
         this.ingredentsList = Response.map((sub: any, index: number) => ({
           id: sub.id, 
           name: sub.name,
-          sub_name: sub.recipes?.[0]?.subcategory?.name,
-          category_name: sub.recipes?.[0]?.category?.name,
+          sub_name: sub.recipes?.map((recipe: any) => recipe.subcategory?.name) || [],
+          category_name: sub.recipes?.map((recipe: any) => recipe.category?.name) || [],
           selected: false, 
           
         }))
@@ -142,19 +142,20 @@ export class RecipesComponent {
   }
   filteredingredents(){
     const selectedSubcategories = this.getSelectedSub_category();
-    return this.filteredIngredientsList = this.ingredentsList.filter((sub: any) => {
-      return (
-        (selectedSubcategories.length === 0 || selectedSubcategories.includes(sub.sub_name)) &&
-        (this.selectedCategories.length === 0 || this.selectedCategories.includes(sub.category_name.toLowerCase()))
+  return this.filteredIngredientsList = this.ingredentsList.filter((sub: any) => {
+    const categoryNames = sub.category_name; // Assuming this is now an array
+    return (
+      (selectedSubcategories.length === 0 || sub.sub_name.some((name: string) => selectedSubcategories.includes(name))) &&
+      (this.selectedCategories.length === 0 || categoryNames.some((name: string) => this.selectedCategories.includes(name.toLowerCase())))
     );
-    });
+  });
   }
   time = [
     { id: 1, name: '15 min ', selected: false },
     { id: 2, name: '20 min ', selected: false },
     { id: 3, name: '30 min ', selected: false },
     { id: 4, name: '40 min ', selected: false },
-    { id: 5, name: 'less than 60 min ', selected: false },
+    { id: 5, name: '60 min ', selected: false },
     { id: 6, name: 'more than 60 min ', selected: false },
     
   ];
@@ -267,15 +268,15 @@ export class RecipesComponent {
       if (selected === '15 min ')
         return recipeTime == 15 || recipeTime < 15;
       if (selected === '20 min ')
-        return recipeTime == 20 || recipeTime < 20;
+        return recipeTime > 15 && recipeTime <= 20;
       if (selected === '30 min ')
-        return recipeTime == 30 || recipeTime < 30;
+        return recipeTime > 20 && recipeTime <= 30;
       if (selected === '40 min ')
-        return recipeTime == 40 || recipeTime < 40;
-      if (selected === 'less than 60 min ')
-        return recipeTime == 60 || recipeTime < 60;
+        return recipeTime > 30 && recipeTime <= 40;
+      if (selected === '60 min ')
+        return recipeTime > 40 && recipeTime <= 60;
       if (selected === 'more than 60 min ')
-      return recipeTime == 60 || recipeTime > 60;
+      return recipeTime > 60 ;
       return false;
     });
   }

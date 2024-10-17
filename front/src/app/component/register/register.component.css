@@ -52,7 +52,17 @@ form input:focus, form textarea:focus {
 {
     color: var(--main-color);
 }
-
+.form-group{
+    position: relative;
+    color: #828487;
+    display: flex;
+}
+input:focus{
+    color: black;
+}
+input{
+    color: black;
+}
 .btn-auth{
     font-size: 23px;
     font-weight: 600;

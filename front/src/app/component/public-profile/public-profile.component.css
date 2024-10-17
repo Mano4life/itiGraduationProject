@@ -32,7 +32,7 @@
 
 /* Links */
 .links {
-  color: rgb(109 118 126);
+  color:var(--main-color) !important;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s;
@@ -58,3 +58,4 @@
     max-width: 100%; 
     word-wrap: break-word; 
 }
+

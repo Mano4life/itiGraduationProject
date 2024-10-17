@@ -45,7 +45,7 @@ export class SingleRecipeComponent implements OnInit  {
   isFavorite = false;
   currentRecipeId: any;
   relatedRecipes: any;
-
+  token:string='';
   constructor(
     private recipesService: RecipesService,
     private router: Router,
@@ -56,6 +56,7 @@ export class SingleRecipeComponent implements OnInit  {
       content: new FormControl('', [Validators.required]),
     });
   }
+  
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {
@@ -64,6 +65,23 @@ export class SingleRecipeComponent implements OnInit  {
      this.getSingleRecipe(recipeId) 
     });
     this.getUser()
+    this.gettoken()
+  }
+  gettoken(){
+    if(localStorage.getItem('premium_token') || localStorage.getItem('admin_token')){
+      this.token='premium'
+    }
+  }
+  premiumRecipeClick(){
+    const logged=localStorage.getItem('auth_token')
+    if(logged){
+      this.router.navigate(['/payment']);
+    }
+    else{
+      const nextModalEl = document.getElementById('loginModal');
+          const nextModalInstance = new bootstrap.Modal(nextModalEl);
+          nextModalInstance.show();
+    }
   }
 getUser(){
   this.user.getUser().subscribe({
@@ -113,7 +131,6 @@ getUser(){
           .getIngredient(ingredient.id)
           .subscribe((res) => {
             this.ingredient = res;
-
             // Collect related recipes from each ingredient
             this.ingredient.recipes.forEach((relatedRecipe: any) => {
               // Add the related recipe only if it's not the current recipe
@@ -127,6 +144,7 @@ getUser(){
               (recipe, index, self) =>
                 index === self.findIndex((r) => r.id === recipe.id)
             );
+            
           });
       });
     });

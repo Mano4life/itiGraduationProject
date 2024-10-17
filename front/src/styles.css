@@ -49,13 +49,30 @@ p{
   border-color: #ddd !important;
 }
 
+.main-btn {
+  box-shadow: 0 0 40px var(--boxShadow-color) !important;
+}
+
+.dark-mode .round-planet {
+  border-color: #ddd !important;
+}
+
+
+/* dark mode */
+/*OUR TEAM Section*/
 body.dark-mode .team-section {
-  background-color: #101218 !important;/* OUR TEAM FRAME*/
-  color: #fcf9f9 !important; /*OUR TEAM*/
+  background-color: #101218 !important;
+  color: #fcf9f9 !important; 
 }
 .dark-mode .logoContent p{
   font-size: 17px;
   color: #F2F3F4 !important;
+}
+.dark-mode .modal-content{
+  background-color: #191c24;
+}
+.dark-mode .showIcon{
+  color: #191c24;
 }
 
 body {
@@ -85,33 +102,33 @@ body.dark-mode .member-photo {
   border-color: #ffffff !important;
 }
 
+/* most of the background pages*/
 body.dark-mode {
-  background-color: #101218 !important; /* most of the background pages*/
+  background-color: #101218 !important; 
   color: #ffffff;
 }
-/* 
-.dark-mode .white {
-  background-color: transparent !important;
-} */
 
 .dark-mode .navbar {
   background-color: #101218 !important;
 }
 
+/* footer */
 body.dark-mode .footer {
-  background-color: #191c24 !important; /* footer */
+  background-color: #191c24 !important; 
 }
 .dark-mode .mydailyrecipes{
   background-color: #101218 !important;
 }
+
+/*LATEST RECIPES*/
 body.dark-mode .latest{
-  background-color: #101218 !important; /*LATEST RECIPES*/
+  background-color: #101218 !important;
 }
 .dark-mode .border{
   background-color: #191c24!important;
 }
 .dark-mode .overview-section{
- background-color: #101218 !important;
+  background-color: #101218 !important;
 }
 .dark-mode .all-recipes-title{
   color: #eee !important;
@@ -133,7 +150,7 @@ body.dark-mode .latest{
   color: #F2F3F4 !important;
 }
 .dark-mode .home-banner .banner-left {
-  /* background: #101218 !important; */
+  background: #3959636e !important;
   height: 100vh;
   padding: 0 16%;
 }
@@ -175,10 +192,26 @@ background-color: #101218 !important;
   background-color: var(--admin-table)  !important ;
   color:var(--primary-text-color) !important;
 }
+
+
+/* Admin Section */
 .dark-mode p-table tr {
-  background-color: var(--admin-table) !important ;
-  color:var(--primary-text-color);
+  background-color: var(--admin-table-dark) !important;
+  color: var(--primary-text-color-dark) !important;
 }
+.dark-mode p-table tr.dark-mode-pending  {
+  background-color: #ffe0e0 !important;
+  color: black !important;
+}
+.dark-mode p-table tr.dark-mode-pending .fa-check {
+  color: black !important;
+}
+p-table tr[data-status="denied"] {
+  background-color: #ffe0e0 !important;
+}
+
+/*  */
+p-table .p-paginator {
 .dark-mode p-table .p-paginator {
   background: var(--admin-table) !important;
   color:var(--primary-text-color);
@@ -218,7 +251,6 @@ p-table .p-paginator-page{
 }
 
 .dark-mode .p-datatable-header {
-  /* background-color: green; */
   background: var(--admin-secondary) !important;
   border-color: var(--third-color) !important;
   color:var(--primary-text-color);
@@ -234,7 +266,7 @@ p-table .p-paginator-page{
 }
 
 .dark-mode .modal-content {
-background-color: var(--main-background) !important;
+  background-color: var(--main-background) !important;
 }
 
 .dark-mode input[type="file"]::-webkit-file-upload-button {
@@ -244,21 +276,6 @@ background-color: var(--main-background) !important;
 
 /* Add other necessary component or container classes */
 
-
-
-
-
-/* Login & Register */
-.auth {
-  text-align: center;
-  padding: 0 30px;
-}
-
-.form-group {
-  position: relative;
-  color: #828487;
-  display: flex;
-}
 
 /* Global responsive text scaling */
 @media (max-width: 992px) {
@@ -286,5 +303,5 @@ background-color: var(--main-background) !important;
   p {
     font-size: 0.8rem;
   }
- 
+}
 }

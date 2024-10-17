@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RecipesService } from '../../core/services/recipes/recipes.service';
 import { Router } from '@angular/router';
 
+declare var bootstrap: any;
 @Component({
   selector: 'app-search-input',
   standalone: true,
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 export class SearchInputComponent {
   searchResults$!: Observable<any[]>;
   searchQuery: string = '';
-
+  token:string='';
   private searchResultSource = new BehaviorSubject<any[]>([]);
   recipes: any[] = [];
 
@@ -25,7 +26,25 @@ export class SearchInputComponent {
       this.searchResults$ = this.searchResultSource.asObservable();
     });
   }
-
+  ngOnInit(): void{
+    this.gettoken();
+  }
+  gettoken(){
+    if(localStorage.getItem('premium_token') || localStorage.getItem('admin_token')){
+      this.token='premium'
+    }
+  }
+  premiumRecipeClick(){
+    const logged=localStorage.getItem('auth_token')
+    if(logged){
+      this.router.navigate(['/payment']);
+    }
+    else{
+      const nextModalEl = document.getElementById('loginModal');
+          const nextModalInstance = new bootstrap.Modal(nextModalEl);
+          nextModalInstance.show();
+    }
+  }
   displayedResults: any[] = [];
   search(query: string) {
     if (query.trim() === '') {

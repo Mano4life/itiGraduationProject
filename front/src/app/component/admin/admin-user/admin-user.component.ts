@@ -20,8 +20,10 @@ export class AdminUserComponent {
   ngOnInit() {
     // Get all recipes
     this.getAllUsers();
+    
   }
-
+  
+  // Get all users
   getAllUsers(){
     this.usersService.getUsers().subscribe((res) => {
       this.users = res;
