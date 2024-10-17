@@ -211,7 +211,6 @@ p-table tr[data-status="denied"] {
 }
 
 /*  */
-p-table .p-paginator {
 .dark-mode p-table .p-paginator {
   background: var(--admin-table) !important;
   color:var(--primary-text-color);
@@ -274,6 +273,20 @@ p-table .p-paginator-page{
   background-color: var(--main-background) !important;
 }
 
+.dark-mode .premium-section, .dark-mode .regular-section,
+.dark-mode .premium-section h1, .dark-mode .regular-section h1 {
+  color: black !important;
+}
+
+.dark-mode .payment-cancel h1{
+  background-color: transparent !important;
+  color: red !important;
+}
+
+.dark-mode .payment-success h1 {
+  background-color: transparent !important;
+}
+
 /* Add other necessary component or container classes */
 
 
@@ -303,5 +316,4 @@ p-table .p-paginator-page{
   p {
     font-size: 0.8rem;
   }
-}
 }
