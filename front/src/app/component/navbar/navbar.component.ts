@@ -93,14 +93,16 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('admin_token');
     localStorage.removeItem('premium_token');
     this.isLogged = false;
+    
 
     // AdminActiveSection
-    if(localStorage.getItem('adminActiveSection')){
-      localStorage.removeItem('adminActiveSection');
-    }
+   // if(localStorage.getItem('adminActiveSection')){
+   //   localStorage.removeItem('adminActiveSection');
+   // }
 
     // Navigate back to the home page after logout
     this.router.navigate(['/']);
+    window.location.reload();
   }
 
   // Toggle dark mode and persist the preference in localStorage
